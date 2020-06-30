@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/9.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/10.png">
 <meta property="article:published_time" content="2020-06-24T04:39:36.000Z">
-<meta property="article:modified_time" content="2020-06-24T04:39:36.944Z">
+<meta property="article:modified_time" content="2020-06-24T08:58:51.055Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
@@ -194,6 +194,18 @@
 <p>由于LLC-PDU包含了LLC帧首部的4个字节：DSAP, SSAP, 控制，因此如果LLC-PDU长度/类型字段值为0040时，LLC-PDU的数据字段只能为64-4=60字节。</p>
 <p>LLC的控制字段：输入02H表示LLC信息帧（显示0200）；（注：回车后变成0200，该帧变为：信息帧，控制字段的长度变为2字节）</p>
 <p>windows cmd下输入<code>ipconfig</code> 命令可以看到以太网适配器的IP地址、子网掩码及默认网关；<br>windows cmd下输入<code>route print</code> 命令可以查看路由表</p>
+<ol>
+<li><p>说明DSAP和SSAP的含义？如果编辑一个监控帧，如何设置控制字段？</p>
+<p> （1）DSAP：目的服务访问点</p>
+<pre><code>SSAP：源服务访问点</code></pre><p> （2）LLC控制字段有16位，其中两位SS字段用来执行监控功能，00表示准备接受RR，10表示未准备接受RNR，01表示拒绝REJ；4位x位用于保留，设为0；以为P/F位，命令LLC/PDU传输或响应LLC/PDU传输。</p>
+</li>
+<li><p>说明为什么数据区不需要数据长度的限制？</p>
+<p> 以太网帧的协议类型/数据长度字段为0700表示自定义数据帧，对于此类数据帧没有长度限制。</p>
+</li>
+<li><p>解释路由表项的含义</p>
+<p> 在路由表项中查不到目的网络地址或主机地址的IP包，被自动送往网关路由器202.198.151.254,跃点数表示传输过程中最多需要经过多少个网络才能到达目标，目的是防止无用的IP包在网上流散。</p>
+</li>
+</ol>
 <h1 id="实验2：IP，IPV6"><a href="#实验2：IP，IPV6" class="headerlink" title="实验2：IP，IPV6"></a>实验2：IP，IPV6</h1><h2 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h2><p>IP是一个无连接的、不可靠的、点对点的协议，只能尽力(Best Effort)传送数据，不能保证数据的到达</p>
 <img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/2.png" class="">
 
@@ -273,6 +285,15 @@
 <p>Passive模式</p>
 <p>建立控制通道和Standard模式类似，但建立连接后发送Pasv命令。服务器收到Pasv命令后，打开一个临时端口（端口号大于1023小于65535）并且通知客户端在这个端口上传送数据的请求，客户端连接FTP服务器此端口，然后FTP服务器将通过这个端口传送数据。</p>
 <p>很多<a href="https://baike.baidu.com/item/防火墙" target="_blank" rel="noopener">防火墙</a>在设置的时候都是不允许接受外部发起的连接的，所以许多位于防火墙后或内网的FTP服务器不支持PASV模式，因为客户端无法穿过防火墙打开FTP服务器的高端端口；而许多内网的客户端不能用PORT模式登陆FTP服务器，因为从服务器的TCP 20无法和内部网络的客户端建立一个新的连接，造成无法工作。</p>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>主页访问：通过get方法提取网站主页文件。</p>
+<p>页面提交：通过post方法提交信息。</p>
+<p>HTTP是应用层协议，是WWW服务的支撑协议。</p>
+<p>HTTP是基于客户/服务器模式，且面向连接的。典型的HTTP事务处理有如下的过程：</p>
+<p>（1）客户与服务器建立连接；</p>
+<p>（2）客户向服务器提出请求；</p>
+<p>（3）服务器接受请求，并根据请求返回相应的文件作为应答；</p>
+<p>（4）客户与服务器关闭连接。</p>
+<p>HTTP是一种无状态协议，即服务器不保留与客户交易时的任何状态。这就大大减轻了服务器记忆负担，从而保持较快的响应速度。</p>
 
       
 
@@ -377,11 +398,11 @@
   
 <nav id="article-nav">
   
-    <a href="/3000/06/23/about-me/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          about me
+          计算机组成原理
         
       </div>
     </a>
@@ -514,7 +535,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">test</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">about me</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数学</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -522,7 +551,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">test</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
             
             <div class="clearfix"></div>
