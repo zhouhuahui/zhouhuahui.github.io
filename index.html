@@ -225,6 +225,277 @@
 
 
   
+    <article id="posts-操作系统" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="archive-article-date">
+  	<time datetime="2020-07-01T01:23:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-操作系统概述"><a href="#1-操作系统概述" class="headerlink" title="1 操作系统概述"></a>1 操作系统概述</h1><h2 id="1-1-操作系统概念"><a href="#1-1-操作系统概念" class="headerlink" title="1.1 操作系统概念"></a>1.1 操作系统概念</h2><p>硬件抽象层（HAL）：硬件抽象层是位于操作系统 <a href="https://baike.baidu.com/item/内核/108410" target="_blank" rel="noopener">内核</a>与<a href="https://baike.baidu.com/item/硬件/479446" target="_blank" rel="noopener">硬件</a>电路之间的接口层，其目的在于将硬件抽象化。它隐藏了特定平台的<a href="https://baike.baidu.com/item/硬件接口/444711" target="_blank" rel="noopener">硬件接口</a>细节,为操作系统提供虚拟硬件平台,使其具有硬件无关性,可在多种平台上进行移植。 从软硬件测试的角度来看，软硬件的测试工作都可分别基于硬件抽象层来完成，使得软硬件测试工作的并行进行成为可能。</p>
+<p>操作系统运行视图：<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/1.png" class=""></p>
+<p>操作系统的作用：管理系统中的软硬件资源；为用户（应用程序）提供良好的服务。</p>
+<p>操作系统定义：是位于硬件层(HAL)之上，所有其它软件层之下的一个系统软件，是管理系统中各种硬/软件资源，方便用户使用计算机系统的程序集合。</p>
+<h2 id="1-2-操作系统的历史"><a href="#1-2-操作系统的历史" class="headerlink" title="1.2 操作系统的历史"></a>1.2 操作系统的历史</h2><h3 id="1-2-2-操作系统的完善"><a href="#1-2-2-操作系统的完善" class="headerlink" title="1.2.2 操作系统的完善"></a>1.2.2 操作系统的完善</h3><ol>
+<li>多道批处理系统</li>
+<li>分时系统</li>
+<li>实时处理系统</li>
+<li>通用操作系统</li>
+</ol>
+<h3 id="1-2-3-操作系统的发展"><a href="#1-2-3-操作系统的发展" class="headerlink" title="1.2.3 操作系统的发展"></a>1.2.3 操作系统的发展</h3><p>1.计算机体系结构由集中向分散的发展，出现了计算机网络，由此产生<strong>网络操作系统和分布式操作系统</strong>；</p>
+<p>2.随着家用和商用微型计算机的普及，出现了<strong>单用户多任务的操作系统</strong>；</p>
+<p>3.大型计算任务要求计算机系统具有极强的计算和处理能力，产生了支持多处理器的<strong>并行操作系统</strong>；</p>
+<p>4.随着各种处理器芯片和存储介质在控制领域的广泛应用，要求操作系统具有专用的特性，出现了<strong>微内核操作系统体系结构</strong>，如嵌入式和智能卡系统；</p>
+<p>5.随着芯片集成度的提高，提高单处理器速度已近极限，多核技术应运而生。新一代操作系统遇到的问题：多核的并发控制；多核下的进程调度。</p>
+<h2 id="1-3-操作系统的特性"><a href="#1-3-操作系统的特性" class="headerlink" title="1.3 操作系统的特性"></a>1.3 操作系统的特性</h2><ol>
+<li>程序并发性。</li>
+<li>资源共享性</li>
+<li>程序异步性。中断随机发生，致使程序切换不确定，不可预知。</li>
+<li>虚拟性。利用虚拟技术把一个物理实体变为若干个逻辑实体；<br> 如：多道程序系统<pre><code>虚拟存储管理技术
+虚拟设备管理</code></pre></li>
+</ol>
+<h2 id="1-4-操作系统的分类"><a href="#1-4-操作系统的分类" class="headerlink" title="1.4 操作系统的分类"></a>1.4 操作系统的分类</h2><p>只说那些重要的。</p>
+<ol>
+<li>单用户操作系统<br> 特点：单用户，多进程，多线程。</li>
+<li>网络操作系统<br> 提供网络服务：database server; ftp server; e-mail server; telnet server</li>
+<li>分布式操作系统：<br> 特点：统一OS；资源共享；可靠性；透明性</li>
+<li>多处理机操作系统：多个CPU</li>
+<li>嵌入式操作系统：微内核结构（Micro-kernel）</li>
+</ol>
+<h2 id="1-5-操作系统的硬件环境"><a href="#1-5-操作系统的硬件环境" class="headerlink" title="1.5 操作系统的硬件环境"></a>1.5 操作系统的硬件环境</h2><p><strong>定时装置</strong>产生<strong>中断</strong>，造成<strong>处理器状态转化</strong>，把一些信息压入<strong>系统栈</strong>，当程序要访问存储器时，就需要<strong>地址映射机构</strong>，<strong>寄存器</strong>和<strong>存储保护设施</strong>，当要进行I/O时，就需要<strong>通道与DMA控制器</strong>和<strong>I/O保护</strong>，程序的所有与硬件相关的资源相关的操作都要<strong>特权指令与非特权指令</strong>。</p>
+<h1 id="2-进程，线程与作业"><a href="#2-进程，线程与作业" class="headerlink" title="2 进程，线程与作业"></a>2 进程，线程与作业</h1><h2 id="2-1-多道程序设计"><a href="#2-1-多道程序设计" class="headerlink" title="2.1 多道程序设计"></a>2.1 多道程序设计</h2><p>道数少造成资源利用率低，道数多造成系统开销大，程序响应速度低。</p>
+<h2 id="2-2-进程的引入"><a href="#2-2-进程的引入" class="headerlink" title="2.2 进程的引入"></a>2.2 进程的引入</h2><p>多道系统中的程序不断地暂停于推进：<br>暂停：保存现场（PSW+PC，寄存器）<br>推进：回复现场（寄存器，PSW+PC）</p>
+<p>程序暂停的原因：<br>（1）自身原因：等待资源，启动I/O<br>（2）剥夺CPU</p>
+<p><strong>进程定义</strong>：可参与并发执行的程序称为进程。<br>强调：动态：执行中的程序<br>            并发：可与其他进程同时执行</p>
+<p>进程状态（基本状态）：<br>运行态（RUN）<br>就绪态（READY）<br>等待态（WAIT）</p>
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/2.png" class="">
+
+<h2 id="2-3-进程控制块"><a href="#2-3-进程控制块" class="headerlink" title="2.3 进程控制块"></a>2.3 进程控制块</h2><p>PCB：标志进程存在的数据结构，其中保存系统管理进程所需的全部信息</p>
+<p>PCB的内容：</p>
+<p>进程的组成：<br>1.PCB<br>2.程序：代码(code)；数据(data)；堆栈(stack+heap)<br>只表示进程的静态特征。</p>
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/3.png" class="">
+
+<p>进程的队列：</p>
+<h2 id="2-4-进程的类型"><a href="#2-4-进程的类型" class="headerlink" title="2.4 进程的类型"></a>2.4 进程的类型</h2><p>系统进程<br>用户进程</p>
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4.png" class="">
+
+<h2 id="2-5-进程的创建与撤销"><a href="#2-5-进程的创建与撤销" class="headerlink" title="2.5  进程的创建与撤销"></a>2.5  进程的创建与撤销</h2><p>除了初始进程外，其他进程都由父进程创建</p>
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/5.png" class="">
+
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/6.png" class="">
+
+<h2 id="2-6-线程及其控制块"><a href="#2-6-线程及其控制块" class="headerlink" title="2.6 线程及其控制块"></a>2.6 线程及其控制块</h2><p>什么是线程：对于一个任务，它有多个并发运行的子任务，由于子任务间耦合较为紧密，所以用进程来描述子任务非常不合适。一个线程是单一顺序的控制流，所有线程协同执行不同的角色。</p>
+<p>线程的引入：<br>同一进程中包含多个线程<br>多个线程共享进程代码，数据，堆<br>线程上下文只涉及寄存器和栈，切换速度块<br>相关线程之间通讯方便，快捷</p>
+<p>进程与线程的区别：</p>
+<p>多进程结构：<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/7.png" class=""></p>
+<p>多线程结构：<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/8.png" class=""></p>
+<p>TCB：Thread Control Blolck 线程控制块</p>
+<h2 id="2-7-线程的实现"><a href="#2-7-线程的实现" class="headerlink" title="2.7 线程的实现"></a>2.7 线程的实现</h2><p>用户级别线程：User-level thread<br>核心级别线程：Kernel-level thread</p>
+<h1 id="3-中断与处理器调度"><a href="#3-中断与处理器调度" class="headerlink" title="3 中断与处理器调度"></a>3 中断与处理器调度</h1><h2 id="3-1-中断与中断系统"><a href="#3-1-中断与中断系统" class="headerlink" title="3.1 中断与中断系统"></a>3.1 中断与中断系统</h2><p>中断装置：</p>
+<p>中断响应与处理基本过程：<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/9.png" class=""></p>
+<p>中断源与中断字</p>
+<p>中断类型：强迫性中断与自愿性中断</p>
+<p>中断向量表 <img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/10.png" class=""></p>
+<p>中断优先级</p>
+<p>中断屏蔽</p>
+<p>中断处理程序（把PSW和PC处理完之后）： <img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/11.png" class=""></p>
+<p>用户处理中断的过程：中断续元表</p>
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/12.png" class="">
+
+<h2 id="3-2-处理机调度"><a href="#3-2-处理机调度" class="headerlink" title="3.2  处理机调度"></a>3.2  处理机调度</h2><p>考虑因素：scheduling criteria：</p>
+<p>几个处理机调度算法</p>
+<p>处理机调度时机：4个时机</p>
+<h2 id="3-3-调度级别与多级调度"><a href="#3-3-调度级别与多级调度" class="headerlink" title="3.3 调度级别与多级调度"></a>3.3 调度级别与多级调度</h2><p>交换（swap）与中级调度（mid-level scheduling）：目的是控制并发度</p>
+<p>作业与高级调度</p>
+<h2 id="3-4-实时调度"><a href="#3-4-实时调度" class="headerlink" title="3.4 实时调度"></a>3.4 实时调度</h2><p>周期性实时任务可调度的判断：</p>
+<p>最早截止期优先调度</p>
+<p>速率单调调度</p>
+<h2 id="3-5-Linux进程调度"><a href="#3-5-Linux进程调度" class="headerlink" title="3.5 Linux进程调度"></a>3.5 Linux进程调度</h2><p>自旋锁用于多处理机系统中，将核心分为若干相对独立的部分，不同的CPU可以同时进入和执行核心中的不同部分，实现时可以为每个相对独立的区域设置一个自旋锁。</p>
+<h1 id="4-互斥，同步与通信"><a href="#4-互斥，同步与通信" class="headerlink" title="4 互斥，同步与通信"></a>4 互斥，同步与通信</h1><h2 id="4-1-并发进程"><a href="#4-1-并发进程" class="headerlink" title="4.1 并发进程"></a>4.1 并发进程</h2><p>前驱图</p>
+<p>程序的顺序性</p>
+<p>程序的并发性</p>
+<p>程序并发执行的条件：Bernstein条件：P1和P2无前驱关系，则可以并发执行</p>
+<h2 id="4-2-进程互斥"><a href="#4-2-进程互斥" class="headerlink" title="4.2 进程互斥"></a>4.2 进程互斥</h2><p>临界区管理原则：</p>
+<p>进程互斥的硬件实现：test_and_set，不满足有限等待性</p>
+<p>满足有限等待性的test_and_set</p>
+<p>多处理机的互斥：锁总线</p>
+<h2 id="4-3-进程同步"><a href="#4-3-进程同步" class="headerlink" title="4.3 进程同步"></a>4.3 进程同步</h2><p>一组进程，为协调其推进速度，在某些关键点处需要相互等待与相互唤醒，进程之间这种相互制约的关系称为进程同步，简称同步(Synchronization)。</p>
+<p>典型同步机制：<br>信号量与P/V操作<br>条件临界区<br>管程</p>
+<p>生产者和消费者问题：互斥与同步的实现：<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/13.png" class=""></p>
+<p>生产者与消费者问题，并发性提高策略：</p>
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/15.png" class="">
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/14.png" class="">
+
+<p>读者与写者问题：</p>
+<p>管程有等待/唤醒机制：wait, signal</p>
+<p>唤醒时有3中处理方法（P唤醒Q）：</p>
+<ol>
+<li>P等待，Q运行，直到Q退出或等待（Hoare）</li>
+<li>Q等待，P继续，直到P退出或等待（Java）</li>
+<li>唤醒是管程中可执行的最后一个操作（Hansen）</li>
+</ol>
+<p>磁头引臂调度问题：</p>
+<h1 id="5-死锁与饥饿"><a href="#5-死锁与饥饿" class="headerlink" title="5 死锁与饥饿"></a>5 死锁与饥饿</h1><h2 id="5-1-死锁的概念"><a href="#5-1-死锁的概念" class="headerlink" title="5.1 死锁的概念"></a>5.1 死锁的概念</h2><h2 id="5-2-死锁的类型"><a href="#5-2-死锁的类型" class="headerlink" title="5.2 死锁的类型"></a>5.2 死锁的类型</h2><h2 id="5-3-死锁的条件"><a href="#5-3-死锁的条件" class="headerlink" title="5.3 死锁的条件"></a>5.3 死锁的条件</h2><h2 id="5-4-死锁的处理"><a href="#5-4-死锁的处理" class="headerlink" title="5.4 死锁的处理"></a>5.4 死锁的处理</h2><p>死锁预防：静态，进程有关资源的活动按照某种协议加以限制</p>
+<p>死锁避免：动态，实时检测进程的资源申请，拒绝不安全的请求，保证不发生死锁。</p>
+<h2 id="5-5-资源分配图"><a href="#5-5-资源分配图" class="headerlink" title="5.5 资源分配图"></a>5.5 资源分配图</h2><h2 id="5-6-死锁预防"><a href="#5-6-死锁预防" class="headerlink" title="5.6 死锁预防"></a>5.6 死锁预防</h2><h2 id="5-7-死锁避免"><a href="#5-7-死锁避免" class="headerlink" title="5.7 死锁避免"></a>5.7 死锁避免</h2><p>安全状态与安全进程序列</p>
+<p>银行家算法</p>
+<p>死锁检测算法：本质上是资源分配图的约简算法</p>
+<h1 id="6-存储管理"><a href="#6-存储管理" class="headerlink" title="6 存储管理"></a>6 存储管理</h1><h1 id="7-文件系统"><a href="#7-文件系统" class="headerlink" title="7 文件系统"></a>7 文件系统</h1><h2 id="7-2-文件的访问方式"><a href="#7-2-文件的访问方式" class="headerlink" title="7.2 文件的访问方式"></a>7.2 文件的访问方式</h2><p>顺序访问</p>
+<p>随机访问</p>
+<h2 id="7-3-文件的组织"><a href="#7-3-文件的组织" class="headerlink" title="7.3 文件的组织"></a>7.3 文件的组织</h2><p>逻辑组织：外部组织形式，用户看到的组织形式</p>
+<p>物理组织：内部组织形式，物理存储设备上的组织形式</p>
+<p>OS完成逻辑组织形式到物理组织形式的转换</p>
+<p>文件的逻辑组织：<br>流式文件：文件由字节序列组成<br>记录式文件：记录的序列</p>
+<p>物理组织：<br>逻辑组织到磁盘块的映射<br>顺序结构：一个文件占有若干连续的磁盘块<br>链接结构<br>索引结构：inode<br>散列结构<br>倒排结构</p>
+<p>文件的物理组织与内存存储管理（页式，段式等）相似。</p>
+<h2 id="7-4-文件控制块"><a href="#7-4-文件控制块" class="headerlink" title="7.4 文件控制块"></a>7.4 文件控制块</h2><p>每一个文件有一个FCB，保存在外存中。<br>打开文件时，将FCB读入内存</p>
+<p>目录项：<br>目录文件中的一项，内容为FCB</p>
+<p>文件目录的改进：</p>
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/16.png" class="">
+
+<h2 id="7-7-文件系统的实现"><a href="#7-7-文件系统的实现" class="headerlink" title="7.7 文件系统的实现"></a>7.7 文件系统的实现</h2><h3 id="7-7-1-内存所需表目"><a href="#7-7-1-内存所需表目" class="headerlink" title="7.7.1 内存所需表目"></a>7.7.1 内存所需表目</h3><img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/17.png" class="">
+
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/18.png" class="">
+
+<h3 id="7-7-2-外存空间管理"><a href="#7-7-2-外存空间管理" class="headerlink" title="7.7.2 外存空间管理"></a>7.7.2 外存空间管理</h3><p>成组链接方式：空闲块表与空闲块链的结合</p>
+<p>外存空间管理（成组链接等）与空闲内存管理（位示图等）相似</p>
+<p>外存空间有导引快，超级块（就是成组链接中的超级块，磁盘中有一块，内存中也有相同内容的一块），inode区域（保存所有文件的inode），目录与文件区。</p>
+<h1 id="专业英语"><a href="#专业英语" class="headerlink" title="专业英语"></a>专业英语</h1><h2 id="1-操作系统概述-1"><a href="#1-操作系统概述-1" class="headerlink" title="1 操作系统概述"></a>1 操作系统概述</h2><p>HAL：Hardware Abastraction Layer; 硬件抽象层</p>
+<p>Micro-kernel：微内核，用于嵌入式操作系统</p>
+<h2 id="2-进程，线程与作业-1"><a href="#2-进程，线程与作业-1" class="headerlink" title="2 进程，线程与作业"></a>2 进程，线程与作业</h2><p>PSW：Program Status Word 程序状态字；可用于OS在管态（系统态）和目态（用户态）之间的转换；PSW用来存放两类信息：一类是体现当前指令执行结果的各种状态信息，另一类是存放控制信息，称为控制状态，如允许中断(IF位)</p>
+<p>PC：Program Counter 程序计数器。</p>
+<p>PCB：Process Control Block 进程控制块</p>
+<p>Process Context：进程上下文</p>
+<p>TCB：Thread Control Block 线程控制块</p>
+<p>User-level thread</p>
+<p>Kernel-level thread</p>
+<h2 id="3-中断与处理器调度-1"><a href="#3-中断与处理器调度-1" class="headerlink" title="3 中断与处理器调度"></a>3 中断与处理器调度</h2><p>interrupt：中断</p>
+<p>interrupt mask：中断屏蔽</p>
+<p>CPU burst cycle：CPU阵发期</p>
+<p>CPU burst time：</p>
+<p>I/O burst cycle</p>
+<p>preemptive：剥夺式</p>
+<p>FCFS：First Come First Serve。先到先服务</p>
+<p>SJF：Shortest Job First 最短作业优先算法</p>
+<p>SRTN：Shortest Remaining Time Next 最短剩余时间优先</p>
+<p>HRN：Highest Response Ratio Next 最高响应比优先</p>
+<p>HPF：Highest Priority First 最高优先数</p>
+<p>RR：Round Robin  循环轮转算法</p>
+<p>MLQ：Multi-Level Queues 分类排队算法</p>
+<p>FB：Feed-Back 反馈排队算法</p>
+<p>degree of multi-programming：并发度</p>
+<p>swapping：交换</p>
+<p>mid-level scheduling：中级调度</p>
+<p>Real-time Scheduling：实时调度</p>
+<p>Starting deadline：开始截止期</p>
+<p>Processing time：处理时间</p>
+<p>Completion deadline：完成截止期</p>
+<p>EDF：Earliest Deadline First 最早截止期优先调度</p>
+<p>RMS：Rate Monotonic Scheduling 速率单调调度</p>
+<p>spin_lock：自旋锁</p>
+<h2 id="4-互斥，同步与通信-1"><a href="#4-互斥，同步与通信-1" class="headerlink" title="4 互斥，同步与通信"></a>4 互斥，同步与通信</h2><p>Bernstein条件</p>
+<p>shared variable：共享变量</p>
+<p>critical region：临界区</p>
+<p>mutual exclusion：互斥性</p>
+<p>progress：进展性</p>
+<p>bounded waiting：有限等待性</p>
+<p>test_and_set：进程互斥的硬件实现</p>
+<p>Bus-locking ：锁总线</p>
+<p>Bus-unlocking：总线解锁</p>
+<p>Synchronization：进程同步</p>
+<p>Primitive：原语，一段不可间断执行的程序</p>
+<p>semaphore：信号量</p>
+<p>monitor：管程</p>
+<p>LOOK：elevator algorithm 电梯算法（磁头引臂调度问题）</p>
+<p>IPC：Inter-Process Communication 进程通信</p>
+<p>memory sharing：共享内存</p>
+<p>message passing：消息传递</p>
+<p>buffering：有缓冲途径</p>
+<p>non-buffering：无缓冲途径</p>
+<h2 id="5-死锁与饥饿-1"><a href="#5-死锁与饥饿-1" class="headerlink" title="5 死锁与饥饿"></a>5 死锁与饥饿</h2><p>deadlock：死锁</p>
+<p>mutual exclusion：资源独占</p>
+<p>non preemption：不可抢占</p>
+<p>hold-and-applying：保持申请</p>
+<p>circular wait：循环等待</p>
+<p>deadlock prevention：死锁预防</p>
+<p>deadlock avoidance：死锁避免</p>
+<p>deadlock detection：死锁检测</p>
+<p>deadlock revovery：死锁恢复</p>
+<p>Banker’s algorithma：银行家算法</p>
+<h2 id="6-存储管理-1"><a href="#6-存储管理-1" class="headerlink" title="6 存储管理"></a>6 存储管理</h2><p>First Fit：首次适应（动态异长的分区分配算法）</p>
+<p>Best Fit：最佳适应</p>
+<p>Worst Fit：最坏适应</p>
+<p>Next Fit：邻近适应</p>
+<p>OPT：最佳置换算法</p>
+<p>FIFO：先进先出置换算法</p>
+<p>LRU：Least Recently Used 最近最少使用算法</p>
+<p>CLOCK：时钟置换算法（NRU，Not Recently Used，最近未用算法）</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-概率论与数理统计" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -489,6 +760,7 @@
 <h2 id="Amdahl’s-Law"><a href="#Amdahl’s-Law" class="headerlink" title="Amdahl’s Law"></a>Amdahl’s Law</h2><img src="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/3.png" class="">
 
 <p>在改进计算机的某个方面时期望总性能的提高与改进大小成正比</p>
+<h1 id="数据的表示和运算"><a href="#数据的表示和运算" class="headerlink" title="数据的表示和运算"></a>数据的表示和运算</h1><p>根据IEEE754标准，浮点数的阶码用移码表示。<br>对于单精度浮点数的阶码，有8位，则其<strong>偏置常数</strong>是127，如果阶码的值是2的话，阶码就应该表示为128+2=130的无符号8位二进制的形式（或者将补码的最高一位加1，溢出的不管，也可以得到同样的结果）</p>
 <h1 id="计算机的语言"><a href="#计算机的语言" class="headerlink" title="计算机的语言"></a>计算机的语言</h1><h2 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h2><p>一台计算机的全部指令</p>
 <p>MIPS指令集</p>
 <h2 id="寄存器和主存储器"><a href="#寄存器和主存储器" class="headerlink" title="寄存器和主存储器"></a>寄存器和主存储器</h2><p>寄存器的访问速度比主存快得多</p>
@@ -1038,11 +1310,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">about me</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">test</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">about me</a>
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1050,11 +1326,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机组成原理</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机网络</a>
               </li>
             
             <div class="clearfix"></div>
