@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://zhouhuahui.github.io">
   <title>局域网技术与组网工程实验 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="生成树协议STP交换机STP原理STP（Spanning Tree Protocol）是生成树协议，该协议的原理是按照树的结构来构造网络拓扑，消除网络中的环路，避免由于环路的存在而造成广播风暴以及MAC地址表不稳定等问题。可在提高可靠性的同时又能避免环路带来的各种问题。 STP的工作过程运行STP算法的网桥（交换机），在规定的间隔内（默认2秒），通过网桥协议数据单元（BPDU）的组播帧与其他交换机">
+  <meta name="description" content="交换机基础通过telnet配置交换机使用telnet方式访问交换机的前提条件是什么 对交换机进行初始化配置，否则用户无法正确登录和访问。初始化配置是为交换机配置正确的网段和IP地址，以便实现交换机互联。交换机配置的工作包括：  配置正确的交换机IP地址，这里所说的为交换机配置IP地址，实际上是指在交换机上配置管理VLAN接口的IP地址。 确定与PC相连的交换机端口属于该管理VLAN 如果PC和交换">
 <meta property="og:type" content="article">
 <meta property="og:title" content="局域网技术与组网工程实验">
 <meta property="og:url" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="生成树协议STP交换机STP原理STP（Spanning Tree Protocol）是生成树协议，该协议的原理是按照树的结构来构造网络拓扑，消除网络中的环路，避免由于环路的存在而造成广播风暴以及MAC地址表不稳定等问题。可在提高可靠性的同时又能避免环路带来的各种问题。 STP的工作过程运行STP算法的网桥（交换机），在规定的间隔内（默认2秒），通过网桥协议数据单元（BPDU）的组播帧与其他交换机">
+<meta property="og:description" content="交换机基础通过telnet配置交换机使用telnet方式访问交换机的前提条件是什么 对交换机进行初始化配置，否则用户无法正确登录和访问。初始化配置是为交换机配置正确的网段和IP地址，以便实现交换机互联。交换机配置的工作包括：  配置正确的交换机IP地址，这里所说的为交换机配置IP地址，实际上是指在交换机上配置管理VLAN接口的IP地址。 确定与PC相连的交换机端口属于该管理VLAN 如果PC和交换">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/1.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/1.png">
@@ -23,6 +23,8 @@
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/3.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/4.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/4.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/14.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/14.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/10.jpg">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/10.jpg">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/5.png">
@@ -33,6 +35,10 @@
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/11.jpg">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/11.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/11.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/12.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/12.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/13.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/13.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/7.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/7.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/8.png">
@@ -42,7 +48,7 @@
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/12.jpg">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/12.jpg">
 <meta property="article:published_time" content="2020-07-25T02:03:53.000Z">
-<meta property="article:modified_time" content="2020-07-25T15:32:50.969Z">
+<meta property="article:modified_time" content="2020-08-13T07:54:40.462Z">
 <meta property="article:author" content="fantasy">
 <meta property="article:tag" content="计算机专业课">
 <meta name="twitter:card" content="summary">
@@ -75,7 +81,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="https://zhouhuahui.github.io/1000/10/10/images/shanna.jpg" class="js-avatar">
+			<img src="http://localhost:4000/1000/10/10/images/shanna.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">fantasy</a></h1>
@@ -133,7 +139,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="https://zhouhuahui.github.io/1000/10/10/images/shanna.jpg" class="js-avatar">
+				<img src="http://localhost:4000/1000/10/10/images/shanna.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">fantasy</h1>
@@ -202,7 +208,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="生成树协议STP"><a href="#生成树协议STP" class="headerlink" title="生成树协议STP"></a>生成树协议STP</h1><h2 id="交换机STP原理"><a href="#交换机STP原理" class="headerlink" title="交换机STP原理"></a>交换机STP原理</h2><p>STP（Spanning Tree Protocol）是生成树协议，该协议的原理是按照树的结构来构造网络拓扑，消除网络中的环路，避免由于环路的存在而造成广播风暴以及MAC地址表不稳定等问题。可在提高可靠性的同时又能避免环路带来的各种问题。</p>
+        <h1 id="交换机基础"><a href="#交换机基础" class="headerlink" title="交换机基础"></a>交换机基础</h1><h2 id="通过telnet配置交换机"><a href="#通过telnet配置交换机" class="headerlink" title="通过telnet配置交换机"></a>通过telnet配置交换机</h2><p><strong>使用telnet方式访问交换机的前提条件是什么</strong></p>
+<p>对交换机进行初始化配置，否则用户无法正确登录和访问。初始化配置是为交换机配置正确的网段和IP地址，以便实现交换机互联。交换机配置的工作包括：</p>
+<ol>
+<li>配置正确的交换机IP地址，这里所说的为交换机配置IP地址，实际上是指在交换机上配置管理VLAN接口的IP地址。</li>
+<li>确定与PC相连的交换机端口属于该管理VLAN</li>
+<li>如果PC和交换机相连的端口在同一个局域网内，则其IP地址必须配置为同一个网段；否则，要保证PC和交换机必须路由可达。</li>
+</ol>
+<h1 id="生成树协议STP"><a href="#生成树协议STP" class="headerlink" title="生成树协议STP"></a>生成树协议STP</h1><h2 id="交换机STP原理"><a href="#交换机STP原理" class="headerlink" title="交换机STP原理"></a>交换机STP原理</h2><p>STP（Spanning Tree Protocol）是生成树协议，该协议的原理是按照树的结构来构造网络拓扑，消除网络中的环路，避免由于环路的存在而造成广播风暴以及MAC地址表不稳定等问题。可在提高可靠性的同时又能避免环路带来的各种问题。</p>
 <h3 id="STP的工作过程"><a href="#STP的工作过程" class="headerlink" title="STP的工作过程"></a>STP的工作过程</h3><p>运行STP算法的网桥（交换机），在规定的间隔内（默认2秒），通过网桥协议数据单元（BPDU）的组播帧与其他交换机交换配置信息，完成生成树的构建。</p>
 <h4 id="选举根桥-Root"><a href="#选举根桥-Root" class="headerlink" title="选举根桥(Root)"></a>选举根桥(Root)</h4><p>通过比较网桥优先级选取根网桥，给定广播域内只有一个根网桥。一般情况下， 网桥的BID（桥ID）最小的那个作为根网桥。</p>
 <p>每个交换机假设自己为根，互相发送BPDU报文，然后通过比较BID竞选根桥。</p>
@@ -210,7 +223,7 @@
 <ol>
 <li><p>非根交换机根据<strong>根路径开销</strong>（RPC，Root Path Cost）来选举根端口。根路径开销是指接收由根桥发送的BPDU所经过的所有路径的<strong>路径开销</strong>之和，交换机在接收BPDU时累加路径开销，转发BPDU时不累加路径开销。路径开销是设置在交换机的端口上的，表示这个端口的开销。</p>
 </li>
-<li><p>若该交换机的根路径开销相同，则比较两个路径的上一个交换机的BID（多个端口连接的对端交换机的BID），例如，有ABCD，AEFD两个从A到达D的路径，则比较C和F的BID来选择D应该将哪个端口设置为RP。</p>
+<li><p>若该交换机的根路径开销相同，则比较两个路径的上一个交换机的BID（多个端口连接的对端交换机的BID），例如，有ABCD，AEFD两个从A到达D的路径，则比较C和F的BID来选择应该将哪个端口设置为RP。</p>
 </li>
 <li>若交换机多个端口连接的对端交换机也相同（即BID相同），比如ABDE, ACDE，从D的两个端口分别连接E的两个端口。此时比较连接的对端交换机的端口的PID。</li>
 </ol>
@@ -231,6 +244,7 @@
 <p><img src="局域网技术与组网工程实验/1.png" alt="1"></p>
 <p>先设置观察端口，再设置镜像端口。缺省情况下，系统没有配置本地观察端口，如果要修改观察端口，需要删除原来的配置后再重新配置（将和观察端口绑定的镜像端口删除掉，再配置它们的观察端口）。</p>
 <p>一个观察端口可以观察多个镜像端口，同时，一个镜像端口也可以被很多个观察端口观察。</p>
+<p>设置观察端口后，该端口自动配置为Trunk端口，删除观察端口后，该端口自动配置为Access端口，且加入VLAN1。</p>
 <h2 id="端口绑定"><a href="#端口绑定" class="headerlink" title="端口绑定"></a>端口绑定</h2><p>利用了交换机的地址学习功能，只要取消了端口的地址学习功能，那么它就只能知道你告诉它的主机应该往哪个端口发送，而你没有告诉它的，它则不知道往哪里发送，因为这个端口不能学习了，这个你告诉它的主机就是存在于它的静态地址表项中的。如果你再设置：这个端口抛弃它不知道往哪里发的报文（目的MAC不在它的静态地址表项中），那它就只能转发目的MAC地址存在于静态地址表项中的报文，从而实现端口绑定的功能。</p>
 <ol>
 <li>取消该端口的MAC地址学习功能</li>
@@ -255,7 +269,7 @@
 </li>
 </ul>
 </li>
-<li><p>关于MAC地址与端口绑定的说法正确的是？（AB）</p>
+<li><p>关于MAC地址与端口绑定的说法正确的是？（AC）</p>
 <ul>
 <li><p>A、</p>
 <p>  静态MAC地址表项的优先级高于动态MAC地址表项。</p>
@@ -272,10 +286,10 @@
 </ul>
 </li>
 </ol>
-<h1 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h1><h2 id="虚拟局域网原理"><a href="#虚拟局域网原理" class="headerlink" title="虚拟局域网原理"></a>虚拟局域网原理</h2><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>早期以太网基于CSMA/CD的共享通讯介质的通讯技术，当主机数目过多时会导致冲突严重，广播泛滥，性能显著下降甚至网络不可用等问题。通过交换机虽然可以解决冲突问题，但是仍然不能隔离广播报文和提升网络质量。VLAN技术可以把一个物理LAN划分为多个逻辑的VLAN，每个VLAN是一个广播域，VLAN内的主机通信就像在一个LAN内一样，而VLAN间则不能直接互通，这样，广播报文就限制在一个VLAN内。</p>
+<h1 id="交换机链路聚合"><a href="#交换机链路聚合" class="headerlink" title="交换机链路聚合"></a>交换机链路聚合</h1><h1 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h1><h2 id="虚拟局域网原理"><a href="#虚拟局域网原理" class="headerlink" title="虚拟局域网原理"></a>虚拟局域网原理</h2><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>早期以太网基于CSMA/CD的共享通讯介质的通讯技术，当主机数目过多时会导致冲突严重，广播泛滥，性能显著下降甚至网络不可用等问题。通过交换机虽然可以解决冲突问题，但是仍然不能隔离广播报文和提升网络质量。VLAN技术可以把一个物理LAN划分为多个逻辑的VLAN，每个VLAN是一个广播域，VLAN内的主机通信就像在一个LAN内一样，而VLAN间则不能直接互通，这样，广播报文就限制在一个VLAN内。</p>
 <img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/2.png" class="">
 <p><img src="局域网技术与组网工程实验/2.png" alt="2"></p>
-<h3 id="VLAN标签"><a href="#VLAN标签" class="headerlink" title="VLAN标签"></a>VLAN标签</h3><p>IEEE 802.1协议规定，在以太网数据帧的目的MAC地址之后，协议类型字段之前假如4字节的VLAN标签（VLAN tag），用以表示VLAN信息。</p>
+<h3 id="VLAN标签"><a href="#VLAN标签" class="headerlink" title="VLAN标签"></a>VLAN标签</h3><p>IEEE 802.1协议规定，在以太网数据帧的目的MAC地址之后，协议类型字段之前加上4字节的VLAN标签（VLAN tag），用以表示VLAN信息。</p>
 <p>在以太网交换网络中，以太网帧主要有以下两种：有标记帧（Tagged帧）和无标记帧（Untagged 帧）。主机，服务器，Hub和傻瓜交换机只能收发Untagged帧；交换机，路由器既能收发Tagged帧也能收发Untagged帧。</p>
 <h3 id="接口的链路类型"><a href="#接口的链路类型" class="headerlink" title="接口的链路类型"></a>接口的链路类型</h3><p>现网中属于同一个VLAN的用户可能被连在不同的交换机上，且跨越交换机的VLAN不止一个，这就需要交换机间的接口能够同时识别和发送多个VLAN的数据帧。</p>
 <p>​    根据接口连接对象以及对收发数据帧处理的不同，分为4种接口链路类型：Access, Trunk, Hybrid, QinQ。</p>
@@ -294,6 +308,14 @@
 </ol>
 <p>由于Trunk接口可以允许多个VLAN的帧通过链路，这被称作<strong>透传</strong>。</p>
 <h3 id="管理VLAN"><a href="#管理VLAN" class="headerlink" title="管理VLAN"></a>管理VLAN</h3><p>为交换机配置IP地址，通常是指在交换机上配置管理VLAN接口的IP地址。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+<li><p>三层交换机和路由器是如何实现VLAN间通信的？</p>
+<p> 三层交换机配置了很多VLANIF虚拟接口，并在该接口下配置了IP地址，三层交换机的各个端口是如何配置的呢？access端口配置了PVID，trunk端口配置了可允许特定VLAND的帧通过。当三层交换机收到一个帧时，通过它的目的IP地址就可以通过路由表或者MAC地址表知道它应该往哪个端口发送（假如是portA），并且知道了该目的网络属于哪个VLAN。</p>
+<p> 路由器配置了子接口，以及下面的IP地址，在子接口下配置了dot1q termination vlan，这样的话，当路由器知道要往哪个子接口转发帧时，就可以将对应的VLAN标签加在帧上。</p>
+ <img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/14.png" class="">
+<p> <img src="局域网技术与组网工程实验/14.png" alt="14"></p>
+</li>
+</ol>
 <h2 id="VLAN实验"><a href="#VLAN实验" class="headerlink" title="VLAN实验"></a>VLAN实验</h2><p>如图所示，某企业的交换机连接有很多用户，且相同业务用户通过不同的设备接入企业网络。为了通信的安全性和避免广播风暴，企业希望相同业务用户之间可以互相访问，不同业务用户不能互相访问。现在，通过在交换机上配置基于接口划分的VLAN，来满足企业的需求。</p>
 <img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/10.jpg" class="">
 <p><img src="局域网技术与组网工程实验/10.jpg" alt="10"></p>
@@ -386,10 +408,10 @@
 </ol>
 <h1 id="路由器基础管理"><a href="#路由器基础管理" class="headerlink" title="路由器基础管理"></a>路由器基础管理</h1><h1 id="静态路由基础"><a href="#静态路由基础" class="headerlink" title="静态路由基础"></a>静态路由基础</h1><h2 id="静态路由配置"><a href="#静态路由配置" class="headerlink" title="静态路由配置"></a>静态路由配置</h2><h3 id="串口连接"><a href="#串口连接" class="headerlink" title="串口连接"></a>串口连接</h3><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/5.png" class="">
 <p><img src="局域网技术与组网工程实验/5.png" alt="5"></p>
-<p>在串行接口上，可以通过制定下一跳路由或出端口来配置静态路由。</p>
+<p>在串行接口上，可以通过指定下一跳路由或出端口来配置静态路由。</p>
 <h3 id="以太网连接"><a href="#以太网连接" class="headerlink" title="以太网连接"></a>以太网连接</h3><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/6.png" class="">
 <p><img src="局域网技术与组网工程实验/6.png" alt="6"></p>
-<p>在以太网接口上配置静态路由时，必须要制定下一跳地址。</p>
+<p>在以太网接口上配置静态路由时，必须要指定下一跳地址。</p>
 <h2 id="负载分担"><a href="#负载分担" class="headerlink" title="负载分担"></a>负载分担</h2><p>两个路由器通过多条物理线路进行连接，多条物理线路对应多个网段和多个路由器接口，在每一个路由器接口上设置静态路由后，可以支持<strong>等值负载分担（ECMP，Equal-Cost Multiple Path）</strong> 。</p>
 <p>ECMP是指到达同一个目的地有多条等价链路，流量在这些等价链路上平均分配，不会考虑链路带宽的差异。</p>
 <p>ECMP的缺点是：在路径间带宽差异大时，带宽利用率低。</p>
@@ -405,13 +427,13 @@
 <ol>
 <li><p>按照题目要求将PC01-PC05的IP地址和子网掩码先配置一下，等一下配置完了路由器，再来配置PC们的默认网关。</p>
 </li>
-<li><p>配置SWITCH1的VLAN和端口链路类型，和R1连接的g0/0/1端口要设置为trunk，和SWITCH2相连接的g0/0/1/4端口要设置为trunk。在系统视图下</p>
+<li><p>配置SWITCH1的VLAN和端口链路类型，和R1连接的g0/0/1端口要设置为trunk，和SWITCH2相连接的g0/0/4端口要设置为trunk。在系统视图下</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/1 <span class="comment">#进入g0/0/1端口</span></span><br><span class="line">port link-type trunk <span class="comment">#g0/0/1设置为trunk</span></span><br><span class="line">port trunk allow-pass vlan 10 to 20 <span class="comment">#因为vlan10和20的主机都有可能访问外网，因此这个链路要允许10和20的vlan帧通过</span></span><br></pre></td></tr></table></figure>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/2</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 10</span><br></pre></td></tr></table></figure>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/3</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 20</span><br></pre></td></tr></table></figure>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/4</span><br><span class="line">port link-type trunk</span><br><span class="line">port trunk allow-pass vlan 10 to 20</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>SWITCH2不需要配置，因为R2的g0/0/1对应的网段没有设置VLAN。</p>
+<li><p>SWITCH2与SWITCH1类似。SWITCH3不需要配置，因为R2的g0/0/1对应的网段没有设置VLAN。</p>
 </li>
 <li><p>配置R1的逻辑接口，IP和静态路由。在系统视图下</p>
  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/0</span><br><span class="line">ip address 192.168.30.1 255.255.255.0</span><br></pre></td></tr></table></figure>
@@ -442,7 +464,31 @@
 </ul>
 </li>
 </ol>
-<h1 id="RIP路由协议"><a href="#RIP路由协议" class="headerlink" title="RIP路由协议"></a>RIP路由协议</h1><h2 id="题目-6"><a href="#题目-6" class="headerlink" title="题目"></a>题目</h2><ol>
+<h1 id="以太网帧结构"><a href="#以太网帧结构" class="headerlink" title="以太网帧结构"></a>以太网帧结构</h1><p>Ethernet_II帧的length类型值大于等于1536，帧长度在64到1518之间</p>
+<p>802.3帧的length类型值大于1536，帧长度小于1500</p>
+<h1 id="RIP路由协议"><a href="#RIP路由协议" class="headerlink" title="RIP路由协议"></a>RIP路由协议</h1><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/12.png" class="">
+<p><img src="局域网技术与组网工程实验/12.png" alt="12"></p>
+<h2 id="路由环路问题"><a href="#路由环路问题" class="headerlink" title="路由环路问题"></a>路由环路问题</h2><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/13.png" class="">
+<p><img src="局域网技术与组网工程实验/13.png" alt="12"></p>
+<p>一开始，各个路由器的表项是：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">A:</span> <span class="number">11.4</span><span class="number">.0</span><span class="number">.0</span> <span class="string">S0</span> <span class="number">2</span></span><br><span class="line"><span class="attr">B:</span> <span class="number">11.4</span><span class="number">.0</span><span class="number">.0</span> <span class="string">S1</span> <span class="number">1</span></span><br><span class="line"><span class="attr">C:</span> <span class="number">11.4</span><span class="number">.0</span><span class="number">.0</span> <span class="string">E0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>1、当网络11.4.0.0 发生故障，路由器C 最先收到故障信息，路由器C 把网络11.4.0.0 设为不可达，并等待更新周期到来通告这一路由变化给相邻路由器。如果，路由器B的路由更新周期在路由器C之前到来，那么路由器C就会从路由器B那里学习到去往11.4.0.0的新路由（实际上，这一路由已经是错误路由了）。这样路由器C的路由表中就记录了一条错误路由（经过路由器B，可去往网络11.4.0.0，跳数增加到2 ）。<br>2、路由器C 学习了一条错误信息后，它会把这样的路由信息再次通告给路由器B，根据通告原则，路由器B也会更新这样一条错误路由信息，认为可以通过路由器C去往网络11.4.0.0，跳数增加到 3 。<br>3。这样，路由器 B 认为 可以通过路由器C 去往网络11.4.0.0，路由器C 认为 可以通过路由器B 去往网络11.4.0.0，就形成了环路。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ol>
+<li><p>水平分割</p>
+<p> 一种消除路由环路并加快网络收敛的方法是通过叫做“水平分割”的技术实现的。其规则就是不向原始路由更新的方向再次发送路由更新信息（个人理解为单向更新，单向反馈）。比如有三台路由器ABC，B向C学习到访问网络10.4.0.0的路径以后，不再向C声明自己可以通过C访问10.4.0.0网络的路径信息，A向B学习到访问10.4.0.0网络路径信息后，也不再向B声明，而一旦网络10.4.0.0发生故障无法访问，C会向A和B发送该网络不可达到的路由更新信息，但不会再学习A和B发送的能够到达10.4.0.0的错误信息。</p>
+<p> 从接口X发出的路由更新中不能包括那些出口也为X的路由信息。</p>
+</li>
+<li><p>路由中毒</p>
+<p> 定义最大值在一定程度上解决了路由环路问题，但并不彻底，可以看到，在达到最大值之前，路由环路还是存在的。为此，路由中毒就可以彻底解决这个问题。其原理是这样的：假设有三台路由器ABC，当网络10.4.0.0出现故障无法访问的时候，路由器C便向邻居路由发送相关路由更新信息，并将其度量值标为无穷大，告诉它们网络10.4.0.0不可到达，路由器B收到毒化消息后将该链路路由表项标记为无穷大，表示该路径已经失效，并向邻居A路由器通告，依次毒化各个路由器，告诉邻居10.4.0.0这个网络已经失效，不再接收更新信息，从而避免了路由环路。</p>
+</li>
+<li><p>毒性反转</p>
+</li>
+<li><p>抑制</p>
+</li>
+<li><p>触发更新</p>
+</li>
+</ol>
+<h2 id="题目-6"><a href="#题目-6" class="headerlink" title="题目"></a>题目</h2><ol>
 <li><p>距离向量路由算法采用哪些方法来减少路由环路？（ABCD）</p>
 <ul>
 <li><p>A、</p>
@@ -478,11 +524,11 @@
 <p>路由表</p>
 <h3 id="DR和BDR"><a href="#DR和BDR" class="headerlink" title="DR和BDR"></a>DR和BDR</h3><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/8.png" class="">
 <p><img src="局域网技术与组网工程实验/8.png" alt="8"></p>
-<h3 id="OSPF报文"><a href="#OSPF报文" class="headerlink" title="OSPF报文"></a>OSPF报文</h3><p>有5中OSPF报文：</p>
+<h3 id="OSPF报文"><a href="#OSPF报文" class="headerlink" title="OSPF报文"></a>OSPF报文</h3><p>有5种OSPF报文：</p>
 <ol>
 <li><p>Hello报文：发现，维持邻居关系，选举DR，BDR</p>
 </li>
-<li><p>DD（Database Description）报文：用于形成LDSB</p>
+<li><p>DD（Database Description）报文：用于形成LSDB</p>
 <p> 路由器使用DD报文进行主从路由器的选举和数据库摘要信息的交互，Router ID大的作为主路由器；DD报文包含LSA的头部信息，用来描述LSDB的摘要信息</p>
 </li>
 <li><p>LSR（LSA Request）报文：请求LSA</p>
@@ -496,6 +542,9 @@
 <p><img src="局域网技术与组网工程实验/9.png" alt="9"></p>
 <p>在2-way状态时，双方都已经建立了邻居关系，这时可以进行发送数据信息了。</p>
 <p>ExStart表示双方可以发送信息了。</p>
+<h3 id="启动OSPF"><a href="#启动OSPF" class="headerlink" title="启动OSPF"></a>启动OSPF</h3><p>OSPF支持多进程，一台路由器上启动的OSPF进程之间由不同的进程号区分。OSPF进程号在启动OSPF时进行设置，它只在本地有效，不影响与其他路由器之间的报文交换。</p>
+<p>如果在启动OSPF时不指定进程号，将使用缺省的进程号1；关闭OSPF时不指定进程号，缺省关闭进程号1。</p>
+<p>在同一个区域中的进程号必须一致。</p>
 <h2 id="OSPF路由协议实验"><a href="#OSPF路由协议实验" class="headerlink" title="OSPF路由协议实验"></a>OSPF路由协议实验</h2><p>网络拓扑图如下所示，请使用OSPF路由协议配置各台路由器，使得PC1、PC2、PC3可以互相连通。</p>
 <img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/12.jpg" class="">
 <p><img src="局域网技术与组网工程实验/12.jpg" alt="12"></p>
@@ -632,18 +681,18 @@
   
 <nav id="article-nav">
   
-    <a href="/3000/06/23/about-me/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/08/15/csp-202006/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          about me
+          csp-202006
         
       </div>
     </a>
   
   
-    <a href="/2020/07/24/%E6%89%BE%E8%87%AA%E5%B7%B1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">找自己</div>
+    <a href="/2020/07/21/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hexo的使用</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -662,6 +711,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#交换机基础"><span class="toc-number">1.</span> <span class="toc-text">交换机基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#通过telnet配置交换机"><span class="toc-number">1.1.</span> <span class="toc-text">通过telnet配置交换机</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生成树协议STP"><span class="toc-number">2.</span> <span class="toc-text">生成树协议STP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#交换机STP原理"><span class="toc-number">2.1.</span> <span class="toc-text">交换机STP原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#STP的工作过程"><span class="toc-number">2.1.1.</span> <span class="toc-text">STP的工作过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#选举根桥-Root"><span class="toc-number">2.1.1.1.</span> <span class="toc-text">选举根桥(Root)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#根端口-RP-选举"><span class="toc-number">2.1.1.2.</span> <span class="toc-text">根端口(RP)选举</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指定端口-DP-选举"><span class="toc-number">2.1.1.3.</span> <span class="toc-text">指定端口(DP)选举</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#阻塞端口（AP）"><span class="toc-number">2.1.1.4.</span> <span class="toc-text">阻塞端口（AP）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目"><span class="toc-number">2.2.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#交换机以太网端口"><span class="toc-number">3.</span> <span class="toc-text">交换机以太网端口</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#端口镜像配置方法"><span class="toc-number">3.1.</span> <span class="toc-text">端口镜像配置方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#端口绑定"><span class="toc-number">3.2.</span> <span class="toc-text">端口绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目-1"><span class="toc-number">3.3.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#交换机链路聚合"><span class="toc-number">4.</span> <span class="toc-text">交换机链路聚合</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VLAN"><span class="toc-number">5.</span> <span class="toc-text">VLAN</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟局域网原理"><span class="toc-number">5.1.</span> <span class="toc-text">虚拟局域网原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决的问题"><span class="toc-number">5.1.1.</span> <span class="toc-text">解决的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VLAN标签"><span class="toc-number">5.1.2.</span> <span class="toc-text">VLAN标签</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口的链路类型"><span class="toc-number">5.1.3.</span> <span class="toc-text">接口的链路类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Access接口"><span class="toc-number">5.1.3.1.</span> <span class="toc-text">Access接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Trunk接口"><span class="toc-number">5.1.3.2.</span> <span class="toc-text">Trunk接口</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VLAN划分"><span class="toc-number">5.1.4.</span> <span class="toc-text">VLAN划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#VLAN内互访"><span class="toc-number">5.1.5.</span> <span class="toc-text">VLAN内互访</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#管理VLAN"><span class="toc-number">5.1.6.</span> <span class="toc-text">管理VLAN</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#问题"><span class="toc-number">5.2.</span> <span class="toc-text">问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#VLAN实验"><span class="toc-number">5.3.</span> <span class="toc-text">VLAN实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目-2"><span class="toc-number">5.4.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三层交换机"><span class="toc-number">6.</span> <span class="toc-text">三层交换机</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#三层交换机原理"><span class="toc-number">6.1.</span> <span class="toc-text">三层交换机原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三层交换机与路由器的不同"><span class="toc-number">6.1.1.</span> <span class="toc-text">三层交换机与路由器的不同</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目-3"><span class="toc-number">6.2.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#路由器基础"><span class="toc-number">7.</span> <span class="toc-text">路由器基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目-4"><span class="toc-number">7.1.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#路由器基础管理"><span class="toc-number">8.</span> <span class="toc-text">路由器基础管理</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#静态路由基础"><span class="toc-number">9.</span> <span class="toc-text">静态路由基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#静态路由配置"><span class="toc-number">9.1.</span> <span class="toc-text">静态路由配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#串口连接"><span class="toc-number">9.1.1.</span> <span class="toc-text">串口连接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以太网连接"><span class="toc-number">9.1.2.</span> <span class="toc-text">以太网连接</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#负载分担"><span class="toc-number">9.2.</span> <span class="toc-text">负载分担</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#路由备份"><span class="toc-number">9.3.</span> <span class="toc-text">路由备份</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#静态路由及路由器子接口实验"><span class="toc-number">9.4.</span> <span class="toc-text">静态路由及路由器子接口实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目-5"><span class="toc-number">9.5.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#以太网帧结构"><span class="toc-number">10.</span> <span class="toc-text">以太网帧结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#RIP路由协议"><span class="toc-number">11.</span> <span class="toc-text">RIP路由协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#路由环路问题"><span class="toc-number">11.1.</span> <span class="toc-text">路由环路问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#解决办法"><span class="toc-number">11.1.1.</span> <span class="toc-text">解决办法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目-6"><span class="toc-number">11.2.</span> <span class="toc-text">题目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OSPF路由协议"><span class="toc-number">12.</span> <span class="toc-text">OSPF路由协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#LS与DV的不同"><span class="toc-number">12.1.</span> <span class="toc-text">LS与DV的不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OSPF"><span class="toc-number">12.2.</span> <span class="toc-text">OSPF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Router-ID"><span class="toc-number">12.2.1.</span> <span class="toc-text">Router ID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#区域（Area）"><span class="toc-number">12.2.2.</span> <span class="toc-text">区域（Area）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#路由聚合"><span class="toc-number">12.2.3.</span> <span class="toc-text">路由聚合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF中关键的表"><span class="toc-number">12.2.4.</span> <span class="toc-text">OSPF中关键的表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DR和BDR"><span class="toc-number">12.2.5.</span> <span class="toc-text">DR和BDR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OSPF报文"><span class="toc-number">12.2.6.</span> <span class="toc-text">OSPF报文</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#邻居状态机"><span class="toc-number">12.2.7.</span> <span class="toc-text">邻居状态机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启动OSPF"><span class="toc-number">12.2.8.</span> <span class="toc-text">启动OSPF</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OSPF路由协议实验"><span class="toc-number">12.3.</span> <span class="toc-text">OSPF路由协议实验</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目-7"><span class="toc-number">12.4.</span> <span class="toc-text">题目</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
@@ -790,7 +852,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color1">工具和环境</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机技术</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -798,7 +864,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">工具和环境</a>
+                <a href="javascript:void(0)" class="js-tag color3">编程</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -806,7 +872,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">经历</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工作日记</a>
               </li>
              
               <li class="article-tag-list-item">
