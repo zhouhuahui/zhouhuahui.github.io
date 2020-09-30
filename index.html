@@ -513,7 +513,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-什么是REST"><a href="#1-什么是REST" class="headerlink" title="1. 什么是REST"></a>1. 什么是REST</h1><p>
+        <h1 id="1-什么是REST"><a href="#1-什么是REST" class="headerlink" title="1. 什么是REST"></a>1. 什么是REST</h1><p>REST全称是Representational State Transfer。REST本身并没有创造新的技术、组件或服务，而隐藏在RESTful背后的理念就是使用Web的现有特征和能力， 更好地使用现有Web标准中的一些准则和约束。虽然REST本身受Web技术的影响很深， 但是理论上REST架构风格并不是绑定在HTTP上，只不过目前HTTP是唯一与REST相关的实例。 所以我们这里描述的REST也是通过HTTP实现的REST。</p>
+<h1 id="2-理解REST"><a href="#2-理解REST" class="headerlink" title="2. 理解REST"></a>2. 理解REST</h1><p>从资源的定义、获取、表述、关联、状态变迁等角度，列举一些关键概念并加以解释。</p>
+<h2 id="2-1-资源与URL"><a href="#2-1-资源与URL" class="headerlink" title="2.1 资源与URL"></a>2.1 资源与URL</h2><p>要让一个资源可以被识别，需要有个唯一标识，在Web中这个唯一标识就是URI(Uniform Resource Identifier)。</p>
+<p>URL设计上的一些技巧</p>
+<ol>
+<li><p>使用/来表示资源的层级关系</p>
+</li>
+<li><p>使用_或-来让URI可读性更好</p>
+</li>
+<li><p>使用?用来过滤资源(query)</p>
+ <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/pulls?<span class="keyword">state</span>=closed</span><br></pre></td></tr></table></figure>
+<p> 用来表示git项目中已经关闭的推入请求</p>
+ <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/pulls/?page=<span class="number">2</span>&amp;per_page=<span class="number">100</span></span><br></pre></td></tr></table></figure>
+<p> 指定第几页，以及每页的记录数。</p>
+</li>
+<li><p>,或;可以用来表示同级资源的关系</p>
+ <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/git/gi</span>t <span class="regexp">/block-sha1/</span>sha1.h<span class="regexp">/compare/</span>e3af72cdafab5993d18fae056f87e1d675913d08;bd63e61bdf38e872d5215c07b264dcc16e4febca</span><br></pre></td></tr></table></figure>
+<p> 比较某个文件在随意两次提交记录之间的差异</p>
+</li>
+</ol>
+<h2 id="2-2-统一资源接口"><a href="#2-2-统一资源接口" class="headerlink" title="2.2 统一资源接口"></a>2.2 统一资源接口</h2><p>接口应该使用标准的HTTP方法如GET，PUT，POST，PATCH，DELETE，并遵循这些方法的语义。</p>
+<ol>
+<li>GET（SELECT）：从服务器取出资源（一项或多项）。</li>
+<li>POST（CREATE）：在服务器新建一个资源。</li>
+<li>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。</li>
+<li>PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。</li>
+<li>DELETE（DELETE）：从服务器删除资源。</li>
+</ol>
+<p>下面是一些例子：</p>
+<ol>
+<li><p>列出所有动物园。</p>
+ <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">GET</span> /zoos</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>获取某个指定动物园的信息</p>
+ <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">GET</span> /zoos/ID</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>新建一个动物园</p>
+ <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST <span class="string">/zoos</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新某个指定动物园的信息（提供该动物园的全部信息）</p>
+ <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PUT <span class="regexp">/zoos/</span>ID</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新某个指定动物园的信息（提供该动物园的部分信息）</p>
+ <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PATCH <span class="regexp">/zoos/</span>ID</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除某个动物园</p>
+ <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="regexp">/zoos/I</span>D</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>删除某个指定动物园的指定动物</p>
+ <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="regexp">/zoos/I</span>D<span class="regexp">/animals/I</span>D</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="2-3-资源的表述"><a href="#2-3-资源的表述" class="headerlink" title="2.3 资源的表述"></a>2.3 资源的表述</h2><p>资源在外界的具体呈现，可以有多种表述(或成为表现、表示)形式，在客户端和服务端之间传送的也是资源的表述，而不是资源本身。 例如文本资源可以采用html、xml、json等格式，图片可以使用PNG或JPG展现出来。</p>
+<p>资源的表述包括数据和描述数据的元数据，例如，HTTP头”Content-Type” 就是这样一个元数据属性。</p>
+<p>可以通过HTTP内容协商，客户端可以通过Accept头请求一种特定格式的表述，服务端则通过Content-Type告诉客户端资源的表述形式。</p>
+<p>以github为例，请求某组织资源的json格式的表述形式:</p>
+<p>
       
 
       
