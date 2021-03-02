@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouhuahui.github.io">
-  <title>csp-202006 | Hexo</title>
+  <title>csp-202006 | fantasy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="20200601（线性分类器）    思路我们要设计一个函数classify 用来根据输入的点和直线确定点在这个直线的哪个区域：0&#x2F;1。我们设置一个数组duiying[][]，duiying[i][j] 表示第i条直线在第j条区域应该是分类A还是分类B，对于每个直线，我们考虑每个点，计算出它在该直线下的区域，然后该区域下对应的类型和该点的类型是否相同。 代码11234567891011121314">
 <meta property="og:type" content="article">
 <meta property="og:title" content="csp-202006">
 <meta property="og:url" content="https://zhouhuahui.github.io/2020/08/15/csp-202006/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="fantasy">
 <meta property="og:description" content="20200601（线性分类器）    思路我们要设计一个函数classify 用来根据输入的点和直线确定点在这个直线的哪个区域：0&#x2F;1。我们设置一个数组duiying[][]，duiying[i][j] 表示第i条直线在第j条区域应该是分类A还是分类B，对于每个直线，我们考虑每个点，计算出它在该直线下的区域，然后该区域下对应的类型和该点的类型是否相同。 代码11234567891011121314">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zhouhuahui.github.io/2020/08/15/csp-202006/1.png">
@@ -40,7 +40,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://zhouhuahui.github.io/2020/08/15/csp-202006/1.png">
   
-    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternative" href="/atom.xml" title="fantasy" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -67,7 +67,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="https://zhouhuahui.github.io/1000/10/10/images/shanna.jpg" class="js-avatar">
+			<img src="http://localhost:4000/1000/10/10/images/shanna.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">fantasy</a></h1>
@@ -101,13 +101,15 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/zhouhuahui" title="github"><i class="icon-github"></i></a>
 		        
 					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 		        
 					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/ai-zai-xi-yuan-qian-51-86" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+					<a class="qq" target="_blank" href="/2957286012" title="qq"><i class="icon-qq"></i></a>
 		        
 			</div>
 		</nav>
@@ -125,7 +127,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="https://zhouhuahui.github.io/1000/10/10/images/shanna.jpg" class="js-avatar">
+				<img src="http://localhost:4000/1000/10/10/images/shanna.jpg" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">fantasy</h1>
@@ -142,13 +144,15 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/zhouhuahui" title="github"><i class="icon-github"></i></a>
 			        
 						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
 			        
 						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="zhihu" target="_blank" href="https://www.zhihu.com/people/ai-zai-xi-yuan-qian-51-86" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+						<a class="qq" target="_blank" href="/2957286012" title="qq"><i class="icon-qq"></i></a>
 			        
 				</div>
 			</nav>
@@ -408,7 +412,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 fantasy
+    		&copy; 2021 fantasy
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -630,8 +634,6 @@ MathJax.Hub.Queue(function() {
 
     
     	<section class="tools-section tools-section-me" q-show="aboutme">
-  	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
   	  	
     	</section>
     
