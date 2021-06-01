@@ -152,6 +152,137 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-go语言" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/11/03/go%E8%AF%AD%E8%A8%80/">go语言</a>
+    </h1>
+  
+
+        
+        <a href="/2020/11/03/go%E8%AF%AD%E8%A8%80/" class="archive-article-date">
+  	<time datetime="2020-11-03T22:38:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h1><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fmt.Println(<span class="string">&quot;hello world!&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Go语言开发环境搭建"><a href="#Go语言开发环境搭建" class="headerlink" title="Go语言开发环境搭建"></a>Go语言开发环境搭建</h1><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>参考 <a target="_blank" rel="noopener" href="https://golang.google.cn/dl/">https://golang.google.cn/dl/</a></p>
+<p>正常安装就好，然后在cmd下输入<code>go version</code>试试，能不能得到结果。</p>
+<h2 id="windows下GOPATH配置"><a href="#windows下GOPATH配置" class="headerlink" title="windows下GOPATH配置"></a>windows下GOPATH配置</h2><p><code>GOPATH</code>是一个环境变量，用来表明你写的go项目的存放路径，gopath最好只设置一个，所有的项目代码都放置到<code>GOPATH</code>的<code>src</code>目录下。</p>
+<ol>
+<li>在D盘下新建一个目录比如，<code>D:\documents\go</code>，这个路径作为系统环境变量<code>GOPATH</code>的值。可能用户环境变量也有个<code>GOPATH</code>，是<code>C:\Users\zhou2</code>，把这个删了。</li>
+<li>在<code>D:\documents\go</code>下新建三个文件夹：<code>src</code>，<code>pkg</code>，<code>bin</code>。</li>
+<li>将<code>D:\documents\go\bin</code>加入到系统环境变量PATH中。</li>
+<li>在cmd中输入<code>go env</code>查看<code>GOPATH</code>是否正确。</li>
+</ol>
+<p>go get 包可以使用了, 最后包会安装到 <code>D:\documents\go</code>目录的pkg和src文件夹里, pkg里是<code>*.a</code>格式的, 暂且理解为库吧, src目录里是<code>*.go</code>格式的源码。</p>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><h3 id="适合个人开发者"><a href="#适合个人开发者" class="headerlink" title="适合个人开发者"></a>适合个人开发者</h3><img src="/2020/11/03/go%E8%AF%AD%E8%A8%80/image-20210531210338354.png" class="">
+<p><img src="go语言/image-20210531210338354.png" alt="image-20210531210338354"></p>
+<h3 id="流行的项目结构"><a href="#流行的项目结构" class="headerlink" title="流行的项目结构"></a>流行的项目结构</h3><img src="/2020/11/03/go%E8%AF%AD%E8%A8%80/image-20210531210503561.png" class="">
+<p><img src="go语言/image-20210531210503561.png" alt="image-20210531210503561"></p>
+<h3 id="适合企业开发者"><a href="#适合企业开发者" class="headerlink" title="适合企业开发者"></a>适合企业开发者</h3><img src="/2020/11/03/go%E8%AF%AD%E8%A8%80/image-20210531210548515.png" class="">
+<p><img src="go语言/image-20210531210548515.png" alt="image-20210531210548515"></p>
+<h3 id="VS-code"><a href="#VS-code" class="headerlink" title="VS code"></a>VS code</h3><p>使用vs code来编辑go代码，首先在vs code里面安装goz扩展插件。在侧边栏的extensions选项中搜索go，然后安装就好了。</p>
+<p>使用vs code打开<code>D:\documents\go\src</code>文件夹，在里面新建go文件写代码。</p>
+<p>这时，问题来了：由于网络的原因，vs code内部不自己下载很多插件，所以必须我们自己上VPN从github上下载，然后在vs code中安装：</p>
+<ol>
+<li>进入项目地址<code>D:\documents\go\src\github.com\zhouhuahui\helloWorld</code></li>
+<li>然后打开git，执行<code>git clone https://github.com/golang/tools.git tools</code></li>
+<li>返回到vs code中的项目</li>
+<li>使用快捷键<code>ctrl+shift+p</code>，打开了vs code的命令行，执行<code>Go:Install/Update Tools</code>，然后在下面出现的很多选项中全部选中，点击<code>OK</code>，然后等待vs code安装所有的插件，并全部显示<code>succeed</code>。</li>
+</ol>
+<p>在项目内写代码时，比如<code>helloWorld</code>项目，首先在helloWorld内部，打开cmd（我想在vs code内的terminal内也可以，注意terminal定位到helloWorld目录下），执行<code>go mod init helloWorld</code>。之后才能运行<code>go build</code>和<code>helloWorld.exe</code>执行代码。还有，terminal要是cmd形式的，而不是powershell。</p>
+<img src="/2020/11/03/go%E8%AF%AD%E8%A8%80/image-20210531223223202.png" class="">
+<p><img src="go语言/image-20210531223223202.png" alt="image-20210531223223202"></p>
+<p><strong>排序</strong></p>
+<p>go语言的排序有点繁琐，如果要给对象数组排序，需要定义对象数组的Len()函数，Swap()函数和Less()函数。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;sort&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> KeyValue <span class="keyword">struct</span> &#123;</span><br><span class="line">	Key   <span class="keyword">string</span></span><br><span class="line">	Value <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ByKey []KeyValue</span><br><span class="line">sort.Sort(ByKey(intermediate))</span><br></pre></td></tr></table></figure>
+<p><strong>内置函数</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">len</span>() <span class="comment">//返回长度</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">arr := <span class="built_in">append</span>(arr, ele) <span class="comment">//将ele插入到arr数组中并返回新的arr</span></span><br></pre></td></tr></table></figure>
+<p><strong>文件操作</strong></p>
+<p>创造一个文件：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;os&quot;</span></span><br><span class="line">oname := <span class="string">&quot;mr-out-0&quot;</span> <span class="comment">//文件的相对路径或绝对路径</span></span><br><span class="line">ofile,_ = os.Create(oname)</span><br></pre></td></tr></table></figure>
+<p>打开文件：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;os&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;log&quot;</span></span><br><span class="line">filename = <span class="string">&quot;file1.txt&quot;</span></span><br><span class="line">file,err = os.Open(filename)</span><br><span class="line"><span class="keyword">if</span> err!=<span class="literal">nil</span>&#123;</span><br><span class="line">    log.Fatalf(<span class="string">&quot;cannot open %v&quot;</span>,filename)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>读取文件：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&quot;io/ioutil&quot;</span></span><br><span class="line">content,err := ioutil.ReadAll(file)</span><br></pre></td></tr></table></figure>
+<p><strong>全局参数</strong></p>
+<p>main函数的参数可以通过os包来读取</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">os.Args[<span class="number">1</span>] <span class="comment">//第一个参数</span></span><br><span class="line">os.Args[<span class="number">2</span>:] <span class="comment">//第二个及以后的参数的切片</span></span><br></pre></td></tr></table></figure>
+<p><strong>空接口</strong></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+<p>空接口可以表示任何类型，包括pointer receiver。</p>
+<p><strong>首字母大写</strong></p>
+<p>在go语言中，方法或属性的首字母大写表示时外部可访问的，类似于javascript的exports属性和方法。</p>
+<h1 id="go语言使用rpc"><a href="#go语言使用rpc" class="headerlink" title="go语言使用rpc"></a>go语言使用rpc</h1><h2 id="example"><a href="#example" class="headerlink" title="example"></a>example</h2><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//master.go</span></span><br><span class="line"><span class="keyword">package</span> rpc</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;net&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;os&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;log&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;net/rpc&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;net/http&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Master <span class="keyword">struct</span>&#123;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Master)</span><span class="title">Example</span><span class="params">(args *ExampleArgs, reply *ExampleReply)</span> <span class="title">error</span></span>&#123;</span><br><span class="line">    reply.Y = args.X+<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(m *Master)</span><span class="title">Server</span><span class="params">()</span></span>&#123;</span><br><span class="line">    rpc.Register(m)</span><br><span class="line">    rpc.HandleHTTP()</span><br><span class="line">    sockname := masterSock()</span><br><span class="line">    os.Remove(sockname)</span><br><span class="line">    l, e := net.Listen(<span class="string">&quot;unix&quot;</span>,sockname)</span><br><span class="line">    <span class="keyword">if</span> e!=<span class="literal">nil</span> &#123;</span><br><span class="line">        log.Fatal(<span class="string">&quot;listen error:&quot;</span>,e)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">go</span> http.Serve(l, <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//worker.go</span></span><br><span class="line"><span class="keyword">package</span> rpc</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;log&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;net/rpc&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">CallExample</span><span class="params">()</span></span>&#123;</span><br><span class="line">    args := ExampleArgs&#123;&#125;</span><br><span class="line">    args.X = <span class="number">99</span></span><br><span class="line">    reply := ExampleReply&#123;&#125;</span><br><span class="line">    call(<span class="string">&quot;Master.Example&quot;</span>, &amp;args, &amp;reply)</span><br><span class="line"></span><br><span class="line">    fmt.Printf(<span class="string">&quot;reply.Y %v\n&quot;</span>, reply.Y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">call</span><span class="params">(rpcname <span class="keyword">string</span>, args <span class="keyword">interface</span>&#123;&#125;, reply <span class="keyword">interface</span>&#123;&#125;)</span> <span class="title">bool</span></span> &#123;</span><br><span class="line">    sockname := masterSock()</span><br><span class="line">    c, err := rpc.DialHTTP(<span class="string">&quot;unix&quot;</span>,sockname)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        log.Fatal(<span class="string">&quot;Dialing:&quot;</span>,err)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">defer</span> c.Close()</span><br><span class="line"> </span><br><span class="line">    err = c.Call(rpcname, args, reply)</span><br><span class="line">    <span class="keyword">if</span> err != <span class="literal">nil</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span></span><br><span class="line">    &#125;   </span><br><span class="line">    fmt.Println(err)</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//rpc.go</span></span><br><span class="line"><span class="keyword">package</span> rpc</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;os&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;strconv&quot;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ExampleArgs <span class="keyword">struct</span>&#123;</span><br><span class="line">    X <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ExampleReply <span class="keyword">struct</span>&#123;</span><br><span class="line">    Y <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">masterSock</span><span class="params">()</span> <span class="title">string</span></span>&#123;</span><br><span class="line">    s := <span class="string">&quot;/var/tmp/824-mr-&quot;</span></span><br><span class="line">    s += strconv.Itoa(os.Getuid())</span><br><span class="line">    fmt.Println(os.Getuid())</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//master_main.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;../rpc&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    m := rpc.Master&#123;&#125;</span><br><span class="line">    m.Server()</span><br><span class="line">    <span class="keyword">for</span> <span class="literal">true</span> &#123;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//worker_main.go</span></span><br><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;../rpc&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    rpc.CallExample()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的每份代码对应一个文件，属于同一个package的文件放在对应名字的文件夹中。然后转到main文件夹中，先运行<code>go run master_main.go</code> 即可打开服务器进程，然后运行<code>go run worker_main.go</code> 运行客户端程序，即可得到结果<code>100</code>。</p>
+<p>上面是个简单的利用go语言的<code>net/rpc</code>包来实现rpc的例子。</p>
+<h1 id="package"><a href="#package" class="headerlink" title="package"></a>package</h1><p>如果一个package内有很多文件，一个文件利用到了另一个文件定义的变量或函数，则在go run时要把这个包内的所有文件都加到后面，顺序不重要，这时，所有文件相当于组合成一个go文件了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/11/03/go%E8%AF%AD%E8%A8%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-js中基本数据类型及其用法" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1003,172 +1134,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/28/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-css的flex布局" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/">css的flex布局</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/" class="archive-article-date">
-  	<time datetime="2020-09-27T00:35:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>布局的传统解决方案，基于盒状模型，依赖display属性（如display: inline-block），position属性，float属性以及margin，padding，top等属性。它对于那些特殊布局非常不方便，比如垂直居中就不容易实现。</p>
-<p>2009年，W3C 提出了一种新的方案——Flex 布局，可以简便、完整、响应式地实现各种页面布局。目前，它已经得到了所有浏览器的支持，这意味着，现在就能很安全地使用这项功能。</p>
-<h1 id="什么是flex布局"><a href="#什么是flex布局" class="headerlink" title="什么是flex布局"></a>什么是flex布局</h1><p>任何一个容器都可以指定为flex布局。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Webkit 内核的浏览器，必须加上<code>-webkit</code>前缀。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">  <span class="attribute">display</span>: -webkit-flex; <span class="comment">/* Safari */</span></span><br><span class="line">  <span class="attribute">display</span>: flex;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意，设为 Flex 布局以后，子元素的<code>float</code>、<code>clear</code>和<code>vertical-align</code>属性将失效。</p>
-<h1 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h1><p>采用 Flex 布局的元素，称为 Flex 容器（flex container），简称”容器”。它的所有子元素自动成为容器成员，称为 Flex 项目（flex item），简称”项目”。</p>
-<img src="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/1.png" class="">
-<p><img src="css的flex布局/1.png" alt="1"></p>
-<p>这两个轴是之后flex容器的justify-content，align-items属性的基础。</p>
-<h1 id="flex容器的属性"><a href="#flex容器的属性" class="headerlink" title="flex容器的属性"></a>flex容器的属性</h1><p>一下六个属性设置在容器上。</p>
-<ul>
-<li>flex-direction</li>
-<li>flex-wrap</li>
-<li>flex-flow</li>
-<li>justify-content</li>
-<li>align-items</li>
-<li>align-content</li>
-</ul>
-<h2 id="flex-direction"><a href="#flex-direction" class="headerlink" title="flex-direction"></a>flex-direction</h2><p><code>flex-direction</code>属性决定主轴的方向（即项目的排列方向）。比如，你要指定项目在水平方向上排列，那么main-axis就是水平的，且项目从左到右依次排列，这时flex-direction: row。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">flex-direction</span>: row | row-reverse | column | column-reverse</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>row: main-aix为水平方向，起点在左端</li>
-<li>row-reverse: main-axis为水平方向，起点在右端</li>
-<li>column: main-axis为垂直方向，起点在上面</li>
-<li>column-reverse: main-axis为垂直方向，起点在下面</li>
-</ul>
-<h2 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a>flex-wrap</h2><p>默认情况下，项目都排在一条线（又称”轴线”）上，因为flex-wrap默认为nowrap。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">	<span class="attribute">flex-wrap</span>: nowrap | wrap | wrap-reverse</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>(1) nowrap（default）：不换行。</p>
-<p>举个例子：比如容器宽度为300px，容器中有6个宽度为60px的项目，nowrap情况下，项目会强行等分容器宽度从而不换行，那么项目实际宽度也就只有50px了，而非我们自己设置的60px。</p>
-<p>(2) wrap: 换行，第一行在上方</p>
-<img src="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/1.jpg" class="">
-<p><img src="css的flex布局/1.jpg" alt="1"></p>
-<p>(3) wrap-reverse: 换行，第一行在下方</p>
-<img src="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/2.jpg" class="">
-<p><img src="css的flex布局/2.jpg" alt="1"></p>
-<h2 id="flex-flow"><a href="#flex-flow" class="headerlink" title="flex-flow"></a>flex-flow</h2><p><code>flex-flow</code>属性是<code>flex-direction</code>属性和<code>flex-wrap</code>属性的简写形式，可以不用考虑</p>
-<h2 id="justify-content"><a href="#justify-content" class="headerlink" title="justify-content"></a>justify-content</h2><p>几个项目排列在main-axis上，但是它们之间的间距该如何设置呢？要设置justify-content属性。</p>
-<p><code>justify-content</code>属性定义了项目在主轴上的对齐方式。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">justify-content</span>: flex-start | flex-end | center | space-between | space-around;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/2.png" class="">
-<p><img src="css的flex布局/2.png" alt="1"></p>
-<ul>
-<li>flex-start(default): 左对齐</li>
-<li>flex-end: 右对齐</li>
-<li>center: 居中</li>
-<li>space-between: 两端对齐，项目之间的间隔都相等。</li>
-<li>space-around: 每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。</li>
-</ul>
-<h2 id="align-items"><a href="#align-items" class="headerlink" title="align-items"></a>align-items</h2><p>确定了几个项目在main-axis上的对齐之后，它们在cross-axis上应该在什么位置呢？设置align-items属性。</p>
-<p><code>align-items</code>属性定义项目在交叉轴上如何对齐。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-items</span>: flex-start | flex-end | center | baseline | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/3.png" class="">
-<p><img src="css的flex布局/3.png" alt="1"></p>
-<ul>
-<li>flex-start: 在交叉轴的起点对齐</li>
-<li>flex-end: 在交叉轴的终点对齐</li>
-<li>center: 在交叉轴的中心点对齐</li>
-<li>baseline: 项目中的第一行文字的基线对齐</li>
-<li>stretch(default): 如果项目未设置高度或为auto，将占满整个容器的高度；</li>
-</ul>
-<h2 id="align-content"><a href="#align-content" class="headerlink" title="align-content"></a>align-content</h2><p><code>align-content</code>属性定义了多行项目如何在cross-axis上划分屏幕空间。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">align-content</span>: flex-start | flex-end | center | space-between | space-around | stretch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<img src="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/4.png" class="">
-<p><img src="css的flex布局/4.png" alt="1"></p>
-<p>stretch: (下面是的黑色div是固定大小的，里面的青色div也是固定大小的，采用stretch)</p>
-<img src="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/3.jpg" class="">
-<p><img src="css的flex布局/3.jpg" alt="1"></p>
-<h1 id="项目的属性"><a href="#项目的属性" class="headerlink" title="项目的属性"></a>项目的属性</h1><ul>
-<li>order</li>
-<li>flex-grow</li>
-<li>flex-shrink</li>
-<li>flex-basis</li>
-<li>flex</li>
-<li>align-self</li>
-</ul>
-<h2 id="order"><a href="#order" class="headerlink" title="order"></a>order</h2><p><code>order</code>属性定义项目的排列顺序。数值越小，排列越靠前，默认为0。</p>
-<img src="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/5.png" class="">
-<p><img src="css的flex布局/5.png" alt="1"></p>
-<h2 id="flex-grow"><a href="#flex-grow" class="headerlink" title="flex-grow"></a>flex-grow</h2><p>当一行项目在flex布局中并没有占据完空间的时候，flex-grow定义了项目该如何变大。</p>
-<p><code>flex-grow</code>属性定义项目的放大比例，默认为<code>0</code>，即如果存在剩余空间，也不放大。当项目item2的flex-grow=2，item1的flex-grow=1，则item2增大的长度是item1增大的长度的2倍。</p>
-<img src="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/4.jpg" class="">
-<p><img src="css的flex布局/4.jpg" alt="1"></p>
-<p>例如上图，前三个项目的定义的width分别为100，200，200，它们的margin都是10，黑色div的width是600，则还剩下40px的空间。由于第二个项目的flex-grow=1，第三个项目的flex-grow=2，则第二个项目增大13，第四个项目增大26。</p>
-<h2 id="flex-shrink"><a href="#flex-shrink" class="headerlink" title="flex-shrink"></a>flex-shrink</h2><p>同flex-grow相似。</p>
-<h2 id="align-self"><a href="#align-self" class="headerlink" title="align-self"></a>align-self</h2><p><code>align-self</code>属性允许单个项目有与其他项目不一样的对齐方式，可覆盖<code>align-items</code>属性。默认值为<code>auto</code>，表示继承父元素的<code>align-items</code>属性，如果没有父元素，则等同于<code>stretch</code>。</p>
-<img src="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/6.png" class="">
-<p><img src="css的flex布局/6.png" alt="1"></p>
-<p>该属性可能取6个值，除了auto，其他都与align-items属性完全一致。</p>
-<h1 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h1><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/echolun/p/11299460.html">https://www.cnblogs.com/echolun/p/11299460.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/">展开全文 >></a>
         </p>
       
 
