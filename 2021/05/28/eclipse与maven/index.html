@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://zhouhuahui.github.io/2021/05/28/eclipse%E4%B8%8Emaven/3.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2021/05/28/eclipse%E4%B8%8Emaven/eclipse与maven/3.png">
 <meta property="article:published_time" content="2021-05-29T07:30:15.000Z">
-<meta property="article:modified_time" content="2021-05-29T08:01:59.596Z">
+<meta property="article:modified_time" content="2021-08-03T12:12:21.346Z">
 <meta property="article:author" content="fantasy">
 <meta property="article:tag" content="工具和环境">
 <meta name="twitter:card" content="summary">
@@ -185,7 +185,7 @@
         <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>假如你正在Eclipse下开发两个Java项目，姑且把它们称为A、B，其中A项目中的一些功能依赖于B项目中的某些类，那么如何维系这种依赖关系的呢？</p>
 <p>很简单，这不就是跟我们之前写程序时一样吗，需要用哪个项目中的哪些类，也就是用别人写好了的功能代码，导入jar包即可。所以这里也如此，可以将B项目打成jar包，然后在A项目的Library下导入B的jar文件，这样，A项目就可以调用B项目中的某些类了。</p>
 <p>这样做几种缺陷如果在开发过程中，发现B中的bug，则必须将B项目修改好，并重新将B打包并对A项目进行重编译操作在完成A项目的开发后，为了保证A的正常运行，就需要依赖B(就像在使用某个jar包时必须依赖另外一个jar一样)，两种解决方案，第一种，选择将B打包入A中，第二种，将B也发布出去，等别人需要用A时，告诉开发者，想要用A就必须在导入B jar包。两个都很麻烦，前者可能造成资源的浪费(比如，开发者可能正在开发依赖B的其它项目，B已经存储到本地了，在导入A的jar包的话，就有了两个B的jar)，后者是我们常遇到的，找各种jar包，非常麻烦(有了maven就不一样了)</p>
-<h1 id="maven"><a href="#maven" class="headerlink" title="maven"></a>maven</h1><p>Maven是基于项目对象模型(POM project object model)，可以通过一小段描述信息（配置）来管理项目的构建，报告和文档的软件项目管理工具。Maven的核心功能便是合理叙述项目间的依赖关系，通俗点讲，就是通过pom.xml文件的配置获取jar包，而不用手动去添加jar包，而这里pom.xml文件对于学了一点maven的人来说，就有些熟悉了，怎么通过pom.xml的配置就可以获取到jar包呢？pom.xml配置文件从何而来？等等类似问题我们需要搞清楚，如果需要使用pom.xml来获取jar包，那么首先该项目就必须为maven项目，maven项目可以这样去想，就是在java项目和web项目的上面包裹了一层maven，本质上java项目还是java项目，web项目还是web项目，但是包裹了maven之后，就可以使用maven提供的一些功能了</p>
+<h1 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h1><p>Maven是基于项目对象模型(POM project object model)，可以通过一小段描述信息（配置）来管理项目的构建，报告和文档的软件项目管理工具。Maven的核心功能便是合理叙述项目间的依赖关系，通俗点讲，就是通过pom.xml文件的配置获取jar包，而不用手动去添加jar包，而这里pom.xml文件对于学了一点maven的人来说，就有些熟悉了，怎么通过pom.xml的配置就可以获取到jar包呢？pom.xml配置文件从何而来？等等类似问题我们需要搞清楚，如果需要使用pom.xml来获取jar包，那么首先该项目就必须为maven项目，maven项目可以这样去想，就是在java项目和web项目的上面包裹了一层maven，本质上java项目还是java项目，web项目还是web项目，但是包裹了maven之后，就可以使用maven提供的一些功能了</p>
 <p>所以，根据上一段的描述，我们最终的目的就是学会如何在pom.xml中配置获取到我们想要的jar包，在此之前我们就必须了解如何创建maven项目，maven项目的结构是怎样，与普通java,web项目的区别在哪里，还有如何配置pom.xml获取到对应的jar包等等</p>
 <p>例子：pom.xml中写明需要junit的jar包的例子</p>
 <img src="/2021/05/28/eclipse%E4%B8%8Emaven/1.png" class="">
@@ -205,6 +205,10 @@
 <h2 id="java项目"><a href="#java项目" class="headerlink" title="java项目"></a>java项目</h2><p>选择<code>File-&gt;new-&gt;Project</code>，然后选择<code>Maven-&gt;Maven Project</code>，然后选择<code>create a simple project</code>，之后就自己选择。结果是</p>
 <img src="/2021/05/28/eclipse%E4%B8%8Emaven/3.png" class="">
 <p><img src="eclipse与maven/3.png" alt="0"></p>
+<h1 id="maven-安装"><a href="#maven-安装" class="headerlink" title="maven 安装"></a>maven 安装</h1><p>前往<a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a> 下载最新的bin文件压缩件。</p>
+<p>将文件解压到<code>D:\APP\</code>目录下，<code>D:\APP\apache-maven-3.8.1</code>是根目录。</p>
+<p>新建环境变量<code>MAVEN_HOME</code>，赋值为<code>D:\APP\apache-maven-3.8.1</code>。</p>
+<p>编辑PATH环境变量，新建：<code>%MAVEN_HOME%\bin</code>。</p>
 <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/whgk/p/7112560.html">https://www.cnblogs.com/whgk/p/7112560.html</a></p>
 
       
@@ -348,7 +352,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#maven"><span class="toc-number">2.</span> <span class="toc-text">maven</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%93%E5%BA%93"><span class="toc-number">3.</span> <span class="toc-text">仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="toc-number">3.1.</span> <span class="toc-text">本地仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%BB%93%E5%BA%93-%E7%A7%81%E6%9C%8D"><span class="toc-number">3.2.</span> <span class="toc-text">第三方仓库(私服)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93"><span class="toc-number">3.3.</span> <span class="toc-text">中央仓库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eclipse%E5%88%9B%E5%BB%BAmaven%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.</span> <span class="toc-text">eclipse创建maven项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.1.</span> <span class="toc-text">java项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">引用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#maven%E7%AE%80%E4%BB%8B"><span class="toc-number">2.</span> <span class="toc-text">maven简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%93%E5%BA%93"><span class="toc-number">3.</span> <span class="toc-text">仓库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93"><span class="toc-number">3.1.</span> <span class="toc-text">本地仓库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AC%AC%E4%B8%89%E6%96%B9%E4%BB%93%E5%BA%93-%E7%A7%81%E6%9C%8D"><span class="toc-number">3.2.</span> <span class="toc-text">第三方仓库(私服)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E5%A4%AE%E4%BB%93%E5%BA%93"><span class="toc-number">3.3.</span> <span class="toc-text">中央仓库</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#eclipse%E5%88%9B%E5%BB%BAmaven%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.</span> <span class="toc-text">eclipse创建maven项目</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#java%E9%A1%B9%E7%9B%AE"><span class="toc-number">4.1.</span> <span class="toc-text">java项目</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#maven-%E5%AE%89%E8%A3%85"><span class="toc-number">5.</span> <span class="toc-text">maven 安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">引用</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -501,6 +505,10 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
@@ -522,6 +530,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">后端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
               </li>
             
             <div class="clearfix"></div>
