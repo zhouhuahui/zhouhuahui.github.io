@@ -15,11 +15,14 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="环境变量环境变量环境变量是定义在整个计算机全局的变量，保存在文件中。 按照生效范围分类：  系统环境变量：对全部用户有效 用户环境变量：用户私有的  按照生存周期分类：  永久环境变量 临时环境变量（比如，我在bash中写的命令export PATH&#x3D;$HOME&#x2F;Desktop&#x2F;postgres&#x2F;13.3&#x2F;bin:$PATH只会在当前的会话中有效）  设置环境变量bash中设置1export 变量">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/08/02/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/20191007142039951.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/08/02/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/linux程序设计/20191007142039951.png">
 <meta property="article:published_time" content="2021-08-03T06:04:47.000Z">
-<meta property="article:modified_time" content="2021-08-03T07:06:16.305Z">
+<meta property="article:modified_time" content="2021-08-04T15:54:45.003Z">
 <meta property="article:author" content="fantasy">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhouhuahui.github.io/2021/08/02/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/20191007142039951.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -203,6 +206,48 @@
 <h2 id="环境变量生效"><a href="#环境变量生效" class="headerlink" title="环境变量生效"></a>环境变量生效</h2><p>1）在Shell下，用export设置的环境变量对当前Shell立即生效，Shell退出后失效。</p>
 <p>2）在脚本文件中设置的环境变量不会立即生效，退出Shell后重新登录时才生效，或者用source命令让它立即生效，例如：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+<h1 id="linux-I-O"><a href="#linux-I-O" class="headerlink" title="linux I/O"></a>linux I/O</h1><h2 id="IO端口映射与I-O内存映射"><a href="#IO端口映射与I-O内存映射" class="headerlink" title="IO端口映射与I/O内存映射"></a>IO端口映射与I/O内存映射</h2><p>参考【1】：首先讲了CPU地址概念和两种编址方式：统一编址和独立编址。</p>
+<ol>
+<li>统一编址也称为<strong>“I/O内存”</strong>方式，外设寄存器位于“内存空间”（很多外设有自己的内存、缓冲区，外设的寄存器和内存统称“I/O空间”）；</li>
+<li>独立编址也称为<strong>“I/O端口”</strong>方式，外设寄存器位于“I/O（地址）空间”，在系统中就存在了另一种与存储地址无关的IO地 址，CPU也必须具有专用与输入输出操作的IO指令（IN、OUT等）和控制逻辑。这为讲I/O内存映射的来由做了铺垫。</li>
+</ol>
+<p>虽然intel x86平台使用独立编址方式，但是x86平台普通使用了名为<strong>内存映射（MMIO）</strong>的技术，该技术是PCI规范的一部分，IO设备端口被映射到内存空间，映射后，CPU访问IO端口就如同访问内存一样。</p>
+<p>对于Linux内核而言，它可能用于不同的CPU，所以它必须都要考虑上述两种编址方式，于是它采用一种新的方法，将基于I/O映射方式的或内存映射方式的I/O端口通称为<strong>“I/O区域”（I/O region）</strong>，不论你采用哪种方式，都要先申请IO区域：request_resource()，结束时释放 它：release_resource()。</p>
+<p>如果CPU采用统一编址技术，对外设的访问就是<strong>I/O内存</strong>方式：访问I/O内存的流程是：request_mem_region() -&gt; ioremap() -&gt; ioread8()/iowrite8() -&gt; iounmap() -&gt; release_mem_region() 。</p>
+<p>ioremap()用来将IO资源的物理地址映射到内核虚地址空间（3GB - 4GB）中。</p>
+<p>如果CPU采用独立编址技术，那么访问I/O端口有两种方式：</p>
+<ol>
+<li>I/O映射方式（I/O－mapped）。不映射到内存空间，直接使用 intb()/outb()之类的函数来读写IO端口</li>
+<li>内存映射方式（Memory－mapped）。MMIO是先把IO端口映射到IO内存（“内存空间”），再使用访问IO内存的函数来访问 IO端口。</li>
+</ol>
+<h3 id="使用I-O内存映射读取文件"><a href="#使用I-O内存映射读取文件" class="headerlink" title="使用I/O内存映射读取文件"></a>使用I/O内存映射读取文件</h3><p>【2】普通地使用C语言的<code>fread()</code>或者<code>fwrite()</code>函数都需要将内容拷贝到IO缓冲区以及页高速缓冲区，这就增加了数据拷贝的次数，无形之中增加了CPU和内存的开销。使用内存映射技术可以减少系统调用的次数同时又可以降低数据的拷贝次数。</p>
+<p>将文件映射到内存：</p>
+<ul>
+<li>内存数据与文件数据一一对应</li>
+<li>通过内存代替read/write系统调用接口来访问文件</li>
+<li>减少数据拷贝，减少系统调用次数，提高了系统性能</li>
+</ul>
+<img src="/2021/08/02/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/20191007142039951.png" class="">
+<p><img src="linux程序设计/20191007142039951.png" alt="在这里插入图片描述"></p>
+<p><strong>但是我有一个问题没有搞懂：使用用户缓冲的目的就是为了效率，如果不用缓冲了，改用内存映射，那么每次都直接把数据发送到存储器，这样的开销会不会比系统调用和多次拷贝的开销要大。</strong></p>
+<p>编程接口：</p>
+<ul>
+<li>头文件 <sys/mman.h></li>
+<li>函数使用 void <em>mmap(void </em>addr, size_t length, int prot, int flags, int fd, off_t offset);</li>
+<li>函数功能：在用户虚地址空间创建一个和实际物理内存相映射的关系。<br>函数参数:</li>
+<li>addr:进程要映射的虚拟内存的起始地址，一般为NULL。操作系统会自动分配一个合适的内存地址。</li>
+<li>length:要映射实际的内存区域大小</li>
+<li>prot:内存保护标志,PROT_EXEC,PROT_READ,PROT_WRITE</li>
+<li>flags: 映射的对象类型，MAP_FIXED,MAP_SHARED,MAP_PRIVATE</li>
+<li>fd:要映射的文件描述符</li>
+<li>offset:文件偏移地址</li>
+<li>mmap:以页单位操作，参数addr和offset必须按页对齐(4K对齐)</li>
+<li>返回值：<br>成功：指向映射后的实际内存的地址<br>失败：MAP_FAILED</li>
+</ul>
+<p>后面讲到了一些编程用例，具体查看【2】。</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】linux中的 IO端口映射和IO内存映射 <a target="_blank" rel="noopener" href="https://blog.csdn.net/geekster/article/details/11393995">https://blog.csdn.net/geekster/article/details/11393995</a></p>
+<p>【2】linux 文件IO与内存映射：内存映射 <a target="_blank" rel="noopener" href="https://blog.csdn.net/Z_Stand/article/details/102305129">https://blog.csdn.net/Z_Stand/article/details/102305129</a></p>
+<p>包含专栏“linux操作系统：io系统” <a target="_blank" rel="noopener" href="https://blog.csdn.net/z_stand/category_9403370.html">https://blog.csdn.net/z_stand/category_9403370.html</a></p>
 
       
 
@@ -307,11 +352,11 @@
   
 <nav id="article-nav">
   
-    <a href="/3000/06/23/about-me/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          about me
+          基于NVM的postgres
         
       </div>
     </a>
@@ -345,7 +390,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-1"><span class="toc-number">1.1.</span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.2.</span> <span class="toc-text">设置环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bash%E4%B8%AD%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.1.</span> <span class="toc-text">bash中设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">系统环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.2.3.</span> <span class="toc-text">用户环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%94%9F%E6%95%88"><span class="toc-number">1.3.</span> <span class="toc-text">环境变量生效</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.</span> <span class="toc-text">环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-1"><span class="toc-number">1.1.</span> <span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.2.</span> <span class="toc-text">设置环境变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#bash%E4%B8%AD%E8%AE%BE%E7%BD%AE"><span class="toc-number">1.2.1.</span> <span class="toc-text">bash中设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.2.2.</span> <span class="toc-text">系统环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%88%B7%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">1.2.3.</span> <span class="toc-text">用户环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E7%94%9F%E6%95%88"><span class="toc-number">1.3.</span> <span class="toc-text">环境变量生效</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux-I-O"><span class="toc-number">2.</span> <span class="toc-text">linux I&#x2F;O</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#IO%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84%E4%B8%8EI-O%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84"><span class="toc-number">2.1.</span> <span class="toc-text">IO端口映射与I&#x2F;O内存映射</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8I-O%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84%E8%AF%BB%E5%8F%96%E6%96%87%E4%BB%B6"><span class="toc-number">2.1.1.</span> <span class="toc-text">使用I&#x2F;O内存映射读取文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">引用</span></a></li></ol>
                     </div>
                 </span>
             </div>

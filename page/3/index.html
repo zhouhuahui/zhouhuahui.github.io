@@ -152,6 +152,97 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-安装MySQL8时的问题" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/02/%E5%AE%89%E8%A3%85MySQL8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/">安装MySQL8时的问题</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/02/%E5%AE%89%E8%A3%85MySQL8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2021-03-02T08:18:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是在windows系统下安装MySQL。由于我有MySQL8.0.19-winx64的zip文件，因此选择使用.zip安装方式</p>
+<ol>
+<li><p>添加环境变量，我的电脑-&gt;属性-&gt;高级-&gt;环境变量选择Path,在其后面添加: 你的mysql bin文件夹的路径 ：<code>D:\APP\mysql8.0.19-winx64\mysql8.0.19-winx64\bin</code>；</p>
+</li>
+<li><p>以管理员方式打开cmd，运行</p>
+ <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">mysqld</span> --<span class="comment">initialize</span><span class="literal">-</span><span class="comment">insecure</span> --<span class="comment">user=mysql</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按照很多mysql5的教程，接下来会输出 <code>mysql install</code>，但是这样用在mysql8上，会报错：<code>Can&#39;t connect to MySQL server on &#39;localhost&#39; (10061)</code>，之后找到了另一篇博客，应该输入：<code>mysqld --install mysql</code>；</p>
+</li>
+<li><p>cmd下输入<code>net start mysql</code>，意思是启动mysql</p>
+</li>
+<li><p><code>mysql -uroot -p</code> 进入mysql命令行，如果要输入密码，由于没有密码设置，就直接按回车；</p>
+</li>
+<li><p>这时修改密码：</p>
+ <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified <span class="keyword">with</span> mysql_native_password <span class="keyword">by</span> <span class="string">&#x27;zhou19981209&#x27;</span>; </span><br><span class="line">flush <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
+<p> 如果不设置密码，之后使用navicat连接到mysql时，会报错：<code>Client does not support authentication protocol requested by server</code>；</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/02/%E5%AE%89%E8%A3%85MySQL8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-go语言" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1339,115 +1430,9 @@
 
 
   
-    <article id="posts-C语言基础" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/28/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/">C语言基础</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/28/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2020-09-29T04:35:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="C语言输入输出"><a href="#C语言输入输出" class="headerlink" title="C语言输入输出"></a>C语言输入输出</h1><h2 id="scanf-amp-printf"><a href="#scanf-amp-printf" class="headerlink" title="scanf() &amp; printf()"></a>scanf() &amp; printf()</h2><p>头文件：<code>#include&lt;stdio.h&gt;</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//in: 1 2</span></span><br><span class="line"><span class="keyword">int</span> x = <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;a,&amp;b,&amp;c);</span><br><span class="line"><span class="comment">//out: a=1,b=2,c保持不变,x=3</span></span><br></pre></td></tr></table></figure>
-<p>当扫描到文件结束符后，就自动结束输入</p>
-<p>x为正确接收到值的变量个数。当scanf函数的第一个变量格式不正确时返回值为0，即，当scanf函数的第n个变量格式不正确时，返回值为n-1；当scanf在扫描到了合法字符之前扫描到了输入结束符，则返回-1。</p>
-<h3 id="输入浮点数"><a href="#输入浮点数" class="headerlink" title="输入浮点数"></a>输入浮点数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> f;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>,&amp;f);</span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> f2;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%f&quot;</span>,&amp;f2);</span><br></pre></td></tr></table></figure>
-<p>上面的<code>lf</code>格式对应<code>double</code>数据类型，<code>f</code>格式对应<code>float</code>数据类型。</p>
-<h3 id="输入16进制数"><a href="#输入16进制数" class="headerlink" title="输入16进制数"></a>输入16进制数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//int: A</span></span><br><span class="line"><span class="keyword">int</span> a;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%X&quot;</span>,&amp;a);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);</span><br><span class="line"><span class="comment">//out: 10</span></span><br></pre></td></tr></table></figure>
-<h3 id="输入多个单词"><a href="#输入多个单词" class="headerlink" title="输入多个单词"></a>输入多个单词</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a) &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="输出填充字符"><a href="#输出填充字符" class="headerlink" title="输出填充字符"></a>输出填充字符</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//%0xld:要是输出小于x位，用0补上，使输出达到x位；否则正常输出。</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%02ld\n&quot;</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%02ld\n&quot;</span>,<span class="number">111</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;------\n&quot;</span>); </span><br><span class="line">    <span class="comment">//%xld:要是输出小于x位，用空格补上，使输出达到x位；否则正常输出。</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%2ld\n&quot;</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%2ld\n&quot;</span>,<span class="number">111</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="getchar-amp-putchar"><a href="#getchar-amp-putchar" class="headerlink" title="getchar() &amp; putchar()"></a>getchar() &amp; putchar()</h2><p>头文件：<code>#include&lt;stdio.h&gt;</code></p>
-<p>函数 <code>int getchar(void)</code> 函数读取下一个可用的字符，若到达了文件的结尾，则返回<code>-1</code>。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c = getchar();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>int putchar(void)</code> 函数在同一个时间把一个字符输出到屏幕上。</p>
-<h2 id="fgets"><a href="#fgets" class="headerlink" title="fgets()"></a>fgets()</h2><p>头文件：<code>#include&lt;stdio.h&gt;</code></p>
-<p>函数 <code>char *fgets(char *str, int n, FILE* stream)</code> 从指定的流 stream 读取一行，并把它存储在 <strong>str</strong> 所指向的字符串内。当读取 <strong>(n-1)</strong> 个字符时，或者读取到换行符时，或者到达文件末尾时，它会停止。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">fgets</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">int</span> size, FILE *stream)</span></span>; <span class="comment">//size是自定义读入字符的最大个数，包括\0</span></span><br><span class="line"><span class="comment">//如果size=5，而输入是abc\n，则缓冲区中为abc\n\0</span></span><br><span class="line"><span class="comment">//如果size=4，而输入是abc\n，则缓冲区中为abc\0</span></span><br><span class="line"><span class="comment">//如果size=3，而输入为abc\n，则缓冲区为ab\0</span></span><br></pre></td></tr></table></figure>
-<h2 id="sscanf-amp-sprintf"><a href="#sscanf-amp-sprintf" class="headerlink" title="sscanf() &amp; sprintf()"></a>sscanf() &amp; sprintf()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[] = <span class="string">&quot;123&quot;</span></span><br><span class="line"><span class="built_in">sscanf</span>(str,<span class="string">&quot;%d&quot;</span>,&amp;a); </span><br></pre></td></tr></table></figure>
-<p>从字符串中读入数组。由此看来，sscanf()和scanf()有很多相似之处。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> a = <span class="number">12.123</span>;</span><br><span class="line"><span class="keyword">char</span> str[<span class="number">20</span>];</span><br><span class="line"><span class="built_in">sprintf</span>(str,<span class="string">&quot;%.3lf&quot;</span>,a);</span><br></pre></td></tr></table></figure>
-<p>将数字输出到字符串中。</p>
-<h1 id="C语言字符串"><a href="#C语言字符串" class="headerlink" title="C语言字符串"></a>C语言字符串</h1><p>头文件：<code>#include&lt;string.h&gt;</code></p>
-<p>C语言字符串操作要保证给字符串开足够大的空间。</p>
-<h2 id="strcpy"><a href="#strcpy" class="headerlink" title="strcpy()"></a>strcpy()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s1[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">char</span> s2[<span class="number">10</span>];</span><br><span class="line"><span class="built_in">strcpy</span>(s1,s2); <span class="comment">//复制字符串s2到s1</span></span><br></pre></td></tr></table></figure>
-<h2 id="strcat"><a href="#strcat" class="headerlink" title="strcat()"></a>strcat()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s1[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">char</span> s2[<span class="number">10</span>];</span><br><span class="line"><span class="built_in">strcat</span>(s1,s2); <span class="comment">//连接字符串s2到s1的末尾</span></span><br></pre></td></tr></table></figure>
-<h2 id="strlen"><a href="#strlen" class="headerlink" title="strlen()"></a>strlen()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strlen</span>(s1); <span class="comment">//返回s1的长度</span></span><br></pre></td></tr></table></figure>
-<h2 id="strcmp"><a href="#strcmp" class="headerlink" title="strcmp()"></a>strcmp()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(s1,s2);</span><br><span class="line"><span class="comment">//如果 s1 和 s2 是相同的，则返回 0；如果 s1&lt;s2 则返回小于 0；如果 s1&gt;s2 则返回大于 0。</span></span><br></pre></td></tr></table></figure>
-<h2 id="strchr"><a href="#strchr" class="headerlink" title="strchr()"></a>strchr()</h2><p>返回字符首次出现的指针位置。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s1[<span class="number">10</span>] = <span class="string">&quot;123&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> pos =<span class="number">0</span> ;</span><br><span class="line"><span class="built_in">strchr</span>(s1+pos,<span class="string">&#x27;1&#x27;</span>)-s1; </span><br><span class="line"><span class="comment">//从s1的pos位置开始查找，找到第一个&#x27;1&#x27;字符的位置。out: 0</span></span><br></pre></td></tr></table></figure>
-<p>可以通过strchr()函数实现C++中string对象的find()函数的操作。</p>
-<h2 id="strncpy"><a href="#strncpy" class="headerlink" title="strncpy()"></a>strncpy()</h2><p>函数格式：<code>char *strncpy(char *dest, const char *src, size_t n)</code></p>
-<p>n：要从源中复制的字符数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">char</span> src[<span class="number">40</span>];</span><br><span class="line">   <span class="keyword">char</span> dest[<span class="number">12</span>];</span><br><span class="line">  </span><br><span class="line">   <span class="built_in">memset</span>(dest, <span class="string">&#x27;\0&#x27;</span>, <span class="keyword">sizeof</span>(dest));</span><br><span class="line">   <span class="built_in">strcpy</span>(src, <span class="string">&quot;This is runoob.com&quot;</span>);</span><br><span class="line">   <span class="built_in">strncpy</span>(dest, src, <span class="number">10</span>);</span><br><span class="line"> </span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;最终的目标字符串： %s\n&quot;</span>, dest);</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//out: 最终的目标字符串： This is ru</span></span><br></pre></td></tr></table></figure>
-<p>注意：strncpy不会在最后加上<code>\0</code>结束符。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/28/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
     </nav>
   
 
