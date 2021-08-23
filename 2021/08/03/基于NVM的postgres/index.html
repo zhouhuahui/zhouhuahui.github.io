@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="https://zhouhuahui.github.io">
   <title>基于NVM的postgres | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="NVM WAL BUFFER【1】使用WAL段文件映射到内存作为WAL BUFFER 读文章1读了一篇文章：《The impact of NVM as the main memory on the database management system》，网址是：https:&#x2F;&#x2F;www.programmersought.com&#x2F;article&#x2F;75573496597&#x2F;  其实，这篇文章是论文的《Im">
+  <meta name="description" content="NVM WAL BUFFER【1】使用WAL段文件映射到内存作为WAL BUFFER Non-volatile Memory Logging(PGCon 2016) https:&#x2F;&#x2F;www.pgcon.org&#x2F;2016&#x2F;schedule&#x2F;track&#x2F;Performance&#x2F;945.en.html Persistent Memory(SNIA) https:&#x2F;&#x2F;www.snia.org&#x2F;PM 读文章">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于NVM的postgres">
 <meta property="og:url" content="https://zhouhuahui.github.io/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="NVM WAL BUFFER【1】使用WAL段文件映射到内存作为WAL BUFFER 读文章1读了一篇文章：《The impact of NVM as the main memory on the database management system》，网址是：https:&#x2F;&#x2F;www.programmersought.com&#x2F;article&#x2F;75573496597&#x2F;  其实，这篇文章是论文的《Im">
+<meta property="og:description" content="NVM WAL BUFFER【1】使用WAL段文件映射到内存作为WAL BUFFER Non-volatile Memory Logging(PGCon 2016) https:&#x2F;&#x2F;www.pgcon.org&#x2F;2016&#x2F;schedule&#x2F;track&#x2F;Performance&#x2F;945.en.html Persistent Memory(SNIA) https:&#x2F;&#x2F;www.snia.org&#x2F;PM 读文章">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://zhouhuahui.github.io/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/81822a71cc3103d974ac229f043e7988.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/基于NVM的postgres/81822a71cc3103d974ac229f043e7988.png">
@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://zhouhuahui.github.io/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/基于NVM的postgres/6ca7e80c6a28cd51b6e577e30cdb1529.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/基于NVM的postgres/image-20210804180735523.png">
 <meta property="article:published_time" content="2021-08-04T04:28:18.000Z">
-<meta property="article:modified_time" content="2021-08-04T15:59:04.428Z">
+<meta property="article:modified_time" content="2021-08-12T15:32:53.280Z">
 <meta property="article:author" content="fantasy">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
@@ -182,6 +182,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="NVM-WAL-BUFFER"><a href="#NVM-WAL-BUFFER" class="headerlink" title="NVM WAL BUFFER"></a>NVM WAL BUFFER</h1><p>【1】使用WAL段文件映射到内存作为WAL BUFFER</p>
+<p>Non-volatile Memory Logging(PGCon 2016) <a target="_blank" rel="noopener" href="https://www.pgcon.org/2016/schedule/track/Performance/945.en.html">https://www.pgcon.org/2016/schedule/track/Performance/945.en.html</a></p>
+<p>Persistent Memory(SNIA) <a target="_blank" rel="noopener" href="https://www.snia.org/PM">https://www.snia.org/PM</a></p>
 <h1 id="读文章1"><a href="#读文章1" class="headerlink" title="读文章1"></a>读文章1</h1><p>读了一篇文章：《The impact of NVM as the main memory on the database management system》，网址是：<a target="_blank" rel="noopener" href="https://www.programmersought.com/article/75573496597/">https://www.programmersought.com/article/75573496597/</a>  其实，这篇文章是论文的《Implications of Non-Volatile Memory as Primary Storage for Database Management Systems》的简版。</p>
 <p>“In addition, there are built-in substances related to leakage and voltage that limit the further expansion of DRAM. Therefore, as the main memory medium, DRAM cannot possibly keep up with the growth of current and future data sets.” 这句话表明DRAM不能做的很大。</p>
 <p>“The simplest design method is to replace NVM with the disk, and use its low latency to obtain performance improvement. However, adapting the DBMS to the characteristics of NVM goes far beyond its low latency.” 因为NVM可以字节寻址，但是传统的磁盘是块寻址。</p>
@@ -192,7 +194,7 @@
 <li>“bypass the slow disk interface while ensuring the robustness of the DBMS”（这句话不是很懂）</li>
 </ol>
 <p>“the delay of STT-RAM is 1-20ns. Nevertheless, his delay is already very close to DRAM.”；“PC_RAM and R-RAM have higher write latency than DRAM. But write latency is not very important, because it can be alleviated by buffer.”（这句话的意思是，把DRAM作为NVM的buffer？还有可能是CPU内部的cache作为NVM的buffer）</p>
-<p>“When using NVM as the main memory, not only the application software but also the system software needs to be modified, so that the advantages of NVM can be fully utilized. “</p>
+<p>“<strong>When using NVM as the main memory</strong>, not only the application software but also the system software needs to be modified, so that the advantages of NVM can be fully utilized. “</p>
 <ol>
 <li>为什么要改system software呢？“The traditional file system accesses the storage medium through the block layer. If only the disk is replaced with NVM without any modification, then the NVM storage also needs to pass the block layer to read and write data. ”，这样的话，NVM的字节寻址能力就没有用到。</li>
 </ol>
@@ -212,16 +214,20 @@
 <ol>
 <li>Avoid block-level access。使用NVM作为main memory medium时，字节寻址比块寻址要更加高效，但是“this reduces the data granularity to the byte level, without data warm-up. A better method needs to balance the advantages of these two aspects.” 所以，<strong>什么是data warm-up</strong>。</li>
 <li>Remove the internal buffer cache of the DBMS：“If the address space of NVM can be seen by other processes, there is no need to do block copying for a long time. <strong>Direct access to records in NVM will be more efficient</strong>. However, this <strong>requires an operating system that supports NVM</strong>, such as PMFS, which can directly expose the NVM address space to the process.” （我觉得，还是要buffer cache的吧）</li>
-<li>Remove redo logs：“if the internal buffer cache is not deployed, when all writes are directly written to NVM, redo log is not needed, but undo log is still needed.”（对于最简单的恢复系统，也就是先写日志到持久化存储，再写对应的更新到持久化存储，那么确实不需要redo log了，但是对于PG来说，这个不适用，因为PG是直接把更新写道buffer中的。）</li>
+<li>Remove redo logs：“if the internal buffer cache is not deployed, when all writes are directly written to NVM, redo log is not needed, but undo log is still needed.”（对于最简单的恢复系统，也就是先写日志到持久化存储，再写对应的更新到持久化存储，那么确实不需要redo log了，但是对于PG来说，这个不适用，因为PG是直接把更新写到buffer中的。）</li>
 </ol>
 <h2 id="PG-read-and-write-architecture"><a href="#PG-read-and-write-architecture" class="headerlink" title="PG read and write architecture"></a>PG read and write architecture</h2>
 <p><img src="基于NVM的postgres/image-20210804180735523.png" alt="image-20210804180735523"></p>
 <p>Fig3 图a是传统的PG数据库的IO方式，“when the buffer cache is missed, the storage engine of the native PG will cause <strong>two copy operations</strong>. When the data set is very large, this will be a big overhead”</p>
 <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】postgresql email列表对NVM WAL BUFFER的讨论 <a target="_blank" rel="noopener" href="https://blog.csdn.net/yanzongshuai/article/details/111940166">https://blog.csdn.net/yanzongshuai/article/details/111940166</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.ofweek.com/Internet/a956714781157">https://mp.ofweek.com/Internet/a956714781157</a></p>
+<p>postgresql官网关于Yoshimi Ichiyanagi发送的NVM WAL BUFFER邮件：<a target="_blank" rel="noopener" href="https://www.postgresql.org/message-id/C20D38E97BCB33DAD59E3A1%40lab.ntt.co.jp">https://www.postgresql.org/message-id/C20D38E97BCB33DAD59E3A1%40lab.ntt.co.jp</a></p>
 <p>这个作者<code>zys87</code>有很多相关的“PostgreSQL源码分析”的文章，比如：</p>
 <p>非易失性WAL buffer <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/article/details/104116169">https://yanzongshuaidba.blog.csdn.net/article/details/104116169</a></p>
 <p>非易失性WAL buffer实现解析（一） <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/article/details/104205001?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base">https://yanzongshuaidba.blog.csdn.net/article/details/104205001?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base</a></p>
 <p>对应的专栏：PostgreSQL源码分析 <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/category_9278392.html">https://yanzongshuaidba.blog.csdn.net/category_9278392.html</a></p>
+<h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h1><p>应用PMDK修改WAL操作使之适配持久化内存 <a target="_blank" rel="noopener" href="https://blog.51cto.com/yanzongshuai/2428535">https://blog.51cto.com/yanzongshuai/2428535</a></p>
+<p>yzs大神似乎很会研究PostgreSQL <a target="_blank" rel="noopener" href="https://blog.51cto.com/yanzongshuai">https://blog.51cto.com/yanzongshuai</a></p>
 
       
 
@@ -326,11 +332,11 @@
   
 <nav id="article-nav">
   
-    <a href="/3000/06/23/about-me/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/08/05/%E5%AD%A6%E4%B9%A0MIT6-824/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          about me
+          学习MIT6.824
         
       </div>
     </a>
@@ -364,7 +370,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NVM-WAL-BUFFER"><span class="toc-number">1.</span> <span class="toc-text">NVM WAL BUFFER</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%BB%E6%96%87%E7%AB%A01"><span class="toc-number">2.</span> <span class="toc-text">读文章1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#memory-layered-design"><span class="toc-number">2.1.</span> <span class="toc-text">memory layered design</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PG-read-and-write-architecture"><span class="toc-number">2.2.</span> <span class="toc-text">PG read and write architecture</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">引用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#NVM-WAL-BUFFER"><span class="toc-number">1.</span> <span class="toc-text">NVM WAL BUFFER</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AF%BB%E6%96%87%E7%AB%A01"><span class="toc-number">2.</span> <span class="toc-text">读文章1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#memory-layered-design"><span class="toc-number">2.1.</span> <span class="toc-text">memory layered design</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PG-read-and-write-architecture"><span class="toc-number">2.2.</span> <span class="toc-text">PG read and write architecture</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">引用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BD%91%E5%9D%80"><span class="toc-number">4.</span> <span class="toc-text">网址</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -550,6 +556,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">默认</a>
               </li>
             
             <div class="clearfix"></div>

@@ -152,27 +152,70 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="posts-images" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+    <article id="posts-csp-202006" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/1000/10/10/images/">images</a>
+      <a class="article-title" href="/2020/08/15/csp-202006/">csp-202006</a>
     </h1>
   
 
         
-        <a href="/1000/10/10/images/" class="archive-article-date">
-  	<time datetime="1000-10-10T08:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>1000-10-10</time>
+        <a href="/2020/08/15/csp-202006/" class="archive-article-date">
+  	<time datetime="2020-08-15T23:35:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <img src="/1000/10/10/images/shanna.jpg" class="">
+        <h1 id="20200601（线性分类器）"><a href="#20200601（线性分类器）" class="headerlink" title="20200601（线性分类器）"></a>20200601（线性分类器）</h1><img src="/2020/08/15/csp-202006/1.png" class="">
+<p><img src="csp-202006/1.png" alt="1"></p>
+<img src="/2020/08/15/csp-202006/2.png" class="">
+<p><img src="csp-202006/2.png" alt="1"></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>我们要设计一个函数<code>classify</code> 用来根据输入的点和直线确定点在这个直线的哪个区域：0/1。我们设置一个数组<code>duiying[][]</code>，<code>duiying[i][j]</code> 表示第i条直线在第j条区域应该是分类A还是分类B，对于每个直线，我们考虑每个点，计算出它在该直线下的区域，然后该区域下对应的类型和该点的类型是否相同。</p>
+<h2 id="代码1"><a href="#代码1" class="headerlink" title="代码1"></a>代码1</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 1005</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXM 25</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line">array&lt;<span class="keyword">int</span>, 3&gt; points[MAXN]; <span class="comment">//点</span></span><br><span class="line">array&lt;<span class="keyword">int</span>, 3&gt; lines[MAXM]; <span class="comment">//线</span></span><br><span class="line"><span class="keyword">int</span> duiying[MAXN][<span class="number">2</span>]; <span class="comment">//每个线的0/1区域对应哪个类型（0表示对应A，1表示对应B）</span></span><br><span class="line"><span class="keyword">bool</span> flag[MAXM]; <span class="comment">//表示每个线是否是分类器，默认是</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//根据点和线，知道点在线的哪一个区域: 0/1</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">classify</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> c)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(b == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">double</span> temp = -(<span class="keyword">double</span>)a / c;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">double</span>)y &lt; temp ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">double</span> temp = -(<span class="keyword">double</span>)a / b;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">double</span>)x &gt; temp ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>((b &gt; <span class="number">0</span> &amp;&amp; c &lt; <span class="number">0</span>) || (b &lt; <span class="number">0</span> &amp;&amp; c &gt; <span class="number">0</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">double</span> temp = -(<span class="keyword">double</span>)b * x / c - (<span class="keyword">double</span>)a / c;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">double</span>)y &gt; temp ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">double</span> temp = -(<span class="keyword">double</span>)b * x / c - (<span class="keyword">double</span>)a / c;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">double</span>)y &gt; temp ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">//init</span></span><br><span class="line">    <span class="built_in">memset</span>(duiying, <span class="number">-1</span>, <span class="built_in"><span class="keyword">sizeof</span></span>(duiying));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAXM; i++) flag[i] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//input points and lines</span></span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> x, y;</span><br><span class="line">        <span class="keyword">char</span> type;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y &gt;&gt; type;</span><br><span class="line">        points[i] = &#123;x, y, type == <span class="string">&#x27;A&#x27;</span> ? <span class="number">0</span> : <span class="number">1</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> a, b, c;</span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b &gt;&gt; c;</span><br><span class="line">        lines[i] = &#123;a, b, c&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> x, y, a, b, c;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; m; j++)</span><br><span class="line">    &#123;</span><br><span class="line">        a = lines[j][<span class="number">0</span>];</span><br><span class="line">        b = lines[j][<span class="number">1</span>];</span><br><span class="line">        c = lines[j][<span class="number">2</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            x = points[i][<span class="number">0</span>];</span><br><span class="line">            y = points[i][<span class="number">1</span>];</span><br><span class="line">            <span class="keyword">int</span> area = <span class="built_in">classify</span>(x, y, a, b, c);</span><br><span class="line">            <span class="keyword">if</span>(duiying[j][area] == <span class="number">-1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                duiying[j][area] = points[i][<span class="number">2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(duiying[j][area] != points[i][<span class="number">2</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                flag[j] = <span class="literal">false</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//output</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(flag[i] == <span class="literal">false</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;No&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Yes&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="20200602（稀疏向量）"><a href="#20200602（稀疏向量）" class="headerlink" title="20200602（稀疏向量）"></a>20200602（稀疏向量）</h1><img src="/2020/08/15/csp-202006/4.png" class="">
+<p><img src="csp-202006/4.png" alt="3"></p>
+<img src="/2020/08/15/csp-202006/3.png" class="">
+<p><img src="csp-202006/3.png" alt="3"></p>
+<h2 id="代码1-1"><a href="#代码1-1" class="headerlink" title="代码1"></a>代码1</h2><p>把(index, value)记录在数组当中，这样两个向量就用两个数组vec1, vec2表示了，用i, j 表示两个数组的下标，若两个index相同，则累加结果，然后i++, j++，否则，较小的index对应的数组下标递增。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,a,b;</span><br><span class="line">vector&lt;array&lt;<span class="keyword">int</span>,2&gt;&gt; vec1,vec2; <span class="comment">//不要用普通数组，因为不知道数组的大小应该设为多大，若设为最大1e9，则空间炸了</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">	<span class="comment">//input</span></span><br><span class="line">	cin&gt;&gt;n&gt;&gt;a&gt;&gt;b;</span><br><span class="line">	<span class="comment">//init</span></span><br><span class="line">	vec1.<span class="built_in">resize</span>(a);</span><br><span class="line">	vec2.<span class="built_in">resize</span>(b);</span><br><span class="line">	<span class="comment">//input</span></span><br><span class="line">	<span class="keyword">int</span> index,value;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;a;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;index,&amp;value);</span><br><span class="line">		vec1[i] = &#123;index,value&#125;;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;b;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>,&amp;index,&amp;value);</span><br><span class="line">		vec2[i] = &#123;index,value&#125;;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> p1,p2,i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">long</span> <span class="keyword">long</span> sum=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span>(i&lt;a&amp;&amp;j&lt;b)&#123; <span class="comment">//两个向量的元素都没有遍历完</span></span><br><span class="line">		p1 = vec1[i][<span class="number">0</span>];</span><br><span class="line">		p2 = vec2[j][<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">if</span>(p1==p2)&#123;</span><br><span class="line">			sum+=(<span class="keyword">long</span> <span class="keyword">long</span>)vec1[i][<span class="number">1</span>]*vec2[j][<span class="number">1</span>];</span><br><span class="line">			i++;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;<span class="keyword">else</span> <span class="keyword">if</span>(p1&lt;p2)&#123;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			j++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//output</span></span><br><span class="line">	cout&lt;&lt;sum&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>超时了，80分。原因是，用cin进行输入，在数据量很大时, cin比scanf慢了很多倍。</p>
+<h1 id="20200603（Markdown渲染器）"><a href="#20200603（Markdown渲染器）" class="headerlink" title="20200603（Markdown渲染器）"></a>20200603（Markdown渲染器）</h1><img src="/2020/08/15/csp-202006/5.png" class="">
+<p><img src="csp-202006/5.png" alt="5"></p>
+<img src="/2020/08/15/csp-202006/6.png" class="">
+<p><img src="csp-202006/6.png" alt="6"></p>
+<img src="/2020/08/15/csp-202006/8.png" class="">
+<p><img src="csp-202006/8.png" alt="6"></p>
+<img src="/2020/08/15/csp-202006/7.png" class="">
+<p><img src="csp-202006/7.png" alt="6"></p>
+<h2 id="代码1-2"><a href="#代码1-2" class="headerlink" title="代码1"></a>代码1</h2><p>我将计算段落和项目的行数的任务交给了dealSeg(int beg, int ed)函数和dealItem(int beg, int ed)函数，只要给出输入的段落或项目所在的开始行和结束行，就可以正确算出来，前提是不要把开始行和结束行输入错了。接着，就可以把精力集中在段与段，段与项目，项目与项目之间该如何处理了。我们用pre标识前面处理了什么类型，pre=-1表示前面什么都没处理，也就是说刚开始，pre=0表示前面处理了段落，pre=1表示前面处理了一个项目。其实，在我的设计中，如果很多个连续的项目后跟了至少一个空行，那么这些项目可以看做是段落，见代码的109行。</p>
+<ol>
+<li>若遇到了段落，则只要pre!=-1，就无脑递增行数</li>
+<li>若遇到了项目。若前面发现有空行，如108-111行所示，且前面处理了项目，则递增行数；若前面处理了段落，则递增行数。</li>
+</ol>
+<p>对于dealSeg与dealItem函数，注意去掉每行的收尾的连续空格。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">vector&lt;string&gt; inputs; <span class="comment">//所有的行</span></span><br><span class="line"><span class="keyword">int</span> w;</span><br><span class="line"><span class="keyword">int</span> ans=<span class="number">0</span>; <span class="comment">//结果，共有多少行</span></span><br><span class="line"><span class="keyword">int</span> pre=<span class="number">-1</span>; <span class="comment">//</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dealSeg</span><span class="params">(<span class="keyword">int</span> beg, <span class="keyword">int</span> ed)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> line=<span class="number">0</span>, col=<span class="number">0</span>; <span class="comment">//当前正在填写第几行第几列，col是[0,w-1]</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=beg;i&lt;=ed;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i!=beg)&#123; <span class="comment">//新的一行开始了，先加上空格</span></span><br><span class="line">            <span class="keyword">if</span>(col!=<span class="number">0</span>)&#123;</span><br><span class="line">                col++;</span><br><span class="line">                <span class="keyword">if</span>(col==w)&#123;</span><br><span class="line">                    line++;</span><br><span class="line">                    col=<span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//去掉每行收尾的连续空格</span></span><br><span class="line">        <span class="keyword">int</span> lineBeg=<span class="number">0</span>,lineEd=inputs[i].<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(inputs[i][lineBeg] == <span class="string">&#x27; &#x27;</span>) lineBeg++;</span><br><span class="line">        <span class="keyword">while</span>(inputs[i][lineEd] == <span class="string">&#x27; &#x27;</span>) lineEd--;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=lineBeg;j&lt;=lineEd;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(inputs[i][j] != <span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">                col++;</span><br><span class="line">                <span class="keyword">if</span>(col==w)&#123;</span><br><span class="line">                    line++;</span><br><span class="line">                    col=<span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(col != <span class="number">0</span>)&#123;</span><br><span class="line">                    col++;</span><br><span class="line">                    <span class="keyword">if</span>(col==w)&#123;</span><br><span class="line">                        line++;</span><br><span class="line">                        col=<span class="number">0</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(col==<span class="number">0</span>) <span class="keyword">return</span> line;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> line+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dealItem</span><span class="params">(<span class="keyword">int</span> beg,<span class="keyword">int</span> ed)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> line=<span class="number">0</span>,col=<span class="number">0</span>; <span class="comment">//由于项目的一行要先输出三个空格，所以col=[0,w-4]</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=beg;i&lt;=ed;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i != beg)&#123; <span class="comment">//新的一行开始了，先加上空格</span></span><br><span class="line">            <span class="keyword">if</span>(col!=<span class="number">0</span>)&#123;</span><br><span class="line">                col++;</span><br><span class="line">                <span class="keyword">if</span>(col==w<span class="number">-3</span>)&#123;</span><br><span class="line">                    line++;</span><br><span class="line">                    col=<span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//去掉每行收尾的连续空格</span></span><br><span class="line">        <span class="keyword">int</span> lineBeg=<span class="number">2</span>,lineEd=inputs[i].<span class="built_in">size</span>()<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">while</span>(lineBeg&lt;inputs[i].<span class="built_in">size</span>() &amp;&amp; inputs[i][lineBeg] == <span class="string">&#x27; &#x27;</span>) lineBeg++;</span><br><span class="line">        <span class="keyword">while</span>(lineEd&gt;=<span class="number">0</span> &amp;&amp; inputs[i][lineEd] == <span class="string">&#x27; &#x27;</span>) lineEd--;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=lineBeg;j&lt;=lineEd;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(inputs[i][j] != <span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">                col++;</span><br><span class="line">                <span class="keyword">if</span>(col==w<span class="number">-3</span>)&#123;</span><br><span class="line">                    line++;</span><br><span class="line">                    col=<span class="number">0</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(col != <span class="number">0</span>)&#123;</span><br><span class="line">                    col++;</span><br><span class="line">                    <span class="keyword">if</span>(col==w<span class="number">-3</span>)&#123;</span><br><span class="line">                        line++;</span><br><span class="line">                        col=<span class="number">0</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(col==<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(line==<span class="number">0</span>) <span class="keyword">return</span> <span class="number">1</span>; <span class="comment">//这是一个空项目（特判）</span></span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> line;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> line+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isSpaceLine</span><span class="params">(string&amp; str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;str.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(str[i]!=<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="comment">//input, 输入w和inputs</span></span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin&gt;&gt;w;</span><br><span class="line">    cin.<span class="built_in">get</span>();</span><br><span class="line">    string line;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">getline</span>(cin,line))&#123;</span><br><span class="line">        inputs.<span class="built_in">push_back</span>(line);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;inputs.<span class="built_in">size</span>())&#123;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;inputs.<span class="built_in">size</span>() &amp;&amp; <span class="built_in">isSpaceLine</span>(inputs[i]))&#123;</span><br><span class="line">            i++;</span><br><span class="line">            <span class="keyword">if</span>(pre==<span class="number">1</span>) pre=<span class="number">0</span>; <span class="comment">//空行使得段的分隔，前面的项目已经完结，成为一个段落。</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(i&gt;=inputs.<span class="built_in">size</span>()) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">if</span>(inputs[i].<span class="built_in">size</span>()&gt;=<span class="number">2</span> &amp;&amp; inputs[i].<span class="built_in">substr</span>(<span class="number">0</span>,<span class="number">2</span>)==<span class="string">&quot;* &quot;</span>)&#123; <span class="comment">//是项目</span></span><br><span class="line">            <span class="comment">//找到j，使得[i,j)是一个项目</span></span><br><span class="line">            j = i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(j&lt;inputs.<span class="built_in">size</span>() &amp;&amp; !<span class="built_in">isSpaceLine</span>(inputs[j]) &amp;&amp; inputs[j].<span class="built_in">size</span>()&gt;=<span class="number">2</span> &amp;&amp; inputs[j].<span class="built_in">substr</span>(<span class="number">0</span>,<span class="number">2</span>)==<span class="string">&quot;  &quot;</span>)&#123;</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//检查是否用多输出一个空行</span></span><br><span class="line">            <span class="keyword">if</span>(pre == <span class="number">0</span>) ans++;</span><br><span class="line"></span><br><span class="line">            ans+=<span class="built_in">dealItem</span>(i,j<span class="number">-1</span>);</span><br><span class="line">            <span class="comment">//cout&lt;&lt;&quot;ITEM:&quot;&lt;&lt;&quot;i=&quot;&lt;&lt;i&lt;&lt;&quot; j-1=&quot;&lt;&lt;j-1&lt;&lt;&quot; &quot;&lt;&lt;dealItem(i,j-1)&lt;&lt;endl;//////</span></span><br><span class="line">            i = j;</span><br><span class="line">            pre = <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123; <span class="comment">//是段落</span></span><br><span class="line">            <span class="comment">//找到j，使得[i,j)是一个段落</span></span><br><span class="line">            j = i+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span>(j&lt;inputs.<span class="built_in">size</span>() &amp;&amp; !<span class="built_in">isSpaceLine</span>(inputs[j]) &amp;&amp; !(inputs[j].<span class="built_in">size</span>()&gt;=<span class="number">2</span> &amp;&amp; inputs[j].<span class="built_in">substr</span>(<span class="number">0</span>,<span class="number">2</span>)==<span class="string">&quot;* &quot;</span>))&#123;</span><br><span class="line">                <span class="comment">//不是空白行，不是项目的开头行，则是属于段落</span></span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(pre==<span class="number">0</span> || pre==<span class="number">1</span>) ans++;</span><br><span class="line">            ans+=<span class="built_in">dealSeg</span>(i,j<span class="number">-1</span>);</span><br><span class="line">            i = j;</span><br><span class="line">            pre = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>超时，80分。原因是输入太慢了，用ios::sync_with_stdio(false)</p>
+<h1 id="20200604（1246）"><a href="#20200604（1246）" class="headerlink" title="20200604（1246）"></a>20200604（1246）</h1><img src="/2020/08/15/csp-202006/10.png" class="">
+<p><img src="csp-202006/10.png" alt="10"></p>
+<h2 id="代码1-3"><a href="#代码1-3" class="headerlink" title="代码1"></a>代码1</h2><p>通过一个循环，计算出第n秒的串是什么（我知道，存储容量肯定不够，2的10亿次方，自己算一下这有多大），然后用正则表达式计算包含了多少个S串。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">string str = <span class="string">&quot;1&quot;</span>; <span class="comment">//保存每个经过以2为底的幂运算的结果</span></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">string S;</span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//input</span></span><br><span class="line">    cin&gt;&gt;n&gt;&gt;S;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        string temp;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;str.<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(str[j]==<span class="string">&#x27;1&#x27;</span>)&#123;</span><br><span class="line">                temp += <span class="string">&quot;2&quot;</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(str[j]==<span class="string">&#x27;2&#x27;</span>)&#123;</span><br><span class="line">                temp += <span class="string">&quot;4&quot;</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(str[j] == <span class="string">&#x27;4&#x27;</span>)&#123;</span><br><span class="line">                temp += <span class="string">&quot;16&quot;</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                temp += <span class="string">&quot;64&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        str = temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">regex <span class="title">e</span><span class="params">(S)</span></span>;</span><br><span class="line">    smatch sm;</span><br><span class="line">    string::const_iterator iterBeg = str.<span class="built_in">begin</span>();</span><br><span class="line">    string::const_iterator iterEnd = str.<span class="built_in">end</span>();</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">regex_search</span>(iterBeg, iterEnd, sm, e))&#123;</span><br><span class="line">        ans++;</span><br><span class="line">        ans %= <span class="number">998244353</span>;</span><br><span class="line">        iterBeg = sm[<span class="number">0</span>].second;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//---------------------------------------------------------------------------------------------------------------------------------</span></span><br></pre></td></tr></table></figure>
+<p>超时，32分。</p>
+<h2 id="代码2"><a href="#代码2" class="headerlink" title="代码2"></a>代码2</h2><p>数字中只可能函数有1, 2, 4, 6，根据观察只可能产生的1数位和2数位是{1,2,4,6,16,26,41,42,44,46,61,62,64,66}。因此我们就对一个串，比如<code>6416</code>，看它可能产生哪些数位，以6416为例，6可以产生6,4,64; 4可以产生1,6,16; 1可以产生2; 6可以产生6,4,64; 64可以产生6,4,1,6,64,41,16,但是其中的6,4,64,1,6,16和6与4产生的重合了，所以就只剩下41; 41可以产生1,6,2,16,62,但是1,6,16,2和4与1产生的重合了，所以就剩下62; 16可以产生2,6,4,26,64，但是2,6,4,6,4和1与6产生的重合了，所以就剩下了26。所以最终结果是1,4,4,6,6,6,16,26,41,62,64,64，观察6416的下一个串6416264，结果一模一样。</p>
+<p>我们可以设置一个矩阵mat，(14,14)的，保存每个数位在经过一次变换后得到的数位，比如16经过变换后得到26（要去掉与1和6重合的部分，所以才只有26一个）。我们可以设置1的id是0, 2的id是1, 4的id是2，等等，这样就可以方便将变换关系保存在mat中。</p>
+<p>经过每次变换，我们都保存结果串中每种数位有多少个，比如说16对应的就是，1有1个, 6有1个，16有1个。这样，可以用一个数组<code>int initMat[14]</code> 来保存这个信息。如何计算每次变换后，每种数位有多少个呢？我们有变换矩阵，有目前每种数位有多少个（intMat），可以计算出来的。经过思考，<code>initMat*mat</code> 就是可以产生这个结果。如果要经过n次变换，就让initMat乘以n个mat。</p>
+<p>为了效率，我们可以快速幂的方法加速上述运算。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,M = <span class="number">998244353</span>;</span><br><span class="line">string s;</span><br><span class="line"><span class="keyword">int</span> baseEle[<span class="number">14</span>] = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>,<span class="number">16</span>,<span class="number">26</span>,<span class="number">41</span>,<span class="number">42</span>,<span class="number">44</span>,<span class="number">46</span>,<span class="number">61</span>,<span class="number">62</span>,<span class="number">64</span>,<span class="number">66</span>&#125;;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; convert[<span class="number">14</span>] = &#123;&#123;<span class="number">2</span>&#125;,&#123;<span class="number">4</span>&#125;,&#123;<span class="number">1</span>,<span class="number">6</span>,<span class="number">16</span>&#125;,&#123;<span class="number">4</span>,<span class="number">6</span>,<span class="number">64</span>&#125;,&#123;<span class="number">26</span>&#125;,&#123;<span class="number">46</span>&#125;,&#123;<span class="number">62</span>&#125;,&#123;<span class="number">64</span>&#125;,&#123;<span class="number">61</span>&#125;,&#123;<span class="number">66</span>&#125;,&#123;<span class="number">42</span>&#125;,&#123;<span class="number">44</span>&#125;,&#123;<span class="number">41</span>&#125;,&#123;<span class="number">46</span>&#125;&#125;; <span class="comment">//error: 最后一个46写成41了</span></span><br><span class="line">unordered_map&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; mp = &#123;&#123;<span class="number">1</span>,<span class="number">0</span>&#125;,&#123;<span class="number">2</span>,<span class="number">1</span>&#125;,&#123;<span class="number">4</span>,<span class="number">2</span>&#125;,&#123;<span class="number">6</span>,<span class="number">3</span>&#125;,&#123;<span class="number">16</span>,<span class="number">4</span>&#125;,&#123;<span class="number">26</span>,<span class="number">5</span>&#125;,&#123;<span class="number">41</span>,<span class="number">6</span>&#125;,&#123;<span class="number">42</span>,<span class="number">7</span>&#125;,&#123;<span class="number">44</span>,<span class="number">8</span>&#125;,&#123;<span class="number">46</span>,<span class="number">9</span>&#125;,&#123;<span class="number">61</span>,<span class="number">10</span>&#125;,&#123;<span class="number">62</span>,<span class="number">11</span>&#125;,&#123;<span class="number">64</span>,<span class="number">12</span>&#125;,&#123;<span class="number">66</span>,<span class="number">13</span>&#125;&#125;;</span><br><span class="line"><span class="keyword">int</span> initMat[<span class="number">14</span>];</span><br><span class="line"><span class="keyword">int</span> mat[<span class="number">14</span>][<span class="number">14</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mult1</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> b[][<span class="number">14</span>])</span></span>&#123;</span><br><span class="line">    <span class="comment">//init</span></span><br><span class="line">    <span class="keyword">int</span> c[<span class="number">14</span>];</span><br><span class="line">    <span class="built_in">memset</span>(c,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(c));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">14</span>;j++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">14</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">long</span> <span class="keyword">long</span> temp = (<span class="keyword">long</span> <span class="keyword">long</span>)a[i]*b[i][j];</span><br><span class="line">            <span class="keyword">int</span> temp2 = (<span class="keyword">int</span>)(temp%M);</span><br><span class="line">            c[j] += temp2;</span><br><span class="line">            c[j] %= M;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//out</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">14</span>;i++)&#123;</span><br><span class="line">        a[i] = c[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mult2</span><span class="params">(<span class="keyword">int</span> a[][<span class="number">14</span>])</span></span>&#123;</span><br><span class="line">    <span class="comment">//init</span></span><br><span class="line">    <span class="keyword">int</span> b[<span class="number">14</span>][<span class="number">14</span>];</span><br><span class="line">    <span class="built_in">memset</span>(b,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(b));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">14</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">14</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;<span class="number">14</span>;k++)&#123;</span><br><span class="line">                <span class="keyword">long</span> <span class="keyword">long</span> temp = (<span class="keyword">long</span> <span class="keyword">long</span>)a[i][k]*a[k][j];</span><br><span class="line">                <span class="keyword">int</span> temp2 = (<span class="keyword">int</span>)(temp%M);</span><br><span class="line">                b[i][j] += temp2;</span><br><span class="line">                b[i][j] %= M;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//out</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">14</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">14</span>;j++)&#123;</span><br><span class="line">            a[i][j] = b[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//init</span></span><br><span class="line">    <span class="built_in">memset</span>(initMat,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(initMat));</span><br><span class="line">    initMat[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">memset</span>(mat,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(mat));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">14</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;convert[i].<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">            <span class="keyword">int</span> k = mp[convert[i][j]]; <span class="comment">//error</span></span><br><span class="line">            mat[i][k] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cin&gt;&gt;n&gt;&gt;s;</span><br><span class="line">    <span class="keyword">while</span>(n&gt;<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n%<span class="number">2</span>==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="built_in">mult1</span>(initMat,mat);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">mult2</span>(mat);</span><br><span class="line">        n = n&gt;&gt;<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;initMat[mp[<span class="built_in">stoi</span>(s)]];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>96分。果然这题，又涉及到long long相关的错误。</p>
+<h1 id="20200605（乔乔与牛牛逛超市）"><a href="#20200605（乔乔与牛牛逛超市）" class="headerlink" title="20200605（乔乔与牛牛逛超市）"></a>20200605（乔乔与牛牛逛超市）</h1><h2 id="代码1-4"><a href="#代码1-4" class="headerlink" title="代码1"></a>代码1</h2><p>这题的做法可以总结为“水平选择，纵向贪心”。我们用邻接表发来建立商品与商品之间的关系，若有（x-&gt;y，1）边，则意味着必须有y，才能有x；若有边（x-&gt;y，2）边，则意味着必须要有y，x才能买正好$L_y$ 和 $R_y$ 件。我们建立一个vector\<int\> itemNum，表示已经考虑了哪些商品并且买了多少件，itemNum[1]=0表示考虑了1商品并且1商品的个数为0，已经考虑好的商品不要去改个数。采用回溯法，向下深挖时将商品添加到itemNum中，回溯时将商品从itemNum中删除。从第1个商品开始考虑，进行回溯法，然后考虑第2个商品，若第2个商品在回溯时，需要第i个商品且第i个商品被考虑过且第i个商品的个数为0，则这是要继续考虑第i个商品但是不要再从i商品继续向下考虑了，否则，不再继续考虑，然后是第3，第4个…….</p>
+<p><code>只有x被购买了，y才能被购买</code> 意思不是先买了x，再买y，而是x和y可以同时买，也满足这个条件。</p>
+<h2 id="代码2-1"><a href="#代码2-1" class="headerlink" title="代码2"></a>代码2</h2><p>代码1的思路没法做，原因是每个点可能依赖很多个点，而且有不同的依赖类型，没法向下做了。</p>
+
       
 
       
@@ -180,11 +223,1583 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/1000/10/10/images/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/08/15/csp-202006/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="posts-局域网技术与组网工程实验" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/">局域网技术与组网工程实验</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/" class="archive-article-date">
+  	<time datetime="2020-07-25T18:03:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="交换机基础"><a href="#交换机基础" class="headerlink" title="交换机基础"></a>交换机基础</h1><h2 id="通过telnet配置交换机"><a href="#通过telnet配置交换机" class="headerlink" title="通过telnet配置交换机"></a>通过telnet配置交换机</h2><p><strong>使用telnet方式访问交换机的前提条件是什么</strong></p>
+<p>对交换机进行初始化配置，否则用户无法正确登录和访问。初始化配置是为交换机配置正确的网段和IP地址，以便实现交换机互联。交换机配置的工作包括：</p>
+<ol>
+<li>配置正确的交换机IP地址，这里所说的为交换机配置IP地址，实际上是指在交换机上配置管理VLAN接口的IP地址。</li>
+<li>确定与PC相连的交换机端口属于该管理VLAN</li>
+<li>如果PC和交换机相连的端口在同一个局域网内，则其IP地址必须配置为同一个网段；否则，要保证PC和交换机必须路由可达。</li>
+</ol>
+<h1 id="生成树协议STP"><a href="#生成树协议STP" class="headerlink" title="生成树协议STP"></a>生成树协议STP</h1><h2 id="交换机STP原理"><a href="#交换机STP原理" class="headerlink" title="交换机STP原理"></a>交换机STP原理</h2><p>STP（Spanning Tree Protocol）是生成树协议，该协议的原理是按照树的结构来构造网络拓扑，消除网络中的环路，避免由于环路的存在而造成广播风暴以及MAC地址表不稳定等问题。可在提高可靠性的同时又能避免环路带来的各种问题。</p>
+<h3 id="STP的工作过程"><a href="#STP的工作过程" class="headerlink" title="STP的工作过程"></a>STP的工作过程</h3><p>运行STP算法的网桥（交换机），在规定的间隔内（默认2秒），通过网桥协议数据单元（BPDU）的组播帧与其他交换机交换配置信息，完成生成树的构建。</p>
+<h4 id="选举根桥-Root"><a href="#选举根桥-Root" class="headerlink" title="选举根桥(Root)"></a>选举根桥(Root)</h4><p>通过比较网桥优先级选取根网桥，给定广播域内只有一个根网桥。一般情况下， 网桥的BID（桥ID）最小的那个作为根网桥。</p>
+<p>每个交换机假设自己为根，互相发送BPDU报文，然后通过比较BID竞选根桥。</p>
+<h4 id="根端口-RP-选举"><a href="#根端口-RP-选举" class="headerlink" title="根端口(RP)选举"></a>根端口(RP)选举</h4><p>交换机通过RP来向根交换机发送信息，可以有最小的路径开销，根端口负责向根交换机发送数据，并且通过这个端口发送数据较快。</p>
+<ol>
+<li><p>非根交换机根据<strong>根路径开销</strong>（RPC，Root Path Cost）来选举根端口。根路径开销是指接收由根桥发送的BPDU所经过的所有路径的<strong>路径开销</strong>之和，交换机在接收BPDU时累加路径开销，转发BPDU时不累加路径开销。路径开销是设置在交换机的端口上的，表示这个端口的开销。</p>
+</li>
+<li><p>若该交换机的根路径开销相同，则比较两个路径的上一个交换机的BID（多个端口连接的对端交换机的BID），例如，有ABCD，AEFD两个从A到达D的路径，则比较C和F的BID来选择应该将哪个端口设置为RP。</p>
+</li>
+<li>若交换机多个端口连接的对端交换机也相同（即BID相同），比如ABDE, ACDE，从D的两个端口分别连接E的两个端口。此时比较连接的对端交换机的端口的PID。</li>
+</ol>
+<p>RP的选举是向上的。与DP的选举相反，DP是向下的，指向深层的交换机和主机。</p>
+<h4 id="指定端口-DP-选举"><a href="#指定端口-DP-选举" class="headerlink" title="指定端口(DP)选举"></a>指定端口(DP)选举</h4><p>选举指定端口是相对于两个交换机的，比如有两个交换机A和B相连，</p>
+<ol>
+<li>比较A和B的RPC，选择RPC较小的那个交换机连接的端口为指定端口。</li>
+<li>若RPC相同，则选择BID较小的那个交换机连接的端口作为DP。</li>
+</ol>
+<h4 id="阻塞端口（AP）"><a href="#阻塞端口（AP）" class="headerlink" title="阻塞端口（AP）"></a>阻塞端口（AP）</h4><p>阻塞非跟端口和非指定端口。</p>
+<p>网络中不再有环路了。</p>
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ol>
+<li>STP协议中端口处在（Forwarding）状态可以转发用户报文</li>
+<li>STP协议中桥ID(BID)的构成包括？（桥优先级，桥背板MAC地址）</li>
+</ol>
+<h1 id="交换机以太网端口"><a href="#交换机以太网端口" class="headerlink" title="交换机以太网端口"></a>交换机以太网端口</h1><h2 id="端口镜像配置方法"><a href="#端口镜像配置方法" class="headerlink" title="端口镜像配置方法"></a>端口镜像配置方法</h2><p>将指定的一个或多个端口的报文复制到观察端口，用于报文的分析和监视。</p>
+<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/1.png" class="">
+<p><img src="局域网技术与组网工程实验/1.png" alt="1"></p>
+<p>先设置观察端口，再设置镜像端口。缺省情况下，系统没有配置本地观察端口，如果要修改观察端口，需要删除原来的配置后再重新配置（将和观察端口绑定的镜像端口删除掉，再配置它们的观察端口）。</p>
+<p>一个观察端口可以观察多个镜像端口，同时，一个镜像端口也可以被很多个观察端口观察。</p>
+<p>设置观察端口后，该端口自动配置为Trunk端口，删除观察端口后，该端口自动配置为Access端口，且加入VLAN1。</p>
+<h2 id="端口绑定"><a href="#端口绑定" class="headerlink" title="端口绑定"></a>端口绑定</h2><p>利用了交换机的地址学习功能，只要取消了端口的地址学习功能，那么它就只能知道你告诉它的主机应该往哪个端口发送，而你没有告诉它的，它则不知道往哪里发送，因为这个端口不能学习了，这个你告诉它的主机就是存在于它的静态地址表项中的。如果你再设置：这个端口抛弃它不知道往哪里发的报文（目的MAC不在它的静态地址表项中），那它就只能转发目的MAC地址存在于静态地址表项中的报文，从而实现端口绑定的功能。</p>
+<ol>
+<li>取消该端口的MAC地址学习功能</li>
+<li>将授权设备的MAC地址添加到该端口的静态地址表项中。</li>
+</ol>
+<h2 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h2><ol>
+<li><p>negotiation 命令所在的视图是：（端口视图）</p>
+</li>
+<li><p>关于基于端口的镜像说法正确的是？（ABCD）</p>
+<ul>
+<li><p>A、</p>
+<p>  在S3700和S5700交换机上可以有两个观察端口。</p>
+</li>
+<li><p>B、</p>
+<p>  一个观察端口可以监控多个镜像端口。</p>
+</li>
+<li><p>C、</p>
+<p>  一个镜像端口可以被多个观察端口监控。</p>
+</li>
+<li><p>D、</p>
+<p>  在配置镜像端口前，先要设置好观察端口。</p>
+</li>
+</ul>
+</li>
+<li><p>关于MAC地址与端口绑定的说法正确的是？（AC）</p>
+<ul>
+<li><p>A、</p>
+<p>  静态MAC地址表项的优先级高于动态MAC地址表项。</p>
+</li>
+<li><p>B、</p>
+<p>  交换机的端口被shutdown后，与该端口绑定的静态MAC地址表项和动态MAC地址表项都会被清空。</p>
+</li>
+<li><p>C、</p>
+<p>  端口绑定是通过禁用端口学习功能，并将授权主机MAC地址与授权端口配对信息添加到静态MAC地址表项来实现的。</p>
+</li>
+<li><p>D、</p>
+<p>  同一时刻、相同的MAC地址，在交换机的MAC地址表中可能会存在多个交换机端口与之绑定。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="交换机链路聚合"><a href="#交换机链路聚合" class="headerlink" title="交换机链路聚合"></a>交换机链路聚合</h1><h1 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h1><h2 id="虚拟局域网原理"><a href="#虚拟局域网原理" class="headerlink" title="虚拟局域网原理"></a>虚拟局域网原理</h2><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>早期以太网基于CSMA/CD的共享通讯介质的通讯技术，当主机数目过多时会导致冲突严重，广播泛滥，性能显著下降甚至网络不可用等问题。通过交换机虽然可以解决冲突问题，但是仍然不能隔离广播报文和提升网络质量。VLAN技术可以把一个物理LAN划分为多个逻辑的VLAN，每个VLAN是一个广播域，VLAN内的主机通信就像在一个LAN内一样，而VLAN间则不能直接互通，这样，广播报文就限制在一个VLAN内。</p>
+<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/2.png" class="">
+<p><img src="局域网技术与组网工程实验/2.png" alt="2"></p>
+<h3 id="VLAN标签"><a href="#VLAN标签" class="headerlink" title="VLAN标签"></a>VLAN标签</h3><p>IEEE 802.1协议规定，在以太网数据帧的目的MAC地址之后，协议类型字段之前加上4字节的VLAN标签（VLAN tag），用以表示VLAN信息。</p>
+<p>在以太网交换网络中，以太网帧主要有以下两种：有标记帧（Tagged帧）和无标记帧（Untagged 帧）。主机，服务器，Hub和傻瓜交换机只能收发Untagged帧；交换机，路由器既能收发Tagged帧也能收发Untagged帧。</p>
+<h3 id="接口的链路类型"><a href="#接口的链路类型" class="headerlink" title="接口的链路类型"></a>接口的链路类型</h3><p>现网中属于同一个VLAN的用户可能被连在不同的交换机上，且跨越交换机的VLAN不止一个，这就需要交换机间的接口能够同时识别和发送多个VLAN的数据帧。</p>
+<p>​    根据接口连接对象以及对收发数据帧处理的不同，分为4种接口链路类型：Access, Trunk, Hybrid, QinQ。</p>
+<h4 id="Access接口"><a href="#Access接口" class="headerlink" title="Access接口"></a>Access接口</h4><p>Access接口一般用于主机/服务器和交换机的相连。交换机内部只处理Tagged帧，主机和服务器不能处理Tagged帧，所以Access接口需要给收到的数据帧添加VLAN Tag，因此Access接口也必须设置自己的缺省VLAN（PVID）。配置了PVID后，该Access接口也就加入了该VLAN。</p>
+<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/3.png" class="">
+<p><img src="局域网技术与组网工程实验/3.png" alt="3"></p>
+<h4 id="Trunk接口"><a href="#Trunk接口" class="headerlink" title="Trunk接口"></a>Trunk接口</h4><p>Trunk一般用于连接交换机，路由器。它可以允许多个VLAN的帧带Tag通过，但是只允许一个VLAN的帧从该接口上不带Tag（即剥除Tag）。</p>
+<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/4.png" class="">
+<p><img src="局域网技术与组网工程实验/4.png" alt="4"></p>
+<h3 id="VLAN划分"><a href="#VLAN划分" class="headerlink" title="VLAN划分"></a>VLAN划分</h3><p>基于接口划分是最常用的VLAN划分方式。网络管理员预先给交换机的每个接口配置不同的PVID。</p>
+<p>优点是：定义成员简单，配置过程简单明了<br>缺点是：移动成员需要重新配置VLAN，配置不够灵活</p>
+<h3 id="VLAN内互访"><a href="#VLAN内互访" class="headerlink" title="VLAN内互访"></a>VLAN内互访</h3><p>VLAN内互访首先要进行ARP过程，这个过程与普通的局域网内的ARP过程的区别是：</p>
+<ol>
+<li>交换机转发数据帧时检查是否是能够通过的VLAN的帧</li>
+<li>MAC地址表项是：（MAC，VID，端口）</li>
+</ol>
+<p>由于Trunk接口可以允许多个VLAN的帧通过链路，这被称作<strong>透传</strong>。</p>
+<h3 id="管理VLAN"><a href="#管理VLAN" class="headerlink" title="管理VLAN"></a>管理VLAN</h3><p>为交换机配置IP地址，通常是指在交换机上配置管理VLAN接口的IP地址。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
+<li><p>三层交换机和路由器是如何实现VLAN间通信的？</p>
+<p> 三层交换机配置了很多VLANIF虚拟接口，并在该接口下配置了IP地址，三层交换机的各个端口是如何配置的呢？access端口配置了PVID，trunk端口配置了可允许特定VLAND的帧通过。当三层交换机收到一个帧时，通过它的目的IP地址就可以通过路由表或者MAC地址表知道它应该往哪个端口发送（假如是portA），并且知道了该目的网络属于哪个VLAN。</p>
+<p> 路由器配置了子接口，以及下面的IP地址，在子接口下配置了dot1q termination vlan，这样的话，当路由器知道要往哪个子接口转发帧时，就可以将对应的VLAN标签加在帧上。</p>
+ <img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/14.png" class="">
+<p> <img src="局域网技术与组网工程实验/14.png" alt="14"></p>
+</li>
+</ol>
+<h2 id="VLAN实验"><a href="#VLAN实验" class="headerlink" title="VLAN实验"></a>VLAN实验</h2><p>如图所示，某企业的交换机连接有很多用户，且相同业务用户通过不同的设备接入企业网络。为了通信的安全性和避免广播风暴，企业希望相同业务用户之间可以互相访问，不同业务用户不能互相访问。现在，通过在交换机上配置基于接口划分的VLAN，来满足企业的需求。</p>
+<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/10.jpg" class="">
+<p><img src="局域网技术与组网工程实验/10.jpg" alt="10"></p>
+<ol>
+<li><p>由于User1和User2是处于同一个VLAN，因此应该设置同一个网段的IP，因此我设置User1的IP是：192.168.10.1，User2的IP是：192.168.10.2。同理，我设置User3和User4的IP分别为：192.168.20.3，192.168.20.4。它们的子网掩码都是255.255.255.0。</p>
+</li>
+<li><p>配置SwitchA的VLAN以及交换机接口的链路类型</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$&lt;SwitchA&gt; system-view <span class="comment">#进入系统视图</span></span><br><span class="line">$[SwitchA] vlan batch 2 to 3 <span class="comment">#创建VID为从2到3的VLAN</span></span><br><span class="line">$[SwitchA-vlan] quit <span class="comment">#从vlan视图中退出来</span></span><br><span class="line">$[SwitchA] int g0/0/1 <span class="comment">#进入g0/0/1端口视图</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/1] port link-type access <span class="comment">#g0/0/1端口设置为access接口</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/1] port default vlan 2 <span class="comment">#g0/0/1的PVID设置为2</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/1] quit</span><br><span class="line">$[SwitchA] int g0/0/2 <span class="comment">#进入g0/0/2端口视图</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/2] port link-type access <span class="comment">#g0/0/2端口设置为access接口</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/2] port default vlan 3 <span class="comment">#g0/0/2的PVID设置为3</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/2] quit</span><br><span class="line">$[SwitchA] int g0/0/3 <span class="comment">#进入g0/0/3端口视图</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/3] port link-type trunk <span class="comment">#g0/0/3设置为trunk接口</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/3] port trunk allow-pass vlan 2 to 3 <span class="comment">#让vlan tag为2,3的帧通过</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置SwitchB的VLAN以及交换机接口的链路类型，与2的配置一模一样</p>
+</li>
+</ol>
+<h2 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h2><ol>
+<li>IEEE 802.1Q协议中，VLAN标签的长度是：（4字节）</li>
+</ol>
+<h1 id="三层交换机"><a href="#三层交换机" class="headerlink" title="三层交换机"></a>三层交换机</h1><h2 id="三层交换机原理"><a href="#三层交换机原理" class="headerlink" title="三层交换机原理"></a>三层交换机原理</h2><p>VLAN间互访需要路由器的三层交换功能的支持。</p>
+<p>但是每一个VLAN都要使用一条独占的物理连接连接到路由器的一个接口上，这对路由器是不现实的。使用Trunk技术和路由器子接口技术来解决这个问题，交换机与路由器只有一个物理连接连接到路由器的一个物理接口，然后这个物理接口被划分为多个逻辑接口。</p>
+<p>由于路由器使用软件实现数据交换，效率不行，因此就有了三层交换机。</p>
+<p>二层交换机和路由器的功能的集合构成了三层交换机，三层交换机有如下特性：</p>
+<ol>
+<li>二层交换引擎：实现同一个网段内的快速二层转发</li>
+<li>三层路由引擎：实现跨VLAN的三层路由转发。三层交换机的交换功能是路由器的交换功能的裁剪版，比如，IP选项，报文分片功能都被裁剪掉了；三层交换机使用精确地址匹配的方式，便于硬件实现；当收到数据帧时，发现目的MAC不在地址表项中，就转向三层路由引擎，查询目的IP地址所在的网段之后，向目的网段广播一个ARP包，发现目的MAC在地址表项中时，直接在二层进行转发，这就是后面要提到的流转发方式。</li>
+<li>每一个VLAN对应一个IP网段</li>
+<li>使用流交换方式。报文到报文的交换方式与流交换方式的区别：如果每一个报文都要经历第三层处理，并且业务流转发是基于第三层地址的，这种交换方式就是报文到报文交换方式；如果只是第一个报文经过第三层处理，其他后续报文只进行第二层转发，这种就是流交换方式。</li>
+</ol>
+<h3 id="三层交换机与路由器的不同"><a href="#三层交换机与路由器的不同" class="headerlink" title="三层交换机与路由器的不同"></a>三层交换机与路由器的不同</h3><p>主要的不同在于三层交换功能：</p>
+<ol>
+<li>查询路由表项时，三层交换机得到的结果是某个精确路由对应的VLAN或网段，而路由器得到的是最长匹配的网络号对应的下一跳IP地址。</li>
+<li>三层交换机采用流交换方式，路由器采用报文到报文的交换方式</li>
+<li>三层交换机裁剪了很多功能</li>
+</ol>
+<h2 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h2><ol>
+<li><p>以下关于三层交换机的描述正确的是（A）</p>
+<ul>
+<li><p>A、</p>
+<p>  三层交换机使用硬件支持多个VLAN的二层转发。</p>
+</li>
+<li><p>B、</p>
+<p>  三层交换机适合用于大型网络间的路由。</p>
+</li>
+<li><p>C、</p>
+<p>  三层交换机使用报文到报文的交换方式。</p>
+</li>
+<li><p>D、</p>
+<p>  三层交换机和同性能的路由器相比更加昂贵。</p>
+</li>
+</ul>
+</li>
+<li><p>[Huawei] interface vlanif 10</p>
+<p> [Huawei-Vlanif10] ip address 10.10.10.1 24</p>
+<p> 以上命令用于配置（B）。</p>
+<ul>
+<li><p>A、</p>
+<p>  vlan10管理接口的IP地址。</p>
+</li>
+<li><p>B、</p>
+<p>  vlan10三层接口的IP地址。</p>
+</li>
+<li><p>C、</p>
+<p>  vlan10二层转发接口的IP地址。</p>
+</li>
+<li><p>D、</p>
+<p>  除vlan10外的其它vlan的路由接口IP地址。</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="路由器基础"><a href="#路由器基础" class="headerlink" title="路由器基础"></a>路由器基础</h1><p>通用路由平台VRP（Versatile Routing Platform）：</p>
+<ol>
+<li>以IP业务为核心，采用组件化的体系结构</li>
+<li>提供了基于应用的可裁剪和可扩展的功能</li>
+</ol>
+<h2 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a>题目</h2><ol>
+<li><p>目前绝大多数华为设备使用的都是（B）版本。</p>
+<ul>
+<li><p>A、</p>
+<p>  VRP8</p>
+</li>
+<li><p>B、</p>
+<p>  VRP5</p>
+</li>
+<li><p>C、</p>
+<p>  VRP3</p>
+</li>
+<li><p>D、</p>
+<p>  VRP2</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="路由器基础管理"><a href="#路由器基础管理" class="headerlink" title="路由器基础管理"></a>路由器基础管理</h1><h1 id="静态路由基础"><a href="#静态路由基础" class="headerlink" title="静态路由基础"></a>静态路由基础</h1><h2 id="静态路由配置"><a href="#静态路由配置" class="headerlink" title="静态路由配置"></a>静态路由配置</h2><h3 id="串口连接"><a href="#串口连接" class="headerlink" title="串口连接"></a>串口连接</h3><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/5.png" class="">
+<p><img src="局域网技术与组网工程实验/5.png" alt="5"></p>
+<p>在串行接口上，可以通过指定下一跳路由或出端口来配置静态路由。</p>
+<h3 id="以太网连接"><a href="#以太网连接" class="headerlink" title="以太网连接"></a>以太网连接</h3><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/6.png" class="">
+<p><img src="局域网技术与组网工程实验/6.png" alt="6"></p>
+<p>在以太网接口上配置静态路由时，必须要指定下一跳地址。</p>
+<h2 id="负载分担"><a href="#负载分担" class="headerlink" title="负载分担"></a>负载分担</h2><p>两个路由器通过多条物理线路进行连接，多条物理线路对应多个网段和多个路由器接口，在每一个路由器接口上设置静态路由后，可以支持<strong>等值负载分担（ECMP，Equal-Cost Multiple Path）</strong> 。</p>
+<p>ECMP是指到达同一个目的地有多条等价链路，流量在这些等价链路上平均分配，不会考虑链路带宽的差异。</p>
+<p>ECMP的缺点是：在路径间带宽差异大时，带宽利用率低。</p>
+<h2 id="路由备份"><a href="#路由备份" class="headerlink" title="路由备份"></a>路由备份</h2><p>又叫浮动静态路由。在链路正常的情况下，只有主路由在路由表中，在链路出现故障时，浮动静态路由会被激活。</p>
+<p>设置浮动静态路由时，设置它的优先级比主路由的优先级低一些。</p>
+<h2 id="静态路由及路由器子接口实验"><a href="#静态路由及路由器子接口实验" class="headerlink" title="静态路由及路由器子接口实验"></a>静态路由及路由器子接口实验</h2><p>请运用静态路由，以及路由器子接口实现VLAN间通信，使得5台PC机可以互相通信。</p>
+<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/11.jpg" class="">
+<p><img src="局域网技术与组网工程实验/11.jpg" alt="11"></p>
+<p>分析：R1的g0/0/1物理端口必须划分为两个逻辑接口，因为这个端口底下有两个VLAN。同时，为了保证不同网段的主机能够跨路由器进行通信，R1和R2必须要进行静态路由设置。</p>
+<p>我的拓扑图是下面的：</p>
+<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/11.png" class="">
+<p><img src="局域网技术与组网工程实验/11.png" alt="11"></p>
+<ol>
+<li><p>按照题目要求将PC01-PC05的IP地址和子网掩码先配置一下，等一下配置完了路由器，再来配置PC们的默认网关。</p>
+</li>
+<li><p>配置SWITCH1的VLAN和端口链路类型，和R1连接的g0/0/1端口要设置为trunk，和SWITCH2相连接的g0/0/4端口要设置为trunk。在系统视图下</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/1 <span class="comment">#进入g0/0/1端口</span></span><br><span class="line">port link-type trunk <span class="comment">#g0/0/1设置为trunk</span></span><br><span class="line">port trunk allow-pass vlan 10 to 20 <span class="comment">#因为vlan10和20的主机都有可能访问外网，因此这个链路要允许10和20的vlan帧通过</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/2</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 10</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/3</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 20</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/4</span><br><span class="line">port link-type trunk</span><br><span class="line">port trunk allow-pass vlan 10 to 20</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>SWITCH2与SWITCH1类似。SWITCH3不需要配置，因为R2的g0/0/1对应的网段没有设置VLAN。</p>
+</li>
+<li><p>配置R1的逻辑接口，IP和静态路由。在系统视图下</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/0</span><br><span class="line">ip address 192.168.30.1 255.255.255.0</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip route-static 10.1.1.0 255.255.255.0 192.168.30.2 <span class="comment">#R1的一个静态路由：到达10.1.1.0网络的下一条IP是192.168.30.2</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/1</span><br><span class="line">int g0/0/1.1 <span class="comment">#在g0/0/1下面创建了一个逻辑接口</span></span><br><span class="line">dot1q termination vid 10 <span class="comment">#g0/0/1.1接口对VLAN TAG为10的帧去掉tag</span></span><br><span class="line">ip address 192.168.10.1 255.255.255.0</span><br><span class="line">arp broadcast <span class="built_in">enable</span> <span class="comment">#允许进行ARP广播</span></span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/1</span><br><span class="line">int g0/0/1.2 <span class="comment">#在g0/0/1下面创建了一个逻辑接口</span></span><br><span class="line">dot1q termination vid 20 <span class="comment">#g0/0/1.2接口对VLAN TAG为20的帧去掉tag</span></span><br><span class="line">ip address 192.168.20.1 255.255.255.0</span><br><span class="line">arp broadcast <span class="built_in">enable</span> <span class="comment">#允许进行ARP广播</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置R2的接口IP和静态路由</p>
+</li>
+<li><p>配置每个主机的默认网关。PC01和PC03的默认网关是192.168.10.1，因为192.168.10.1是一个逻辑接口的IP地址，与VLAN20相连接。其他的网关配置也类似。</p>
+</li>
+</ol>
+<h2 id="题目-5"><a href="#题目-5" class="headerlink" title="题目"></a>题目</h2><ol>
+<li><p>两个路由器R1和R2之间有3条链路，带宽分别是10Mbps、 20Mbps和30Mbps。如果使用等值负载分担，则R1和R2之间的总带宽为（B）</p>
+<ul>
+<li><p>A、</p>
+<p>  20M</p>
+</li>
+<li><p>B、</p>
+<p>  30M</p>
+</li>
+<li><p>C、</p>
+<p>  50M</p>
+</li>
+<li><p>D、</p>
+<p>  60M</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="以太网帧结构"><a href="#以太网帧结构" class="headerlink" title="以太网帧结构"></a>以太网帧结构</h1><p>Ethernet_II帧的length类型值大于等于1536，帧长度在64到1518之间</p>
+<p>802.3帧的length类型值大于1536，帧长度小于1500</p>
+<h1 id="RIP路由协议"><a href="#RIP路由协议" class="headerlink" title="RIP路由协议"></a>RIP路由协议</h1><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/12.png" class="">
+<p><img src="局域网技术与组网工程实验/12.png" alt="12"></p>
+<h2 id="路由环路问题"><a href="#路由环路问题" class="headerlink" title="路由环路问题"></a>路由环路问题</h2><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/13.png" class="">
+<p><img src="局域网技术与组网工程实验/13.png" alt="12"></p>
+<p>一开始，各个路由器的表项是：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">A</span>: <span class="number">11.4.0.0</span> S<span class="number">0</span> <span class="number">2</span></span><br><span class="line"><span class="attribute">B</span>: <span class="number">11.4.0.0</span> S<span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="attribute">C</span>: <span class="number">11.4.0.0</span> E<span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<p>1、当网络11.4.0.0 发生故障，路由器C 最先收到故障信息，路由器C 把网络11.4.0.0 设为不可达，并等待更新周期到来通告这一路由变化给相邻路由器。如果，路由器B的路由更新周期在路由器C之前到来，那么路由器C就会从路由器B那里学习到去往11.4.0.0的新路由（实际上，这一路由已经是错误路由了）。这样路由器C的路由表中就记录了一条错误路由（经过路由器B，可去往网络11.4.0.0，跳数增加到2 ）。<br>2、路由器C 学习了一条错误信息后，它会把这样的路由信息再次通告给路由器B，根据通告原则，路由器B也会更新这样一条错误路由信息，认为可以通过路由器C去往网络11.4.0.0，跳数增加到 3 。<br>3。这样，路由器 B 认为 可以通过路由器C 去往网络11.4.0.0，路由器C 认为 可以通过路由器B 去往网络11.4.0.0，就形成了环路。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ol>
+<li><p>水平分割</p>
+<p> 一种消除路由环路并加快网络收敛的方法是通过叫做“水平分割”的技术实现的。其规则就是不向原始路由更新的方向再次发送路由更新信息（个人理解为单向更新，单向反馈）。比如有三台路由器ABC，B向C学习到访问网络10.4.0.0的路径以后，不再向C声明自己可以通过C访问10.4.0.0网络的路径信息，A向B学习到访问10.4.0.0网络路径信息后，也不再向B声明，而一旦网络10.4.0.0发生故障无法访问，C会向A和B发送该网络不可达到的路由更新信息，但不会再学习A和B发送的能够到达10.4.0.0的错误信息。</p>
+<p> 从接口X发出的路由更新中不能包括那些出口也为X的路由信息。</p>
+</li>
+<li><p>路由中毒</p>
+<p> 定义最大值在一定程度上解决了路由环路问题，但并不彻底，可以看到，在达到最大值之前，路由环路还是存在的。为此，路由中毒就可以彻底解决这个问题。其原理是这样的：假设有三台路由器ABC，当网络10.4.0.0出现故障无法访问的时候，路由器C便向邻居路由发送相关路由更新信息，并将其度量值标为无穷大，告诉它们网络10.4.0.0不可到达，路由器B收到毒化消息后将该链路路由表项标记为无穷大，表示该路径已经失效，并向邻居A路由器通告，依次毒化各个路由器，告诉邻居10.4.0.0这个网络已经失效，不再接收更新信息，从而避免了路由环路。</p>
+</li>
+<li><p>毒性反转</p>
+</li>
+<li><p>抑制</p>
+</li>
+<li><p>触发更新</p>
+</li>
+</ol>
+<h2 id="题目-6"><a href="#题目-6" class="headerlink" title="题目"></a>题目</h2><ol>
+<li><p>距离向量路由算法采用哪些方法来减少路由环路？（ABCD）</p>
+<ul>
+<li><p>A、</p>
+<p>  水平分割</p>
+</li>
+<li><p>B、</p>
+<p>  毒性反转</p>
+</li>
+<li><p>C、</p>
+<p>  抑制</p>
+</li>
+<li><p>D、</p>
+<p>  触发更新</p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="OSPF路由协议"><a href="#OSPF路由协议" class="headerlink" title="OSPF路由协议"></a>OSPF路由协议</h1><h2 id="LS与DV的不同"><a href="#LS与DV的不同" class="headerlink" title="LS与DV的不同"></a>LS与DV的不同</h2><p>采用链路状态路由协议的路由器不是交换到达目的地的距离，而是收集所有的链路信息来维护一张网络拓扑结构图，进而根据这个拓扑图计算最佳路由。当网络拓扑结构发生变化时，只需要将相应记录而非整个数据库通知其他节点，收到信息的各路由器相应地修改自身的链路状态数据库，并重新计算路由后，就可以继续正常工作了。</p>
+<h2 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF"></a>OSPF</h2><p>OSPF是开放最短路径优先协议，基于链路状态的内部网关协议。</p>
+<h3 id="Router-ID"><a href="#Router-ID" class="headerlink" title="Router ID"></a>Router ID</h3><p>一台路由器要运行OSPF协议，必须存在Router ID，这个可以手工配置，如果没有ID号，则：</p>
+<ol>
+<li>若系统当前配置了Loopback接口的IP地址，则选择最后配置的Loopback接口的IP作为router id。</li>
+<li>若系统当前没有配置Loopback接口，则选取第一个配置并UP的物理接口的IP地址作为router id。</li>
+</ol>
+<h3 id="区域（Area）"><a href="#区域（Area）" class="headerlink" title="区域（Area）"></a>区域（Area）</h3><p>OSPF将自治系统（AS）划分为多个区域，最重要的区域是骨干区域0，可以实现一种分级的管理。</p>
+<p>对于物理上与骨干区域不连续的区域，需要配置<strong>虚连接</strong>（virtual links）来保持与骨干区域在逻辑上的连续性。虚连接是在两台ABR之间，通过一个非骨干区域内部路由而建立的一条逻辑上的连接通道。</p>
+<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/7.png" class="">
+<p><img src="局域网技术与组网工程实验/7.png" alt="7"></p>
+<p><strong>区域边界路由器（ABR, Area Border Router）</strong>：连接骨干区域与非骨干区域的路由器。</p>
+<h3 id="路由聚合"><a href="#路由聚合" class="headerlink" title="路由聚合"></a>路由聚合</h3><p>AS被划分为不同的区域后，每一个区域通过ABR相连，区域间可以通过路由汇聚来减少路由信息，减少路由表的规模。</p>
+<h3 id="OSPF中关键的表"><a href="#OSPF中关键的表" class="headerlink" title="OSPF中关键的表"></a>OSPF中关键的表</h3><p>邻居表</p>
+<p>LSDB</p>
+<p>路由表</p>
+<h3 id="DR和BDR"><a href="#DR和BDR" class="headerlink" title="DR和BDR"></a>DR和BDR</h3><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/8.png" class="">
+<p><img src="局域网技术与组网工程实验/8.png" alt="8"></p>
+<h3 id="OSPF报文"><a href="#OSPF报文" class="headerlink" title="OSPF报文"></a>OSPF报文</h3><p>有5种OSPF报文：</p>
+<ol>
+<li><p>Hello报文：发现，维持邻居关系，选举DR，BDR</p>
+</li>
+<li><p>DD（Database Description）报文：用于形成LSDB</p>
+<p> 路由器使用DD报文进行主从路由器的选举和数据库摘要信息的交互，Router ID大的作为主路由器；DD报文包含LSA的头部信息，用来描述LSDB的摘要信息</p>
+</li>
+<li><p>LSR（LSA Request）报文：请求LSA</p>
+</li>
+<li><p>LSU（LSA Update）：收到LSR后，应答LSA</p>
+</li>
+<li><p>LSACK（Link State ACK）：收到LSU后，对LSU进行确认</p>
+</li>
+</ol>
+<h3 id="邻居状态机"><a href="#邻居状态机" class="headerlink" title="邻居状态机"></a>邻居状态机</h3><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/9.png" class="">
+<p><img src="局域网技术与组网工程实验/9.png" alt="9"></p>
+<p>在2-way状态时，双方都已经建立了邻居关系，这时可以进行发送数据信息了。</p>
+<p>ExStart表示双方可以发送信息了。</p>
+<h3 id="启动OSPF"><a href="#启动OSPF" class="headerlink" title="启动OSPF"></a>启动OSPF</h3><p>OSPF支持多进程，一台路由器上启动的OSPF进程之间由不同的进程号区分。OSPF进程号在启动OSPF时进行设置，它只在本地有效，不影响与其他路由器之间的报文交换。</p>
+<p>如果在启动OSPF时不指定进程号，将使用缺省的进程号1；关闭OSPF时不指定进程号，缺省关闭进程号1。</p>
+<p>在同一个区域中的进程号必须一致。</p>
+<h2 id="OSPF路由协议实验"><a href="#OSPF路由协议实验" class="headerlink" title="OSPF路由协议实验"></a>OSPF路由协议实验</h2><p>网络拓扑图如下所示，请使用OSPF路由协议配置各台路由器，使得PC1、PC2、PC3可以互相连通。</p>
+<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/12.jpg" class="">
+<p><img src="局域网技术与组网工程实验/12.jpg" alt="12"></p>
+<ol>
+<li><p>配置R1的接口IP地址，loopback接口地址</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/0</span><br><span class="line">ip address 192.168.1.1 24</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/1</span><br><span class="line">ip address 192.168.10.1 24</span><br></pre></td></tr></table></figure>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int loopback1</span><br><span class="line">ip address 192.168.31.11 24 <span class="comment">#设置loopback接口地址</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置R2,R3的，和R1类似</p>
+</li>
+<li><p>配置各个主机的IP和默认网关</p>
+</li>
+</ol>
+<h2 id="题目-7"><a href="#题目-7" class="headerlink" title="题目"></a>题目</h2><ol>
+<li><p>哪些类型的网络需要指定路由器？（AD）</p>
+<ul>
+<li><p>A、</p>
+<p>  广播类型</p>
+</li>
+<li><p>B、</p>
+<p>  点到点类型</p>
+</li>
+<li><p>C、</p>
+<p>  点到多点类型</p>
+</li>
+<li><p>D、</p>
+<p>  非广播多路访问</p>
+</li>
+</ul>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">计算机专业课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="posts-hexo的使用" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/21/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/">hexo的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/21/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-07-22T02:20:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>在电脑上安装hexo之后，就可以把自己写的博客文章放进hexo项目中，然后再使用特定的主题（theme）来将这些md格式的文章转换为html代码，之后再由hexo上传到某个远程网站上（一般是github.io），就可以打开这个网站看到自己的网页文章了。这样的话，不用写html代码，就可以方便地使用别人的轮子来搭建自己的网页博客。</p>
+<h2 id="1-1-github的操作"><a href="#1-1-github的操作" class="headerlink" title="1.1 github的操作"></a>1.1 github的操作</h2><p>github提供了可以进行网页显示的仓库：github.io。你在自己的账户下创建一个名为 {your_account_name}.github.io 的仓库，<strong>注意</strong>：这里的your_account_name必须与你的github账户名字完全一样，比如，我账户名字是 zhouhuahui，所以我创建的仓库是：zhouhuahui.github.io。</p>
+<p>把html文档存放在这个仓库中，就可以通过访问 zhouhuahui.github.io 网站来访问我的网页了。</p>
+<h2 id="1-2-hexo安装"><a href="#1-2-hexo安装" class="headerlink" title="1.2 hexo安装"></a>1.2 hexo安装</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/docs/">https://hexo.io/docs/</a> 有非常详尽的步骤，而且确实比较简单。</p>
+<h2 id="1-3-其他教程"><a href="#1-3-其他教程" class="headerlink" title="1.3 其他教程"></a>1.3 其他教程</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html">https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html</a></p>
+<h1 id="2-hexo基本配置"><a href="#2-hexo基本配置" class="headerlink" title="2. hexo基本配置"></a>2. hexo基本配置</h1><p>我们需要配置一下hexo根目录下的 <code>_config.yml</code> 文件。</p>
+<h2 id="2-1-修改site-url"><a href="#2-1-修改site-url" class="headerlink" title="2.1 修改site url"></a>2.1 修改site url</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site <span class="keyword">is</span> <span class="keyword">put</span> in <span class="keyword">a</span> subdirectory, <span class="keyword">set</span> url <span class="keyword">as</span> <span class="string">&#x27;http://yoursite.com/child&#x27;</span> <span class="built_in">and</span> root <span class="keyword">as</span> <span class="string">&#x27;/child/&#x27;</span></span><br><span class="line">ur<span class="variable">l:</span> http<span class="variable">s:</span>//zhouhuahui.github.io</span><br><span class="line">roo<span class="variable">t:</span> /</span><br></pre></td></tr></table></figure>
+<h2 id="2-2-修改作者名字"><a href="#2-2-修改作者名字" class="headerlink" title="2.2 修改作者名字"></a>2.2 修改作者名字</h2><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line"><span class="symbol">title:</span> Hexo</span><br><span class="line"><span class="symbol">subtitle:</span> <span class="comment">&#x27;&#x27;</span></span><br><span class="line"><span class="symbol">description:</span> <span class="comment">&#x27;&#x27;</span></span><br><span class="line"><span class="symbol">keywords:</span></span><br><span class="line"><span class="symbol">author:</span> zhouhuahui</span><br><span class="line"><span class="symbol">language:</span> en</span><br><span class="line"><span class="symbol">timezone:</span> <span class="comment">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-3-修改deploy"><a href="#2-3-修改deploy" class="headerlink" title="2.3 修改deploy"></a>2.3 修改deploy</h2><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repository:</span> git@github.com:zhouhuahui/zhouhuahui.github.io.git</span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
+<h1 id="3-hexo基本指令"><a href="#3-hexo基本指令" class="headerlink" title="3. hexo基本指令"></a>3. hexo基本指令</h1><h2 id="3-1-创建一个post"><a href="#3-1-创建一个post" class="headerlink" title="3.1 创建一个post"></a>3.1 创建一个post</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="3-2-清空public文件夹"><a href="#3-2-清空public文件夹" class="headerlink" title="3.2 清空public文件夹"></a>3.2 清空public文件夹</h2><p>在自己的博客根目录下面，有两个重要的文件夹：public, source。source是放自己的文章的地方，public是将要上传到github上，并进行网页显示的内容，public文件夹自己不要动，用指令操作就可以了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+<h2 id="3-3-在public下生成静态内容"><a href="#3-3-在public下生成静态内容" class="headerlink" title="3.3 在public下生成静态内容"></a>3.3 在public下生成静态内容</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+<h2 id="3-4-上传到github-部署"><a href="#3-4-上传到github-部署" class="headerlink" title="3.4 上传到github(部署)"></a>3.4 上传到github(部署)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>在执行上述命令之前，要先用npm安装一个东西：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>如果觉得这个慢，可以将源定为淘宝的镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm -registry=https://registry.npm.taobao.org</span><br><span class="line">cnpm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<p>可能会出现ssh之类的问题，在另一篇博客中写。</p>
+<h2 id="3-5-本地显示"><a href="#3-5-本地显示" class="headerlink" title="3.5 本地显示"></a>3.5 本地显示</h2><p>在本地模拟网页的显示，跟访问github.io网站的效果一样。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s <span class="comment">#在4000端口创建一个服务器</span></span><br></pre></td></tr></table></figure>
+<p>在浏览器中输入：<code>localhost:4000</code> 进行访问</p>
+<h1 id="4-yilia主题配置"><a href="#4-yilia主题配置" class="headerlink" title="4. yilia主题配置"></a>4. yilia主题配置</h1><h2 id="4-1-修改theme"><a href="#4-1-修改theme" class="headerlink" title="4.1 修改theme"></a>4.1 修改theme</h2><p>theme存放在/themes/文件夹中，里面有一个landscape的文件夹，是系统默认主题的文件夹。因此我可以把别人的主题文件夹克隆过来。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">https://github.com/litten/hexo-theme-yilia</a> 我使用yilia主题</p>
+<h3 id="4-1-1-安装"><a href="#4-1-1-安装" class="headerlink" title="4.1.1 安装"></a>4.1.1 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
+<h3 id="4-1-2-主题配置"><a href="#4-1-2-主题配置" class="headerlink" title="4.1.2 主题配置"></a>4.1.2 主题配置</h3><h4 id="4-1-2-1-修改主题"><a href="#4-1-2-1-修改主题" class="headerlink" title="4.1.2.1 修改主题"></a>4.1.2.1 修改主题</h4><p>在hexo根目录下有一个<code>_config.yml</code>，配置theme：<code>theme: yilia</code></p>
+<h4 id="4-1-2-2-解决错误"><a href="#4-1-2-2-解决错误" class="headerlink" title="4.1.2.2 解决错误"></a>4.1.2.2 解决错误</h4><p>我在 <code>localhost:4000</code> 里面点击“所有文章”之后，报错，按照它给的解决办法很快解决了，之后就可以查看所有文章了。先输入命令 <code>npm i hexo-generator-json-content --save</code> ，然后在hexo项目的根目录下面的 <code>_config.yml</code> 文件末尾加入：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jsonContent:</span></span><br><span class="line">  <span class="attr">meta:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">pages:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">posts:</span></span><br><span class="line">    <span class="attr">title:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">date:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">path:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">text:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">raw:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">content:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">slug:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">updated:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">comments:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">link:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">permalink:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">excerpt:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">categories:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">tags:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-1-2-3-更改头像"><a href="#4-1-2-3-更改头像" class="headerlink" title="4.1.2.3 更改头像"></a>4.1.2.3 更改头像</h4><p>如果想要设置自己的头像，怎么办呢？在themes/yilia/下的_config.yml文件中，修改或增加以下信息：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#你的头像url</span></span><br><span class="line">avatar: http:<span class="regexp">//</span>localhost:<span class="number">9000</span><span class="regexp">/1000/</span><span class="number">10</span><span class="regexp">/10/im</span>ages/shanna.jpg</span><br><span class="line"><span class="comment">#不一定是这个地址，只是你的头像的地址</span></span><br></pre></td></tr></table></figure>
+<h3 id="4-1-3-更新"><a href="#4-1-3-更新" class="headerlink" title="4.1.3 更新"></a>4.1.3 更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/yilia</span><br><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
+<p>如果对这个yilia的主题用的不好，可以看看：<a target="_blank" rel="noopener" href="https://github.com/litten/BlogBackup/tree/master/themes/yilia">https://github.com/litten/BlogBackup/tree/master/themes/yilia</a></p>
+<h2 id="4-2-上传图片"><a href="#4-2-上传图片" class="headerlink" title="4.2 上传图片"></a>4.2 上传图片</h2><p>如果你想要在文件中加入一些图片，怎么办呢？你需要<code>asset folder</code><br>首先更改 <code>_config.yml</code> 文件，找到writing部分，设置post_asset_folder为true，然后，就发生一些变化：如果你 <code>hexo new a</code>，出现的是 <code>a文件夹</code>和 <code>a.md</code>，而不仅仅是<code>a.md</code>。假如 <code>a文件夹</code> 中有一个 <code>a.jpg</code>，如何让它显示出来呢，使用下面的hexo命令：</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-variable">&#123;% asset_img a.img %&#125;</span> <span class="comment">#表示从asset folder中找a.img图片</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-3-无法显示数学公式"><a href="#4-3-无法显示数学公式" class="headerlink" title="4.3 无法显示数学公式"></a>4.3 无法显示数学公式</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7ab21c7f0674">https://www.jianshu.com/p/7ab21c7f0674</a> 这是很好的一篇教程</p>
+<h3 id="4-3-1-更换markdown渲染引擎"><a href="#4-3-1-更换markdown渲染引擎" class="headerlink" title="4.3.1 更换markdown渲染引擎"></a>4.3.1 更换markdown渲染引擎</h3><p>更换Hexo的markdown渲染引擎，<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fsun11%2Fhexo-renderer-kramed">hexo-renderer-kramed</a>引擎是在默认的渲染引擎<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo-renderer-marked">hexo-renderer-marked</a>的基础上修改了一些bug，两者比较接近，也比较轻量级。</p>
+<p>在git中执行下述命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br><span class="line">$ npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
+<h3 id="4-3-2-更改配置"><a href="#4-3-2-更改配置" class="headerlink" title="4.3.2 更改配置"></a>4.3.2 更改配置</h3><p>在 <code>/themes/yilia/_config.yml</code> 中找到下面的行，然后更改：<code>mathjax: true</code></p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># Content</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 文章太长，截断按钮文字</span></span><br><span class="line">excerpt_link: more</span><br><span class="line"><span class="meta"># 文章卡片右下角常驻链接，不需要请设置为false</span></span><br><span class="line">show_all_link: <span class="string">&#x27;展开全文&#x27;</span></span><br><span class="line"><span class="meta"># 数学公式</span></span><br><span class="line">mathjax: <span class="literal">true</span></span><br><span class="line"><span class="meta"># 是否在新窗口打开链接</span></span><br><span class="line">open_in_new: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<h2 id="4-4-无法显示mermaid"><a href="#4-4-无法显示mermaid" class="headerlink" title="4.4 无法显示mermaid"></a>4.4 无法显示mermaid</h2><p><a target="_blank" rel="noopener" href="https://github.com/webappdevelp/hexo-filter-mermaid-diagrams">https://github.com/webappdevelp/hexo-filter-mermaid-diagrams</a></p>
+<p>很简单，只需要下载一个插件，然后更改配置。最后</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
+<h2 id="4-5-代码行显示错乱"><a href="#4-5-代码行显示错乱" class="headerlink" title="4.5 代码行显示错乱"></a>4.5 代码行显示错乱</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41287260/article/details/103051056">https://blog.csdn.net/weixin_41287260/article/details/103051056</a></p>
+<p>这是由于yilia主题让代码自动换行的结果，可以修改yilia主题下的某个文件，禁止换行。</p>
+<p>修改<code>themes/yilia/source/main.0cf68a.css</code>的内容：将<code>white-space:pre-wrap</code>删除。</p>
+<h2 id="4-6-修改代码块的样式"><a href="#4-6-修改代码块的样式" class="headerlink" title="4.6 修改代码块的样式"></a>4.6 修改代码块的样式</h2><p>直接修改编译好的文件。路径为：<code>theme/yilia/source/main.0cf68a.css</code>:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>)修改代码背景色，</span><br><span class="line">搜索 <span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span>, 修改<span class="attribute">background</span>后面的颜色</span><br><span class="line">将 pre&#123;<span class="attribute">background</span>:<span class="number">#272822</span>;</span><br><span class="line">改为 pre&#123;<span class="attribute">background</span>:<span class="number">#fff5e1</span>; #米黄色背景</span><br><span class="line"></span><br><span class="line">(<span class="number">2</span>)修改行号颜色，</span><br><span class="line">搜索 <span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> <span class="selector-class">.gutter</span> pre <span class="selector-class">.line</span></span><br><span class="line">将<span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> <span class="selector-class">.gutter</span> pre .line&#123;<span class="attribute">color</span>:<span class="number">#666</span></span><br><span class="line">改为<span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> <span class="selector-class">.gutter</span> pre .line&#123;<span class="attribute">color</span>:<span class="number">#fc0000</span></span><br><span class="line"></span><br><span class="line">(<span class="number">3</span>)修改代码字体颜色 </span><br><span class="line">搜索 <span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> <span class="selector-class">.line</span></span><br><span class="line">将<span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> .line&#123;<span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line">修改为<span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> .line&#123;<span class="attribute">color</span>:<span class="number">#00ff0d</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="4-7-trouble"><a href="#4-7-trouble" class="headerlink" title="4.7 trouble"></a>4.7 trouble</h2><ol>
+<li> <figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#是个特殊的字符，使用它时前后加一个空格。不然hexo g的时候会出错</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>不要使用多级列表</p>
+</li>
+<li><p>列表后换行，才能写代码区</p>
+</li>
+<li><p>不要再行的开头写行内代码区，以防万一，直接在开头添加一些无关紧要的字符。我有一次在开头使用行内代码区：</p>
+ <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">​```&lt;meta&gt;``` 标签...</span><br></pre></td></tr></table></figure>
+<p> 上面的写法被hexo/yilia解析错误，导致yilia主题运行出现严重错误。</p>
+</li>
+<li><p>不要在代码块中使用<code>tab</code>进行缩进。</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/21/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="posts-编译原理" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  	<time datetime="2020-07-22T01:53:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-导论"><a href="#1-导论" class="headerlink" title="1 导论"></a>1 导论</h1><h2 id="1-1-编译原理思维导图"><a href="#1-1-编译原理思维导图" class="headerlink" title="1.1 编译原理思维导图"></a>1.1 编译原理思维导图</h2><img src="/2020/07/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/compiler.png" class="">
+<h2 id="1-2-编译器的组成及各部分的功能及作用"><a href="#1-2-编译器的组成及各部分的功能及作用" class="headerlink" title="1.2 编译器的组成及各部分的功能及作用"></a>1.2 编译器的组成及各部分的功能及作用</h2><ol>
+<li>词法分析 词法分析器根据词法规则识别出源程序中的各个记号（token），每个记号代表一类单词。源程序中常见的记号可以归为几大类：关键字、标识符、字面量和特殊符号。词法分析器的输入是源程序，输出是识别的记号流。词法分析器的任务是把源文件的字符流转换成记号流。本质上它查看连续的字符然后把它们识别为“单词”。 2. 语法分析 语法分析器根据语法规则识别出记号流中的结构（短语、句子），并构造一棵能够正确反映该结构的语法树。 3. 语义分析 语义分析器根据语义规则对语法树中的语法单元进行静态语义检查，如类型检查和转换等，其目的在于保证语法正确的结构在语义上也是合法的。 4. 中间代码生成 中间代码生成器根据语义分析器的输出生成中间代码。中间代码可以有若干种形式，它们的共同特征是与具体机器无关。最常用的一种中间代码是三地址码，它的一种实现方式是四元式。三地址码的优点是便于阅读、便于优化。 5. 中间代码优化 优化是编译器的一个重要组成部分，由于编译器将源程序翻译成中间代码的工作是机械的、按固定模式进行的，因此，生成的中间代码往往在时间和空间上有很大浪费。当需要生成高效目标代码时，就必须进行优化。 6. 目标代码生成 目标代码生成是编译器的最后一个阶段。在生成目标代码时要考虑以下几个问题：计算机的系统结构、指令系统、寄存器的分配以及内存的组织等。编译器生成的目标程序代码可以有多种形式：汇编语言、可重定位二进制代码、内存形式。 7 符号表管理 符号表的作用是记录源程序中符号的必要信息，并加以合理组织，从而在编译器的各个阶段能对它们进行快速、准确的查找和操作。符号表中的某些内容甚至要保留到程序的运行阶段。 8 出错处理 用户编写的源程序中往往会有一些错误，可分为静态错误和动态错误两类。所谓动态错误，是指源程序中的逻辑错误，它们发生在程序运行的时候，也被称作动态语义错误，如变量取值为零时作为除数，数组元素引用时下标出界等。静态错误又可分为语法错误和静态语义错误。语法错误是指有关语言结构上的错误，如单词拼写错、表达式中缺少操作数、begin和end不匹配等。静态语义错误是指分析源程序时可以发现的语言意义上的错误，如加法的两个操作数中一个是整型变量名，而另一个是数组名等。</li>
+</ol>
+        
+          <a class="article-more-a" href="/2020/07/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">计算机专业课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="posts-typora的使用" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/21/typora%E7%9A%84%E4%BD%BF%E7%94%A8/">typora的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/21/typora%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-07-21T19:02:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="插入数学公式"><a href="#插入数学公式" class="headerlink" title="插入数学公式"></a>插入数学公式</h1><p>typora的公式功能使用的是letex</p>
+<p>以下是插入公式的源代码</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line"><span class="symbol">\S</span>igma = <span class="symbol">\&#123;</span>A,B<span class="symbol">\&#125;</span><span class="symbol">\\</span></span><br><span class="line"><span class="symbol">\s</span>igma = <span class="symbol">\&#123;</span>a,b<span class="symbol">\&#125;</span></span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>形式为：</p>
+<script type="math/tex; mode=display">
+\Sigma = \{A,B\}\\
+\sigma = \{a,b\}</script><p>其中 <code>\\</code> 表示换行，其他更多操作，我没有记录，现在发个链接，以后用到了再学习。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35896136/article/details/104975932">https://blog.csdn.net/qq_35896136/article/details/104975932</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/muyisir/p/11440164.html">https://www.cnblogs.com/muyisir/p/11440164.html</a></p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span></span><br><span class="line">a^&#123;<span class="number">2</span>m<span class="number">-1</span>&#125;</span><br><span class="line"><span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+a^{2m-1}</script><h2 id="如何插入内联公式"><a href="#如何插入内联公式" class="headerlink" title="如何插入内联公式"></a>如何插入内联公式</h2><p>要是用这个功能，必须在typora中的<script type="math/tex">file/preferences</script>中进行设置</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我使用了希腊字母<span class="symbol">$</span>\alpha<span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+<p>我使用了希腊字母$\alpha$</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~ee~~</span><br></pre></td></tr></table></figure>
+<p>形式：<del>ee</del></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/21/typora%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="posts-git的使用" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/11/git%E7%9A%84%E4%BD%BF%E7%94%A8/">git的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/11/git%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-07-12T02:20:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-理论基础"><a href="#1-理论基础" class="headerlink" title="1 理论基础"></a>1 理论基础</h1><p>git中记录的是什么？<br><img src="/2020/07/11/git%E7%9A%84%E4%BD%BF%E7%94%A8/1.webp" class=""></p>
+<p>到了版本4，总共存储了8个文件。版本2中File1, File2文件更改了，所以又存储了这两个新的文件（旧的文件当然也保存了），这样就为版本控制产生了方便。</p>
+<h1 id="2-实战"><a href="#2-实战" class="headerlink" title="2 实战"></a>2 实战</h1><p>我在github上又创建了一个github账号，用的是学校邮箱，username是zhouhuahui2。以前用qq邮箱创建了一个username为zhouhuahui 的账号。</p>
+<h2 id="2-1-初始化git"><a href="#2-1-初始化git" class="headerlink" title="2.1 初始化git"></a>2.1 初始化git</h2><p>当创建好github账户后，这样就可以在自己的电脑中创建一个文件夹，用来管理自己的该账户下的repository。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https:<span class="regexp">//gi</span>thub.com<span class="regexp">/zhouhuahui2/</span>test_repo1.git</span><br><span class="line"><span class="comment">#在本地创建远程库，远程库的名字是origin</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>创建GitRep2文件夹</li>
+<li><p>进入该文件夹，打开git bash</p>
+</li>
+<li></li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">&#x27;zhouhuahui2&#x27;</span> #设置用户名</span><br><span class="line">git config --global user.email <span class="string">&#x27;zhouhh2517@mails.jlu.edu.cn&#x27;</span> #设置用户邮箱</span><br><span class="line">git config --list #检验是否成功</span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
+<ol>
+<li><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#创建一个文件test1.txt，上传至远程库</span><br><span class="line">&lt;手动创建一个文件&gt;</span><br><span class="line">git add --all</span><br><span class="line">git commit -m <span class="string">&quot;update&quot;</span></span><br><span class="line">git push -u origin master <span class="meta">#git push</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="permission-denied"><a href="#permission-denied" class="headerlink" title="permission denied"></a>permission denied</h3><p>这个原因是在windows操作系统中登入的是zhouhuahui的账号，而不是zhouhuahui2的。</p>
+<img src="/2020/07/11/git%E7%9A%84%E4%BD%BF%E7%94%A8/2.png" class="">
+<h2 id="2-2-分支操作"><a href="#2-2-分支操作" class="headerlink" title="2.2 分支操作"></a>2.2 分支操作</h2><figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">branch </span>&lt;<span class="keyword">branch_name&gt; </span><span class="comment">#创建分支</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">branch </span><span class="comment">#查看分支</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="params">&lt;branch_name&gt;</span> <span class="meta">#切换到指定分支</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">branch </span>-d &lt;<span class="keyword">branch_name&gt; </span><span class="comment">#删除分支</span></span><br><span class="line"><span class="comment">#删除分支前必须先切换到其他分支</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-3-pull"><a href="#2-3-pull" class="headerlink" title="2.3 pull"></a>2.3 pull</h2><p>git pull命令的作用是：取回远程主机某个分支的更新，再与本地的指定分支合并。</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git pull <span class="params">&lt;远程主机名&gt;</span> <span class="params">&lt;远程分支名&gt;</span>:<span class="params">&lt;本地分支名&gt;</span></span><br><span class="line">git pull origin master:branch1 <span class="meta">#将远程主机origin的master分支拉取过来，与本地的branch1分支合并。</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-4-如何处理接受到的pr"><a href="#2-4-如何处理接受到的pr" class="headerlink" title="2.4 如何处理接受到的pr"></a>2.4 如何处理接受到的pr</h2><ol>
+<li><p>在自己的本地仓库创建一个branch_test，假如要merge的分支是branch1（有可能是master）</p>
+ <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="keyword">branch </span><span class="keyword">branch_test</span></span><br><span class="line"><span class="keyword"></span>git checkout <span class="keyword">branch_test</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>从提交pr的用户(zhouhuahui)的远端拉取代码</p>
+ <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull git:<span class="regexp">//gi</span>thub.com<span class="regexp">/zhouhuahui/</span>test_rep1.git master</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>解决冲突</p>
+</li>
+<li><p>切换到branch1，并且merge branch_test</p>
+</li>
+<li><p>上传到远程的branch1</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/11/git%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="posts-操作系统" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="archive-article-date">
+  	<time datetime="2020-07-01T17:23:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-操作系统概述"><a href="#1-操作系统概述" class="headerlink" title="1 操作系统概述"></a>1 操作系统概述</h1><h2 id="1-1-操作系统概念"><a href="#1-1-操作系统概念" class="headerlink" title="1.1 操作系统概念"></a>1.1 操作系统概念</h2><p>硬件抽象层（HAL）：硬件抽象层是位于操作系统 <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/内核/108410">内核</a>与<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/硬件/479446">硬件</a>电路之间的接口层，其目的在于将硬件抽象化。它隐藏了特定平台的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/硬件接口/444711">硬件接口</a>细节,为操作系统提供虚拟硬件平台,使其具有硬件无关性,可在多种平台上进行移植。 从软硬件测试的角度来看，软硬件的测试工作都可分别基于硬件抽象层来完成，使得软硬件测试工作的并行进行成为可能。</p>
+<p>操作系统运行视图：<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/1.png" class=""></p>
+<p>操作系统的作用：管理系统中的软硬件资源；为用户（应用程序）提供良好的服务。</p>
+<p>操作系统定义：是位于硬件层(HAL)之上，所有其它软件层之下的一个系统软件，是管理系统中各种硬/软件资源，方便用户使用计算机系统的程序集合。</p>
+<h2 id="1-2-操作系统的历史"><a href="#1-2-操作系统的历史" class="headerlink" title="1.2 操作系统的历史"></a>1.2 操作系统的历史</h2><h3 id="1-2-2-操作系统的完善"><a href="#1-2-2-操作系统的完善" class="headerlink" title="1.2.2 操作系统的完善"></a>1.2.2 操作系统的完善</h3><ol>
+<li>多道批处理系统</li>
+<li>分时系统</li>
+<li>实时处理系统</li>
+<li>通用操作系统</li>
+</ol>
+<h3 id="1-2-3-操作系统的发展"><a href="#1-2-3-操作系统的发展" class="headerlink" title="1.2.3 操作系统的发展"></a>1.2.3 操作系统的发展</h3><p>1.计算机体系结构由集中向分散的发展，出现了计算机网络，由此产生<strong>网络操作系统和分布式操作系统</strong>；</p>
+<p>2.随着家用和商用微型计算机的普及，出现了<strong>单用户多任务的操作系统</strong>；</p>
+<p>3.大型计算任务要求计算机系统具有极强的计算和处理能力，产生了支持多处理器的<strong>并行操作系统</strong>；</p>
+<p>4.随着各种处理器芯片和存储介质在控制领域的广泛应用，要求操作系统具有专用的特性，出现了<strong>微内核操作系统体系结构</strong>，如嵌入式和智能卡系统；</p>
+<p>5.随着芯片集成度的提高，提高单处理器速度已近极限，多核技术应运而生。新一代操作系统遇到的问题：多核的并发控制；多核下的进程调度。</p>
+<h2 id="1-3-操作系统的特性"><a href="#1-3-操作系统的特性" class="headerlink" title="1.3 操作系统的特性"></a>1.3 操作系统的特性</h2><ol>
+<li>程序并发性。</li>
+<li>资源共享性</li>
+<li>程序异步性。中断随机发生，致使程序切换不确定，不可预知。</li>
+<li>虚拟性。利用虚拟技术把一个物理实体变为若干个逻辑实体；<br> 如：多道程序系统<pre><code>     虚拟存储管理技术
+     虚拟设备管理
+</code></pre></li>
+</ol>
+<h2 id="1-4-操作系统的分类"><a href="#1-4-操作系统的分类" class="headerlink" title="1.4 操作系统的分类"></a>1.4 操作系统的分类</h2><p>只说那些重要的。</p>
+<ol>
+<li>单用户操作系统<br> 特点：单用户，多进程，多线程。</li>
+<li>网络操作系统<br> 提供网络服务：database server; ftp server; e-mail server; telnet server</li>
+<li>分布式操作系统：<br> 特点：统一OS；资源共享；可靠性；透明性</li>
+<li>多处理机操作系统：多个CPU</li>
+<li>嵌入式操作系统：微内核结构（Micro-kernel）</li>
+</ol>
+<h2 id="1-5-操作系统的硬件环境"><a href="#1-5-操作系统的硬件环境" class="headerlink" title="1.5 操作系统的硬件环境"></a>1.5 操作系统的硬件环境</h2><p><strong>定时装置</strong>产生<strong>中断</strong>，造成<strong>处理器状态转化</strong>，把一些信息压入<strong>系统栈</strong>，当程序要访问存储器时，就需要<strong>地址映射机构</strong>，<strong>寄存器</strong>和<strong>存储保护设施</strong>，当要进行I/O时，就需要<strong>通道与DMA控制器</strong>和<strong>I/O保护</strong>，程序的所有与硬件相关的资源相关的操作都要<strong>特权指令与非特权指令</strong>。</p>
+<h1 id="2-进程，线程与作业"><a href="#2-进程，线程与作业" class="headerlink" title="2 进程，线程与作业"></a>2 进程，线程与作业</h1><h2 id="2-1-多道程序设计"><a href="#2-1-多道程序设计" class="headerlink" title="2.1 多道程序设计"></a>2.1 多道程序设计</h2><p>道数少造成资源利用率低，道数多造成系统开销大，程序响应速度低。</p>
+<h2 id="2-2-进程的引入"><a href="#2-2-进程的引入" class="headerlink" title="2.2 进程的引入"></a>2.2 进程的引入</h2><p>多道系统中的程序不断地暂停于推进：<br>暂停：保存现场（PSW+PC，寄存器）<br>推进：回复现场（寄存器，PSW+PC）</p>
+<p>程序暂停的原因：<br>（1）自身原因：等待资源，启动I/O<br>（2）剥夺CPU</p>
+<p><strong>进程定义</strong>：可参与并发执行的程序称为进程。<br>强调：动态：执行中的程序<br>            并发：可与其他进程同时执行</p>
+<p>进程状态（基本状态）：<br>运行态（RUN）<br>就绪态（READY）<br>等待态（WAIT）</p>
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/2.png" class="">
+<h2 id="2-3-进程控制块"><a href="#2-3-进程控制块" class="headerlink" title="2.3 进程控制块"></a>2.3 进程控制块</h2><p>PCB：标志进程存在的数据结构，其中保存系统管理进程所需的全部信息</p>
+<p>PCB的内容：</p>
+<p>进程的组成：<br>1.PCB<br>2.程序：代码(code)；数据(data)；堆栈(stack+heap)<br>只表示进程的静态特征。</p>
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/3.png" class="">
+<p>进程的队列：</p>
+<h2 id="2-4-进程的类型"><a href="#2-4-进程的类型" class="headerlink" title="2.4 进程的类型"></a>2.4 进程的类型</h2><p>系统进程<br>用户进程</p>
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/4.png" class="">
+<h2 id="2-5-进程的创建与撤销"><a href="#2-5-进程的创建与撤销" class="headerlink" title="2.5  进程的创建与撤销"></a>2.5  进程的创建与撤销</h2><p>除了初始进程外，其他进程都由父进程创建</p>
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/5.png" class="">
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/6.png" class="">
+<h2 id="2-6-线程及其控制块"><a href="#2-6-线程及其控制块" class="headerlink" title="2.6 线程及其控制块"></a>2.6 线程及其控制块</h2><p>什么是线程：对于一个任务，它有多个并发运行的子任务，由于子任务间耦合较为紧密，所以用进程来描述子任务非常不合适。一个线程是单一顺序的控制流，所有线程协同执行不同的角色。</p>
+<p>线程的引入：<br>同一进程中包含多个线程<br>多个线程共享进程代码，数据，堆<br>线程上下文只涉及寄存器和栈，切换速度块<br>相关线程之间通讯方便，快捷</p>
+<p>进程与线程的区别：</p>
+<p>多进程结构：<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/7.png" class=""></p>
+<p>多线程结构：<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/8.png" class=""></p>
+<p>TCB：Thread Control Blolck 线程控制块</p>
+<h2 id="2-7-线程的实现"><a href="#2-7-线程的实现" class="headerlink" title="2.7 线程的实现"></a>2.7 线程的实现</h2><p>用户级别线程：User-level thread<br>核心级别线程：Kernel-level thread</p>
+<h1 id="3-中断与处理器调度"><a href="#3-中断与处理器调度" class="headerlink" title="3 中断与处理器调度"></a>3 中断与处理器调度</h1><h2 id="3-1-中断与中断系统"><a href="#3-1-中断与中断系统" class="headerlink" title="3.1 中断与中断系统"></a>3.1 中断与中断系统</h2><p>中断装置：</p>
+<p>中断响应与处理基本过程：<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/9.png" class=""></p>
+<p>中断源与中断字</p>
+<p>中断类型：强迫性中断与自愿性中断</p>
+<p>中断向量表 <img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/10.png" class=""></p>
+<p>中断优先级</p>
+<p>中断屏蔽</p>
+<p>中断处理程序（把PSW和PC处理完之后）： <img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/11.png" class=""></p>
+<p>用户处理中断的过程：中断续元表<br><img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/12.png" class=""></p>
+<h2 id="3-2-处理机调度"><a href="#3-2-处理机调度" class="headerlink" title="3.2  处理机调度"></a>3.2  处理机调度</h2><p>考虑因素：scheduling criteria：</p>
+<p>几个处理机调度算法</p>
+<p>处理机调度时机：4个时机</p>
+<h2 id="3-3-调度级别与多级调度"><a href="#3-3-调度级别与多级调度" class="headerlink" title="3.3 调度级别与多级调度"></a>3.3 调度级别与多级调度</h2><p>交换（swap）与中级调度（mid-level scheduling）：目的是控制并发度</p>
+<p>作业与高级调度</p>
+<h2 id="3-4-实时调度"><a href="#3-4-实时调度" class="headerlink" title="3.4 实时调度"></a>3.4 实时调度</h2><p>周期性实时任务可调度的判断：</p>
+<p>最早截止期优先调度</p>
+<p>速率单调调度</p>
+<h2 id="3-5-Linux进程调度"><a href="#3-5-Linux进程调度" class="headerlink" title="3.5 Linux进程调度"></a>3.5 Linux进程调度</h2><p>自旋锁用于多处理机系统中，将核心分为若干相对独立的部分，不同的CPU可以同时进入和执行核心中的不同部分，实现时可以为每个相对独立的区域设置一个自旋锁。</p>
+<h1 id="4-互斥，同步与通信"><a href="#4-互斥，同步与通信" class="headerlink" title="4 互斥，同步与通信"></a>4 互斥，同步与通信</h1><h2 id="4-1-并发进程"><a href="#4-1-并发进程" class="headerlink" title="4.1 并发进程"></a>4.1 并发进程</h2><p>前驱图</p>
+<p>程序的顺序性</p>
+<p>程序的并发性</p>
+<p>程序并发执行的条件：Bernstein条件：P1和P2无前驱关系，则可以并发执行</p>
+<h2 id="4-2-进程互斥"><a href="#4-2-进程互斥" class="headerlink" title="4.2 进程互斥"></a>4.2 进程互斥</h2><p>临界区管理原则：</p>
+<p>进程互斥的硬件实现：test_and_set，不满足有限等待性</p>
+<p>满足有限等待性的test_and_set</p>
+<p>多处理机的互斥：锁总线</p>
+<h2 id="4-3-进程同步"><a href="#4-3-进程同步" class="headerlink" title="4.3 进程同步"></a>4.3 进程同步</h2><p>一组进程，为协调其推进速度，在某些关键点处需要相互等待与相互唤醒，进程之间这种相互制约的关系称为进程同步，简称同步(Synchronization)。</p>
+<p>典型同步机制：<br>信号量与P/V操作<br>条件临界区<br>管程</p>
+<p>生产者和消费者问题：互斥与同步的实现：<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/13.png" class=""></p>
+<p>生产者与消费者问题，并发性提高策略：<br><img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/15.png" class=""><br><img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/14.png" class=""></p>
+<p>读者与写者问题：</p>
+<p>管程有等待/唤醒机制：wait, signal</p>
+<p>唤醒时有3中处理方法（P唤醒Q）：</p>
+<ol>
+<li>P等待，Q运行，直到Q退出或等待（Hoare）</li>
+<li>Q等待，P继续，直到P退出或等待（Java）</li>
+<li>唤醒是管程中可执行的最后一个操作（Hansen）</li>
+</ol>
+<p>磁头引臂调度问题：</p>
+<h1 id="5-死锁与饥饿"><a href="#5-死锁与饥饿" class="headerlink" title="5 死锁与饥饿"></a>5 死锁与饥饿</h1><h2 id="5-1-死锁的概念"><a href="#5-1-死锁的概念" class="headerlink" title="5.1 死锁的概念"></a>5.1 死锁的概念</h2><h2 id="5-2-死锁的类型"><a href="#5-2-死锁的类型" class="headerlink" title="5.2 死锁的类型"></a>5.2 死锁的类型</h2><h2 id="5-3-死锁的条件"><a href="#5-3-死锁的条件" class="headerlink" title="5.3 死锁的条件"></a>5.3 死锁的条件</h2><h2 id="5-4-死锁的处理"><a href="#5-4-死锁的处理" class="headerlink" title="5.4 死锁的处理"></a>5.4 死锁的处理</h2><p>死锁预防：静态，进程有关资源的活动按照某种协议加以限制</p>
+<p>死锁避免：动态，实时检测进程的资源申请，拒绝不安全的请求，保证不发生死锁。</p>
+<h2 id="5-5-资源分配图"><a href="#5-5-资源分配图" class="headerlink" title="5.5 资源分配图"></a>5.5 资源分配图</h2><h2 id="5-6-死锁预防"><a href="#5-6-死锁预防" class="headerlink" title="5.6 死锁预防"></a>5.6 死锁预防</h2><h2 id="5-7-死锁避免"><a href="#5-7-死锁避免" class="headerlink" title="5.7 死锁避免"></a>5.7 死锁避免</h2><p>安全状态与安全进程序列</p>
+<p>银行家算法</p>
+<p>死锁检测算法：本质上是资源分配图的约简算法</p>
+<h1 id="6-存储管理"><a href="#6-存储管理" class="headerlink" title="6 存储管理"></a>6 存储管理</h1><h1 id="7-文件系统"><a href="#7-文件系统" class="headerlink" title="7 文件系统"></a>7 文件系统</h1><h2 id="7-2-文件的访问方式"><a href="#7-2-文件的访问方式" class="headerlink" title="7.2 文件的访问方式"></a>7.2 文件的访问方式</h2><p>顺序访问</p>
+<p>随机访问</p>
+<h2 id="7-3-文件的组织"><a href="#7-3-文件的组织" class="headerlink" title="7.3 文件的组织"></a>7.3 文件的组织</h2><p>逻辑组织：外部组织形式，用户看到的组织形式</p>
+<p>物理组织：内部组织形式，物理存储设备上的组织形式</p>
+<p>OS完成逻辑组织形式到物理组织形式的转换</p>
+<p>文件的逻辑组织：<br>流式文件：文件由字节序列组成<br>记录式文件：记录的序列</p>
+<p>物理组织：<br>逻辑组织到磁盘块的映射<br>顺序结构：一个文件占有若干连续的磁盘块<br>链接结构<br>索引结构：inode<br>散列结构<br>倒排结构</p>
+<p>文件的物理组织与内存存储管理（页式，段式等）相似。</p>
+<h2 id="7-4-文件控制块"><a href="#7-4-文件控制块" class="headerlink" title="7.4 文件控制块"></a>7.4 文件控制块</h2><p>每一个文件有一个FCB，保存在外存中。<br>打开文件时，将FCB读入内存</p>
+<p>目录项：<br>目录文件中的一项，内容为FCB</p>
+<p>文件目录的改进：<br><img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/16.png" class=""></p>
+<h2 id="7-7-文件系统的实现"><a href="#7-7-文件系统的实现" class="headerlink" title="7.7 文件系统的实现"></a>7.7 文件系统的实现</h2><h3 id="7-7-1-内存所需表目"><a href="#7-7-1-内存所需表目" class="headerlink" title="7.7.1 内存所需表目"></a>7.7.1 内存所需表目</h3><img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/17.png" class="">
+<img src="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/18.png" class="">
+<h3 id="7-7-2-外存空间管理"><a href="#7-7-2-外存空间管理" class="headerlink" title="7.7.2 外存空间管理"></a>7.7.2 外存空间管理</h3><p>成组链接方式：空闲块表与空闲块链的结合</p>
+<p>外存空间管理（成组链接等）与空闲内存管理（位示图等）相似</p>
+<p>外存空间有导引快，超级块（就是成组链接中的超级块，磁盘中有一块，内存中也有相同内容的一块），inode区域（保存所有文件的inode），目录与文件区。</p>
+<h1 id="专业英语"><a href="#专业英语" class="headerlink" title="专业英语"></a>专业英语</h1><h2 id="1-操作系统概述-1"><a href="#1-操作系统概述-1" class="headerlink" title="1 操作系统概述"></a>1 操作系统概述</h2><p>HAL：Hardware Abastraction Layer; 硬件抽象层</p>
+<p>Micro-kernel：微内核，用于嵌入式操作系统</p>
+<h2 id="2-进程，线程与作业-1"><a href="#2-进程，线程与作业-1" class="headerlink" title="2 进程，线程与作业"></a>2 进程，线程与作业</h2><p>PSW：Program Status Word 程序状态字；可用于OS在管态（系统态）和目态（用户态）之间的转换；PSW用来存放两类信息：一类是体现当前指令执行结果的各种状态信息，另一类是存放控制信息，称为控制状态，如允许中断(IF位)</p>
+<p>PC：Program Counter 程序计数器。</p>
+<p>PCB：Process Control Block 进程控制块</p>
+<p>Process Context：进程上下文</p>
+<p>TCB：Thread Control Block 线程控制块</p>
+<p>User-level thread</p>
+<p>Kernel-level thread</p>
+<h2 id="3-中断与处理器调度-1"><a href="#3-中断与处理器调度-1" class="headerlink" title="3 中断与处理器调度"></a>3 中断与处理器调度</h2><p>interrupt：中断</p>
+<p>interrupt mask：中断屏蔽</p>
+<p>CPU burst cycle：CPU阵发期</p>
+<p>CPU burst time：</p>
+<p>I/O burst cycle</p>
+<p>preemptive：剥夺式</p>
+<p>FCFS：First Come First Serve。先到先服务</p>
+<p>SJF：Shortest Job First 最短作业优先算法</p>
+<p>SRTN：Shortest Remaining Time Next 最短剩余时间优先</p>
+<p>HRN：Highest Response Ratio Next 最高响应比优先</p>
+<p>HPF：Highest Priority First 最高优先数</p>
+<p>RR：Round Robin  循环轮转算法</p>
+<p>MLQ：Multi-Level Queues 分类排队算法</p>
+<p>FB：Feed-Back 反馈排队算法</p>
+<p>degree of multi-programming：并发度</p>
+<p>swapping：交换</p>
+<p>mid-level scheduling：中级调度</p>
+<p>Real-time Scheduling：实时调度</p>
+<p>Starting deadline：开始截止期</p>
+<p>Processing time：处理时间</p>
+<p>Completion deadline：完成截止期</p>
+<p>EDF：Earliest Deadline First 最早截止期优先调度</p>
+<p>RMS：Rate Monotonic Scheduling 速率单调调度</p>
+<p>spin_lock：自旋锁</p>
+<h2 id="4-互斥，同步与通信-1"><a href="#4-互斥，同步与通信-1" class="headerlink" title="4 互斥，同步与通信"></a>4 互斥，同步与通信</h2><p>Bernstein条件</p>
+<p>shared variable：共享变量</p>
+<p>critical region：临界区</p>
+<p>mutual exclusion：互斥性</p>
+<p>progress：进展性</p>
+<p>bounded waiting：有限等待性</p>
+<p>test_and_set：进程互斥的硬件实现</p>
+<p>Bus-locking ：锁总线</p>
+<p>Bus-unlocking：总线解锁</p>
+<p>Synchronization：进程同步</p>
+<p>Primitive：原语，一段不可间断执行的程序</p>
+<p>semaphore：信号量</p>
+<p>monitor：管程</p>
+<p>LOOK：elevator algorithm 电梯算法（磁头引臂调度问题）</p>
+<p>IPC：Inter-Process Communication 进程通信</p>
+<p>memory sharing：共享内存</p>
+<p>message passing：消息传递</p>
+<p>buffering：有缓冲途径</p>
+<p>non-buffering：无缓冲途径</p>
+<h2 id="5-死锁与饥饿-1"><a href="#5-死锁与饥饿-1" class="headerlink" title="5 死锁与饥饿"></a>5 死锁与饥饿</h2><p>deadlock：死锁</p>
+<p>mutual exclusion：资源独占</p>
+<p>non preemption：不可抢占</p>
+<p>hold-and-applying：保持申请</p>
+<p>circular wait：循环等待</p>
+<p>deadlock prevention：死锁预防</p>
+<p>deadlock avoidance：死锁避免</p>
+<p>deadlock detection：死锁检测</p>
+<p>deadlock revovery：死锁恢复</p>
+<p>Banker’s algorithma：银行家算法</p>
+<h2 id="6-存储管理-1"><a href="#6-存储管理-1" class="headerlink" title="6 存储管理"></a>6 存储管理</h2><p>First Fit：首次适应（动态异长的分区分配算法）</p>
+<p>Best Fit：最佳适应</p>
+<p>Worst Fit：最坏适应</p>
+<p>Next Fit：邻近适应</p>
+<p>OPT：最佳置换算法</p>
+<p>FIFO：先进先出置换算法</p>
+<p>LRU：Least Recently Used 最近最少使用算法</p>
+<p>CLOCK：时钟置换算法（NRU，Not Recently Used，最近未用算法）</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">计算机专业课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/01/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="posts-概率论与数理统计" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/">概率论与数理统计</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/" class="archive-article-date">
+  	<time datetime="2020-07-01T04:47:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-随机事件及概率"><a href="#1-随机事件及概率" class="headerlink" title="1 随机事件及概率"></a>1 随机事件及概率</h1><h2 id="1-1-随机试验"><a href="#1-1-随机试验" class="headerlink" title="1.1 随机试验"></a>1.1 随机试验</h2><h2 id="1-2-样本空间与随机事件"><a href="#1-2-样本空间与随机事件" class="headerlink" title="1.2 样本空间与随机事件"></a>1.2 样本空间与随机事件</h2><p>我们将随机试验E的所有可能结果组成的集合称为E的<strong>样本空间</strong>，记为S，<strong>样本点</strong>是S中的元素。<br>比如，E(抛硬币)的样本空间是{H, T}</p>
+<p>我们称实验E的样本空间S的子集为E的<strong>随机事件</strong>，当且仅当这一子集中的一个样本点出现时，称这一事件发生。例如，实验E（连续三次抛掷一个硬币），事件A（第一次为H），则A={HHH，HHT，HTH，HTT}</p>
+<p>事件间的关系和事件的运算。<br>相等<br>和事件<br>积事件<br>差事件<br>A与B互不相容<br>A与B互为逆事件（对立事件）：A与B的和事件是样本空间S，A与B的积事件是空集。</p>
+<h2 id="1-3-频率与概率"><a href="#1-3-频率与概率" class="headerlink" title="1.3 频率与概率"></a>1.3 频率与概率</h2><p>频率与概率是相对于<strong>事件</strong>来说的，A发生的频率，A发生的概率。</p>
+<p>概率是事件A在一次试验中发生的可能性的大小。</p>
+<p>根据概率的定义，概率的集合函数满足：<br>1.非负性<br>2.规范性<br>3.可列可加性 </p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/1.png" class="">
+<p>由概率，可得概率的性质：<br>1.空事件的概率为0<br>2.有限可加性<br>3.若A是B的子集，则<code>P(B-A)=P(B)-P(A)</code>。利用了性质2<br>4.逆事件的概率。<br>4.加法公式 <img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/2.png" class=""></p>
+<h2 id="1-4-等可能概型（古典概型）"><a href="#1-4-等可能概型（古典概型）" class="headerlink" title="1.4 等可能概型（古典概型）"></a>1.4 等可能概型（古典概型）</h2><p><strong>等可能概型</strong>：<br>1.试验的样本空间只包含有限个元素<br>2.试验中每个基本事件发生的可能性相同</p>
+<h2 id="1-5-条件概率"><a href="#1-5-条件概率" class="headerlink" title="1.5 条件概率"></a>1.5 条件概率</h2><p>在事件A发生的条件下事件B发生的概率，即为<strong>条件概率</strong>，<code>P(B|A)</code></p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/3.png" class="">
+<p><strong>乘法定理</strong>：<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/4.png" class=""></p>
+<h3 id="1-5-1-全概率公式与贝叶斯公式"><a href="#1-5-1-全概率公式与贝叶斯公式" class="headerlink" title="1.5.1 全概率公式与贝叶斯公式"></a>1.5.1 全概率公式与贝叶斯公式</h3><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/5.png" class="">
+<p>全概率公式的意义是：在很多实际问题中，P(A)不容易直接求得，但是却容易找到S的一个<strong>划分</strong>，通过间接的方式求得P(A)。</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/6.png" class="">
+<p>复杂事件A发生了，关心是哪种划分导致了A的发生，即A发生的情况下划分发生的概率，全概率公式讨论划分发生的情况下A发生的概率。</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/7.png" class="">
+<p>机器调整的良好和机器调整的不好是两个划分，每个划分由对应的概率，但是这种概率是<strong>先验概率</strong>，当第产品生产出来之后，根据贝叶斯公式，可以计算产品合格情况下机器良好的概率，或者产品不合格情况下机器良好的概率，进而调整机器良好的概率，这个概率是<strong>后验概率</strong>。</p>
+<h2 id="1-6-独立性"><a href="#1-6-独立性" class="headerlink" title="1.6 独立性"></a>1.6 独立性</h2><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/8.png" class="">
+<h1 id="2-一维随机变量及其分布"><a href="#2-一维随机变量及其分布" class="headerlink" title="2 一维随机变量及其分布"></a>2 一维随机变量及其分布</h1><h2 id="2-1-随机变量"><a href="#2-1-随机变量" class="headerlink" title="2.1 随机变量"></a>2.1 随机变量</h2><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/9.png" class="">
+<p>当样本空间不是实数集合，X=X(e)表示随机变量，比如，空气污染正常表示1，空气污染严重表示2，这两个事件不是实数，所以需要函数来把事件映射到实数上；当样本空间本身是实数时，就没有必要进行映射，X就是随机变量。</p>
+<p>样本空间相当于定义域，样本点相当于定义域上的每个可能取值，而随机变量就是相当于函数中的变量x。不过这里用X表示随机变量，x表示随机变量的某个可能取值。</p>
+<h2 id="2-2-离散型随机变量及其分布律"><a href="#2-2-离散型随机变量及其分布律" class="headerlink" title="2.2 离散型随机变量及其分布律"></a>2.2 离散型随机变量及其分布律</h2><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/10.png" class="">
+<p>分布律就是X取某个值的概率。</p>
+<h3 id="2-2-1-二项分布"><a href="#2-2-1-二项分布" class="headerlink" title="2.2.1 二项分布"></a>2.2.1 二项分布</h3><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/11.png" class="">
+<p>二项分布就是二项展开式的单项。</p>
+<h3 id="2-2-2-泊松分布"><a href="#2-2-2-泊松分布" class="headerlink" title="2.2.2 泊松分布"></a>2.2.2 泊松分布</h3><p>泊松分布是由二项分布推出来的。</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/12.png" class="">
+<p>我们怎么推出这个公式呢？我们在一个很小的区间内，假设发生次数为lamda，且这个区间分为n个划分，则可假设每个划分下只会出现发生或者不发生，即为0/1分布，且划分内发生的概率为p=lamda/n，则区间内发生次数为k的概率可以通过二项分布B(n,p)算出来。</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/13.png" class="">
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/14.png" class="">
+<p>这个所谓的区间及其发生次数，可以表示，1分钟内来电次数，也可以表示，很多产品中的次品数量。区间长度是n，发生次数是lamda。p=n*lamda。同时，这个情况也要满足一些条件：平稳性，无后效性。</p>
+<p>一般，当n&gt;=20，p&lt;=0.05时，用泊松定理计算的结果效果很好。</p>
+<h3 id="2-2-3-几何分布"><a href="#2-2-3-几何分布" class="headerlink" title="2.2.3 几何分布"></a>2.2.3 几何分布</h3><p>由二项分布推出来的，两次成功时中间的试验次数</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/18.png" class="">
+<h2 id="2-3-随机变量的分布函数"><a href="#2-3-随机变量的分布函数" class="headerlink" title="2.3 随机变量的分布函数"></a>2.3 随机变量的分布函数</h2><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/15.png" class="">
+<p>随机变量的分布函数F(x)满足右连续性。这个分布函数就是指小于等于某个值的概率，与分布律不一样，分布律表示等于某个值的概率。</p>
+<h2 id="2-4-连续型随机变量及其概率密度"><a href="#2-4-连续型随机变量及其概率密度" class="headerlink" title="2.4 连续型随机变量及其概率密度"></a>2.4 连续型随机变量及其概率密度</h2><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/16.png" class="">
+<p>二项分布与泊松分布是离散型随机变量分布，均匀分布，指数分数，正态分布等是连续型随机变量分布。</p>
+<h3 id="2-4-1-均匀分布"><a href="#2-4-1-均匀分布" class="headerlink" title="2.4.1 均匀分布"></a>2.4.1 均匀分布</h3><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/17.png" class="">
+<h3 id="2-4-2-指数分布"><a href="#2-4-2-指数分布" class="headerlink" title="2.4.2 指数分布"></a>2.4.2 指数分布</h3><p>泊松分布描述某事件在特定时间间隔中发生的次数<br>指数分布给出两次连续事件发生时的等待时间的分布</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/19.png" class="">
+<p>指数分布具有无记忆性，也就是说，在等待时间大于s的情况下等待时间大于s+t的概率和本来等待时间大于t的概率相同。</p>
+<p>指数分布怎么由泊松分布推出来的呢？要计算F(t)（事件第一次发生的时间为t的概率），则计算1-p(T&gt;t)，P(T&gt;t)表示在0-t区间发生了0次事件的概率，即计算泊松分布在lamda, k=0下的函数值。</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/20.png" class="">
+<p>因此指数分布中的参数theta等于泊松分布中的参数lamda。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="posts-计算机组成原理" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  	<time datetime="2020-06-25T23:37:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="计算机组成与设计"><a href="#计算机组成与设计" class="headerlink" title="计算机组成与设计"></a>计算机组成与设计</h1><h2 id="理解程序性能"><a href="#理解程序性能" class="headerlink" title="理解程序性能"></a>理解程序性能</h2><p>算法：决定源代码的数量和执行I/O操作的数量</p>
+<p>程序语言，编译器和体系结构：决定每行源代码对应机器指令的数量</p>
+<p>处理器和存储器系统：决定指令执行的速度快慢</p>
+<p>I/0系统（硬件和操作系统）：n决定I/O操作执行的速度快慢</p>
+<h2 id="处理器（CPU）内部构成"><a href="#处理器（CPU）内部构成" class="headerlink" title="处理器（CPU）内部构成"></a>处理器（CPU）内部构成</h2><p>数据通路：负责完成算术运算</p>
+<p>控制器：负责指导数据通路、存储器和I/O设备按照程序的指令正确执行</p>
+<p>高速缓冲存储器Cache：快速访问数据的小而快的SRAM存储器</p>
+<h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><p>抽象便于构建复杂系统，掩盖底层计算机系统细节</p>
+<p>指令集体系结构（ISA）：硬件和底层软件之间的接口</p>
+<p>应用二进制接口（ABI）：n基本指令集和操作系统接口</p>
+<p>实现：相关的细节和接口，遵循体系结构抽象的硬件</p>
+<h2 id="数据安全"><a href="#数据安全" class="headerlink" title="数据安全"></a>数据安全</h2><p>易失性主存储器：断电时会丢掉所有数据</p>
+<p>非易失性二级存储器：<br>磁盘<br>闪存<br>光盘</p>
+<h2 id="存储体系"><a href="#存储体系" class="headerlink" title="存储体系"></a>存储体系</h2><img src="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/1.png" class="">
+<h2 id="性能的定义"><a href="#性能的定义" class="headerlink" title="性能的定义"></a>性能的定义</h2><ol>
+<li>响应时间：完成某任务需要的总时间，包括硬盘访问、内存访问、I/O活动、操作系统开销和CPU执行时间等。</li>
+<li>吞吐率：也叫带宽，单位时间内完成的任务数量</li>
+</ol>
+<h2 id="性能的测量"><a href="#性能的测量" class="headerlink" title="性能的测量"></a>性能的测量</h2><ol>
+<li><p>消逝时间：总的响应时间，包括处理时间, I/O操作, OS开销, 空闲时间等</p>
+<p> 决定了系统的性能</p>
+</li>
+<li><p>CPU时间：在程序本身花费的时间，不包括等待I/O或者运行其他程序的时间；</p>
+<p> 包括运行用户程序的时间和操作系统为用户服务花去的CPU时间</p>
+</li>
+</ol>
+<h2 id="CPU时钟"><a href="#CPU时钟" class="headerlink" title="CPU时钟"></a>CPU时钟</h2><p>主时钟不断产生固定频率的时钟</p>
+<p>时钟周期：一个时钟持续的时间</p>
+<p>始终频率：每秒包含的时钟周期数</p>
+<p>计算机性能改进：<br>减少程序的时钟周期数量<br>增加时钟频率<br>硬件设计者需要权衡时钟频率和时钟周期数量</p>
+<h2 id="指令数和每条指令的平均时钟周期数（CPI）"><a href="#指令数和每条指令的平均时钟周期数（CPI）" class="headerlink" title="指令数和每条指令的平均时钟周期数（CPI）"></a>指令数和每条指令的平均时钟周期数（CPI）</h2><img src="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/2.png" class="">
+<h2 id="Amdahl’s-Law"><a href="#Amdahl’s-Law" class="headerlink" title="Amdahl’s Law"></a>Amdahl’s Law</h2><img src="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/3.png" class="">
+<p>在改进计算机的某个方面时期望总性能的提高与改进大小成正比</p>
+<h1 id="数据的表示和运算"><a href="#数据的表示和运算" class="headerlink" title="数据的表示和运算"></a>数据的表示和运算</h1><p>根据IEEE754标准，浮点数的阶码用移码表示。<br>对于单精度浮点数的阶码，有8位，则其<strong>偏置常数</strong>是127，如果阶码的值是2的话，阶码就应该表示为128+2=130的无符号8位二进制的形式（或者将补码的最高一位加1，溢出的不管，也可以得到同样的结果）</p>
+<h1 id="计算机的语言"><a href="#计算机的语言" class="headerlink" title="计算机的语言"></a>计算机的语言</h1><h2 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h2><p>一台计算机的全部指令</p>
+<p>MIPS指令集</p>
+<h2 id="寄存器和主存储器"><a href="#寄存器和主存储器" class="headerlink" title="寄存器和主存储器"></a>寄存器和主存储器</h2><p>寄存器的访问速度比主存快得多</p>
+<p>对主存储器数据的操作要用取数指令lw和存数指令sw。</p>
+<p>编译器必须尽量使用寄存器访问变量：<br>仅仅把不经常使用的变量放到内存（spilling register，寄存器溢出）；<br>寄存器的高效利用对系统优化非常重要</p>
+<h1 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h1><h2 id="CPU-overview"><a href="#CPU-overview" class="headerlink" title="CPU overview"></a>CPU overview</h2><img src="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/4.png" class="">
+<p>这张图是为了MIPS指令集而设计的CPU概览，受MIPS指令集的设计影响很大，总体来说，CPU会为每种可能都走一遍，但是由控制器来决定最终选择谁的结果。PC的更新由多选器决定是PC+4还是指令中指定的新的PC；ALU的源操作数可以是两个寄存器或者一个寄存器和立即数；保存到寄存器中的数据可以来自ALU的计算结果或者存储器中取出来的结果。</p>
+<h2 id="MIPS流水线"><a href="#MIPS流水线" class="headerlink" title="MIPS流水线"></a>MIPS流水线</h2><p>5段，每段一步</p>
+<ol>
+<li><p>IF: 从存储器读取指令</p>
+</li>
+<li><p>ID: 指令解码并读取寄存器</p>
+</li>
+<li><p>EX: 执行操作或计算地址</p>
+</li>
+<li><p>MEM: 访问存储器操作数</p>
+</li>
+<li><p>WB: 将结果写回寄存器</p>
+</li>
+</ol>
+<h3 id="冒险"><a href="#冒险" class="headerlink" title="冒险"></a>冒险</h3><p>结构冒险：需要的资源被占用</p>
+<p>数据冒险：需要等待前面指令完成其数据读写操作</p>
+<p>控制冒险：根据前面正在执行的指令决策控制操作</p>
+<p>结构冒险：在单存储器中的MIPS流水线，Load/Store对存储读/写数据时，取下一条指令的操作只能阻塞到数据访问周期结束，将导致流水线冒泡。因此流水的数据通路需要将指令和数据分别存储。</p>
+<p>数据冒险：存在这样的指令，必须依赖于之前访问数据的指令完成</p>
+<h2 id="转发（旁路）"><a href="#转发（旁路）" class="headerlink" title="转发（旁路）"></a>转发（旁路）</h2><img src="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/5.png" class="">
+<h2 id="分支预测"><a href="#分支预测" class="headerlink" title="分支预测"></a>分支预测</h2><p>延长流水线并不能提前确定分支结果</p>
+<p>预测分支结果：仅在预测错误时，才发生阻塞</p>
+<p>在 MIPS 流水线中：<br>可以预测分支不发生<br>预测正确时，分支后的取指操作将不会有任何延迟，流水线全速执行。</p>
+<p>静态分值预测和动态分支预测</p>
+<h2 id="怎样阻塞流水线"><a href="#怎样阻塞流水线" class="headerlink" title="怎样阻塞流水线"></a>怎样阻塞流水线</h2><ol>
+<li>将ID/EX 寄存器中的控制变量的值置为0</li>
+<li>阻止更新 PC 和 IF/ID 寄存器中的值</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">计算机专业课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="posts-网络协议分析实验" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/">网络协议分析实验</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/" class="archive-article-date">
+  	<time datetime="2020-06-24T20:39:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="实验1：以太网MAC帧"><a href="#实验1：以太网MAC帧" class="headerlink" title="实验1：以太网MAC帧"></a>实验1：以太网MAC帧</h1><img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/1.png" class="">
+<p><img src="网络协议分析实验/1.png" alt="0"></p>
+<p>以上是以太网帧的格式，其中，LLC-PDU长度/类型表示：如果LLC-PDU为数据时，则表示以字节为单位的长度，如果LLC-PDU是上层协议时，表示的是上层协议类型。由于LLC-PDU最长只能是1500，那么，如果LLC-PDU长度/类型字段值小于或等于05DC(1500)，则表示数据长度，如果LLC-PDU长度/类型字段大于05DC，则表示上层协议类型。下面是值与协议类型对照表</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">0800H: IP协议</span></span><br><span class="line"><span class="section">0806H: ARP协议</span></span><br><span class="line"><span class="section">86DDH: IPV6协议</span></span><br><span class="line"><span class="section">其他(大于05DC): 自定义数据类型</span></span><br></pre></td></tr></table></figure>
+<p>由于LLC-PDU包含了LLC帧首部的4个字节：DSAP(1B), SSAP(1B), 控制(2B                               )，因此如果LLC-PDU长度/类型字段值为0040时，LLC-PDU的数据字段只能为64-4=60字节。</p>
+<p>LLC的控制字段：输入02H表示LLC信息帧（显示0200）；（注：回车后变成0200，该帧变为：信息帧，控制字段的长度变为2字节）</p>
+<p>windows cmd下输入<code>ipconfig</code> 命令可以看到以太网适配器的IP地址、子网掩码及默认网关；<br>windows cmd下输入<code>route print</code> 命令可以查看路由表</p>
+<ol>
+<li><p>说明DSAP和SSAP的含义？如果编辑一个监控帧，如何设置控制字段？</p>
+<p> （1）DSAP：目的服务访问点</p>
+<pre><code>       SSAP：源服务访问点
+</code></pre><p> （2）LLC控制字段有16位，其中两位SS字段用来执行监控功能，00表示准备接受RR，10表示未准备接受RNR，01表示拒绝REJ；4位x位用于保留，设为0；以为P/F位，命令LLC/PDU传输或响应LLC/PDU传输。</p>
+</li>
+<li><p>说明为什么数据区不需要数据长度的限制？</p>
+<p> 以太网帧的协议类型/数据长度字段为0700表示自定义数据帧，对于此类数据帧没有长度限制。</p>
+</li>
+<li><p>解释路由表项的含义</p>
+<p> 在路由表项中查不到目的网络地址或主机地址的IP包，被自动送往网关路由器202.198.151.254, 跃点数表示传输过程中最多需要经过多少个网络才能到达目标，目的是防止无用的IP包在网上流散。</p>
+</li>
+</ol>
+<h1 id="实验2：IP，IPV6"><a href="#实验2：IP，IPV6" class="headerlink" title="实验2：IP，IPV6"></a>实验2：IP，IPV6</h1><h2 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h2><p>IP是一个无连接的、不可靠的、点对点的协议，只能尽力(Best Effort)传送数据，不能保证数据的到达</p>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/2.png" class="">
+<p><img src="网络协议分析实验/2.png" alt="0"></p>
+<p>以上是IP协议的格式。</p>
+<p>首部长度：可以表示的最大长度是15个单位（一个单位占4字节），因此IP首部最大长度为60字节。<br>总长度：整个IP数据包的长度，不超过最大传输单元MTU<br>标志：占3位，目前只有前两位有意义<br>标志字段的MF(More Fragment)：1表示后面还有分片<br>标志字段的DF(Don’t Fragment)：0表示允许分片<br>片偏移：以8个字节为偏移单位<br>协议：1表示ICMP；6表示TCP；17表示UDP；<br>首部校验和：</p>
+<p><strong>如何计算机首部校验和</strong>：</p>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/11.png" class="">
+<p><img src="网络协议分析实验/11.png" alt="0"></p>
+<p>每两个16位的计算过程采用反码加法算法，如</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="code"> 1100111</span></span><br><span class="line"><span class="section"> 1011101</span></span><br><span class="line"><span class="section">---------</span></span><br><span class="line">11000100</span><br><span class="line"><span class="section">|-----&gt;1</span></span><br><span class="line"><span class="section">---------</span></span><br><span class="line"><span class="code"> 1000101</span></span><br></pre></td></tr></table></figure>
+<p><strong>IP数据包分片示例</strong></p>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/3.png" class="">
+<p><img src="网络协议分析实验/3.png" alt="0"></p>
+<p><strong>如何编辑IP包</strong></p>
+<p>下面是编辑IP包的整个流程：<br>目的MAC地址-&gt;源MAC地址-&gt;源IP地址-&gt;目的IP地址-&gt;IP总长度-&gt;首部校验和</p>
+<h2 id="IPV6"><a href="#IPV6" class="headerlink" title="IPV6"></a>IPV6</h2><p>由于IPv4最大的问题在于网络地址资源有限，严重制约了互联网的应用和发展。IPv6的使用，不仅能解决网络地址资源数量的问题，而且也解决了多种接入设备连入互联网的障碍。</p>
+<p><strong>如何编辑IPV6包</strong></p>
+<p>与编辑IP包不同的是，不需要计算总长度，只需要计算有效载荷长度。</p>
+<h2 id="IP分片"><a href="#IP分片" class="headerlink" title="IP分片"></a>IP分片</h2><p>在windows cmd下输入命令<code>ping -l 3000 172.16.0.12</code> 表示向主机172.16.0.12发送长度为3000的ICMP报文。发送完了之后，打开协议分析器，检查具有相同表示字段的IP包有几个，这些包的内容是什么。</p>
+<p>最后发现有一个ICMP报文，两个IP报文。ICMP报文的帧长度为1410，则可以算出IP协议部分的长度为1410-14=1396，但是由于IP协议部分包含了8字节的ICMP首部，所以数据字段为1396-20-8=1368字节；第一个IP报文的帧长度为1410，则IP协议部分长度为1410-14=1396，数据部分长度为1396-20=1376字节；第二个IP报文的帧长度为290，则IP协议部分的长度为290-14=276字节，数据部分的长度为276-20=256。验算：1368+1376+256=3000。</p>
+<h1 id="实验3：ARP协议"><a href="#实验3：ARP协议" class="headerlink" title="实验3：ARP协议"></a>实验3：ARP协议</h1><p>地址解析协议，即ARP（Address Resolution Protocol），是根据<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/IP地址">IP地址</a>获取<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/物理地址/2129">物理地址</a>的一个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/TCP%2FIP协议">TCP/IP协议</a>。<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/主机/455151">主机</a>发送信息时将包含目标IP地址的ARP请求广播到局域网络上的所有主机，并接收返回消息，以此确定目标的物理地址；收到返回消息后将该IP地址和物理地址存入本机ARP缓存中并保留一定时间，下次请求时直接查询ARP缓存以节约资源。</p>
+<p>下面是ARP协议的工作过程的形象描述</p>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/4.png" class="">
+<p><img src="网络协议分析实验/4.png" alt="0"></p>
+<p><strong>ARP高速缓存</strong><br>存放了最近IP地址到MAC地址之间的映射<br>windows cmd下输入<code>arp -a</code> 可以查看主机的arp缓存表</p>
+<p>arp协议直接封装在以太网帧中，下面是arp报文的格式。</p>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/5.png" class="">
+<p><img src="网络协议分析实验/5.png" alt="0"></p>
+<p><strong>编辑arp包</strong><br>以太网帧首部中，目的MAC地址是全1，在arp报文首部中，目的硬件地址是全0。</p>
+<p><strong>arp欺骗</strong><br>arp欺骗主要是在arp包首部的源MAC地址和源IP地址做手脚。如果使得源MAC地址和源IP地址不匹配，则会对接收这个arp包的主机造成欺骗。</p>
+<ol>
+<li>若A,C,D在同一个网段，则D发送一个ARP请求报文给A，在其他都正常的情况下，将ARP层的源IP地址改为C的IP地址。那么在A的ARP缓存表中记录了C的IP地址和D的MAC地址的映射，每次发给C信息时，都会经过D</li>
+<li>网关在发送ARP应答报文时，在ARP层将源MAC地址改为错误的MAC地址，那么主机就会收到网关IP和错误MAC的映射，导致发送的包永远也到不了网关，因此上不了网。</li>
+<li>主机给网关发送ARP应答报文时，在ARP层将源MAC地址改为错误的MAC地址，那么主机永远也不会收到网关的报文，因此也上不了网。</li>
+</ol>
+<p><strong>如何避免arp欺骗呢？</strong></p>
+<h1 id="实验4：ICMP协议"><a href="#实验4：ICMP协议" class="headerlink" title="实验4：ICMP协议"></a>实验4：ICMP协议</h1><p>ICMP（Internet Control Message Protocol）Internet控制<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/报文/3164352">报文</a>协议。它是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/TCP%2FIP协议簇">TCP/IP协议簇</a>的一个子协议，用于在IP<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/主机/455151">主机</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/路由">路由</a>器之间传递控制消息。控制消息是指<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/网络通">网络通</a>不通、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/主机/455151">主机</a>是否可达、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/路由/363497">路由</a>是否可用等网络本身的消息。这些控制消息虽然并不传输用户数据，但是对于用户数据的传递起着重要的作用。</p>
+<p>ICMP协议封装在IP数据包中<br><img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/6.png" class=""></p>
+<p><img src="网络协议分析实验/6.png" alt="0"></p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#常用的类型，代码</span></span><br><span class="line">类型：<span class="number">8</span>    代码：<span class="number">0</span>    请求回显(<span class="built_in">ping</span>请求)</span><br><span class="line">类型：<span class="number">0</span>    代码：<span class="number">0</span>    回显应答(<span class="built_in">ping</span>请求)</span><br></pre></td></tr></table></figure>
+<p>ping 202.198.151.151 测试网络联通性</p>
+<p>tracert 202.198.151.151 测试目的主机路由线路的程序</p>
+<p>如何编辑ICMP报文：就是填个ICMP首部的类型和代码字段，其他部分就按正常流程来。</p>
+<h1 id="实验5：UDP-DNS"><a href="#实验5：UDP-DNS" class="headerlink" title="实验5：UDP,DNS"></a>实验5：UDP,DNS</h1><h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><p>UDP协议直接封装在IP数据包中：<br><img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/7.png" class=""></p>
+<p><img src="网络协议分析实验/7.png" alt="0"></p>
+<p>UDP在计算校验和时，除了包含UDP的首部和数据以外，还包含了一个12字节的伪报头，伪报头包含IP报头的源IP和目的IP，让UDP检测数据确实已到达正确的目的端。<br>UDP的有效负载长度和IPV6的不一样，它包含了UDP报文的整个长度，而不仅仅是数据的长度。</p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>在windows cmd下输入命令<code>nslookup host34.netlab</code> 可以查询域名为host34.netlab的服务器名称和ip地址。</p>
+<p>在实验中编辑DNS报文的时候有几个点要注意：</p>
+<ol>
+<li><p>UDP的源端口可以随便填写个大于1024的数，因为我们不要求本机的某个端口可以接受到DNS应答，只需要本机捕获到相应的DNS报文即可。</p>
+</li>
+<li><p>UDP的目的端口写53</p>
+</li>
+<li><p>在实际中，DNS的数据帧是要广播出去的，但在实验中，可以指定目的主机的MAC地址和IP地址</p>
+</li>
+<li><p>对DNS的编辑，主要是域名循环体的编辑，如果你要查询host34.netlab的ip地址，你可以弄3个域名循环体，第一个域名循环体的长度写6(host34的长度是6)，然后域标记写host34，第二个域名循环体的长度写6(netlab的长度是6)，然后域标记写netlab，第三个域名循环体的长度写0，表示结束。</p>
+ <img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/8.png" class="">
+<p> <img src="网络协议分析实验/8.png" alt="0"></p>
+</li>
+</ol>
+<h1 id="实验6：TCP，端口扫描"><a href="#实验6：TCP，端口扫描" class="headerlink" title="实验6：TCP，端口扫描"></a>实验6：TCP，端口扫描</h1><p>下面是TCP协议的报文格式：<br><img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/9.png" class=""></p>
+<p><img src="网络协议分析实验/9.png" alt="0"></p>
+<p>选项字段：长度可变，TCP最初只规定了一种选项，即最大报文段长度MSS，告诉对方我的缓存所能接收的报文段的数据字段的最大长度是MSS字节。MSS是TCP报文段中的数据字段的最大长度。</p>
+<h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h2><p>步骤如下：</p>
+<ol>
+<li>打开TCP工具，切换到客户端模式。</li>
+<li>地址输入172.16.0.253，这时学校的子网内的服务器，可以接受http请求，所以端口写80。</li>
+<li>点击连接</li>
+<li>在客户端发送一个数据</li>
+<li>点击断开</li>
+<li>查看协议分析器，找一下，就可以发现TCP连接，发送数据和断开连接的过程。</li>
+</ol>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/10.png" class="">
+<p><img src="网络协议分析实验/10.png" alt="0"></p>
+<p>有时候断开连接的时候，第二个主机的ACK和FIN放在一起了，表示第二个主机没有数据要发送了，可以直接断开，正常来说，第二个主机是要先发送ACK，再发送一点数据，然后再发送FIN的。</p>
+<h2 id="TCP端口扫描"><a href="#TCP端口扫描" class="headerlink" title="TCP端口扫描"></a>TCP端口扫描</h2><p>TCP端口SYN扫描，如果端口开放会有应答，否则会有RST回答。</p>
+<p>使用TCP工具连接到172.16.0.253来做实验。</p>
+<h2 id="UDP端口扫描"><a href="#UDP端口扫描" class="headerlink" title="UDP端口扫描"></a>UDP端口扫描</h2><p>UDP端口扫描是借助于ICMP协议的端口不可达报文来实现。如果目的主机端口开放，没有ICMP差错报文，反之，会收到ICMP目的端口不可达差错报文。</p>
+<p>使用UDP工具连接到172.16.0.253来做实验。</p>
+<h1 id="实验7：FTP-HTTP"><a href="#实验7：FTP-HTTP" class="headerlink" title="实验7：FTP,HTTP"></a>实验7：FTP,HTTP</h1><h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h2><p>FTP协议的控制端口是21，数据端口是（20，如果采用PORT模式，不确定，如果采用PASV模式）</p>
+<p>Port模式</p>
+<p>FTP <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/客户端">客户端</a>首先和服务器的TCP 21端口建立连接，用来发送命令，客户端需要接收数据的时候在这个通道上发送PORT命令。PORT命令包含了客户端用什么端口接收数据。例如：Port172.16.0.16,192,13，表示新开的端口是192×256+13=49165。在传送数据的时候，服务器端通过自己的TCP 20端口连接至客户端的49165端口发送数据。FTP server必须和客户端建立一个新的连接用来传送数据。</p>
+<p>Passive模式</p>
+<p>建立控制通道和Standard模式类似，但建立连接后发送Pasv命令。服务器收到Pasv命令后，打开一个临时端口（端口号大于1023小于65535）并且通知客户端在这个端口上传送数据的请求，客户端连接FTP服务器此端口，然后FTP服务器将通过这个端口传送数据。</p>
+<p>很多<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/防火墙">防火墙</a>在设置的时候都是不允许接受外部发起的连接的，所以许多位于防火墙后或内网的FTP服务器不支持PASV模式，因为客户端无法穿过防火墙打开FTP服务器的高端端口；而许多内网的客户端不能用PORT模式登陆FTP服务器，因为从服务器的TCP 20无法和内部网络的客户端建立一个新的连接，造成无法工作。</p>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>主页访问：通过get方法提取网站主页文件。</p>
+<p>页面提交：通过post方法提交信息。</p>
+<p>HTTP是应用层协议，是WWW服务的支撑协议。</p>
+<p>HTTP是基于客户/服务器模式，且面向连接的。典型的HTTP事务处理有如下的过程：</p>
+<p>（1）客户与服务器建立连接；</p>
+<p>（2）客户向服务器提出请求；</p>
+<p>（3）服务器接受请求，并根据请求返回相应的文件作为应答；</p>
+<p>（4）客户与服务器关闭连接。</p>
+<p>HTTP是一种无状态协议，即服务器不保留与客户交易时的任何状态。这就大大减轻了服务器记忆负担，从而保持较快的响应速度。</p>
+<p>端口是80.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">计算机专业课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/">展开全文 >></a>
         </p>
       
 
@@ -216,7 +1831,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span>
+      <a class="extend prev" rel="prev" href="/page/7/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -385,6 +2000,14 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">默认</a>
               </li>
             
             <div class="clearfix"></div>
