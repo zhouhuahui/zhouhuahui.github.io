@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouhuahui.github.io">
-  <title>Archives: 2021 | Hexo</title>
+  <title>stl | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zhouhuahui.github.io/archives/2021/index.html">
+  <meta name="description" content="STLSTL是标准模板库。 vector本质上就是一个数组，但是它比数组更加地好用，提供了很多实用的接口。 1234567891011121314151617&#x2F;&#x2F; 定义一个vector#include&lt;vector&gt;vector&lt;int&gt; vec;&#x2F;&#x2F; 在尾部追加一个元素vec.push_back(1);&#x2F;&#x2F; 删除尾部的元素vec.pop_back();&#x2F;&#x2F; 获得vecto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="stl">
+<meta property="og:url" content="https://zhouhuahui.github.io/2021/09/11/stl/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="STLSTL是标准模板库。 vector本质上就是一个数组，但是它比数组更加地好用，提供了很多实用的接口。 1234567891011121314151617&#x2F;&#x2F; 定义一个vector#include&lt;vector&gt;vector&lt;int&gt; vec;&#x2F;&#x2F; 在尾部追加一个元素vec.push_back(1);&#x2F;&#x2F; 删除尾部的元素vec.pop_back();&#x2F;&#x2F; 获得vecto">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-12T06:02:47.000Z">
+<meta property="article:modified_time" content="2021-09-12T06:09:47.668Z">
 <meta property="article:author" content="fantasy">
+<meta property="article:tag" content="编程语言">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -150,36 +155,110 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-stl" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/11/stl/" class="archive-article-date">
-  	<time datetime="2021-09-12T06:02:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-11</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/11/stl/">stl</a>
+    <h1 class="article-title" itemprop="name">
+      stl
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/09/11/stl/" class="archive-article-date">
+  	<time datetime="2021-09-12T06:02:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="STL"><a href="#STL" class="headerlink" title="STL"></a>STL</h1><p>STL是标准模板库。</p>
+<h2 id="vector"><a href="#vector" class="headerlink" title="vector"></a>vector</h2><p>本质上就是一个数组，但是它比数组更加地好用，提供了很多实用的接口。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义一个vector</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; vec;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在尾部追加一个元素</span></span><br><span class="line">vec.<span class="built_in">push_back</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除尾部的元素</span></span><br><span class="line">vec.<span class="built_in">pop_back</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获得vector存储数据的长度</span></span><br><span class="line">cout&lt;&lt;vec.<span class="built_in">size</span>()&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 清空</span></span><br><span class="line">vec.<span class="built_in">clear</span>();</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 遍历</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;vec.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">    cout&lt;&lt;vec[i]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 迭代器 iterator</span></span><br><span class="line"><span class="comment">// 可以把迭代器当成一个可以移动的指针，它指向容器当中的一个元素</span></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line"><span class="keyword">for</span>(it=vec.<span class="built_in">begin</span>(); it!=vec.<span class="built_in">end</span>(); it++)&#123;</span><br><span class="line">    cout&lt;&lt;(*it)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入 我们需要用到迭代器</span></span><br><span class="line"><span class="comment">// 在下标为2的位置插入10</span></span><br><span class="line">vec.<span class="built_in">insert</span>(vec.<span class="built_in">begin</span>()+<span class="number">2</span>, <span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除 </span></span><br><span class="line"><span class="comment">// 删除单个元素</span></span><br><span class="line">vec.<span class="built_in">erase</span>(vec.<span class="built_in">begin</span>()+<span class="number">2</span>);</span><br><span class="line"><span class="comment">// 删除一个区间内的元素</span></span><br><span class="line">vec.<span class="built_in">erase</span>(vec.<span class="built_in">begin</span>()+<span class="number">2</span>, vec.<span class="built_in">begin</span>()+<span class="number">4</span>); <span class="comment">// [2, 4)</span></span><br></pre></td></tr></table></figure>
+<h3 id="emplace-back"><a href="#emplace-back" class="headerlink" title="emplace_back()"></a>emplace_back()</h3><p>在使用push_back函数往容器中增加新元素时，必须要有一个该对象的实例才行，而emplace_back可以不用，它可以直接传入对象的构造函数参数直接进行构造，减少一次拷贝和赋值操作。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">stu_info</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    string name;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">stu_info</span>(<span class="keyword">const</span> string &amp;name) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;name = name;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;stu_info(): &quot;</span> &lt;&lt; <span class="keyword">this</span>-&gt;name &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    ~<span class="built_in">stu_info</span>() &#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;~stu_info(): &quot;</span> &lt;&lt; <span class="keyword">this</span>-&gt;name &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="built_in">stu_info</span>(<span class="keyword">const</span> stu_info &amp;s) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;name = s.name;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;copy constructor: &quot;</span> &lt;&lt; <span class="keyword">this</span>-&gt;name &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;stu_info&gt; v;</span><br><span class="line">v.<span class="built_in">emplace_back</span>(<span class="string">&quot;redis&quot;</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><p>set是集合，是一个内部自动有序且不含重复元素的容器。</p>
+<p>set的定义：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set&lt;<span class="keyword">int</span>&gt; st; <span class="comment">// 保存int类型的set</span></span><br><span class="line">set&lt;Node&gt; st2; <span class="comment">// 保存Node结构体类型的set</span></span><br></pre></td></tr></table></figure>
+<p>set只能通过迭代器访问：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set&lt;<span class="keyword">int</span>&gt;::iterator it;</span><br><span class="line"><span class="comment">// 因为除了vector和string之外的STL容器都不支持*(it+i)的访问形式</span></span><br><span class="line"><span class="comment">// 只能按如下方式枚举</span></span><br><span class="line"><span class="keyword">for</span>(set&lt;<span class="keyword">int</span>&gt;::iterator it = st.<span class="built_in">begin</span>(); it!=st.<span class="built_in">end</span>(); it++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,*it);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>插入：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> x = <span class="number">1</span></span><br><span class="line">st.<span class="built_in">insert</span>(x); <span class="comment">// 将x插入，并自动排序和去重</span></span><br></pre></td></tr></table></figure>
+<p>查找：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set&lt;iterator&gt;::iterator it = st.<span class="built_in">find</span>(<span class="number">1</span>); <span class="comment">// 查找1，返回迭代器</span></span><br></pre></td></tr></table></figure>
+<p>删除：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">st.<span class="built_in">erase</span>(it);<span class="comment">// it为要删除元素的迭代器</span></span><br><span class="line">st.<span class="built_in">erase</span>(st.<span class="built_in">find</span>(<span class="number">100</span>)); <span class="comment">//找到100的迭代器，然后删除100</span></span><br><span class="line"></span><br><span class="line">st.<span class="built_in">erase</span>(<span class="number">100</span>); <span class="comment">//删除100</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// erase可以删除一定区间内的元素</span></span><br><span class="line">st.<span class="built_in">erase</span>(st.<span class="built_in">find</span>(<span class="number">100</span>), st.<span class="built_in">end</span>()); <span class="comment">// 删除100到set末尾之间的元素</span></span><br></pre></td></tr></table></figure>
+<p>元素个数：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;st.<span class="built_in">size</span>()&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<p>清空元素：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">st.<span class="built_in">clear</span>();</span><br></pre></td></tr></table></figure>
+<h3 id="emplace"><a href="#emplace" class="headerlink" title="emplace()"></a>emplace()</h3><p>当使用插入时，我们创建一个对象，然后将其插入到多集中。使用emplace()，该对象就地构建。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// C++ code to demonstrate difference between </span></span><br><span class="line"><span class="comment">// emplace and insert </span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span> </span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std; </span><br><span class="line">  </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">    <span class="comment">// declaring set </span></span><br><span class="line">    set&lt;pair&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;&gt; ms; </span><br><span class="line">      </span><br><span class="line">    <span class="comment">// using emplace() to insert pair in-place </span></span><br><span class="line">    ms.<span class="built_in">emplace</span>(<span class="string">&#x27;a&#x27;</span>, <span class="number">24</span>); </span><br><span class="line">      </span><br><span class="line">    <span class="comment">// Below line would not compile </span></span><br><span class="line">    <span class="comment">// ms.insert(&#x27;b&#x27;, 25);     </span></span><br><span class="line">      </span><br><span class="line">    <span class="comment">// using emplace() to insert pair in-place </span></span><br><span class="line">    ms.<span class="built_in">insert</span>(<span class="built_in">make_pair</span>(<span class="string">&#x27;b&#x27;</span>, <span class="number">25</span>));     </span><br><span class="line">      </span><br><span class="line">    <span class="comment">// printing the set </span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> it = ms.<span class="built_in">begin</span>(); it != ms.<span class="built_in">end</span>(); ++it) </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; (*it).first &lt;&lt; <span class="string">&quot; &quot;</span> </span><br><span class="line">             &lt;&lt; (*it).second &lt;&lt; endl; </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="swap"><a href="#swap" class="headerlink" title="swap()"></a>swap()</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s1.<span class="built_in">swap</span>(s2);  <span class="comment">//交换两集合</span></span><br></pre></td></tr></table></figure>
+<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><p>可以通过下标访问和通过迭代器访问：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">string str = <span class="string">&quot;abcd&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 下标访问</span></span><br><span class="line">cout&lt;&lt;str[<span class="number">1</span>]&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 迭代器访问</span></span><br><span class="line"><span class="keyword">for</span>(string::iterator it=str.<span class="built_in">begin</span>(); it!=str.<span class="built_in">end</span>(); it++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c&quot;</span>, *it);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// +号可以连接字符串</span></span><br><span class="line"><span class="comment">// =号 字符串赋值，</span></span><br><span class="line"><span class="comment">// &lt; &gt; != == 号 字符串比较</span></span><br></pre></td></tr></table></figure>
+<p>字符串长度</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d %d\n&quot;</span>, str.<span class="built_in">length</span>(), str.<span class="built_in">size</span>()); <span class="comment">//两个都一样</span></span><br></pre></td></tr></table></figure>
+<p>插入：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pos;</span><br><span class="line"><span class="keyword">int</span> s;</span><br><span class="line">str.<span class="built_in">insert</span>(pos, s); <span class="comment">//pos号位置插入s字符串</span></span><br></pre></td></tr></table></figure>
+<p>删除：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过迭代器删除单个元素</span></span><br><span class="line">str.<span class="built_in">erase</span>(str.<span class="built_in">begin</span>()+<span class="number">4</span>); <span class="comment">// 删除下标为4的元素</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除[first, last)区间内所有的元素,first为首元素迭代器，last为末尾迭代器</span></span><br><span class="line">str.<span class="built_in">erase</span>(str.<span class="built_in">begin</span>()+<span class="number">2</span>, str.<span class="built_in">end</span>()); <span class="comment">// 从2号元素删除到最后</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除从下标2开始的5个元素</span></span><br><span class="line">str.<span class="built_in">erase</span>(<span class="number">2</span>, <span class="number">5</span>);</span><br></pre></td></tr></table></figure>
+<p>清空：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str.<span class="built_in">clear</span>();</span><br></pre></td></tr></table></figure>
+<p>子串：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pos=<span class="number">2</span>;</span><br><span class="line"><span class="keyword">int</span> len =<span class="number">5</span>;</span><br><span class="line">str.<span class="built_in">substr</span>(pos, len);<span class="comment">// 返回从2开始的长度为5的子串</span></span><br></pre></td></tr></table></figure>
+<p>查找：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">string str2;</span><br><span class="line"><span class="keyword">int</span> pos;</span><br><span class="line"><span class="comment">//从pos位置开始找子串，返回第一个找到的子串的下标</span></span><br><span class="line"><span class="comment">// 如果没有找到，返回string::npos（这是在string中定义的常量）</span></span><br><span class="line"><span class="comment">// 比如:str=&quot;abcd abcd abcd&quot;, str2=&quot;abcd&quot;</span></span><br><span class="line"><span class="comment">//  str.find(str2, 4)会返回5</span></span><br><span class="line"><span class="keyword">if</span>(str.<span class="built_in">find</span>(str2, pos) != string::npos)&#123;</span><br><span class="line">    cout&lt;&lt;str.<span class="built_in">find</span>(str2)&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>替换:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> pos = <span class="number">3</span>;</span><br><span class="line"><span class="keyword">int</span> len = <span class="number">5</span>;</span><br><span class="line">string str2;</span><br><span class="line"><span class="comment">// str中从pos开始的len长度的子串替换为str2</span></span><br><span class="line">str.<span class="built_in">replace</span>(pos, len, str2);</span><br></pre></td></tr></table></figure>
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>map是映射，定义了从一个key到value的映射，其中map中保存的所有key, value对中，key不能重复，但是value可以重复</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map&lt;typename1, typename2&gt; mp; <span class="comment">// 从typename1类型到typename2类型的映射</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">map&lt;string, <span class="keyword">int</span>&gt; mp; <span class="comment">// 从string类型的key到int类型的value的映射</span></span><br><span class="line">map&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; mp2; <span class="comment">// 从int类型的key到int类型的value的映射</span></span><br></pre></td></tr></table></figure>
+<p>访问:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 下标访问</span></span><br><span class="line">map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; mp;</span><br><span class="line">mp[<span class="string">&#x27;c&#x27;</span>] = <span class="number">20</span>; <span class="comment">// 保存从&#x27;c&#x27;到20的映射</span></span><br><span class="line">mp[<span class="string">&#x27;c&#x27;</span>] = <span class="number">30</span>; <span class="comment">// 20被覆盖</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, mp[<span class="string">&#x27;c&#x27;</span>]); <span class="comment">// out: 30</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 迭代器访问</span></span><br><span class="line"><span class="keyword">for</span>(map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;::iterator it=mp.<span class="built_in">begin</span>(); it!=mp.<span class="built_in">end</span>(); it++)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;the key is %c, the value is %d\n&quot;</span>, it-&gt;first, it-&gt;second);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>查找：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// find返回对应key value对的迭代器</span></span><br><span class="line"><span class="comment">// 查找key为&#x27;c&#x27;的key value对的迭代器</span></span><br><span class="line">map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;::iterator it = mp.<span class="built_in">find</span>(<span class="string">&#x27;c&#x27;</span>); </span><br><span class="line">cout&lt;&lt;it-&gt;first&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;it-&gt;second&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<p>删除：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 迭代器删除单个元素</span></span><br><span class="line"><span class="comment">// erase返回下一个元素的迭代器</span></span><br><span class="line">map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;::iterator it = mp.<span class="built_in">find</span>(<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line">map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;::iterator it2 = mp.<span class="built_in">erase</span>(it); <span class="comment">// 删除key为&#x27;b&#x27;的key value对</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过key删除</span></span><br><span class="line">map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;::iterator it2 = mp.<span class="built_in">erase</span>(<span class="string">&#x27;b&#x27;</span>); <span class="comment">// 删除key为&#x27;b&#x27;的key value对</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>map长度</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// size函数获取mp的key value对个数</span></span><br><span class="line">cout&lt;&lt;mp.<span class="built_in">size</span>()&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p><a target="_blank" rel="noopener" href="http://www.cplusplus.com/reference/">http://www.cplusplus.com/reference/</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,364 +270,127 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhouhuahui.github.io/2021/09/11/stl/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/" class="archive-article-date">
-  	<time datetime="2021-09-10T23:01:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/3000/06/23/about-me/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          about me
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">论文阅读：viper(vldb2021)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/">论文阅读：viper(vldb2021)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#STL"><span class="toc-number">1.</span> <span class="toc-text">STL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vector"><span class="toc-number">1.1.</span> <span class="toc-text">vector</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emplace-back"><span class="toc-number">1.1.1.</span> <span class="toc-text">emplace_back()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#set"><span class="toc-number">1.2.</span> <span class="toc-text">set</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#emplace"><span class="toc-number">1.2.1.</span> <span class="toc-text">emplace()</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#swap"><span class="toc-number">1.2.2.</span> <span class="toc-text">swap()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#string"><span class="toc-number">1.3.</span> <span class="toc-text">string</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-number">1.4.</span> <span class="toc-text">map</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">引用</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/10/Tidb/" class="archive-article-date">
-  	<time datetime="2021-09-10T22:55:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/10/Tidb/">Tidb</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/" class="archive-article-date">
-  	<time datetime="2021-09-10T07:28:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/">2021ecnu校园地助学贷款</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/09/%E9%94%81/" class="archive-article-date">
-  	<time datetime="2021-09-10T01:04:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/09/%E9%94%81/">锁</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/" class="archive-article-date">
-  	<time datetime="2021-09-10T00:33:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">每日技术阅读</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/" class="archive-article-date">
-  	<time datetime="2021-09-09T23:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/">处理数据库读写冲突</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/" class="archive-article-date">
-  	<time datetime="2021-09-09T10:51:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/">论文阅读：spitfire</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/" class="archive-article-date">
-  	<time datetime="2021-09-08T06:21:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/">读论文：DUDETM</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/06/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/" class="archive-article-date">
-  	<time datetime="2021-09-07T05:24:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/06/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/">持久内存编程PMDK</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/">2</a><a class="page-number" href="/archives/2021/page/3/">3</a><a class="page-number" href="/archives/2021/page/4/">4</a><a class="extend next" rel="next" href="/archives/2021/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -572,8 +414,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

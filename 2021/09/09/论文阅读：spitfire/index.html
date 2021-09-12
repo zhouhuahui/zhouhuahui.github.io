@@ -8,18 +8,23 @@
   <link rel="dns-prefetch" href="https://zhouhuahui.github.io">
   <title>论文阅读：spitfire | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="https:&#x2F;&#x2F;zxjcarrot.github.io&#x2F;publication&#x2F;spitfire&#x2F;spitfire.pdf 引用【1】论文阅读:Spitfire：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;355572739">
+  <meta name="description" content="https:&#x2F;&#x2F;zxjcarrot.github.io&#x2F;publication&#x2F;spitfire&#x2F;spitfire.pdf introductionour approach Since the CPU is capable of directly operating on NVM-resident data, Spitfire does not eagerly move data from NVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文阅读：spitfire">
 <meta property="og:url" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="https:&#x2F;&#x2F;zxjcarrot.github.io&#x2F;publication&#x2F;spitfire&#x2F;spitfire.pdf 引用【1】论文阅读:Spitfire：https:&#x2F;&#x2F;zhuanlan.zhihu.com&#x2F;p&#x2F;355572739">
+<meta property="og:description" content="https:&#x2F;&#x2F;zxjcarrot.github.io&#x2F;publication&#x2F;spitfire&#x2F;spitfire.pdf introductionour approach Since the CPU is capable of directly operating on NVM-resident data, Spitfire does not eagerly move data from NVM">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210912073649411.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/论文阅读：spitfire/image-20210912073649411.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210912074216490.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/论文阅读：spitfire/image-20210912074216490.png">
 <meta property="article:published_time" content="2021-09-09T10:51:14.000Z">
-<meta property="article:modified_time" content="2021-09-09T12:45:05.811Z">
+<meta property="article:modified_time" content="2021-09-11T23:50:06.414Z">
 <meta property="article:author" content="fantasy">
 <meta property="article:tag" content="论文">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210912073649411.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -176,6 +181,19 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a target="_blank" rel="noopener" href="https://zxjcarrot.github.io/publication/spitfire/spitfire.pdf">https://zxjcarrot.github.io/publication/spitfire/spitfire.pdf</a></p>
+<h1 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h1><h2 id="our-approach"><a href="#our-approach" class="headerlink" title="our approach"></a>our approach</h2><p> Since the CPU is capable of directly operating on NVM-resident data, Spitfire does not eagerly move data from NVM to DRAM. We show that <em>lazy</em> data migration from NVM to DRAM ensures that only <em>hot</em> data is promoted to DRAM.</p>
+<p>要决定怎么eager，怎么lazy。</p>
+<h1 id="background"><a href="#background" class="headerlink" title="background"></a>background</h1><h2 id="NVM-aware-Optimizations-in-Hymem"><a href="#NVM-aware-Optimizations-in-Hymem" class="headerlink" title="NVM-aware Optimizations in Hymem"></a>NVM-aware Optimizations in Hymem</h2><h3 id="Data-Migration-Policy"><a href="#Data-Migration-Policy" class="headerlink" title="Data Migration Policy"></a>Data Migration Policy</h3><img src="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210912073649411.png" class="">
+<p><img src="论文阅读：spitfire/image-20210912073649411.png" alt="image-20210912073649411"></p>
+<p>the four critical decisions in the <strong>data migration policy</strong> adopted by Hymem include: DRAM admission, DRAM eviction, NVM admission, and NVM eviction：</p>
+<ol>
+<li>dram admission：数据要么从NVM读到DRAM，要么从SSD读到DRAM；</li>
+<li>DRAM eviction：解决数据要evict的话，要evict到NVM还是SSD。<br>如果page在admission queue里面，则从admission queue中删除这个page，然后将page放到NVM中；<br>否则，将page加入到admission queue中，然后evict到SSD中。</li>
+</ol>
+<h3 id="Cache-line-grained-Loading"><a href="#Cache-line-grained-Loading" class="headerlink" title="Cache-line-grained Loading"></a>Cache-line-grained Loading</h3><img src="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210912074216490.png" class="">
+<p><img src="论文阅读：spitfire/image-20210912074216490.png" alt="image-20210912074216490"></p>
+<p>我们使用一个DRAM page来存储正在访问的NVM page，但并不是把这个NVM page的所有cache line都加载进来。在DRAM page中有header，存储page的元信息，其中resident表示DRAM page中256个cache line中第几个是已经从NVM page的对应cache line加载进来的，nvm表示这个DRAM page对应哪个NVM page；接下来，有256个cache line，至于哪些是从NVM  page加载进来的，这要看resident位了。以上就是所谓的cache-line-grained page。</p>
+<p>如果只加载了NVM page中的很少几个cache line怎么办，不能这样DRAM page中的256个cache line中会剩下很多cache line没有用，造成了空间浪费，于是我们决定使用mini page，只有16个cache line，只存储加载进来的cache line，比如figure 2(b)中，count=3表示目前只加载了3个cache line，slots数组中存储了这个3个cache line分别对应NVM page中的哪些cache line。</p>
 <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】论文阅读:Spitfire：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/355572739">https://zhuanlan.zhihu.com/p/355572739</a></p>
 
       
@@ -319,7 +337,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">引用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">1.</span> <span class="toc-text">introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#our-approach"><span class="toc-number">1.1.</span> <span class="toc-text">our approach</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#background"><span class="toc-number">2.</span> <span class="toc-text">background</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NVM-aware-Optimizations-in-Hymem"><span class="toc-number">2.1.</span> <span class="toc-text">NVM-aware Optimizations in Hymem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Migration-Policy"><span class="toc-number">2.1.1.</span> <span class="toc-text">Data Migration Policy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache-line-grained-Loading"><span class="toc-number">2.1.2.</span> <span class="toc-text">Cache-line-grained Loading</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">引用</span></a></li></ol>
                     </div>
                 </span>
             </div>
