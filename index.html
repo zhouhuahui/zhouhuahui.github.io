@@ -225,6 +225,579 @@
 
 
   
+    <article id="post-OB大赛" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="往年OB赛题"><a href="#往年OB赛题" class="headerlink" title="往年OB赛题"></a>往年OB赛题</h1><p><img src="OB大赛/image-20210928082258919.png" alt="image-20210928082258919"></p>
+<p><img src="OB大赛/image-20210928082303528.png" alt="image-20210928082303528"></p>
+<h1 id="OB大赛"><a href="#OB大赛" class="headerlink" title="OB大赛"></a>OB大赛</h1><p>参考<a target="_blank" rel="noopener" href="https://open.oceanbase.com/competition/index">从0到1打造你的数据库</a></p>
+<h1 id="参赛宝典"><a href="#参赛宝典" class="headerlink" title="参赛宝典"></a>参赛宝典</h1><h2 id="第4章-查询处理"><a href="#第4章-查询处理" class="headerlink" title="第4章 查询处理"></a>第4章 查询处理</h2><p>参考<a target="_blank" rel="noopener" href="https://oceanbase-partner.github.io/lectures-on-dbms-implementation/lecture-4">查询处理</a></p>
+<h3 id="选择运算"><a href="#选择运算" class="headerlink" title="选择运算"></a>选择运算</h3><p>一般情况下，当选择率较低时，基于索引的选择算法要优于全表扫描。但在某些情况下，如选择率较高、或者要查找的元组均匀分散在表中，这时索引扫描法的性能可能还不如全表扫描法，因为还需要考虑扫描索引带来的额外开销。</p>
+<h1 id="参赛题目"><a href="#参赛题目" class="headerlink" title="参赛题目"></a>参赛题目</h1><p>参考<a target="_blank" rel="noopener" href="https://oceanbase-partner.github.io/lectures-on-dbms-implementation/miniob-topics">参赛题目</a></p>
+<p>其中，其中必做题的<code>多表查询</code>这道题，我们可以思考一下怎么和后面的查询优化关联。weihan学长说这部分不要用笛卡儿积，要考虑各种join，比如<strong>hash join</strong>和<strong>merge join</strong>。</p>
+<h1 id="代码框架介绍"><a href="#代码框架介绍" class="headerlink" title="代码框架介绍"></a>代码框架介绍</h1><p>这个是一个视频，在<a target="_blank" rel="noopener" href="https://open.oceanbase.com/competition/index">OceanBase社区版</a> 这个页面有。</p>
+<img src="/2021/09/29/OB%E5%A4%A7%E8%B5%9B/image-20210929212111009.png" class="">
+<p><img src="OB大赛/image-20210929212111009.png" alt="image-20210929212111009"></p>
+<h2 id="网络模块"><a href="#网络模块" class="headerlink" title="网络模块"></a>网络模块</h2><p>主要与客户端交互。在<code>miniob/src/observer/net/server.h</code>中定义。</p>
+<h2 id="SQL解析"><a href="#SQL解析" class="headerlink" title="SQL解析"></a>SQL解析</h2><p>将用户输入的SQL语句解析成语法树。</p>
+<p>在<code>miniob/src/observer/sql/parser/lex_sql.l</code>文件中，负责词法解析，<code>yacc_sql.y</code>负责语法解析</p>
+<h2 id="计划执行"><a href="#计划执行" class="headerlink" title="计划执行"></a>计划执行</h2><p>根据语法树描述执行并生成结果，<code>miniob/src/observer/sql/executor/execute_stage.h</code>会根据用户输入的SQL命令执行相应的语句，然后将生成的结果返回给客户端。</p>
+<h2 id="元数据管理"><a href="#元数据管理" class="headerlink" title="元数据管理"></a>元数据管理</h2><p>记录了当前数据库的表，字段和索引的元数据，在<code>miniob/src/observer/storage/common/field_meta.h</code>中。</p>
+<h2 id="执行计划缓存"><a href="#执行计划缓存" class="headerlink" title="执行计划缓存"></a>执行计划缓存</h2><p>这个和以下两个在决赛时用作查询优化题目的实现。在<code>miniob/src/observer/sql/plan_cache</code>中，将该SQL第一次生成的执行计划缓存在内存中，后续的执行可以反复执行这个计划，避免重复查询优化的过程。</p>
+<h2 id="语义解析"><a href="#语义解析" class="headerlink" title="语义解析"></a>语义解析</h2><p>将生成的语法树转换成数据库内部的数据结构，在<code>miniob/src/observer/sql/parser</code>中。</p>
+<h2 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h2><p>将执行的查询结果缓存在内存中，下次查询时可以直接返回query_cache。在<code>miniob/src/observer/sql/query_cache</code>中。</p>
+<h2 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h2><p>查询优化在<code>miniob/src/observer/sql/optimizer</code>中，根据一定的规则和统计数据，调整或重写语法树。</p>
+<h2 id="SEDA事件处理框架"><a href="#SEDA事件处理框架" class="headerlink" title="SEDA事件处理框架"></a>SEDA事件处理框架</h2><p>结合事件驱动和多线程模式的优点，做到易扩展，解耦合和高并发，代码在<code>miniob/deps/common/seda</code>，代码量很大，使用方法可以参考<code>miniob/src/observer/session/session_stage.h</code>。</p>
+<img src="/2021/09/29/OB%E5%A4%A7%E8%B5%9B/image-20210930010146878.png" class="">
+<p><img src="OB大赛/image-20210930010146878.png" alt="image-20210930010146878"></p>
+<h1 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h1><p>weihan学长已经发给我们<a target="_blank" rel="noopener" href="https://github.com/WeiHan666/MiniOB">MiniOB往年源码</a>，但是这是private的。</p>
+<h2 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h2><p>代码的编译是个小问题，因为要在linux系统下编译。我平时写代码都是在windows上的，因为有合适的IDE，但是编译却要在linux下，就很不方便，因此我安装了WSL，写完代码之后拷贝到WSL的文件夹下<code>C:\Users\zhou2\AppData\Local\Packages\CanonicalGroupLimited.Ubuntu20.04onWindows_79rhkp1fndgsc\LocalState\rootfs</code>，然后在WSL下安装<code>cmake</code>来安装。</p>
+<p>我的WSL是ubuntu系统的，所以安装cmake是这样的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update <span class="comment"># 更新软件源</span></span><br><span class="line">sudo apt install cmake</span><br></pre></td></tr></table></figure>
+<p>还有个问题时，如果你直接将文件夹拷贝到WSL的对应位置，会出现权限问题，你可以这样:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo su -</span><br><span class="line">chmod a+w -R MiniOB</span><br><span class="line">chmod a+r -R MiniOB</span><br><span class="line">chmod a+x -R MiniOB</span><br></pre></td></tr></table></figure>
+<p>就是给所有人加上所有权限，就没什么事了。</p>
+<h2 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h2><img src="/2021/09/29/OB%E5%A4%A7%E8%B5%9B/image-20210929211652709.png" class="">
+<p><img src="OB大赛/image-20210929211652709.png" alt="image-20210929211652709"></p>
+<p>rc.cpp里面有一句代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RC_CASE_STRING(rc)  case rc : return #rc</span></span><br><span class="line"><span class="comment">// rc应该用枚举值填充，但是#rc是什么意思</span></span><br></pre></td></tr></table></figure>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/29/OB%E5%A4%A7%E8%B5%9B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-yacc" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/27/yacc/">yacc</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/27/yacc/" class="archive-article-date">
+  	<time datetime="2021-09-28T02:28:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="yacc-introduction"><a href="#yacc-introduction" class="headerlink" title="yacc introduction"></a>yacc introduction</h1><ol>
+<li>Section 1 describes the preparation of grammar rules, </li>
+<li>Section 2 the preparation of the user supplied actions associated with these rules, and </li>
+<li>Section 3 the preparation of lexical analyzers. </li>
+<li>Section 4 describes the operation of the parser</li>
+</ol>
+<p>参考<a target="_blank" rel="noopener" href="http://dinosaur.compilertools.net/yacc/index.html">yacc</a></p>
+<h1 id="section1-Basic-Specifications"><a href="#section1-Basic-Specifications" class="headerlink" title="section1: Basic Specifications"></a>section1: Basic Specifications</h1><p>every specification file consists of three sections: the declarations, (grammar) rules, and programs. The sections are separated by double percent <code>%%</code> marks. (The percent <code>%&#39;</code> is generally used in Yacc specifications as an escape character.)</p>
+<p>Names representing tokens must be declared; this is most simply done by writing</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">%<span class="selector-tag">token</span></span>   name1  name2</span><br></pre></td></tr></table></figure>
+<p>The parser is designed to recognize the start symbol;</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">%<span class="selector-tag">start</span></span>   symbol</span><br></pre></td></tr></table></figure>
+<p>The rules section is made up of one or more grammar rules. A grammar rule has the form:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">A</span>  :  BODY  ;</span><br></pre></td></tr></table></figure>
+<p>A represents a nonterminal name, and BODY represents a sequence of zero or more <strong>names and literals</strong>. The colon and the semicolon are Yacc punctuation.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">A</span> :  <span class="string">&#x27;(&#x27;</span>  B  <span class="string">&#x27;)&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>‘(‘就是一个literal</p>
+<h1 id="section2-Actions"><a href="#section2-Actions" class="headerlink" title="section2: Actions"></a>section2: Actions</h1><p>With each grammar rule, the user may associate actions to be performed each time the rule is recognized in the input process.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">A</span> :  <span class="string">&#x27;(&#x27;</span>  B  <span class="string">&#x27;)&#x27;</span></span><br><span class="line">     &#123;       <span class="built_in">hello</span>( <span class="number">1</span>, <span class="string">&quot;abc&quot;</span> );  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">XXX :  <span class="type">YYY</span>  ZZZ</span><br><span class="line">       &#123;       printf(<span class="string">&quot;a message\n&quot;</span>);</span><br><span class="line">               flag = <span class="number">25</span>;  &#125;</span><br></pre></td></tr></table></figure>
+<p>yacc采用$$$$符号来表示返回值，用<code>$1, $2, $3...</code>等符号来引用被同一个产生式中前面的action返回的结果。</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exp</span>:  <span class="string">&#x27;(&#x27;</span>  expr  <span class="string">&#x27;)&#x27;</span>  &#123;  <span class="symbol">$</span><span class="symbol">$</span> = <span class="symbol">$</span><span class="number">2</span> ;  &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/27/yacc/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-IO多路复用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/23/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">IO多路复用</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/23/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2021-09-24T06:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>传统的阻塞式IO的特点是：若IO未完成，则应用程序一直被内核挂起，这样的话，只用一个线程处理很多个IO则不太可能，因为当你在等待一个要花很长时间的IO时，其他IO则完全无法处理。如果要处理多个IO，则必须要有多个进程和线程。</p>
+<h1 id="IO多路复用"><a href="#IO多路复用" class="headerlink" title="IO多路复用"></a>IO多路复用</h1><img src="/2021/09/23/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/1.png" class="">
+<p><img src="IO多路复用/1.png" alt="img"></p>
+<p><strong>I/O多路复用，I/O就是指的我们网络I/O,多路指多个TCP连接(或多个Channel)，复用指复用一个或少量线程</strong>。</p>
+<p>当调用select的时候告知内核对哪些事件(读就绪，写等)感兴趣以及等待多长时间。</p>
+<ol>
+<li>当用户进程调用了select，那么整个进程会被block；</li>
+<li>而同时，kernel会“监视”所有select负责的socket</li>
+<li>当任何一个socket中的数据准备好了，select就会返回；</li>
+<li>这个时候用户进程再调用read操作，将数据从kernel拷贝到用户进程。</li>
+</ol>
+<p>为了方便我们理解select调用，可以参照下面这张图，是jdk的基于I/O多路复用技术的NIO实现。重点在于理解Selector复用器。</p>
+<img src="/2021/09/23/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/2.png" class="">
+<p><img src="IO多路复用/2.png" alt="img"></p>
+<h2 id="阻塞式IO与IO复用"><a href="#阻塞式IO与IO复用" class="headerlink" title="阻塞式IO与IO复用"></a>阻塞式IO与IO复用</h2><p>阻塞式I/O和I/O复用，两个阶段都阻塞，那区别在哪里呢？都是阻塞，但是阻塞式I/O如果要接收更多的连接，就必须创建更多的线程。I/O复用模式下大量的连接统统都可以过来直接注册到Selector复用器上面，同时只要单个或者少量的线程来循环处理这些连接事件就可以了，一旦达到“就绪”的条件，就可以立即执行真正的I/O操作。这就是I/O复用与传统的阻塞式I/O最大的不同。也正是I/O复用的精髓所在。</p>
+<h1 id="select-poll-epoll"><a href="#select-poll-epoll" class="headerlink" title="select, poll, epoll"></a>select, poll, epoll</h1><h2 id="select"><a href="#select" class="headerlink" title="select"></a>select</h2><p>select()是一种系统调用，用于IO多路复用技术中选择准备好的socket。但是select有个缺点：</p>
+<ol>
+<li>select是通过监控文件描述符（file descriptor, fd）来实现，如果有一个或以上的文件描述符处于“就绪”（ready）状态，就返回其中一个即可。这些fd在系统内核中是通过何种数据结构存储的呢？是通过bitmap存放的（数据结构为fd_set），它默认大小是1024（对于64bit有2048个）。因此，对于大于1024的fd，基本效果就不可控了，这客观限制了并发量的上限。</li>
+<li>轮询的时间复杂度是O(n)</li>
+<li>涉及较多用户态和内核态拷贝</li>
+</ol>
+<h2 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h2><p>poll对select有了些许改进，如修正了fd数量的上限等等，但其他改进的幅度不大，此处不详谈。</p>
+<h2 id="epoll"><a href="#epoll" class="headerlink" title="epoll"></a>epoll</h2><p>epoll的优势主要有：</p>
+<ol>
+<li>修正了fd数量的限制</li>
+<li>放弃使用bitmap数据结构，底层改用了链表、红黑树.</li>
+<li>采用事件驱动</li>
+<li>无需重复拷贝fd</li>
+</ol>
+<p>这篇文章写epoll写的太好了：<a target="_blank" rel="noopener" href="https://blog.csdn.net/armlinuxww/article/details/92803381">Epoll原理解析</a>。它主要讲了一下几点：</p>
+<ol>
+<li>网络IO的硬件基础</li>
+<li>进程阻塞为什么不占用CPU资源</li>
+<li>socket中维护了进程等待队列，用于在就绪后唤起相应的进程</li>
+<li>select的缺点</li>
+<li>epoll的详细思路。解释了epoll比select强大的两个重要原因是：<br>a) 将“维护等待队列”和“阻塞进程”两个步骤分离<br>b) 就绪列表：让程序知道哪些socket收到了数据</li>
+</ol>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/23/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-ARIES" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/16/ARIES/">ARIES</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/16/ARIES/" class="archive-article-date">
+  	<time datetime="2021-09-17T00:30:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="ARIES简介"><a href="#ARIES简介" class="headerlink" title="ARIES简介"></a>ARIES简介</h1><p>ARIES是一种数据库日志恢复系统，在PG中用到的WAL应该是ARIES的简化版本。</p>
+<h2 id="ARIES为何不采用物理日志"><a href="#ARIES为何不采用物理日志" class="headerlink" title="ARIES为何不采用物理日志"></a>ARIES为何不采用物理日志</h2><p>要了解物理日志的缺点，首先我们先针对广泛应用的分槽页结构的特点进行说明。</p>
+<p>分槽页结构是一种在一页中存储很多变长记录的页结构，下面是一个例子：</p>
+<img src="/2021/09/16/ARIES/image-20210917100042046.png" class="">
+<p><img src="ARIES/image-20210917100042046.png" alt="image-20210917100042046"></p>
+<p>如果将存储在0号位置的记录删除掉，然后将0号位置后面的所以记录前移，那么物理日志就会将记录两个信息：0号位置的记录删除了，4号位置的记录移动到前面。这样的话，日志就会很长。</p>
+<h2 id="ARIES算法的特点"><a href="#ARIES算法的特点" class="headerlink" title="ARIES算法的特点"></a>ARIES算法的特点</h2><ol>
+<li>使用日志顺序号（LSN）来标识日志记录，如果某条日志对应的操作已经更新在了数据库页中了，那么就可以把这条日志的LSN存储在页中。</li>
+<li>支持物理逻辑操作。受影响的页从物理上标识出来，比如删除操作的日志会记录删除的元组存储在哪个页中，但是对于删除操作本身，不会记录它对其他元组的影响（比如元组要前移来填补删除元组的位置），只是记录有这样一个删除操作。</li>
+</ol>
+<h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><p>其实最开始的日志是比较简单的，包括undo日志和redo日志，这个时候的日志系统设计主要考虑一下几点：</p>
+<ol>
+<li><p>一条日志记录持久化了之后，对应的数据库操作才可以持久化到数据库中；</p>
+</li>
+<li><p>在checkpoint时，将整个系统锁住，不允许有任任何对缓冲块的写操作，保证日志缓存和脏页都持久化。这里有个问题，脏页中都反映了哪些事务修改呢，我们有两个可能：1.A日志在缓存中，但是A日志的事务修改却没有反应在缓存中, 2. A日志在缓存中，则A日志的事务修改也反映在缓存中。答案其实是第二个。</p>
+<p>在一个事务提交时，它的最后一条end日志记录肯定已经持久化了，但是包含该事务修改的数据项的块（脏页）却不一定持久化，可以在以后的某个时间点输出，这个时间点可以是后台写进程，也可以是checkpoint进程。</p>
+</li>
+<li><p>如果在系统崩溃后，我们可以严格地在日志的checkpoint点之后进行恢复，不用考虑checkpoint点之前的日志了，或者说，可以直接把checkpoint点之前的日志都删除了也没什么问题，因为在checkpoint记录之前的任何日志对应的数据库修改，都必然持久化了。在我们考虑的日志范围内，我们将整个日志对应的数据库操作都重新执行一遍，然后考虑undo-list中的事务，将它们的事务操作回滚。</p>
+</li>
+</ol>
+<img src="/2021/09/16/ARIES/image-20210918085628547.png" class="">
+<p><img src="ARIES/image-20210918085628547.png" alt="image-20210918085628547"></p>
+<p>从上面的例子中，我们可以发现一些问题：</p>
+<ol>
+<li>在事务恢复的过程中，明明T2事务的数据库修改已经持久化了，但是最终系统崩溃后还要对T2事务的所有操作进行再次进行持久化，这样有两个问题：1.如果采用物理日志的形式，那么也就是性能出现问题了，2.但是如果是物理逻辑日志，那么出现错误了，因为T2的事务操作做了两遍，一遍在崩溃之前做的，一遍在这次恢复过程中做的，可能会在数据库中出现两条同样的记录。</li>
+<li>在checkpoint的时候，不允许整个系统进行写缓冲操作，这样会造成系统在checkpoint时完全没有可用性，这是不能忍受的。</li>
+</ol>
+<h2 id="PageLSN"><a href="#PageLSN" class="headerlink" title="PageLSN"></a>PageLSN</h2><p>对于上述第一个问题，首先采用了PageLSN的解法，它的核心思想是在缓存页上增加一项用于表示最后一个在此页上的事务修改对应的日志号是什么。有了这个PageLSN，就可以知道了，“哦，在redo的时候，如果要redo L1日志记录，但是发现L1日志记录对应的页的PageLSN大于等于L1，那么就可以不用管L1，即使这个在checkpoint后持久化日志的”。</p>
+<h2 id="脏页表"><a href="#脏页表" class="headerlink" title="脏页表"></a>脏页表</h2><p>为了解决上述第二个问题，我们设置了脏页表。因为在checkpoint时也会修改缓存页，但是这部分修改相关的日志和数据库修改可能在checkpoint日志之前写进了磁盘中，因此如果不做任何事情的话，可能会丢失这部分日志（毕竟，默认checkpoint日志之前的日志不会被考虑的）。 脏页表包含一个在数据库缓冲区中已更新的页的列表，它为每一页保存其PageLSN和一个称为RecLSN的字段，其中RecLSN表示第一个导致该Page变脏的LSN。</p>
+<p>当正在执行checkpoint时，脏页表会被更新，里面记录了<strong>在checkpoint期间及以前</strong>做的缓冲区修改，包括哪个页被修改了，最近一次修改是哪个LSN，第一次使得页变脏的是哪个LSN。这个信息是有价值的，在checkpoint日志写入磁盘时，也会将这个脏页表作为checkpoint日志的一部分持久化了，在以后的分析阶段会重点用到脏页表。</p>
+<p>{&amp; asset_img image-20210927123850047.png %}</p>
+<p><img src="ARIES/image-20210927123850047.png" alt="image-20210927123850047"></p>
+<p>如上图所示，在7563日志已经持久化了的时候，我们开始checkpoint，但是系统并没有禁止更新缓冲区，所以，在checkpoint的过程中，7564和7567号日志修改了4894页，7565号日志修改了7200页，这些信息保存在脏页表中。然后checkpoint日志的日志号是7568。因此，如果没有脏页表，我们在恢复时，就直接从7568开始看了，而忽略了7564号及7568以前的日志，这就不对了。</p>
+<p>在checkpoint日志罗盘时，顺便也把脏页表给罗盘了，这样我们就知道了：“哦，最早应该从日志记录的7564号开始考虑，而不是7568”。</p>
+<h1 id="恢复算法"><a href="#恢复算法" class="headerlink" title="恢复算法"></a>恢复算法</h1><h2 id="分析阶段"><a href="#分析阶段" class="headerlink" title="分析阶段"></a>分析阶段</h2><p>一旦分析阶段发现一个更新日志记录（Update Log Record），而且对应的page不在脏页表中，分析阶段就将它添加进脏页表中，并设置对应的RecLSN项为该日志记录的LSN。（end应该指的是事务的commit和abort，在所有操作都持久化到数据库中后才会写end日志记录到磁盘中。）</p>
+<img src="/2021/09/16/ARIES/image-20210927134837668.png" class="">
+<p><img src="ARIES/image-20210927134837668.png" alt="image-20210927134837668"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/16/ARIES/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据库日志" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%A5%E5%BF%97/">数据库日志</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%A5%E5%BF%97/" class="archive-article-date">
+  	<time datetime="2021-09-15T10:49:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>我之前有看过postgresql官网的WAL解读，并把这部分的理论和代码解读写到了另外一篇博客中<a href="https://zhouhuahui.github.io/2021/07/19/Postgresdb%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/">《Postgresdb源码解读》</a>，文章写的很杂很乱，但也只能这样了。我准备再把那篇博客的内容和纸质笔记整理一下，然后从一些数据库教材，PG原理解读的书，以及网上大量的博客来总结整理。当然，在这一段时间内我也要读老师关注的论文，学习Tidb。</p>
+<p>《PostgreSQL指南 内幕探索》<a target="_blank" rel="noopener" href="https://blog.csdn.net/hmxz2nn/category_10842507.html">博客文章</a> <a target="_blank" rel="noopener" href="https://e.dangdang.com/pc/reader/index.html?id=1901133709">当当网阅读</a></p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E6%97%A5%E5%BF%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Tidb-talent-plan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/13/Tidb-talent-plan/">Tidb talent plan</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/13/Tidb-talent-plan/" class="archive-article-date">
+  	<time datetime="2021-09-14T02:32:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Tidb-talen-plan"><a href="#Tidb-talen-plan" class="headerlink" title="Tidb talen plan"></a>Tidb talen plan</h1><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>这是一个学习造一个简单的Tidb数据库的网站：<a target="_blank" rel="noopener" href="https://university.pingcap.com/talent-plan/">https://university.pingcap.com/talent-plan/</a>  </p>
+<img src="/2021/09/13/Tidb-talent-plan/image-20210914103409549.png" class="">
+<p><img src="Tidb-talent-plan/image-20210914103409549.png" alt="image-20210914103409549"></p>
+<h2 id="在线操作Tidb数据库"><a href="#在线操作Tidb数据库" class="headerlink" title="在线操作Tidb数据库"></a>在线操作Tidb数据库</h2><p><a target="_blank" rel="noopener" href="https://tour.pingcap.com/">https://tour.pingcap.com/</a></p>
+<h1 id="tinysql"><a href="#tinysql" class="headerlink" title="tinysql"></a>tinysql</h1><h2 id="proj1-part2-Table-Codec"><a href="#proj1-part2-Table-Codec" class="headerlink" title="proj1-part2 Table Codec"></a>proj1-part2 Table Codec</h2><p>这是这一部分的网址</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tidb-incubator/tinysql/blob/course/courses/proj1-part2-README-zh_CN.md">https://github.com/tidb-incubator/tinysql/blob/course/courses/proj1-part2-README-zh_CN.md</a></p>
+<h3 id="概览-1"><a href="#概览-1" class="headerlink" title="概览"></a>概览</h3><p>介绍表上的数据如何映射到TinyKV上</p>
+<h3 id="Table-Codec"><a href="#Table-Codec" class="headerlink" title="Table Codec"></a>Table Codec</h3><p>经过分析，一个类似有序的数组的排列可能是比较有用的，虽然PG中一个表的所有row是不可能用有序的数组形式的，PG的表存储和索引构建比较复杂，但是这里仅仅构建一个简单的Tidb数据库，因此就直接用类有序数组来存储所有行了。我觉得一个B数是一个不错的选择，具体应该是什么，看后面的课程吧。</p>
+<p>Tidb的TinySQL是建立在TinuKV之上的，因此要构建TinyKV，要先知道TinyKV的接口：</p>
+<ol>
+<li>Key和Value都是bytes数组</li>
+<li>Scan(startKey)</li>
+<li>Set(Key, value)</li>
+</ol>
+<p>在Tidb中行数据是以key-value对存在的，因此如何设计key和value的格式呢？</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Key:</span> tablePrefix_tableID_recordPrefixSep_rowID</span><br><span class="line"><span class="symbol">Value:</span> [col1, col2, col3, col4]</span><br></pre></td></tr></table></figure>
+<p>其中 Key 的 tablePrefix/recordPrefixSep 都是特定的字符串常量，用于在 KV 空间内区分其他数据。 对于索引，会为每一个索引分配表内唯一的 indexID（一个索引是类似于hash或者B树之类的结构），然后按照如下规则编码成 Key-Value pair：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Key:</span> tablePrefix_tableID_indexPrefixSep_indexID_indexColumnsValue</span><br><span class="line"><span class="symbol">Value:</span> rowID</span><br></pre></td></tr></table></figure>
+<p>当然，我们还需要考虑非唯一索引，这个时候上面的方法就行不通了，我们需要将 rowID 也编码进 Key 里使之成为唯一的：</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Key</span>: tablePrefix_tableID_indexPrefixSep_indexID_ColumnsValue_rowID</span><br><span class="line">Value：<span class="built_in">null</span></span><br></pre></td></tr></table></figure>
+<p>从<code>tinysql/tablecodec.go</code>源码中可以看到tablePrefix, recordPrefixSep是什么</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	tablePrefix     = []<span class="keyword">byte</span>&#123;<span class="string">&#x27;t&#x27;</span>&#125;</span><br><span class="line">	recordPrefixSep = []<span class="keyword">byte</span>(<span class="string">&quot;_r&quot;</span>)</span><br><span class="line">	indexPrefixSep  = []<span class="keyword">byte</span>(<span class="string">&quot;_i&quot;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>在tinysql目录下，测试<code>DecodeRecordKey</code>代码，运行:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go test github.com<span class="regexp">/pingcap/</span>tidb/tablecodec <span class="string">&quot;-check.f&quot;</span> TestRecordKey</span><br></pre></td></tr></table></figure>
+<p>注意，这里<code>&quot;-check.f&quot;</code>不要忘了双引号。</p>
+<h2 id="proj2-语法分析"><a href="#proj2-语法分析" class="headerlink" title="proj2 语法分析"></a>proj2 语法分析</h2><p>2021.9.16号开始学习proj2</p>
+<p>编译原理的知识需要仔细讲一下，或者提供一个ppt来供系统学习编译原理的状态机，词法分析，语法分析等理论。</p>
+<p>关于TiDB SQL Parser的源码实现，有很多原理没有讲清楚，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%union &#123;</span><br><span class="line">    offset int // offset</span><br><span class="line">    item interface&#123;&#125;</span><br><span class="line">    ident string</span><br><span class="line">    expr ast.ExprNode</span><br><span class="line">    statement ast.StmtNode</span><br><span class="line">&#125;zhongjifu </span><br></pre></td></tr></table></figure>
+<p>在<code>parser.y</code>文件的<code>definitions</code>部分，定义了很多终极符和非终极符，终极符是以小写字母开头的，非终极符是以大写字母开头的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/13/Tidb-talent-plan/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-stl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -299,6 +872,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 迭代器删除单个元素</span></span><br><span class="line"><span class="comment">// erase返回下一个元素的迭代器</span></span><br><span class="line">map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;::iterator it = mp.<span class="built_in">find</span>(<span class="string">&#x27;b&#x27;</span>);</span><br><span class="line">map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;::iterator it2 = mp.<span class="built_in">erase</span>(it); <span class="comment">// 删除key为&#x27;b&#x27;的key value对</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 通过key删除</span></span><br><span class="line">map&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt;::iterator it2 = mp.<span class="built_in">erase</span>(<span class="string">&#x27;b&#x27;</span>); <span class="comment">// 删除key为&#x27;b&#x27;的key value对</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>map长度</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// size函数获取mp的key value对个数</span></span><br><span class="line">cout&lt;&lt;mp.<span class="built_in">size</span>()&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<h2 id="priority-queue"><a href="#priority-queue" class="headerlink" title="priority_queue"></a>priority_queue</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/yalphait/articles/8889221.html">https://www.cnblogs.com/yalphait/articles/8889221.html</a></p>
 <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p><a target="_blank" rel="noopener" href="http://www.cplusplus.com/reference/">http://www.cplusplus.com/reference/</a></p>
 
       
@@ -474,7 +1048,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据库#</a>
         		</li>
       		
 		</ul>
@@ -485,535 +1059,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/09/10/Tidb/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2021ecnu校园地助学贷款" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/">2021ecnu校园地助学贷款</a>
-    </h1>
-  
-
-        
-        <a href="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/" class="archive-article-date">
-  	<time datetime="2021-09-10T07:28:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="校园地助学贷款简介"><a href="#校园地助学贷款简介" class="headerlink" title="校园地助学贷款简介"></a>校园地助学贷款简介</h1><p>本专科贷款金额不超过12000元，研究生不超过16000元。</p>
-<h2 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h2><p><a target="_blank" rel="noopener" href="https://zizhu.ecnu.edu.cn/Notice/Details/2080">https://zizhu.ecnu.edu.cn/Notice/Details/2080</a></p>
-<h1 id="申贷流程概述"><a href="#申贷流程概述" class="headerlink" title="申贷流程概述"></a>申贷流程概述</h1><p>9月9日-9月18日，领取《借款凭证》与办理银行卡（如果没有上海市中国银行一类卡，才去办理银行卡），到大学生活动中心504整。</p>
-<p>9月27日-10月9日，贷款办网站（华东师范大学资助网站）填写相关材料，自行打印。为什么这么晚，因为要等到困难认定结果出来。</p>
-<p>10月18日-10月21日，到贷款办递交相关材料，签订合同。</p>
-<p>12月上旬，贷款到校。</p>
-<h1 id="贷款办网站填写指南"><a href="#贷款办网站填写指南" class="headerlink" title="贷款办网站填写指南"></a>贷款办网站填写指南</h1><img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910184539319.png" class="">
-<p><img src="2021ecnu校园地助学贷款/image-20210910184539319.png" alt="image-20210910184539319"></p>
-<p>这里联系人不能写父母，只能写朋友亲戚。</p>
-<img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910184800870.png" class="">
-<p><img src="2021ecnu校园地助学贷款/image-20210910184800870.png" alt="image-20210910184800870"></p>
-<p>关于有邮箱，最好不要填学校邮箱，填QQ邮箱</p>
-<img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910185120930.png" class="">
-<p><img src="2021ecnu校园地助学贷款/image-20210910185120930.png" alt="image-20210910185120930"></p>
-<img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910185230366.png" class="">
-<p><img src="2021ecnu校园地助学贷款/image-20210910185230366.png" alt="image-20210910185230366"></p>
-<img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910185350782.png" class="">
-<p><img src="2021ecnu校园地助学贷款/image-20210910185350782.png" alt="image-20210910185350782"></p>
-<img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910185511516.png" class="">
-<p><img src="2021ecnu校园地助学贷款/image-20210910185511516.png" alt="image-20210910185511516"></p>
-<h1 id="贷款的还款"><a href="#贷款的还款" class="headerlink" title="贷款的还款"></a>贷款的还款</h1><img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910185937261.png" class="">
-<p><img src="2021ecnu校园地助学贷款/image-20210910185937261.png" alt="image-20210910185937261"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-锁" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/09/%E9%94%81/">锁</a>
-    </h1>
-  
-
-        
-        <a href="/2021/09/09/%E9%94%81/" class="archive-article-date">
-  	<time datetime="2021-09-10T01:04:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/09/%E9%94%81/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-每日技术阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">每日技术阅读</a>
-    </h1>
-  
-
-        
-        <a href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/" class="archive-article-date">
-  	<time datetime="2021-09-10T00:33:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>每天都要阅读一些技术类的文章，但是如果把所有这些文章都做笔记是不太现实的，但是如果把这些文章都只想过眼云烟一样读一下，又很快忘了，所以在这个文章里记录每个月读的文章链接，标题，以及自己的一点想法。</p>
-<h1 id="2021-9"><a href="#2021-9" class="headerlink" title="2021.9"></a>2021.9</h1><h2 id="数据库读写分离"><a href="#数据库读写分离" class="headerlink" title="数据库读写分离"></a>数据库读写分离</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/findbetterme/p/10820590.html">https://www.cnblogs.com/findbetterme/p/10820590.html</a></p>
-<p>提到了最终一致性。在分布式系统中，对于某些对实时性要求不高的场合里，可以放弃一些一致性，比如采用读写分离的方式，将一些读操作放在从服务器上执行，虽然慢了点，但是等个几分钟也不是不可以。比如，我刚在github.io上发布了新的博客，总是要刷新好几遍才会出来我更新的东西，这就是读写分离。</p>
-<h2 id="为什么选择Rust"><a href="#为什么选择Rust" class="headerlink" title="为什么选择Rust"></a>为什么选择Rust</h2><p><a target="_blank" rel="noopener" href="https://www.techug.com/post/why-we-choose-rust-to-dev.html">https://www.techug.com/post/why-we-choose-rust-to-dev.html</a></p>
-<p>这篇文章对Rust和C++，go语言进行了比较，解释了为什么在大型项目中选择Rust语言。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-处理数据库读写冲突" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/">处理数据库读写冲突</a>
-    </h1>
-  
-
-        
-        <a href="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/" class="archive-article-date">
-  	<time datetime="2021-09-09T23:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="读写冲突问题"><a href="#读写冲突问题" class="headerlink" title="读写冲突问题"></a>读写冲突问题</h1><p>参考【1】</p>
-<h2 id="更新丢失"><a href="#更新丢失" class="headerlink" title="更新丢失"></a>更新丢失</h2><p>更新丢失（Lost Update）：当两个或多个事务选择同一行，然后基于最初选定的值更新该行时，由于每个事务都不知道其他事务的存在，就会发生丢失更新问题 —— 最后的更新覆盖了其他事务所做的更新。如何避免这个问题呢，最好在一个事务对数据进行更改但还未提交时，其他事务不能访问修改同一个数据。</p>
-<p>当一个事务A正在修改X数据时，但是还没提交，事务B也修改了X数据，这个情况下就是更新丢失。</p>
-<ul>
-<li>在使用锁解决冲突的情况下，事务A在修改X之前获得了X的X-lock，那么事务B是不可能更新X的。</li>
-<li>在使用MVCC解决冲突的情况下，事务B也会由于可见性判断看不到事务A做出的更新，最多只能看到旧值。</li>
-</ul>
-<h2 id="脏读"><a href="#脏读" class="headerlink" title="脏读"></a>脏读</h2><p>脏读（Dirty Reads）：一个事务正在对一条记录做修改，在这个事务并提交前，这条记录的数据就处于不一致状态；这时，另一个事务也来读取同一条记录，如果不加控制，第二个事务读取了这些尚未提交的脏数据，并据此做进一步的处理，就会产生未提交的数据依赖关系。这种现象被形象地叫做 “脏读”。</p>
-<h2 id="不可重复读"><a href="#不可重复读" class="headerlink" title="不可重复读"></a>不可重复读</h2><p>不可重复读（Non-Repeatable Reads）：一个事务在多次读取某些数据时可能会看到数据已经更新或删除，这种现象叫做“不可重复读”。</p>
-<h2 id="幻读"><a href="#幻读" class="headerlink" title="幻读"></a>幻读</h2><p>幻读（Phantom Reads）：一个事务按相同的查询条件重新读取以前检索过的数据，却发现其他事务插入了满足其查询条件的新数据，这种现象就称为 “幻读”。</p>
-<h1 id="隔离性级别"><a href="#隔离性级别" class="headerlink" title="隔离性级别"></a>隔离性级别</h1><p>参考【2】</p>
-<p>数据库是一个服务器／客户端架构的软件，对于同一个服务器来说，可以有若干个客户端与之连接，每个客户端与服务器连接上之后，就可以称之为一个会话（<code>Session</code>）。我们可以同时在不同的会话里输入各种语句，这些语句可以作为事务的一部分进行处理。不同的会话可以同时发送请求，也就是说服务器可能同时在处理多个事务，这样子就会导致不同的事务可能同时访问到相同的记录。我们前边说过事务有一个特性称之为<code>隔离性</code>，理论上在某个事务对某个数据进行访问时，其他事务应该进行排队，当该事务提交之后，其他事务才可以继续访问这个数据。但是这样子的话对性能影响太大，所以设计数据库的大叔提出了各种<code>隔离级别</code>，来最大限度的提升系统并发处理事务的能力，但是这也是以牺牲一定的<code>隔离性</code>来达到的。</p>
-<h2 id="未提交读（READ-UNCOMMITTED）"><a href="#未提交读（READ-UNCOMMITTED）" class="headerlink" title="未提交读（READ UNCOMMITTED）"></a>未提交读（READ UNCOMMITTED）</h2><p>如果一个事务读到了另一个未提交事务修改过的数据，那么这种<code>隔离级别</code>就称之为<code>未提交读</code>（英文名：<code>READ UNCOMMITTED</code>），示意图如下：</p>
-<img src="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/169bde35552fb49c~tplv-t2oaga2asx-watermark.awebp" class="">
-<p><img src="处理数据库读写冲突/169bde35552fb49c~tplv-t2oaga2asx-watermark.awebp" alt="image_1d6t5hhamcd61qkjk9v1ag8171o7u.png-95.6kB"></p>
-<p>如果是READ UNCOMMITTED隔离级别，这种隔离级别就太低了，可能会发生读写冲突问题中的更新丢失和脏读问题。</p>
-<h2 id="已提交读（READ-COMMITTED）"><a href="#已提交读（READ-COMMITTED）" class="headerlink" title="已提交读（READ COMMITTED）"></a>已提交读（READ COMMITTED）</h2><p>如果一个事务只能读到另一个已经提交的事务修改过的数据，并且其他事务每对该数据进行一次修改并提交后，该事务都能查询得到最新值，那么这种<code>隔离级别</code>就称之为<code>已提交读</code>（英文名：<code>READ COMMITTED</code>）。</p>
-<img src="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/169bde3557ef6578~tplv-t2oaga2asx-watermark.awebp" class="">
-<p><img src="处理数据库读写冲突/169bde3557ef6578~tplv-t2oaga2asx-watermark.awebp" alt="image_1d6t64lgg1j4mtp818f61n09t6l8o.png-133.1kB"></p>
-<p>在READ COMMITTED隔离级别下，可能会发生不可重复读的读写冲突，比如：</p>
-<img src="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/169bde356084eb69~tplv-t2oaga2asx-watermark.awebp" class="">
-<p><img src="处理数据库读写冲突/169bde356084eb69~tplv-t2oaga2asx-watermark.awebp" alt="image_1d6urs4l0g799959e1jsj1cvqai.png-170.6kB"></p>
-<p>我们在<code>Session B</code>中提交了几个隐式事务，这些事务都修改了<code>id</code>为<code>1</code>的记录的列c的值，每次事务提交之后，<code>Session A</code>中的事务都可以查看到最新的值。这种现象也被称之为<code>不可重复读</code>。</p>
-<h2 id="可重复读-REPEATABLE-READ"><a href="#可重复读-REPEATABLE-READ" class="headerlink" title="可重复读 REPEATABLE READ"></a>可重复读 REPEATABLE READ</h2><p>在一些业务场景中，一个事务只能读到另一个已经提交的事务修改过的数据，但是第一次读过某条记录后，即使其他事务修改了该记录的值并且提交，该事务之后再读该条记录时，读到的仍是第一次读到的值，而不是每次都读到不同的数据。那么这种<code>隔离级别</code>就称之为<code>可重复读</code>（英文名：<code>REPEATABLE READ</code>）</p>
-<img src="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/169bde35523d0ae5~tplv-t2oaga2asx-watermark.awebp" class="">
-<p><img src="处理数据库读写冲突/169bde35523d0ae5~tplv-t2oaga2asx-watermark.awebp" alt="image_1d6useq9aagi9981sm21b011dt4bf.png-171.1kB"></p>
-<h2 id="串行化-SERIALIZABLE"><a href="#串行化-SERIALIZABLE" class="headerlink" title="串行化 SERIALIZABLE"></a>串行化 SERIALIZABLE</h2><p>即使是可重复读，也会遇到串行化的问题，这个问题在《数据库系统概念》【3】中有非常详细的理论，包括冲突环的讲解。</p>
-<img src="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/169bde3556310c02~tplv-t2oaga2asx-watermark.awebp" class="">
-<p><img src="处理数据库读写冲突/169bde3556310c02~tplv-t2oaga2asx-watermark.awebp" alt="image_1d6uu0sk41213olj102t1tsa10o9ds.png-122.9kB"></p>
-<p>一般情况下不会要求这么高的隔离性级别，毕竟串行化的并发度不是很好。</p>
-<h1 id="MVCC：解决冲突问题"><a href="#MVCC：解决冲突问题" class="headerlink" title="MVCC：解决冲突问题"></a>MVCC：解决冲突问题</h1><p>第一次解出到MVCC，是postgresql的MVCC机制，可以参考【4】。还有一篇文章【2】也讲解了MVCC，这个可能是MySQL的MVCC机制。我觉得【2】文章写的很不错。</p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】mysql处理读写冲突的MVCC：<a target="_blank" rel="noopener" href="https://blog.csdn.net/cumtmonster/article/details/106669873">https://blog.csdn.net/cumtmonster/article/details/106669873</a></p>
-<p>【2】MySQL事务隔离级别和MVCC：<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903808376504327">https://juejin.cn/post/6844903808376504327</a></p>
-<p>【3】《数据库系统概念（计算机科学丛书）》</p>
-<p>【4】interdb是postgresql的内幕讲解。<a target="_blank" rel="noopener" href="https://www.interdb.jp/pg/pgsql05.html">https://www.interdb.jp/pg/pgsql05.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-论文阅读：spitfire" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/">论文阅读：spitfire</a>
-    </h1>
-  
-
-        
-        <a href="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/" class="archive-article-date">
-  	<time datetime="2021-09-09T10:51:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://zxjcarrot.github.io/publication/spitfire/spitfire.pdf">https://zxjcarrot.github.io/publication/spitfire/spitfire.pdf</a></p>
-<h1 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h1><h2 id="our-approach"><a href="#our-approach" class="headerlink" title="our approach"></a>our approach</h2><p> Since the CPU is capable of directly operating on NVM-resident data, Spitfire does not eagerly move data from NVM to DRAM. We show that <em>lazy</em> data migration from NVM to DRAM ensures that only <em>hot</em> data is promoted to DRAM.</p>
-<p>要决定怎么eager，怎么lazy。</p>
-<h1 id="background"><a href="#background" class="headerlink" title="background"></a>background</h1><h2 id="NVM-aware-Optimizations-in-Hymem"><a href="#NVM-aware-Optimizations-in-Hymem" class="headerlink" title="NVM-aware Optimizations in Hymem"></a>NVM-aware Optimizations in Hymem</h2><h3 id="Data-Migration-Policy"><a href="#Data-Migration-Policy" class="headerlink" title="Data Migration Policy"></a>Data Migration Policy</h3><img src="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210912073649411.png" class="">
-<p><img src="论文阅读：spitfire/image-20210912073649411.png" alt="image-20210912073649411"></p>
-<p>the four critical decisions in the <strong>data migration policy</strong> adopted by Hymem include: DRAM admission, DRAM eviction, NVM admission, and NVM eviction：</p>
-<ol>
-<li>dram admission：数据要么从NVM读到DRAM，要么从SSD读到DRAM；</li>
-<li>DRAM eviction：解决数据要evict的话，要evict到NVM还是SSD。<br>如果page在admission queue里面，则从admission queue中删除这个page，然后将page放到NVM中；<br>否则，将page加入到admission queue中，然后evict到SSD中。</li>
-</ol>
-<h3 id="Cache-line-grained-Loading"><a href="#Cache-line-grained-Loading" class="headerlink" title="Cache-line-grained Loading"></a>Cache-line-grained Loading</h3><img src="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210912074216490.png" class="">
-<p><img src="论文阅读：spitfire/image-20210912074216490.png" alt="image-20210912074216490"></p>
-<p>我们使用一个DRAM page来存储正在访问的NVM page，但并不是把这个NVM page的所有cache line都加载进来。在DRAM page中有header，存储page的元信息，其中resident表示DRAM page中256个cache line中第几个是已经从NVM page的对应cache line加载进来的，nvm表示这个DRAM page对应哪个NVM page；接下来，有256个cache line，至于哪些是从NVM  page加载进来的，这要看resident位了。以上就是所谓的cache-line-grained page。</p>
-<p>如果只加载了NVM page中的很少几个cache line怎么办，不能这样DRAM page中的256个cache line中会剩下很多cache line没有用，造成了空间浪费，于是我们决定使用mini page，只有16个cache line，只存储加载进来的cache line，比如figure 2(b)中，count=3表示目前只加载了3个cache line，slots数组中存储了这个3个cache line分别对应NVM page中的哪些cache line。</p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】论文阅读:Spitfire：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/355572739">https://zhuanlan.zhihu.com/p/355572739</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-读论文：DUDETM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/">读论文：DUDETM</a>
-    </h1>
-  
-
-        
-        <a href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/" class="archive-article-date">
-  	<time datetime="2021-09-08T06:21:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="事务内存"><a href="#事务内存" class="headerlink" title="事务内存"></a>事务内存</h1><p>【1】</p>
-<h1 id="DUDETM-Building-Durable-Transactions-with-Decoupling-for-Persistent-Memory"><a href="#DUDETM-Building-Durable-Transactions-with-Decoupling-for-Persistent-Memory" class="headerlink" title="DUDETM: Building Durable Transactions with Decoupling for Persistent Memory"></a>DUDETM: Building Durable Transactions with Decoupling for Persistent Memory</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="undo-logging"><a href="#undo-logging" class="headerlink" title="undo logging"></a>undo logging</h3><p>In <em>undo logging</em>, the original (old) values are stored to a log before they are modifified by a transaction. Having its old value preserved in the log, the data can be modified <em>in-place</em>. Therefore, a memory load can directly read the latest value without being intercepted and remapped to a different address.</p>
-<p>为何undo logging可以避免很大的开销呢，因为针对一个数据写入，它先写入日志，再写入状态机，这样的话，数据读可以直接读到最新的数据（不像redo logging，当把全部数据写入的日志都持久化之后，才写入状态机）；但是undo logging有一个问题：</p>
-<p>To enforce this order, the system uses the <em>persist</em> operation, which is implemented by a sequence of instructions , for <em>every</em> update. </p>
-<h3 id="redo-logging"><a href="#redo-logging" class="headerlink" title="redo logging"></a>redo logging</h3><p>However, since the data updates are buffered in the log, the reads of them in a transaction must be remapped to the log to obtain the latest values.</p>
-<p>The dilemma between undo and redo logging is essentially a trade-off between persist ordering cost and update redirection cost.</p>
-<p>The key insight of our solution is <em>decoupling</em> a durable transaction into three <em>fully asyn</em>chronous* steps. </p>
-<p>(1) Perform: execute the transaction in a shadow memory , and produce a redo log for the transaction.</p>
-<p>(2) Persist: flflush the redo log of each transaction to persistent memory in an atomic manner. </p>
-<p>(3) Reproduce: modify original data in persistent memory according to the persisted redo log. It is essential that we never directly write back dirty data from shadow memory to persistent memory – all the updates are realized via the redo log.</p>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
-<li>为什么“However, since the data updates are buffered in the log, the reads of them in a transaction must be remapped to the log to obtain the latest values.”</li>
-</ol>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】初识事务内存（Transactional Memory）：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/151425608">https://zhuanlan.zhihu.com/p/151425608</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/">展开全文 >></a>
         </p>
       
 
@@ -1226,6 +1271,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">论文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据库#</a>
               </li>
             
             <div class="clearfix"></div>

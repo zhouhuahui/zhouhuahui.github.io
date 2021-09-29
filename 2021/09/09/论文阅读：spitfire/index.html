@@ -19,8 +19,18 @@
 <meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/论文阅读：spitfire/image-20210912073649411.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210912074216490.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/论文阅读：spitfire/image-20210912074216490.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210913065244367.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/论文阅读：spitfire/image-20210913065244367.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210914080927159.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/论文阅读：spitfire/image-20210914080927159.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210914091814123.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/论文阅读：spitfire/image-20210914091814123.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210915072501291.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/论文阅读：spitfire/image-20210915072501291.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210915075403248.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/论文阅读：spitfire/image-20210915075403248.png">
 <meta property="article:published_time" content="2021-09-09T10:51:14.000Z">
-<meta property="article:modified_time" content="2021-09-11T23:50:06.414Z">
+<meta property="article:modified_time" content="2021-09-15T01:05:41.167Z">
 <meta property="article:author" content="fantasy">
 <meta property="article:tag" content="论文">
 <meta name="twitter:card" content="summary">
@@ -194,7 +204,86 @@
 <p><img src="论文阅读：spitfire/image-20210912074216490.png" alt="image-20210912074216490"></p>
 <p>我们使用一个DRAM page来存储正在访问的NVM page，但并不是把这个NVM page的所有cache line都加载进来。在DRAM page中有header，存储page的元信息，其中resident表示DRAM page中256个cache line中第几个是已经从NVM page的对应cache line加载进来的，nvm表示这个DRAM page对应哪个NVM page；接下来，有256个cache line，至于哪些是从NVM  page加载进来的，这要看resident位了。以上就是所谓的cache-line-grained page。</p>
 <p>如果只加载了NVM page中的很少几个cache line怎么办，不能这样DRAM page中的256个cache line中会剩下很多cache line没有用，造成了空间浪费，于是我们决定使用mini page，只有16个cache line，只存储加载进来的cache line，比如figure 2(b)中，count=3表示目前只加载了3个cache line，slots数组中存储了这个3个cache line分别对应NVM page中的哪些cache line。</p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】论文阅读:Spitfire：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/355572739">https://zhuanlan.zhihu.com/p/355572739</a></p>
+<h1 id="NVM-Aware-Data-Migration"><a href="#NVM-Aware-Data-Migration" class="headerlink" title="NVM-Aware Data Migration"></a>NVM-Aware Data Migration</h1><p>Once a page is selected for eviction or promotion, Spitfire uses the probabilistic data migration policy for determining the storage tier to which the page must be migrated.</p>
+<p>spitfire相对于Hymem的不同点是它采用概率技术来决定当要evit的时候，到底evict到哪里。</p>
+<img src="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210913065244367.png" class="">
+<p><img src="论文阅读：spitfire/image-20210913065244367.png" alt="image-20210913065244367"></p>
+<p>We now describe how Spitfire leverages the additional data flow paths introduced by NVM (❼,❽,❾,❿) to minimize the performance impact of NVM and to extend the lifetime of the NVM and SSD devices:</p>
+<ol>
+<li>最小化NVM的performance impact，也就是最大化发挥NVM的性能优势</li>
+<li>提高SSD和NVM的使用寿命</li>
+</ol>
+<p>之后介绍的data migration是基于两个原则的：</p>
+<ol>
+<li>不要破坏DRAM中原有的热数据</li>
+<li>不要破坏NVM中原有的温数据</li>
+</ol>
+<h2 id="Bypass-DRAM-during-Reads-Dr"><a href="#Bypass-DRAM-during-Reads-Dr" class="headerlink" title="Bypass DRAM during Reads(Dr)"></a>Bypass DRAM during Reads(Dr)</h2><p>Let D<em>r</em> represent the probability that Spitfire moves data from NVM to DRAM during read operations.</p>
+<p>在读数据的时候有好几种可能（不包括CPU cache）：</p>
+<ol>
+<li>直接在DRAM中找到数据</li>
+<li>如果在DRAM中找不到 并且 在NVM中找到了，就把数据从NVM迁移到DRAM（对应figure3 的2路径）</li>
+<li>如果在DRAM中找不到 并且 在NVM中找到了，就直接读取数据（对应figure3中的7路径）</li>
+<li>如果在DRAM中找不到 并且 在NVM中找不到，就把数据从SSD中迁移到NVM（对应figure3中的1路径）</li>
+<li>如果在DRAM中找不到 并且 在NVM中找不到， 就把数据从SSD中迁移到DRAM（对应figure3中的9路径）</li>
+</ol>
+<p>下图是读数据的路线图。</p>
+<img src="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210914080927159.png" class="">
+<p><img src="论文阅读：spitfire/image-20210914080927159.png" alt="image-20210914080927159"></p>
+<p>Dr的数值对应的就是figure3中路径2的概率，也即把数据从NVM迁移到DRAM的概率。如果Dr是1，那就意味着eager migration，每次都要经过DRAM；“when D<em>r</em> = 0.01, Spitfire moves a page from NVM to DRAM only once every hundred times，Otherwise, it directly serves the read operation using the page residing on NVM”</p>
+<p>They are beneficial when the capacity of DRAM is smaller than that of NVM. A lazy migration strategy ensures that warm pages on NVM do not evict hot pages in DRAM.</p>
+<p>那么这个Dr就是一个参数了，需要调优，怎么调整才好呢？文章中的思想是采用机器学习的思路，也就是让set fits within DRAM的工作集采用较大的Dr，让不那么fit的工作集采用较小的Dr。<strong>This strategy ensures that only hot data is stored in DRAM。</strong>（不懂）</p>
+<p>即使采用了lazy migration，如果对一个page频繁访问的话，这个page也迟早会放到DRAM中，这就保证了hot data会最终在DRAM中。</p>
+<h2 id="Bypass-DRAM-during-Writes-Dw"><a href="#Bypass-DRAM-during-Writes-Dw" class="headerlink" title="Bypass DRAM during Writes(Dw)"></a>Bypass DRAM during Writes(Dw)</h2><img src="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210914091814123.png" class="">
+<p><img src="论文阅读：spitfire/image-20210914091814123.png" alt="image-20210914091814123"></p>
+<p>在传统的系统中，“ As transactions tend to generate multiple log records that are each small in size, DBMSs use the <em>group commit</em> optimization to reduce this I/O overhead”；但是，“Unlike SSDs, the CPU is capable of directly persisting data on NVM via write operations (❽) . Spitfire leverages this path to provide <em>synchronous persistence</em> with lower overhead”。其实，直接将日志之类的信息持久化到NVM中，可以减少总体的延迟，而且也避免了evict DRAM中的hot data。</p>
+<p>Dw表示写数据到DRAM中的概率，也即figure3中路径8的概率。我们可以直观地知道，如果对于日志之类的信息，Dw肯定要很小，也就是lazy policy。</p>
+<p>“Our evaluation demonstrates that this optimization improves Spitfire’s performance on write-intensive workloads”</p>
+<h2 id="Bypass-NVM-During-Reads-Nr"><a href="#Bypass-NVM-During-Reads-Nr" class="headerlink" title="Bypass NVM During Reads(Nr)"></a>Bypass NVM During Reads(Nr)</h2><p>Spitfire instead makes use of the data flow path from SSD to DRAM (❾). When it observes that a requested page is not present in both the DRAM and NVM buffers, it copies the data on SSD directly to DRAM, thus bypassing NVM during read operations.</p>
+<p>这个情况对应于读数据的第4种或第5种可能性。</p>
+<p>但是具体使用哪一种，是由超参数Nr决定的。Nr表示从SSD读数据时copy到NVM的可能性，这个Nr越大，就意味着越不lazy。</p>
+<p>When a page is fetched from SSD and later evicted from DRAM, an eager policy necessitates two writes to NVM: once at fetch time and again when it is evicted from DRAM. With a lazy policy (<em>e</em>.<em>g</em>., N<em>r</em> = 0.01), Spitfire installs a copy of a modified page on NVM only after it has been evicted from DRAM. This eliminates the first write to NVM when Spitfire fetches the page from SSD.</p>
+<p>如果Nr比较大的话，我们就可能有两次写NVM的操作，第一次是在从SSD读数据的时候，写到了NVM中，第二次是把数据从DRAM evict到NVM的时候。如果Nr比较小的话，就可以避免了第一次操作NVM的可能性，但是<strong>文章中没有提到省略第一个NVM写和不省略第一次NVM写之间有什么trade-off</strong>，我猜测是这种情况：如果省略第一个NVM写的话，只能把数据存到DRAM中，这就导致了如果这个数据是冷数据，就会evict掉DRAM中的热数据；如果不省略第一个NVM写的话，虽然多了一个NVM写，但是后续的读写会直接读写NVM，避免了DRAM中热数据的eviction。</p>
+<p>虽然作者没有明说上述的trade-off，但是后面一段也能推出这个思想。</p>
+<p> It employs: a lazy policy for migrating data from NVM to DRAM (D<em>r</em> = 0.01), and a comparatively eager policy while moving data from SSD to NVM (N<em>r</em> = 0.2). While this scheme increases the number of writes to NVM compared to the lazy policy, it enables Spitfire to deliver higher performance than Hymem。</p>
+<p>Hymem采用的是直接将SSD中的数据迁移到DRAM中，也就是完全的lazy策略。但是spifrie没有那么lazy，它有一定的可能性将数据从SSD复制到NVM中，虽然也不是很大，但也不是完全lazy。这样可以使得CPU 直接读写NVM有较大的可能。</p>
+<h2 id="Bypass-NVM-During-Writes-Nw"><a href="#Bypass-NVM-During-Writes-Nw" class="headerlink" title="Bypass NVM During Writes(Nw)"></a>Bypass NVM During Writes(Nw)</h2><p>By bypassing NVM during writes, Spitfire ensures that only pages frequently swapped out of DRAM are stored on NVM. （不懂）</p>
+<p>Besides reducing the number of writes to NVM, this optimization also ensures that only warm pages are stored in the NVM buffer. If Spitfire employs a lazy policy while copying data from NVM into DRAM (D<em>r</em> = 0.01), this optimization prevents colder DRAM-resident pages from polluting the NVM buffer.</p>
+<p> Lower values of N<em>w</em> reduce downward data migration into NVM. Such a lazy policy is beneficial when the capacity of DRAM is comparable to that of NVM since it ensures that colder data on DRAM does not evict warmer data on NVM.</p>
+<p>如果随便就把数据从DRAM迁移到NVM中，本身NVM空间也不是很大（和DRAM差不多大），那么NVM中的warm数据很容易被evict掉。所以要采用从DRAM到NVM迁移的lazy模式比较好。</p>
+<h1 id="Adaptive-Data-Migration"><a href="#Adaptive-Data-Migration" class="headerlink" title="Adaptive Data Migration"></a>Adaptive Data Migration</h1><p>以上的参数组合P: {Dr, Dw, Nr, Nw}应该是什么，才能对一个工作任务达到最好的效果呢？文章中有说。</p>
+<h2 id="Cost-Function"><a href="#Cost-Function" class="headerlink" title="Cost Function"></a>Cost Function</h2><p>这里spitfire运用了机器学习的思路，来在一段时间内收集系统运行的数据，然后观察吞吐量，最后计算损失函数，找到参数P使得损失函数最小。</p>
+<p>The crux of our approach is to periodically track a set of target metrics, and then adapt P in the background. Spitfire evaluates a candidate policy across millions of buffer pool requests to ensure that its impact on the target metrics is prominently visible to the search algorithm. <strong>Over time, the search algorithm automatically optimizes P for the target workload and storage hierarchy</strong>.</p>
+<p>transactional throughput (T) metric to guide the adaptation mechanism.</p>
+<img src="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210915072501291.png" class="">
+<p><img src="论文阅读：spitfire/image-20210915072501291.png" alt="image-20210915072501291"></p>
+<h2 id="Search-Algorithm"><a href="#Search-Algorithm" class="headerlink" title="Search Algorithm"></a>Search Algorithm</h2><p>Spitfire adapts the policy using simulated annealing (SA，模拟退火) [21]. This iterative search technique finds a policy P<em>opt</em> that minimizes the cost function.</p>
+<p>采用了模拟退火算法来minimize损失函数。</p>
+<h1 id="System-Architecture"><a href="#System-Architecture" class="headerlink" title="System Architecture"></a>System Architecture</h1><h2 id="Multi-tier-buffer-management"><a href="#Multi-tier-buffer-management" class="headerlink" title="Multi-tier buffer management"></a>Multi-tier buffer management</h2><img src="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/image-20210915075403248.png" class="">
+<p><img src="论文阅读：spitfire/image-20210915075403248.png" alt="image-20210915075403248"></p>
+<p>With this configuration, Spitfire seeks to keep the hot, warm, and cold database pages on DRAM, NVM, and SSD, respectively. Since the CPU is capable of directly operating on both the DRAM and NVM buffers, Spitfire maintains a mapping table on DRAM to bound latency. <strong>This mapping table serves to keep track of pages buffered in DRAM and NVM</strong>.</p>
+<p>As shown in Figure 4, Spitfire maintains a shared page descriptor for every logical page P in the mapping table. The descriptor contains latches for <strong>thread-safe data migration</strong> and pointers to the DRAM and NVM page descriptors.</p>
+<p>device-specific page descriptors contains:</p>
+<ol>
+<li>number of users of the page</li>
+<li>a bit indicating whether the page is dirty</li>
+<li>a <strong>physical pointer</strong> to the page freme residing on the device</li>
+</ol>
+<p>Similar to Hymem, Spitfire adopts the CLOCK cache replacement policy to reclaim space in the DRAM and NVM buffers.</p>
+<h2 id="Concurrency-Control-and-Recovery"><a href="#Concurrency-Control-and-Recovery" class="headerlink" title="Concurrency Control and Recovery"></a>Concurrency Control and Recovery</h2><p>为了实现并发操作，利用了下面的数据结构和协议：</p>
+<ol>
+<li>concurrent hash table for managing the mapping from logical page identifiers to shared page descriptors</li>
+<li>concurrent bitmap for the cache replacement policy</li>
+<li>multi-versioned timestamp-ordering (MVTO) concurrency control protocol</li>
+<li>) concurrent B+Tree for indexing with optimistic lock-coupling</li>
+<li>lightweight latches for thread-safe page migrations</li>
+</ol>
+<p>现在有很多问题：什么是optimistic lock coupling；latch和lock有什么区别；复习一下B+Tree，现在参考【2】【3】【4】</p>
+<h3 id="Concurrent-Index"><a href="#Concurrent-Index" class="headerlink" title="Concurrent Index"></a>Concurrent Index</h3><p>由于NVM的存在，IO开销减少了，因此computational overhead asscociated with index lookups所占的比例增大了，这就是为什么使用B+Tree with optimistic lock-coupling的原因，因为乐观锁耦合技术减少了与悲观锁耦合相关的争用开销。</p>
+<h3 id="Thread-Safe-Page-Migration"><a href="#Thread-Safe-Page-Migration" class="headerlink" title="Thread-Safe Page Migration"></a>Thread-Safe Page Migration</h3><h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】论文阅读:Spitfire：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/355572739">https://zhuanlan.zhihu.com/p/355572739</a></p>
+<p>【2】《乐观锁耦合：扩展性强且高效的通用同步方法》<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/32cb5f107a01">https://www.jianshu.com/p/32cb5f107a01</a></p>
+<p>【3】《论文解读：optimistic lock coupling》<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/269533719">https://zhuanlan.zhihu.com/p/269533719</a></p>
+<p>【4】lock和latch的区别：<a target="_blank" rel="noopener" href="https://github.com/sdg-sysdev/bdb-study/blob/master/btree_locking.txt">https://github.com/sdg-sysdev/bdb-study/blob/master/btree_locking.txt</a></p>
 
       
 
@@ -337,7 +426,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">1.</span> <span class="toc-text">introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#our-approach"><span class="toc-number">1.1.</span> <span class="toc-text">our approach</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#background"><span class="toc-number">2.</span> <span class="toc-text">background</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NVM-aware-Optimizations-in-Hymem"><span class="toc-number">2.1.</span> <span class="toc-text">NVM-aware Optimizations in Hymem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Migration-Policy"><span class="toc-number">2.1.1.</span> <span class="toc-text">Data Migration Policy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache-line-grained-Loading"><span class="toc-number">2.1.2.</span> <span class="toc-text">Cache-line-grained Loading</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">引用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#introduction"><span class="toc-number">1.</span> <span class="toc-text">introduction</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#our-approach"><span class="toc-number">1.1.</span> <span class="toc-text">our approach</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#background"><span class="toc-number">2.</span> <span class="toc-text">background</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#NVM-aware-Optimizations-in-Hymem"><span class="toc-number">2.1.</span> <span class="toc-text">NVM-aware Optimizations in Hymem</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Migration-Policy"><span class="toc-number">2.1.1.</span> <span class="toc-text">Data Migration Policy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache-line-grained-Loading"><span class="toc-number">2.1.2.</span> <span class="toc-text">Cache-line-grained Loading</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#NVM-Aware-Data-Migration"><span class="toc-number">3.</span> <span class="toc-text">NVM-Aware Data Migration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bypass-DRAM-during-Reads-Dr"><span class="toc-number">3.1.</span> <span class="toc-text">Bypass DRAM during Reads(Dr)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bypass-DRAM-during-Writes-Dw"><span class="toc-number">3.2.</span> <span class="toc-text">Bypass DRAM during Writes(Dw)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bypass-NVM-During-Reads-Nr"><span class="toc-number">3.3.</span> <span class="toc-text">Bypass NVM During Reads(Nr)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bypass-NVM-During-Writes-Nw"><span class="toc-number">3.4.</span> <span class="toc-text">Bypass NVM During Writes(Nw)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Adaptive-Data-Migration"><span class="toc-number">4.</span> <span class="toc-text">Adaptive Data Migration</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cost-Function"><span class="toc-number">4.1.</span> <span class="toc-text">Cost Function</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Search-Algorithm"><span class="toc-number">4.2.</span> <span class="toc-text">Search Algorithm</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#System-Architecture"><span class="toc-number">5.</span> <span class="toc-text">System Architecture</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Multi-tier-buffer-management"><span class="toc-number">5.1.</span> <span class="toc-text">Multi-tier buffer management</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Concurrency-Control-and-Recovery"><span class="toc-number">5.2.</span> <span class="toc-text">Concurrency Control and Recovery</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Concurrent-Index"><span class="toc-number">5.2.1.</span> <span class="toc-text">Concurrent Index</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Thread-Safe-Page-Migration"><span class="toc-number">5.2.2.</span> <span class="toc-text">Thread-Safe Page Migration</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">引用</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -535,6 +624,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">论文</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据库#</a>
               </li>
             
             <div class="clearfix"></div>
