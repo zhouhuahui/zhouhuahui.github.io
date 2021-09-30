@@ -228,12 +228,30 @@
     <article id="post-OB大赛" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/29/OB%E5%A4%A7%E8%B5%9B/">OB大赛</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/29/OB%E5%A4%A7%E8%B5%9B/" class="archive-article-date">
+  	<time datetime="2021-09-30T00:17:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-29</time>
+</a>
+        
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="往年OB赛题"><a href="#往年OB赛题" class="headerlink" title="往年OB赛题"></a>往年OB赛题</h1><p><img src="OB大赛/image-20210928082258919.png" alt="image-20210928082258919"></p>
+        <h1 id="往年OB赛题"><a href="#往年OB赛题" class="headerlink" title="往年OB赛题"></a>往年OB赛题</h1><img src="/2021/09/29/OB%E5%A4%A7%E8%B5%9B/image-20210928082258919.png" class="">
+<p><img src="OB大赛/image-20210928082258919.png" alt="image-20210928082258919"></p>
+<img src="/2021/09/29/OB%E5%A4%A7%E8%B5%9B/image-20210928082303528.png" class="">
 <p><img src="OB大赛/image-20210928082303528.png" alt="image-20210928082303528"></p>
 <h1 id="OB大赛"><a href="#OB大赛" class="headerlink" title="OB大赛"></a>OB大赛</h1><p>参考<a target="_blank" rel="noopener" href="https://open.oceanbase.com/competition/index">从0到1打造你的数据库</a></p>
-<h1 id="参赛宝典"><a href="#参赛宝典" class="headerlink" title="参赛宝典"></a>参赛宝典</h1><h2 id="第4章-查询处理"><a href="#第4章-查询处理" class="headerlink" title="第4章 查询处理"></a>第4章 查询处理</h2><p>参考<a target="_blank" rel="noopener" href="https://oceanbase-partner.github.io/lectures-on-dbms-implementation/lecture-4">查询处理</a></p>
+<h1 id="参赛宝典"><a href="#参赛宝典" class="headerlink" title="参赛宝典"></a>参赛宝典</h1><p>看看<a target="_blank" rel="noopener" href="https://oceanbase-partner.github.io/lectures-on-dbms-implementation/">参赛宝典</a></p>
+<h2 id="第4章-查询处理"><a href="#第4章-查询处理" class="headerlink" title="第4章 查询处理"></a>第4章 查询处理</h2><p>参考<a target="_blank" rel="noopener" href="https://oceanbase-partner.github.io/lectures-on-dbms-implementation/lecture-4">查询处理</a></p>
 <h3 id="选择运算"><a href="#选择运算" class="headerlink" title="选择运算"></a>选择运算</h3><p>一般情况下，当选择率较低时，基于索引的选择算法要优于全表扫描。但在某些情况下，如选择率较高、或者要查找的元组均匀分散在表中，这时索引扫描法的性能可能还不如全表扫描法，因为还需要考虑扫描索引带来的额外开销。</p>
 <h1 id="参赛题目"><a href="#参赛题目" class="headerlink" title="参赛题目"></a>参赛题目</h1><p>参考<a target="_blank" rel="noopener" href="https://oceanbase-partner.github.io/lectures-on-dbms-implementation/miniob-topics">参赛题目</a></p>
 <p>其中，其中必做题的<code>多表查询</code>这道题，我们可以思考一下怎么和后面的查询优化关联。weihan学长说这部分不要用笛卡儿积，要考虑各种join，比如<strong>hash join</strong>和<strong>merge join</strong>。</p>
@@ -263,6 +281,12 @@
 <p><img src="OB大赛/image-20210929211652709.png" alt="image-20210929211652709"></p>
 <p>rc.cpp里面有一句代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RC_CASE_STRING(rc)  case rc : return #rc</span></span><br><span class="line"><span class="comment">// rc应该用枚举值填充，但是#rc是什么意思</span></span><br></pre></td></tr></table></figure>
+<h1 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h1><h2 id="代码阅读"><a href="#代码阅读" class="headerlink" title="代码阅读"></a>代码阅读</h2><p>代码阅读感觉很难，以后我们可以几天交流一次，毕竟如果有大佬已经看懂了，那么我就可以偷懒了，省点时间。</p>
+<h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>这部分应该是要提前考虑的点，我们可以：</p>
+<ol>
+<li>系统学习查询执行，查询优化相关的知识，比如<code>数据库系统概念</code>, <code>数据库系统实现</code>, 以及<a target="_blank" rel="noopener" href="https://oceanbase-partner.github.io/lectures-on-dbms-implementation/">参赛宝典</a></li>
+<li>和weihan学长交流</li>
+</ol>
 <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
       
 
@@ -271,6 +295,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -1206,7 +1241,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">工具和环境</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">后端</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1214,7 +1261,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">数据库#</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1226,11 +1281,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机技术</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1246,35 +1305,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机技术</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">后端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">默认</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">论文</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据库#</a>
+                <a href="javascript:void(0)" class="js-tag color3">默认</a>
               </li>
             
             <div class="clearfix"></div>
