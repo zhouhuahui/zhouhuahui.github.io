@@ -225,6 +225,133 @@
 
 
   
+    <article id="post-linux环境" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/10/01/linux%E7%8E%AF%E5%A2%83/">linux环境</a>
+    </h1>
+  
+
+        
+        <a href="/2021/10/01/linux%E7%8E%AF%E5%A2%83/" class="archive-article-date">
+  	<time datetime="2021-10-01T13:00:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CentOS-之-XXX-is-not-in-the-sudoers-file解决方法"><a href="#CentOS-之-XXX-is-not-in-the-sudoers-file解决方法" class="headerlink" title="CentOS 之 XXX is not in the sudoers file解决方法"></a>CentOS 之 XXX is not in the sudoers file解决方法</h1><p>这种情况下要修改<code>/etc/sudoers</code>文件，将相应的用户名注册进去，比如我的用户名是<code>zhouhuahui</code>，需要这么做：</p>
+<ol>
+<li>进入root用户模式。可以直接以root账号登录centos</li>
+<li>添加文件的写权限。<code>chmod u+w /etc/sudoers</code>。</li>
+<li>编辑<code>/etc/sudoers</code>文件，在<code>root ALL=(ALL) ALL</code>后面一行添加：<code>zhouhuahui ALL=(ALL) ALL</code>。</li>
+<li>完成</li>
+</ol>
+<h1 id="centos的scl软件集"><a href="#centos的scl软件集" class="headerlink" title="centos的scl软件集"></a>centos的scl软件集</h1><p>scl软件集(Software Collections),是为了给 RHEL/CentOS 用户提供一种以方便、安全地安装和使用应用程序和运行时环境的多个（而且可能是更新的）版本的方式，同时避免把系统搞乱。以前在ubuntu上经常会看到，安装某个软件会导致<code>unmet dependencies</code>的错误，原因是软件版本方面的问题。</p>
+<ol>
+<li>安装scl源. <code>sudo yum install centos-release-scl scl-utils-build</code></li>
+<li>列出scl源有哪些软件可以用. <code>sudo yum list all --enablerepo=&#39;centos-sclo-rh&#39; &gt; software.txt</code>，然后可以gedit software.txt查看有没有自己想要的软件。比如我会搜索gdb，就可以看到有很多<code>devtoolset-10</code>开头的和gcc, gdb有关的软件。</li>
+<li>查看从scl中安装的包：<code>scl --list</code></li>
+</ol>
+<h2 id="centos下安装最新的gcc-g-gdb"><a href="#centos下安装最新的gcc-g-gdb" class="headerlink" title="centos下安装最新的gcc, g++, gdb"></a>centos下安装最新的gcc, g++, gdb</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install devtoolset-10-gcc.x86_64 devtoolset-10-gcc-c++.x86_64 devtoolset-10-gcc-gdb-plugin.x86_64</span><br></pre></td></tr></table></figure>
+<p>此时查看gcc版本，会发现还是老版本，我们需要切换gcc版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scl <span class="built_in">enable</span> devtoolset-10 bash</span><br></pre></td></tr></table></figure>
+<p>在系统中永久启用最新的gcc</p>
+<p>sudo vi /etc/profile，假如下述内容</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scl enable devtoolset-<span class="number">10</span> bash</span><br><span class="line"><span class="keyword">source</span> <span class="regexp">/opt/</span>rh<span class="regexp">/devtoolset-10/</span>bash</span><br></pre></td></tr></table></figure>
+<p>立即生效</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span> <span class="regexp">/etc/</span>profile</span><br></pre></td></tr></table></figure>
+<h1 id="linux软件版本管理命令update-alternatives"><a href="#linux软件版本管理命令update-alternatives" class="headerlink" title="linux软件版本管理命令update-alternatives"></a>linux软件版本管理命令update-alternatives</h1><p>以jdk为例，安装了jdk后，先要在update-alternatives工具中注册：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_91/bin/java 200</span><br><span class="line">update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_111/bin/java 300</span><br></pre></td></tr></table></figure>
+<p><code>update-alternatives --install [link] [name] [path] [priority]</code></p>
+<ol>
+<li>link: <strong>link为系统中功能相同软件的公共链接目录</strong>。</li>
+<li>name为命令链接符名称,如java</li>
+<li>path为你所要使用新命令、新软件的所在目录</li>
+<li>priority为优先级。在自动模式下，默认选择优先级最高的软件</li>
+</ol>
+<p>查看已注册列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --display java</span><br></pre></td></tr></table></figure>
+<p>手动修改命令版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --config java</span><br></pre></td></tr></table></figure>
+<h1 id="centos7下的yum包管理工具"><a href="#centos7下的yum包管理工具" class="headerlink" title="centos7下的yum包管理工具"></a>centos7下的yum包管理工具</h1><p>删除软件</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> yum remove llvm-toolset-<span class="number">7</span>-cmake.x<span class="number">86</span>_<span class="number">64</span></span><br></pre></td></tr></table></figure>
+<h1 id="centos7下安装cmake"><a href="#centos7下安装cmake" class="headerlink" title="centos7下安装cmake"></a>centos7下安装cmake</h1><p><strong>第一种方式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install cmake</span><br></pre></td></tr></table></figure>
+<p>但是这种方式安装的cmake版本不够</p>
+<p><strong>第二种方式</strong></p>
+<p>使用scl软件集</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install llvm-toolset-7-cmake.x86_64</span><br><span class="line">scl <span class="built_in">enable</span> llvm-toolset-7</span><br></pre></td></tr></table></figure>
+<p><strong>第三种方式</strong></p>
+<p>官网下载源码，编译安装</p>
+<ol>
+<li>从<a target="_blank" rel="noopener" href="https://cmake.org/download/">cmake download</a>找到linux的一个cmake版本，然后复制下载链接，比如：<code>https://github.com/Kitware/CMake/releases/download/v3.21.3/cmake-3.21.3.tar.gz</code></li>
+<li>在linux下，使用wget命令下载, <code>wget https://github.com/Kitware/CMake/releases/download/v3.21.3/cmake-3.21.3.tar.gz</code></li>
+<li>解压到<code>~/Documents/</code>下，<code>tar -zxvf cmake-3.21.3.tar.gz -C ~/Documents/</code></li>
+<li>需要安装一些依赖。<code>yum -y install gcc gcc-c++ openssl-devel</code>，当然如果有gcc, gcc-c++之后，就不用安装了，直接安装openssl-devel就好了。</li>
+<li>cd到cmake源文件的根目录, <code>cd ~/Documents/cmake-3.21.3</code></li>
+<li>运行<code>./bootstrap</code></li>
+<li>运行<code>make &amp;&amp; sudo make install</code></li>
+<li>建立软链接：<code>sudo ln -s ~/Documents/cmake-3.21.3/bin/cmake /usr/bin/cmake</code></li>
+</ol>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/10/01/linux%E7%8E%AF%E5%A2%83/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-OB大赛" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -279,7 +406,8 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo su -</span><br><span class="line">chmod a+w -R MiniOB</span><br><span class="line">chmod a+r -R MiniOB</span><br><span class="line">chmod a+x -R MiniOB</span><br></pre></td></tr></table></figure>
 <p>就是给所有人加上所有权限，就没什么事了。</p>
 <p>但是，需要安装支持c14的gcc版本，但是我在WSL下遇到了很多莫名其妙的问题，所以转战centos7虚拟机了。</p>
-<h3 id="centos7虚拟机下编译"><a href="#centos7虚拟机下编译" class="headerlink" title="centos7虚拟机下编译"></a>centos7虚拟机下编译</h3><h2 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h2><img src="/2021/09/29/OB%E5%A4%A7%E8%B5%9B/image-20210929211652709.png" class="">
+<h3 id="centos7虚拟机下编译"><a href="#centos7虚拟机下编译" class="headerlink" title="centos7虚拟机下编译"></a>centos7虚拟机下编译</h3><p>关于</p>
+<h2 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h2><img src="/2021/09/29/OB%E5%A4%A7%E8%B5%9B/image-20210929211652709.png" class="">
 <p><img src="OB大赛/image-20210929211652709.png" alt="image-20210929211652709"></p>
 <p>rc.cpp里面有一句代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RC_CASE_STRING(rc)  case rc : return #rc</span></span><br><span class="line"><span class="comment">// rc应该用枚举值填充，但是#rc是什么意思</span></span><br></pre></td></tr></table></figure>
@@ -302,11 +430,12 @@
 <h3 id="observer-net-server-cpp"><a href="#observer-net-server-cpp" class="headerlink" title="observer/net/server.cpp"></a>observer/net/server.cpp</h3><h4 id="Server-accept"><a href="#Server-accept" class="headerlink" title="Server.accept()"></a>Server.accept()</h4><p>更新<code>ConnectionContext* client_context</code>结构。</p>
 <h4 id="Server-start"><a href="#Server-start" class="headerlink" title="Server.start()"></a>Server.start()</h4><p>启动服务器，socket(), bind(), listen()函数都是在这里完成的。</p>
 <h2 id="调试跟踪"><a href="#调试跟踪" class="headerlink" title="调试跟踪"></a>调试跟踪</h2><h3 id="元组插入操作"><a href="#元组插入操作" class="headerlink" title="元组插入操作"></a>元组插入操作</h3><p>下面是插入操作的整个过程以及用到的相关主要数据结构:</p>
-<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> sql/parser/parser_stage.cpp/ParserStage::handle<span class="constructor">Event()</span></span><br><span class="line">   <span class="number">1.</span> sql/parser/parser_stage.cpp/ParserStage::handle<span class="constructor">Request()</span></span><br><span class="line">      <span class="number">1.</span> 得到sql字符串: const std::<span class="built_in">string</span> &amp;sql = sql_event-&gt;get<span class="constructor">_sql()</span>;</span><br><span class="line">         例如: sql=<span class="string">&quot;select * from t1&quot;</span></span><br><span class="line">      <span class="number">2.</span> 对sql进行词法分析和语法分析: RC ret = parse(sql.c<span class="constructor">_str()</span>, result);</span><br><span class="line">         result是handler/handler_defs.h/sqlstr*类型</span><br><span class="line">      <span class="number">3.</span> return <span class="keyword">new</span> <span class="constructor">ExecutionPlanEvent(<span class="params">sql_event</span>, <span class="params">result</span>)</span>;</span><br><span class="line">   <span class="number">2.</span> sql/optimizer/optimizer_stage.cpp/OptimizerStage::handle<span class="constructor">Event()</span></span><br><span class="line">      <span class="number">1.</span> 没有写任何优化代码</span><br><span class="line">      <span class="number">2.</span> sql/executor/executor_stage.cpp/ExecuteStage::handle<span class="constructor">Request()</span></span><br><span class="line">         <span class="number">1.</span> ExecutionPlanEvent*类型的exe_event包含了SessionEvent, sqlstr, current_db等信息; </span><br><span class="line">            storage_event和exe_event一样;</span><br><span class="line">         <span class="number">2.</span> CompletionCallback *cb = <span class="keyword">new</span> (std::nothrow) <span class="constructor">CompletionCallback(<span class="params">this</span>, <span class="params">nullptr</span>)</span>;</span><br><span class="line">            storage_event-&gt;push<span class="constructor">Callback(<span class="params">cb</span>)</span>;</span><br><span class="line">            不懂这个CompletionCallback是什么意思;</span><br><span class="line">         <span class="number">3.</span> storage/default/default_storage_stage.cpp/DefaultStorageStage::handle<span class="constructor">Event()</span></span><br><span class="line">            </span><br><span class="line">            </span><br></pre></td></tr></table></figure>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span> <span class="keyword">sql</span>/<span class="keyword">parser</span>/parser_stage.cpp/ParserStage::handleEvent()</span><br><span class="line">   <span class="number">1.</span> <span class="keyword">sql</span>/<span class="keyword">parser</span>/parser_stage.cpp/ParserStage::handleRequest()</span><br><span class="line">      <span class="number">1.</span> 得到<span class="keyword">sql</span>字符串: const std::string &amp;<span class="keyword">sql</span> = sql_event-&gt;get_sql();</span><br><span class="line">         例如: <span class="keyword">sql</span>=&quot;select * from t1&quot;</span><br><span class="line">      <span class="number">2.</span> 对<span class="keyword">sql</span>进行词法分析和语法分析: RC ret = parse(<span class="keyword">sql</span>.c_str(), result);</span><br><span class="line">         result是<span class="keyword">handler</span>/handler_defs.h/sqlstr*类型</span><br><span class="line">      <span class="number">3.</span> <span class="keyword">return</span> <span class="built_in">new</span> ExecutionPlanEvent(sql_event, result);</span><br><span class="line">   <span class="number">2.</span> <span class="keyword">sql</span>/optimizer/optimizer_stage.cpp/OptimizerStage::handle_event()</span><br><span class="line">      <span class="number">1.</span> 没有写任何优化代码</span><br><span class="line">      <span class="number">2.</span> <span class="keyword">sql</span>/executor/executor_stage.cpp/ExecuteStage::handle_request()</span><br><span class="line">         <span class="number">1.</span> ExecutionPlanEvent*类型的exe_event包含了SessionEvent, sqlstr, current_db等信息; </span><br><span class="line">            storage_event和exe_event一样;</span><br><span class="line">         <span class="number">2.</span> CompletionCallback *cb = <span class="built_in">new</span> (std::nothrow) CompletionCallback(this, nullptr);</span><br><span class="line">            storage_event-&gt;pushCallback(cb);</span><br><span class="line">            不懂这个CompletionCallback是什么意思;</span><br><span class="line">         <span class="number">3.</span> <span class="keyword">storage</span>/<span class="keyword">default</span>/default_storage_stage.cpp/DefaultStorageStage::handle_event()</span><br><span class="line">            <span class="number">1.</span> Query <span class="keyword">sql</span>;, SessionEvent sesson_event, current_db, Trx current_trx等信息都从StorageEvent storage_event中解析出来了</span><br><span class="line">               其中,<span class="keyword">sql</span>已经指明了<span class="keyword">SQL</span>查询的各部分信息，比如从哪些表查，满足什么条件，查什么属性之类的</span><br><span class="line">            <span class="number">2.</span> <span class="keyword">storage</span>/<span class="keyword">default</span>/default_handler.cpp/DefaultHandler::insert_record()</span><br><span class="line">               <span class="number">1.</span> <span class="keyword">storage</span>/common/<span class="keyword">table</span>.cpp/<span class="keyword">Table</span>::insert_record(Trx* trx, <span class="type">Record</span>* <span class="type">record</span>)</span><br><span class="line">                  <span class="keyword">Table</span>关联了<span class="keyword">storage</span>/<span class="keyword">default</span>/DiskBufferPool, <span class="keyword">storage</span>/common/record_manager/RecordFileHandler, <span class="keyword">storage</span>/common/RecordPageHandler</span><br><span class="line">                  这三个数据结构，可能包含了一些关于表的磁盘页的信息。</span><br><span class="line">                  <span class="number">1.</span> <span class="keyword">storage</span>/common/record_manager.cpp/RecordFileHandler::insert_record(const <span class="type">char</span> *data, <span class="type">int</span> record_size, RID *rid)</span><br><span class="line">                     通过DiskBufferPool::get_page_count()计算page_count，这个表的总的页面数量;</span><br><span class="line">                     通过RecordPageHandler::get_page_num()计算current_page_num，当前打开的页面;</span><br><span class="line">                     从current_page_num开始找一个合适的磁盘页，用于插入数据，每次找到一个页后，就初始化record_page_handle_,记录关于这个页的信息;</span><br><span class="line">                     如果找不到一个合适的页，就分配一个新的页面;</span><br><span class="line">                     调用RecordPageHandler::insert_record()函数将元组数据插入到这个页中;</span><br><span class="line">                     <span class="number">1.</span> <span class="keyword">storage</span>/common/record_manager.cpp/RecordPageHandler::insert_record(const <span class="type">char</span> *data, RID *rid)</span><br><span class="line">                     </span><br><span class="line">                     </span><br><span class="line">                     </span><br><span class="line">                  </span><br><span class="line">            </span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// event/sql_event.h</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SQLStageEvent</span> :</span> <span class="keyword">public</span> common::StageEvent &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">SQLStageEvent</span>(SessionEvent *event, std::string &amp;sql);</span><br><span class="line">  <span class="keyword">virtual</span> ~<span class="built_in">SQLStageEvent</span>() <span class="keyword">noexcept</span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">const</span> std::string &amp;<span class="title">get_sql</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sql_;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function">SessionEvent * <span class="title">session_event</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> session_event_;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  SessionEvent *session_event_;</span><br><span class="line">  std::string &amp; sql_;</span><br><span class="line">  <span class="comment">// void *context_;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// SessionEvent* session_event_是做什么用的?</span></span><br><span class="line"><span class="comment">// sql_就是一个sql字符串</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// event/execution_plan_event.h</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ExecutionPlanEvent</span> :</span> <span class="keyword">public</span> common::StageEvent &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  <span class="built_in">ExecutionPlanEvent</span>(SQLStageEvent *sql_event, sqlstr *sqls);</span><br><span class="line">  <span class="keyword">virtual</span> ~<span class="built_in">ExecutionPlanEvent</span>();</span><br><span class="line"></span><br><span class="line">  <span class="function">sqlstr * <span class="title">sqls</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sqls_;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function">SQLStageEvent * <span class="title">sql_event</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> sql_event_;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">  SQLStageEvent *      sql_event_;</span><br><span class="line">  sqlstr *             sqls_;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// sqls_保存了parse过的sql结构</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// deps/common/seda/callback.h</span></span><br><span class="line"><span class="comment">//! A generic CompletionCallback</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * A completion callback object provides a function that should be</span></span><br><span class="line"><span class="comment"> * invoked when an event has made it successfully through the stage</span></span><br><span class="line"><span class="comment"> * pipeline.  Usually, each event will reference a completion callback,</span></span><br><span class="line"><span class="comment"> * and before an event is deleted, the stage doing the deletion should</span></span><br><span class="line"><span class="comment"> * invoke the &quot;done()&quot; event method.  This method eventually invokes the</span></span><br><span class="line"><span class="comment"> * &quot;callbackEvent()&quot; method in the stage which set the callback, providing</span></span><br><span class="line"><span class="comment"> * a reference to the event as a parameter.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The purpose of the callback is to allow a stage to register some</span></span><br><span class="line"><span class="comment"> * processing for an event that is delayed until after the event has</span></span><br><span class="line"><span class="comment"> * progressed all the way through the stage pipeline.  Callbacks can be</span></span><br><span class="line"><span class="comment"> * chained.  Typically, each stage in the pipeline might add a callback</span></span><br><span class="line"><span class="comment"> * to an event&#x27;s callback chain before passing the event to the next stage.</span></span><br><span class="line"><span class="comment"> * When the &quot;done()&quot; method is finally invoked, the callback on top of the</span></span><br><span class="line"><span class="comment"> * callback stack is invoked.  It becomes the responsibility of this callback</span></span><br><span class="line"><span class="comment"> * to either forward the event to another stage for more processing, or</span></span><br><span class="line"><span class="comment"> * to eventually call done() again of the event.  In this way, with each</span></span><br><span class="line"><span class="comment"> * callback on the stack eventually invoking the next callback on the stack,</span></span><br><span class="line"><span class="comment"> * all the callbacks are eventually executed. Each callback</span></span><br><span class="line"><span class="comment"> * can have an optional context associated with it.  This context is</span></span><br><span class="line"><span class="comment"> * provided to the stage callback function when it is invoked.  It is</span></span><br><span class="line"><span class="comment"> * opaque to the callback object.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * By default, the callback will run on the thread of the stage that created</span></span><br><span class="line"><span class="comment"> * the callback.  If the stage that is calling done() on the event wants</span></span><br><span class="line"><span class="comment"> * to execute the callback stack in place, it can call the doneImmediate()</span></span><br><span class="line"><span class="comment"> * interface.  Note that this will execute the *entire* callback stack on</span></span><br><span class="line"><span class="comment"> * the current thread.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CompletionCallback</span> &#123;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// public interface operations</span></span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">  <span class="comment">//! Constructor</span></span><br><span class="line">  <span class="built_in">CompletionCallback</span>(Stage *trgt, CallbackContext *ctx = <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//! Destructor</span></span><br><span class="line">  <span class="keyword">virtual</span> ~<span class="built_in">CompletionCallback</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">//! Push onto a callback stack</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">pushCallback</span><span class="params">(CompletionCallback *stack)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//! Pop off of a callback stack</span></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * @returns  remainder of callback stack</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function">CompletionCallback *<span class="title">popCallback</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//! One event is complete</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">eventDone</span><span class="params">(StageEvent *ev)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//! Reschedule this event as a callback on the target stage</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">eventReschedule</span><span class="params">(StageEvent *ev)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//! Complete this event if it has timed out</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">eventTimeout</span><span class="params">(StageEvent *ev)</span></span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">protected</span>:</span><br><span class="line">  <span class="comment">// implementation state</span></span><br><span class="line"></span><br><span class="line">  Stage *targetStage;         <span class="comment">//!&lt; stage which is setting this callback</span></span><br><span class="line">  CallbackContext *context;   <span class="comment">//!&lt; argument to pass when invoking cb</span></span><br><span class="line">  CompletionCallback *nextCb; <span class="comment">//!&lt; next event in the chain</span></span><br><span class="line">  <span class="keyword">bool</span> evHistFlag;            <span class="comment">//!&lt; true if event histories are enabled</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h1><h2 id="代码阅读"><a href="#代码阅读" class="headerlink" title="代码阅读"></a>代码阅读</h2><p>代码阅读感觉很难，以后我们可以几天交流一次，毕竟如果有大佬已经看懂了，那么我就可以偷懒了，省点时间。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// storage/common/record_manager.h</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">RID</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  PageNum page_num; <span class="comment">// record&#x27;s page number</span></span><br><span class="line">  SlotNum slot_num; <span class="comment">// record&#x27;s slot number</span></span><br><span class="line">  <span class="comment">// bool    valid;    // true means a valid record</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">bool</span> <span class="keyword">operator</span>== (<span class="keyword">const</span> RID &amp;other) <span class="keyword">const</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> page_num == other.page_num &amp;&amp; slot_num == other.slot_num;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// RID是一个元组（记录）的标识符</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Record</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="comment">// bool valid; // false means the record hasn&#x27;t been load</span></span><br><span class="line">  RID  rid;   <span class="comment">// record&#x27;s rid</span></span><br><span class="line">  <span class="keyword">char</span> *data; <span class="comment">// record&#x27;s data</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// data来源于sql/parser/parser_defs.h/Inserts结构体的信息</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RecordFileHandler</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// pass</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 插入一个新的记录到指定文件中，pData为指向新纪录内容的指针，返回该记录的标识符rid</span></span><br><span class="line"><span class="comment">     * @pram data</span></span><br><span class="line"><span class="comment">     * @param rid</span></span><br><span class="line"><span class="comment">     * @return</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">RC <span class="title">insert_record</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *data, <span class="keyword">int</span> record_size, RID *rid)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// pass</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">   DiskBufferPool  *   disk_buffer_pool_;</span><br><span class="line">   <span class="keyword">int</span>                 file_id_;                    <span class="comment">// 参考DiskBufferPool中的fileId</span></span><br><span class="line">    </span><br><span class="line">   RecordPageHandler   record_page_handler_;        <span class="comment">// 目前只有insert record使用</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// DiskBufferPool和RecordPageHandler是做什么用的</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">RecordPageHandler</span> &#123;</span></span><br><span class="line">    <span class="comment">// pass</span></span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    DiskBufferPool * disk_buffer_pool_;</span><br><span class="line">    <span class="keyword">int</span>              file_id_;</span><br><span class="line">    BPPageHandle     page_handle_;</span><br><span class="line">    PageHeader    *  page_header_;</span><br><span class="line">    <span class="keyword">char</span> *           bitmap_;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// file_id_, BPPageHandle page_handle_, PageHeader* page_header_, bitmap_都是做什么用的</span></span><br></pre></td></tr></table></figure>
+<h1 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h1><h2 id="seda事件处理框架"><a href="#seda事件处理框架" class="headerlink" title="seda事件处理框架"></a>seda事件处理框架</h2><h2 id="代码阅读"><a href="#代码阅读" class="headerlink" title="代码阅读"></a>代码阅读</h2><p>代码阅读感觉很难，以后我们可以几天交流一次，毕竟如果有大佬已经看懂了，那么我就可以偷懒了，省点时间。</p>
 <h2 id="性能优化"><a href="#性能优化" class="headerlink" title="性能优化"></a>性能优化</h2><p>这部分应该是要提前考虑的点，我们可以：</p>
 <ol>
 <li>系统学习查询执行，查询优化相关的知识，比如<code>数据库系统概念</code>, <code>数据库系统实现</code>, 以及<a target="_blank" rel="noopener" href="https://oceanbase-partner.github.io/lectures-on-dbms-implementation/">参赛宝典</a></li>
@@ -1043,82 +1172,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Tidb" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/10/Tidb/">Tidb</a>
-    </h1>
-  
-
-        
-        <a href="/2021/09/10/Tidb/" class="archive-article-date">
-  	<time datetime="2021-09-10T22:55:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>Tidb中文简介：<a href="https://link.zhihu.com/?target=https%3A//pingcap.com/docs-cn">https://link.zhihu.com/?target=https%3A//pingcap.com/docs-cn</a></p>
-<p>Tidb最佳实践等ppt: <a target="_blank" rel="noopener" href="https://eyun.baidu.com/s/3huniXE0?errmsg=Auth+Login+Sucess&amp;errno=0&amp;ssnerror=0&amp;#sharelink/path=/">https://eyun.baidu.com/s/3huniXE0?errmsg=Auth+Login+Sucess&amp;errno=0&amp;ssnerror=0&amp;#sharelink/path=/</a></p>
-<p>开源项目地址：<a target="_blank" rel="noopener" href="https://github.com/pingcap/tidb">https://github.com/pingcap/tidb</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据库#</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/10/Tidb/">展开全文 >></a>
         </p>
       
 

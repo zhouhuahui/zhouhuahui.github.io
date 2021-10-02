@@ -152,6 +152,85 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-WSL更新数据源" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/">WSL更新数据源</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/" class="archive-article-date">
+  	<time datetime="2021-06-01T13:09:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>e</p>
+<p>首先进入WSL，执行<code>cd /etc/apt</code>。</p>
+<p>然后再windows的<code>C:\Users\%USERNAME%\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs</code>目录下找到sources.list文件。用下列内容覆盖。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-security main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-updates main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-backports main restricted universe multiverse  </span><br><span class="line"><span class="comment">##测试版源  </span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-proposed main restricted universe multiverse  </span><br><span class="line"><span class="comment"># 源码  </span></span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-security main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-updates main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-backports main restricted universe multiverse  </span><br><span class="line"><span class="comment">##测试版源  </span></span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-proposed main restricted universe multiverse  </span><br><span class="line"><span class="comment"># Canonical 合作伙伴和附加  </span></span><br><span class="line">deb http:<span class="regexp">//</span>archive.canonical.com<span class="regexp">/ubuntu/</span> xenial partner  </span><br><span class="line">deb http:<span class="regexp">//</span>extras.ubuntu.com<span class="regexp">/ubuntu/</span> xenial main  </span><br></pre></td></tr></table></figure>
+<p>接着，回到WSL，执行：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> update # 更新源</span><br><span class="line">sudo apt-<span class="builtin-name">get</span><span class="built_in"> upgrade </span># 更新软件</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-eclipse与maven" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1392,112 +1471,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/10/11/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-css-vertical-align属性" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/">css-vertical-align属性</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/" class="archive-article-date">
-  	<time datetime="2020-10-10T22:08:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>vertical-align应该是我目前遇到的最复杂的属性了。先了解基线的概念。</p>
-<h1 id="基线"><a href="#基线" class="headerlink" title="基线"></a>基线</h1><p>下面是一行文本（不包括padding和margin区域），其中制定了一些线的概念。</p>
-<img src="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/1.webp" class="">
-<p><img src="css-vertical-align属性/1.webp" alt="1"></p>
-<p>baseline基线是一行文本中x字符的低端所在的直线。</p>
-<p>还有，基线的位置不是固定的：</p>
-<ol>
-<li>在文本内联元素中，如上图，基线是字符x的下边缘位置</li>
-<li>在img元素中，基线就是图片的下边缘</li>
-<li>在inline-block元素中。如果该元素中有内联元素，基线就是最后一行内联元素的基线；如果该元素没有内联元素或者内联元素的overflow不是visible，基线就是margin的底边缘。</li>
-</ol>
-<h1 id="vertical-align"><a href="#vertical-align" class="headerlink" title="vertical-align"></a>vertical-align</h1><p>vertical-align属性应用于行内元素，如display属性值为<code>inline</code>, <code>inline-block</code>, <code>table-cell</code>的。</p>
-<p>第一种用法，若应用于表单元格中，如display属性为table-cell的，这个属性会设置单元格框中单元格内容的对齐方式。如果给一个表格的td加一个vertical-align: middle 的样式，表格里面的内容会垂直居中。</p>
-<p>第二种用法，该属性定义行内元素相对于该元素所在行的垂直对齐。意思是，如果有几个行内元素a, b, c在同一行，那么这3个行内元素在垂直方向该如何对齐，它们是全部bottom对齐，全部baseline对齐还是a的middle和b,c的baseline对齐，这是由它们自己分别设置的vertical-align属性决定的。</p>
-<p>下面以一个例子来解释。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width:500px; height:1000px; background:aquamarine&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span></span><br><span class="line">                abcxyz周华辉</span><br><span class="line">            <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;display:inline-block; width:100px; height:100px; margin:10px; background:blue&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span></span><br><span class="line">                西瓜</span><br><span class="line">            <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>默认所有内联元素的vertical-align值为baseline</strong></p>
-<img src="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/1.jpg" class="">
-<p><img src="css-vertical-align属性/1.jpg" alt="1"></p>
-<p>如上图所示，所有元素的baseline对齐了。</p>
-<p><strong>设置第一个span的vertical-align为middle</strong></p>
-<img src="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/2.jpg" class="">
-<p><img src="css-vertical-align属性/2.jpg" alt="1"></p>
-<p>很明显，第一个span的middle line和另外两个元素的baseline对齐了。</p>
-<h1 id="垂直居中的方法"><a href="#垂直居中的方法" class="headerlink" title="垂直居中的方法"></a>垂直居中的方法</h1><p>若设置内层元素inner在外层元素outter中垂直居中。可以</p>
-<ol>
-<li><p>设置outter的display为table-cell，vertical-align:middle</p>
-</li>
-<li><p>在outter中另外增加一个div</p>
- <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 然后设置inner的vertical-align为middle。然后inner就在outter中垂直居中了。</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/">展开全文 >></a>
         </p>
       
 

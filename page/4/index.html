@@ -152,6 +152,145 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-基于NVM的postgres" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/">基于NVM的postgres</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/" class="archive-article-date">
+  	<time datetime="2021-08-04T04:28:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NVM-WAL-BUFFER"><a href="#NVM-WAL-BUFFER" class="headerlink" title="NVM WAL BUFFER"></a>NVM WAL BUFFER</h1><p>【1】使用WAL段文件映射到内存作为WAL BUFFER</p>
+<p>Non-volatile Memory Logging(PGCon 2016) <a target="_blank" rel="noopener" href="https://www.pgcon.org/2016/schedule/track/Performance/945.en.html">https://www.pgcon.org/2016/schedule/track/Performance/945.en.html</a></p>
+<p>Persistent Memory(SNIA) <a target="_blank" rel="noopener" href="https://www.snia.org/PM">https://www.snia.org/PM</a></p>
+<h1 id="读文章1"><a href="#读文章1" class="headerlink" title="读文章1"></a>读文章1</h1><p>读了一篇文章：《The impact of NVM as the main memory on the database management system》，网址是：<a target="_blank" rel="noopener" href="https://www.programmersought.com/article/75573496597/">https://www.programmersought.com/article/75573496597/</a>  其实，这篇文章是论文的《Implications of Non-Volatile Memory as Primary Storage for Database Management Systems》的简版。</p>
+<p>“In addition, there are built-in substances related to leakage and voltage that limit the further expansion of DRAM. Therefore, as the main memory medium, DRAM cannot possibly keep up with the growth of current and future data sets.” 这句话表明DRAM不能做的很大。</p>
+<p>“The simplest design method is to replace NVM with the disk, and use its low latency to obtain performance improvement. However, adapting the DBMS to the characteristics of NVM goes far beyond its low latency.” 因为NVM可以字节寻址，但是传统的磁盘是块寻址。</p>
+<p>这篇文章也在研究如何在PG中部署NVM：</p>
+<ol>
+<li>“how to include NVM in the current system’s memory structure;”</li>
+<li>“modifying the PostgreSQL storage engine to maximize the dividend of NVM”</li>
+<li>“bypass the slow disk interface while ensuring the robustness of the DBMS”（这句话不是很懂）</li>
+</ol>
+<p>“the delay of STT-RAM is 1-20ns. Nevertheless, his delay is already very close to DRAM.”；“PC_RAM and R-RAM have higher write latency than DRAM. But write latency is not very important, because it can be alleviated by buffer.”（这句话的意思是，把DRAM作为NVM的buffer？还有可能是CPU内部的cache作为NVM的buffer）</p>
+<p>“<strong>When using NVM as the main memory</strong>, not only the application software but also the system software needs to be modified, so that the advantages of NVM can be fully utilized. “</p>
+<ol>
+<li>为什么要改system software呢？“The traditional file system accesses the storage medium through the block layer. If only the disk is replaced with NVM without any modification, then the NVM storage also needs to pass the block layer to read and write data. ”，这样的话，NVM的字节寻址能力就没有用到。</li>
+</ol>
+<p>“PMFS is a POSIX file system developed by Intel and open source”，PMFS作为传统文件系统的替代品，有两个特征：</p>
+<ol>
+<li>“NVM and memory are addressed uniformly”. 这就意味着 “there is no need to copy data from NVM to DRAM for application access”</li>
+<li>“ traditional databases access blocks in two ways: file IO; memory mapped IO. PMFS implements file IO in a manner similar to traditional FS. However, the implementation of memory mapped IO is different.”，因为：“In the traditional file system, memory mapped IO first copies pages to DRAM. PMFS does not need this step, it directly maps pages directly to the address space of the process” （PMFS是一个基于操作系统的软件，还是对操作系统的改变呢？）</li>
+</ol>
+<img src="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/81822a71cc3103d974ac229f043e7988.png" class="">
+<p><img src="基于NVM的postgres/81822a71cc3103d974ac229f043e7988.png" alt="img"></p>
+<h2 id="memory-layered-design"><a href="#memory-layered-design" class="headerlink" title="memory layered design"></a>memory layered design</h2><p>这篇文章提供了三种“DBMS memory layered design based on NVM”：</p>
+<img src="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/6ca7e80c6a28cd51b6e577e30cdb1529.png" class="">
+<p><img src="基于NVM的postgres/6ca7e80c6a28cd51b6e577e30cdb1529.png" alt="img"></p>
+<p>文章中不建议把DRAM替换为NVM，原因是：”such changes require a redesign of the current operating system and application software. In addition, as a substitute for DRAM, NVM technology is not mature in terms of durability. Therefore, we advocate that the platform still contains DRAM memory, and the disk is completely or partially replaced with NVM”</p>
+<p>DRAM+NVM的组合是：DRAM快速处理暂存的数据；“it allows applications to access the data of the database system through the PMFS file system, and uses the NVM byte addressing feature to avoid the API overhead of the current traditional file system.”（我不懂，字节寻址避免了什么开销呢）</p>
+<p>当使用NVM替换磁盘时，我们如何更改DBMS的重要部分：</p>
+<ol>
+<li>Avoid block-level access。使用NVM作为main memory medium时，字节寻址比块寻址要更加高效，但是“this reduces the data granularity to the byte level, without data warm-up. A better method needs to balance the advantages of these two aspects.” 所以，<strong>什么是data warm-up</strong>。</li>
+<li>Remove the internal buffer cache of the DBMS：“If the address space of NVM can be seen by other processes, there is no need to do block copying for a long time. <strong>Direct access to records in NVM will be more efficient</strong>. However, this <strong>requires an operating system that supports NVM</strong>, such as PMFS, which can directly expose the NVM address space to the process.” （我觉得，还是要buffer cache的吧）</li>
+<li>Remove redo logs：“if the internal buffer cache is not deployed, when all writes are directly written to NVM, redo log is not needed, but undo log is still needed.”（对于最简单的恢复系统，也就是先写日志到持久化存储，再写对应的更新到持久化存储，那么确实不需要redo log了，但是对于PG来说，这个不适用，因为PG是直接把更新写到buffer中的。）</li>
+</ol>
+<h2 id="PG-read-and-write-architecture"><a href="#PG-read-and-write-architecture" class="headerlink" title="PG read and write architecture"></a>PG read and write architecture</h2>
+<p><img src="基于NVM的postgres/image-20210804180735523.png" alt="image-20210804180735523"></p>
+<p>Fig3 图a是传统的PG数据库的IO方式，“when the buffer cache is missed, the storage engine of the native PG will cause <strong>two copy operations</strong>. When the data set is very large, this will be a big overhead”</p>
+<h1 id="PMEM"><a href="#PMEM" class="headerlink" title="PMEM"></a>PMEM</h1><p>参考：【3】关于mmap，ndctl，clwb等等很多相关知识都可以看到。</p>
+<h2 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h2><p>”For <a target="_blank" rel="noopener" href="https://pmem.io/glossary/#persistent-memory">persistent memory</a>, a PMem-aware file system allows a memory mapped file to access the PMem directly, a feature known as <a target="_blank" rel="noopener" href="https://pmem.io/glossary/#dax">DAX</a>. “ 因为对于普通的mmap来说，都是直接操作文件映射的内存的，但是对于PM来说，mmap就是通过虚拟地址直接操作PM。</p>
+<p>“Unlike memory mapped files on storage, where the OS performs <a target="_blank" rel="noopener" href="https://pmem.io/glossary/#paging">paging</a> to DRAM as necessary, the application is able to access persistent memory data structures in-place, right where they are located in PMem.”</p>
+<p>但是由于CPU内部本身有缓存，所以不能保证数据一定会持久化到PM，所以就有了clwb, clflush, ntstore之类的指令。</p>
+<img src="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/dax.jpg" class="">
+<p><img src="基于NVM的postgres/dax.jpg" alt="DAX"></p>
+<p>pmem-Aware File System指的是可以支持DAX方式的文件系统，比如ext4。在pmem-Aware File System下，可以使用Standard File API的mmap()和msync()命令；同时，如果mmap()在“MAP_SYNC”模式下返回成功，则用户程序可以直接使用clwb等持久化命令。</p>
+<h2 id="Device-DAX"><a href="#Device-DAX" class="headerlink" title="Device DAX"></a>Device DAX</h2><p>如果通过”pmem-Aware File System”来访问PM，这是访问PM的<code>fsdax</code>模式，如果不使用“pmem-Aware File System”来访问PM，这是访问PM的<code>dev dax</code>模式。两者的区别是什么呢？</p>
+<ol>
+<li>【2】fsdax模式由于提供的是标准的POSIX文件系统接口，所以他的兼容性更好，应用可以在完全不修改的情况下，把PMEM当作一个非常快速的磁盘来使用，同时因为是要模拟磁盘行为，IO的粒度也是512个字节，对于PMEM这样在cache line大小的IO中，能提供的超低延迟特性的硬件来说，IO的粒度仍旧太大了，无法真正发挥出PMEM的全部实力；只有devdax模式，才是真正的可以完全发挥PMEM所有高性能、可持久化、字节寻址能力的最强模式！但是唯一遗憾的就是要想使用devdax模式，必须重写现有的应用程序，和PMEM设备对接，同时，在非易失性内存上编程，也是和传统编程有较大的区别，需要考虑很多以前不需要处理的问题，所以对于很多现有的应用来说，虽然devdax模式“看上去很美”，但是却没办法采用。</li>
+<li></li>
+</ol>
+<h1 id="DAX-FS"><a href="#DAX-FS" class="headerlink" title="DAX FS"></a>DAX FS</h1><p>参考【2】，【4】</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】postgresql email列表对NVM WAL BUFFER的讨论 <a target="_blank" rel="noopener" href="https://blog.csdn.net/yanzongshuai/article/details/111940166">https://blog.csdn.net/yanzongshuai/article/details/111940166</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.ofweek.com/Internet/a956714781157">https://mp.ofweek.com/Internet/a956714781157</a></p>
+<p>postgresql官网关于Yoshimi Ichiyanagi发送的NVM WAL BUFFER邮件：<a target="_blank" rel="noopener" href="https://www.postgresql.org/message-id/C20D38E97BCB33DAD59E3A1%40lab.ntt.co.jp">https://www.postgresql.org/message-id/C20D38E97BCB33DAD59E3A1%40lab.ntt.co.jp</a></p>
+<p>这个作者<code>zys87</code>有很多相关的“PostgreSQL源码分析”的文章，比如：</p>
+<p>非易失性WAL buffer <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/article/details/104116169">https://yanzongshuaidba.blog.csdn.net/article/details/104116169</a></p>
+<p>非易失性WAL buffer实现解析（一） <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/article/details/104205001?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base">https://yanzongshuaidba.blog.csdn.net/article/details/104205001?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base</a></p>
+<p>对应的专栏：PostgreSQL源码分析 <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/category_9278392.html">https://yanzongshuaidba.blog.csdn.net/category_9278392.html</a></p>
+<p>【2】dax fs：<a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf">https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf</a></p>
+<p>MemVerge（PMEM）: <a target="_blank" rel="noopener" href="https://card.weibo.com/article/m/show/id/2309404633085408051536">https://card.weibo.com/article/m/show/id/2309404633085408051536</a></p>
+<p>【3】pmem官网（关于mmap，ndctl，clwb等等很多相关知识都可以看到）：<a target="_blank" rel="noopener" href="https://pmem.io/">https://pmem.io/</a></p>
+<p>【4】linux doc on DAX：<a target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/filesystems/dax.txt">https://www.kernel.org/doc/Documentation/filesystems/dax.txt</a></p>
+<h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h1><p>应用PMDK修改WAL操作使之适配持久化内存 <a target="_blank" rel="noopener" href="https://blog.51cto.com/yanzongshuai/2428535">https://blog.51cto.com/yanzongshuai/2428535</a></p>
+<p>yzs大神似乎很会研究PostgreSQL <a target="_blank" rel="noopener" href="https://blog.51cto.com/yanzongshuai">https://blog.51cto.com/yanzongshuai</a></p>
+<p>dax fs：<a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf">https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf</a></p>
+<p>MemVerge（PMEM）: <a target="_blank" rel="noopener" href="https://card.weibo.com/article/m/show/id/2309404633085408051536">https://card.weibo.com/article/m/show/id/2309404633085408051536</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-linux程序设计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1976,85 +2115,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-WSL更新数据源" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/">WSL更新数据源</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/" class="archive-article-date">
-  	<time datetime="2021-06-01T13:09:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>e</p>
-<p>首先进入WSL，执行<code>cd /etc/apt</code>。</p>
-<p>然后再windows的<code>C:\Users\%USERNAME%\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs</code>目录下找到sources.list文件。用下列内容覆盖。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-security main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-updates main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-backports main restricted universe multiverse  </span><br><span class="line"><span class="comment">##测试版源  </span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-proposed main restricted universe multiverse  </span><br><span class="line"><span class="comment"># 源码  </span></span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-security main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-updates main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-backports main restricted universe multiverse  </span><br><span class="line"><span class="comment">##测试版源  </span></span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-proposed main restricted universe multiverse  </span><br><span class="line"><span class="comment"># Canonical 合作伙伴和附加  </span></span><br><span class="line">deb http:<span class="regexp">//</span>archive.canonical.com<span class="regexp">/ubuntu/</span> xenial partner  </span><br><span class="line">deb http:<span class="regexp">//</span>extras.ubuntu.com<span class="regexp">/ubuntu/</span> xenial main  </span><br></pre></td></tr></table></figure>
-<p>接着，回到WSL，执行：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> update # 更新源</span><br><span class="line">sudo apt-<span class="builtin-name">get</span><span class="built_in"> upgrade </span># 更新软件</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/">展开全文 >></a>
         </p>
       
 

@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouhuahui.github.io">
-  <title>Archives: 2021 | Hexo</title>
+  <title>linux环境 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zhouhuahui.github.io/archives/2021/page/2/index.html">
+  <meta name="description" content="CentOS 之 XXX is not in the sudoers file解决方法这种情况下要修改&#x2F;etc&#x2F;sudoers文件，将相应的用户名注册进去，比如我的用户名是zhouhuahui，需要这么做：  进入root用户模式。可以直接以root账号登录centos 添加文件的写权限。chmod u+w &#x2F;etc&#x2F;sudoers。 编辑&#x2F;etc&#x2F;sudoers文件，在root ALL&#x3D;(ALL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux环境">
+<meta property="og:url" content="https://zhouhuahui.github.io/2021/10/01/linux%E7%8E%AF%E5%A2%83/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="CentOS 之 XXX is not in the sudoers file解决方法这种情况下要修改&#x2F;etc&#x2F;sudoers文件，将相应的用户名注册进去，比如我的用户名是zhouhuahui，需要这么做：  进入root用户模式。可以直接以root账号登录centos 添加文件的写权限。chmod u+w &#x2F;etc&#x2F;sudoers。 编辑&#x2F;etc&#x2F;sudoers文件，在root ALL&#x3D;(ALL">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-01T13:00:54.000Z">
+<meta property="article:modified_time" content="2021-10-02T16:05:42.154Z">
 <meta property="article:author" content="fantasy">
+<meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -150,405 +155,241 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-linux环境" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      linux环境
+    </h1>
+  
+
+        
+        <a href="/2021/10/01/linux%E7%8E%AF%E5%A2%83/" class="archive-article-date">
+  	<time datetime="2021-10-01T13:00:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-01</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="CentOS-之-XXX-is-not-in-the-sudoers-file解决方法"><a href="#CentOS-之-XXX-is-not-in-the-sudoers-file解决方法" class="headerlink" title="CentOS 之 XXX is not in the sudoers file解决方法"></a>CentOS 之 XXX is not in the sudoers file解决方法</h1><p>这种情况下要修改<code>/etc/sudoers</code>文件，将相应的用户名注册进去，比如我的用户名是<code>zhouhuahui</code>，需要这么做：</p>
+<ol>
+<li>进入root用户模式。可以直接以root账号登录centos</li>
+<li>添加文件的写权限。<code>chmod u+w /etc/sudoers</code>。</li>
+<li>编辑<code>/etc/sudoers</code>文件，在<code>root ALL=(ALL) ALL</code>后面一行添加：<code>zhouhuahui ALL=(ALL) ALL</code>。</li>
+<li>完成</li>
+</ol>
+<h1 id="centos的scl软件集"><a href="#centos的scl软件集" class="headerlink" title="centos的scl软件集"></a>centos的scl软件集</h1><p>scl软件集(Software Collections),是为了给 RHEL/CentOS 用户提供一种以方便、安全地安装和使用应用程序和运行时环境的多个（而且可能是更新的）版本的方式，同时避免把系统搞乱。以前在ubuntu上经常会看到，安装某个软件会导致<code>unmet dependencies</code>的错误，原因是软件版本方面的问题。</p>
+<ol>
+<li>安装scl源. <code>sudo yum install centos-release-scl scl-utils-build</code></li>
+<li>列出scl源有哪些软件可以用. <code>sudo yum list all --enablerepo=&#39;centos-sclo-rh&#39; &gt; software.txt</code>，然后可以gedit software.txt查看有没有自己想要的软件。比如我会搜索gdb，就可以看到有很多<code>devtoolset-10</code>开头的和gcc, gdb有关的软件。</li>
+<li>查看从scl中安装的包：<code>scl --list</code></li>
+</ol>
+<h2 id="centos下安装最新的gcc-g-gdb"><a href="#centos下安装最新的gcc-g-gdb" class="headerlink" title="centos下安装最新的gcc, g++, gdb"></a>centos下安装最新的gcc, g++, gdb</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install devtoolset-10-gcc.x86_64 devtoolset-10-gcc-c++.x86_64 devtoolset-10-gcc-gdb-plugin.x86_64</span><br></pre></td></tr></table></figure>
+<p>此时查看gcc版本，会发现还是老版本，我们需要切换gcc版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scl <span class="built_in">enable</span> devtoolset-10 bash</span><br></pre></td></tr></table></figure>
+<p>在系统中永久启用最新的gcc</p>
+<p>sudo vi /etc/profile，假如下述内容</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scl enable devtoolset-<span class="number">10</span> bash</span><br><span class="line"><span class="keyword">source</span> <span class="regexp">/opt/</span>rh<span class="regexp">/devtoolset-10/</span>bash</span><br></pre></td></tr></table></figure>
+<p>立即生效</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span> <span class="regexp">/etc/</span>profile</span><br></pre></td></tr></table></figure>
+<h1 id="linux软件版本管理命令update-alternatives"><a href="#linux软件版本管理命令update-alternatives" class="headerlink" title="linux软件版本管理命令update-alternatives"></a>linux软件版本管理命令update-alternatives</h1><p>以jdk为例，安装了jdk后，先要在update-alternatives工具中注册：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_91/bin/java 200</span><br><span class="line">update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_111/bin/java 300</span><br></pre></td></tr></table></figure>
+<p><code>update-alternatives --install [link] [name] [path] [priority]</code></p>
+<ol>
+<li>link: <strong>link为系统中功能相同软件的公共链接目录</strong>。</li>
+<li>name为命令链接符名称,如java</li>
+<li>path为你所要使用新命令、新软件的所在目录</li>
+<li>priority为优先级。在自动模式下，默认选择优先级最高的软件</li>
+</ol>
+<p>查看已注册列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --display java</span><br></pre></td></tr></table></figure>
+<p>手动修改命令版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update-alternatives --config java</span><br></pre></td></tr></table></figure>
+<h1 id="centos7下的yum包管理工具"><a href="#centos7下的yum包管理工具" class="headerlink" title="centos7下的yum包管理工具"></a>centos7下的yum包管理工具</h1><p>删除软件</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">sudo</span> yum remove llvm-toolset-<span class="number">7</span>-cmake.x<span class="number">86</span>_<span class="number">64</span></span><br></pre></td></tr></table></figure>
+<h1 id="centos7下安装cmake"><a href="#centos7下安装cmake" class="headerlink" title="centos7下安装cmake"></a>centos7下安装cmake</h1><p><strong>第一种方式</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install cmake</span><br></pre></td></tr></table></figure>
+<p>但是这种方式安装的cmake版本不够</p>
+<p><strong>第二种方式</strong></p>
+<p>使用scl软件集</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install llvm-toolset-7-cmake.x86_64</span><br><span class="line">scl <span class="built_in">enable</span> llvm-toolset-7</span><br></pre></td></tr></table></figure>
+<p><strong>第三种方式</strong></p>
+<p>官网下载源码，编译安装</p>
+<ol>
+<li>从<a target="_blank" rel="noopener" href="https://cmake.org/download/">cmake download</a>找到linux的一个cmake版本，然后复制下载链接，比如：<code>https://github.com/Kitware/CMake/releases/download/v3.21.3/cmake-3.21.3.tar.gz</code></li>
+<li>在linux下，使用wget命令下载, <code>wget https://github.com/Kitware/CMake/releases/download/v3.21.3/cmake-3.21.3.tar.gz</code></li>
+<li>解压到<code>~/Documents/</code>下，<code>tar -zxvf cmake-3.21.3.tar.gz -C ~/Documents/</code></li>
+<li>需要安装一些依赖。<code>yum -y install gcc gcc-c++ openssl-devel</code>，当然如果有gcc, gcc-c++之后，就不用安装了，直接安装openssl-devel就好了。</li>
+<li>cd到cmake源文件的根目录, <code>cd ~/Documents/cmake-3.21.3</code></li>
+<li>运行<code>./bootstrap</code></li>
+<li>运行<code>make &amp;&amp; sudo make install</code></li>
+<li>建立软链接：<code>sudo ln -s ~/Documents/cmake-3.21.3/bin/cmake /usr/bin/cmake</code></li>
+</ol>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/" class="archive-article-date">
-  	<time datetime="2021-09-10T07:28:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/">2021ecnu校园地助学贷款</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhouhuahui.github.io/2021/10/01/linux%E7%8E%AF%E5%A2%83/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/09/%E9%94%81/" class="archive-article-date">
-  	<time datetime="2021-09-10T01:04:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/3000/06/23/about-me/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          about me
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/09/29/OB%E5%A4%A7%E8%B5%9B/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">OB大赛</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/09/%E9%94%81/">锁</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CentOS-%E4%B9%8B-XXX-is-not-in-the-sudoers-file%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">CentOS 之 XXX is not in the sudoers file解决方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centos%E7%9A%84scl%E8%BD%AF%E4%BB%B6%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">centos的scl软件集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#centos%E4%B8%8B%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%9A%84gcc-g-gdb"><span class="toc-number">2.1.</span> <span class="toc-text">centos下安装最新的gcc, g++, gdb</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4update-alternatives"><span class="toc-number">3.</span> <span class="toc-text">linux软件版本管理命令update-alternatives</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centos7%E4%B8%8B%E7%9A%84yum%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">centos7下的yum包管理工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centos7%E4%B8%8B%E5%AE%89%E8%A3%85cmake"><span class="toc-number">5.</span> <span class="toc-text">centos7下安装cmake</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">6.</span> <span class="toc-text">引用</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/" class="archive-article-date">
-  	<time datetime="2021-09-10T00:33:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">每日技术阅读</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/" class="archive-article-date">
-  	<time datetime="2021-09-09T23:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/">处理数据库读写冲突</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/" class="archive-article-date">
-  	<time datetime="2021-09-09T10:51:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/">论文阅读：spitfire</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/" class="archive-article-date">
-  	<time datetime="2021-09-08T06:21:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/">读论文：DUDETM</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/09/06/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/" class="archive-article-date">
-  	<time datetime="2021-09-07T05:24:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/09/06/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/">持久内存编程PMDK</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/30/leetcode/" class="archive-article-date">
-  	<time datetime="2021-08-31T04:24:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/30/leetcode/">leetcode</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2021-08-23T02:12:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">finalshell-cisoAnyConnection连接到ecnu服务器</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/22/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="archive-article-date">
-  	<time datetime="2021-08-23T01:38:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/22/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/">开源项目推荐</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2021/">&amp;laquo; Prev</a><a class="page-number" href="/archives/2021/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2021/page/3/">3</a><a class="page-number" href="/archives/2021/page/4/">4</a><a class="page-number" href="/archives/2021/page/5/">5</a><a class="extend next" rel="next" href="/archives/2021/page/3/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -572,8 +413,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,

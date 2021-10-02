@@ -152,6 +152,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-typora的使用" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/21/typora%E7%9A%84%E4%BD%BF%E7%94%A8/">typora的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/21/typora%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2020-07-21T19:02:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="插入数学公式"><a href="#插入数学公式" class="headerlink" title="插入数学公式"></a>插入数学公式</h1><p>typora的公式功能使用的是letex</p>
+<p>以下是插入公式的源代码</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line"><span class="symbol">\S</span>igma = <span class="symbol">\&#123;</span>A,B<span class="symbol">\&#125;</span><span class="symbol">\\</span></span><br><span class="line"><span class="symbol">\s</span>igma = <span class="symbol">\&#123;</span>a,b<span class="symbol">\&#125;</span></span><br><span class="line">$$</span><br></pre></td></tr></table></figure>
+<p>形式为：</p>
+<script type="math/tex; mode=display">
+\Sigma = \{A,B\}\\
+\sigma = \{a,b\}</script><p>其中 <code>\\</code> 表示换行，其他更多操作，我没有记录，现在发个链接，以后用到了再学习。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35896136/article/details/104975932">https://blog.csdn.net/qq_35896136/article/details/104975932</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/muyisir/p/11440164.html">https://www.cnblogs.com/muyisir/p/11440164.html</a></p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">$</span><span class="symbol">$</span></span><br><span class="line">a^&#123;<span class="number">2</span>m<span class="number">-1</span>&#125;</span><br><span class="line"><span class="symbol">$</span><span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+<script type="math/tex; mode=display">
+a^{2m-1}</script><h2 id="如何插入内联公式"><a href="#如何插入内联公式" class="headerlink" title="如何插入内联公式"></a>如何插入内联公式</h2><p>要是用这个功能，必须在typora中的<script type="math/tex">file/preferences</script>中进行设置</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">我使用了希腊字母<span class="symbol">$</span>\alpha<span class="symbol">$</span></span><br></pre></td></tr></table></figure>
+<p>我使用了希腊字母$\alpha$</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~~ee~~</span><br></pre></td></tr></table></figure>
+<p>形式：<del>ee</del></p>
+<h1 id="链接引用"><a href="#链接引用" class="headerlink" title="链接引用"></a>链接引用</h1><p>有时候写文章的时候，发现有些话是来自某个链接文章的，我该如何优雅地引用呢，这就要用到typora的链接引用功能。</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">我经常使用[<span class="string">百度</span>][<span class="symbol">1</span>]</span><br><span class="line"></span><br><span class="line">[<span class="symbol">1</span>]: <span class="link">https://www.baidu.com</span></span><br></pre></td></tr></table></figure>
+<p>我经常使用<a target="_blank" rel="noopener" href="https://www.baidu.com">百度</a></p>
+<h1 id="脚注"><a href="#脚注" class="headerlink" title="脚注"></a>脚注</h1><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">百度[^ 1]</span><br><span class="line"></span><br><span class="line">[<span class="symbol">^1</span>]: <span class="link">https://www.baidu.com</span></span><br></pre></td></tr></table></figure>
+<p>百度<sup><a href="#fn_ 1" id="reffn_ 1"> 1</a></sup></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/21/typora%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-git的使用" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -204,7 +297,7 @@
 <p>在本地test1项目下创建一个新的分支：<code>git branch branch1</code></p>
 <p>pull到branch1：<code>git pull origin master:branch1</code></p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section"># test1</span></span><br><span class="line"></span><br><span class="line">aaa</span><br><span class="line"></span><br><span class="line">bbb</span><br><span class="line"></span><br><span class="line">ccc</span><br><span class="line"></span><br><span class="line">ddd</span><br><span class="line"></span><br><span class="line">eee</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="如和解决冲突"><a href="#如和解决冲突" class="headerlink" title="如和解决冲突"></a>如和解决冲突</h3><p>参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/zjfjava/p/10280247.html">https://www.cnblogs.com/zjfjava/p/10280247.html</a></p>
+<h3 id="如何解决冲突"><a href="#如何解决冲突" class="headerlink" title="如何解决冲突"></a>如何解决冲突</h3><p>参考 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/zjfjava/p/10280247.html">https://www.cnblogs.com/zjfjava/p/10280247.html</a></p>
 <h2 id="status"><a href="#status" class="headerlink" title="status"></a>status</h2><p><code>git status</code>查看当前状态</p>
 <h2 id="log"><a href="#log" class="headerlink" title="log"></a>log</h2><p><code>git log</code>查看历史版本号</p>
 <h2 id="reset"><a href="#reset" class="headerlink" title="reset"></a>reset</h2><p><code>git reset [--hard] &#123;历史版本号&#125;</code>，可以回退到某个版本。有以下几个情况要考虑：</p>
@@ -246,6 +339,12 @@
 <li><p>上传到远程的branch1</p>
 </li>
 </ol>
+<h2 id="git-clone远程仓库的多个分支"><a href="#git-clone远程仓库的多个分支" class="headerlink" title="git clone远程仓库的多个分支"></a>git clone远程仓库的多个分支</h2><p><code>git clone</code> 默认是克隆<code>Head</code>指向的<code>master</code>分支，如果是多分支，如果是多分支，我们该如何做呢？</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/zhouhuahui/MiniOB.git</span><br><span class="line"><span class="built_in">cd</span> MiniOB</span><br><span class="line">git branch -a</span><br></pre></td></tr></table></figure>
+<p>此时，发现输出是：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* master</span><br><span class="line">  remotes<span class="regexp">/origin/</span>HEAD -&gt; origin/master</span><br><span class="line">  remotes<span class="regexp">/origin/</span>featrue_org</span><br><span class="line">  remotes<span class="regexp">/origin/</span>feature_ob</span><br><span class="line">  remotes<span class="regexp">/origin/m</span>aster</span><br></pre></td></tr></table></figure>
+<p>然后我们可以clone所有分支：</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -<span class="keyword">b </span>featrue_org <span class="keyword">origin/feature_org</span></span><br><span class="line"><span class="keyword"></span>git checkout -<span class="keyword">b </span>feature_ob <span class="keyword">origin/feature_ob</span></span><br></pre></td></tr></table></figure>
 
       
 
