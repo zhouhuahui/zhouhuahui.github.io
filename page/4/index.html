@@ -577,21 +577,27 @@
 <p>结果是：</p>
 <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">debug1</span>: Aug <span class="number">17</span> <span class="number">2021</span> at <span class="number">08</span>:<span class="number">17</span>:<span class="number">47</span></span><br><span class="line"><span class="attribute">This</span> is a line <span class="number">14</span> of file debug<span class="number">1</span>.c</span><br><span class="line"><span class="attribute">hello</span> world</span><br></pre></td></tr></table></figure>
 <p>通过指定<code>-DDEBUG</code>选项的值为0, 1, 2或者3，可以有不同的调试输出。</p>
-<h2 id="启动gdb"><a href="#启动gdb" class="headerlink" title="启动gdb"></a>启动gdb</h2><p>假设已经编译好了<code>a.c</code>文件，然后可执行文件是<code>a</code></p>
+<p><strong>启动gdb</strong></p>
+<p>假设已经编译好了<code>a.c</code>文件，然后可执行文件是<code>a</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cc -g -o a a.c</span><br></pre></td></tr></table></figure>
 <p>然后：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gdb a</span><br></pre></td></tr></table></figure>
 <p>此时只是启动gdb，但是并没有运行程序</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
-<h2 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) run</span><br></pre></td></tr></table></figure>
-<h2 id="栈跟踪"><a href="#栈跟踪" class="headerlink" title="栈跟踪"></a>栈跟踪</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) backtrace</span><br></pre></td></tr></table></figure>
+<p><strong>运行程序</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) run</span><br></pre></td></tr></table></figure>
+<p><strong>栈跟踪</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) backtrace</span><br></pre></td></tr></table></figure>
 <p>通过这个命令可以看到程序是如何到达这个断点的。</p>
-<h2 id="检查变量"><a href="#检查变量" class="headerlink" title="检查变量"></a>检查变量</h2><p>print语句可以输出程序中的表达式的值。加入程序中有<code>int a[]</code>数组，则可以通过下面的命令输出<code>a[3]</code>的值。</p>
+<p><strong>检查变量</strong></p>
+<p>print语句可以输出程序中的表达式的值。加入程序中有<code>int a[]</code>数组，则可以通过下面的命令输出<code>a[3]</code>的值。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">print</span> a[3]</span><br></pre></td></tr></table></figure>
 <p>输出<code>a[0]</code>到<code>a[4]</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">print</span> a[0]@5</span><br></pre></td></tr></table></figure>
-<h2 id="列出程序源代码"><a href="#列出程序源代码" class="headerlink" title="列出程序源代码"></a>列出程序源代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) list</span><br></pre></td></tr></table></figure>
-<h2 id="设置断点"><a href="#设置断点" class="headerlink" title="设置断点"></a>设置断点</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">break</span> 3 <span class="comment"># 在第3行设置断点</span></span><br><span class="line">(gdb) run</span><br></pre></td></tr></table></figure>
+<p><strong>列出程序源代码</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) list</span><br></pre></td></tr></table></figure>
+<p><strong>设置断点</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">break</span> 3 <span class="comment"># 在第3行设置断点</span></span><br><span class="line">(gdb) run</span><br></pre></td></tr></table></figure>
 <p>继续执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) cont</span><br></pre></td></tr></table></figure>
 <p><strong>单步执行</strong>：</p>
@@ -602,8 +608,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">disable</span> <span class="built_in">break</span> 1 <span class="comment"># disable第一个断点</span></span><br></pre></td></tr></table></figure>
 <p>在某个函数设置断点：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">break</span> func</span><br></pre></td></tr></table></figure>
-<h2 id="attach"><a href="#attach" class="headerlink" title="attach"></a>attach</h2><p>如何用gdb调试已经运行的程序。加入一个程序的pid是1234</p>
+<p><strong>attach</strong></p>
+<p>如何用gdb调试已经运行的程序。加入一个程序的pid是1234</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) attach 1234</span><br></pre></td></tr></table></figure>
+<p><strong>进入代码模式</strong></p>
+<p>快捷键<code>ctrl+X+A</code>。</p>
+<p><strong>跳出函数</strong></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">finish</span></span><br><span class="line"><span class="keyword">fin</span></span><br></pre></td></tr></table></figure>
 <h1 id="linux工具"><a href="#linux工具" class="headerlink" title="linux工具"></a>linux工具</h1><h2 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h2><p>多个源文件的编译：（假如有a.h, a.c, b.c文件）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc a.c b.c -o b</span><br></pre></td></tr></table></figure>
 <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】linux中的 IO端口映射和IO内存映射 <a target="_blank" rel="noopener" href="https://blog.csdn.net/geekster/article/details/11393995">https://blog.csdn.net/geekster/article/details/11393995</a></p>
