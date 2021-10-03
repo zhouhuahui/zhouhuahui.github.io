@@ -152,6 +152,246 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-csp-201803" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/25/csp-201803/">csp-201803</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/25/csp-201803/" class="archive-article-date">
+  	<time datetime="2020-08-25T21:38:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="20180301（跳一跳）"><a href="#20180301（跳一跳）" class="headerlink" title="20180301（跳一跳）"></a>20180301（跳一跳）</h1><h2 id="代码1"><a href="#代码1" class="headerlink" title="代码1"></a>代码1</h2><p>用<code>vector&lt;int&gt; scores</code> 表示每一次的得分，用<code>sumScore</code>记录总得分。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; scores;</span><br><span class="line"><span class="keyword">int</span> sumScore = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    <span class="keyword">int</span> num, cnt=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">do</span>&#123;</span><br><span class="line">        cin&gt;&gt;num;</span><br><span class="line">        <span class="keyword">if</span>(num==<span class="number">1</span>)&#123;</span><br><span class="line">            scores.<span class="built_in">push_back</span>(<span class="number">1</span>);</span><br><span class="line">            sumScore+=<span class="number">1</span>;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(num==<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(cnt==<span class="number">0</span> || scores.<span class="built_in">back</span>()==<span class="number">1</span>)&#123;</span><br><span class="line">                scores.<span class="built_in">push_back</span>(<span class="number">2</span>);</span><br><span class="line">                sumScore+=<span class="number">2</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> temp = scores.<span class="built_in">back</span>()+<span class="number">2</span>;</span><br><span class="line">                scores.<span class="built_in">push_back</span>(temp);</span><br><span class="line">                sumScore+=temp;</span><br><span class="line">            &#125;</span><br><span class="line">            cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">while</span>(num!=<span class="number">0</span>);</span><br><span class="line">    <span class="comment">//output</span></span><br><span class="line">    cout&lt;&lt;sumScore&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="20180302（碰撞的小球）"><a href="#20180302（碰撞的小球）" class="headerlink" title="20180302（碰撞的小球）"></a>20180302（碰撞的小球）</h1><p>问题描述</p>
+<p>　　数轴上有一条长度为L（L为偶数)的线段，左端点在原点，右端点在坐标L处。有n个不计体积的小球在线段上，开始时所有的小球都处在偶数坐标上，速度方向向右，速度大小为1单位长度每秒。<br>　　当小球到达线段的端点（左端点或右端点）的时候，会立即向相反的方向移动，速度大小仍然为原来大小。<br>　　当两个小球撞到一起的时候，两个小球会分别向与自己原来移动的方向相反的方向，以原来的速度大小继续移动。<br>　　现在，告诉你线段的长度L，小球数量n，以及n个小球的初始位置，请你计算t秒之后，各个小球的位置。</p>
+<p>提示</p>
+<p>　　因为所有小球的初始位置都为偶数，而且线段的长度为偶数，可以证明，不会有三个小球同时相撞，小球到达线段端点以及小球之间的碰撞时刻均为整数。<br>　　同时也可以证明两个小球发生碰撞的位置一定是整数（但不一定是偶数）。</p>
+<p>输入格式</p>
+<p>　　输入的第一行包含三个整数n, L, t，用空格分隔，分别表示小球的个数、线段长度和你需要计算t秒之后小球的位置。<br>　　第二行包含n个整数a1, a2, …, an，用空格分隔，表示初始时刻n个小球的位置。</p>
+<p>输出格式</p>
+<p>　　输出一行包含n个整数，用空格分隔，第i个整数代表初始时刻位于ai的小球，在t秒之后的位置。</p>
+<p>样例输入</p>
+<p>3 10 5<br>4 6 8</p>
+<p>样例输出</p>
+<p>7 9 9</p>
+<h2 id="代码1-1"><a href="#代码1-1" class="headerlink" title="代码1"></a>代码1</h2><p>记录每个位置都有哪些小球，位置可以是[0,L]。小球用结构体表示。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Ball</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> id, dir; <span class="comment">//dir=1表示向右</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>题目中问t秒之后小球的位置，那么就在循环t次，在循环内部，处理情况，以更改每个位置的小球情况和小球的方向属性。当循环完毕之后，就记录每个小球的位置<code>vector&lt;int&gt; pos</code> ，然后输出。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Ball</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> id, dir; <span class="comment">//dir=1表示向右</span></span><br><span class="line">    <span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Ball&amp; b)<span class="keyword">const</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id&lt;b.id;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Ball</span>(<span class="keyword">int</span> a,<span class="keyword">int</span> b)&#123;</span><br><span class="line">        id=a;</span><br><span class="line">        dir=b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> n,L,t;</span><br><span class="line">vector&lt;set&lt;Ball&gt;&gt; ballOfPos;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; pos;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n&gt;&gt;L&gt;&gt;t;</span><br><span class="line">    ballOfPos.<span class="built_in">resize</span>(L+<span class="number">1</span>);</span><br><span class="line">    pos.<span class="built_in">resize</span>(n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> a;</span><br><span class="line">        cin&gt;&gt;a;</span><br><span class="line">        ballOfPos[a].<span class="built_in">insert</span>(<span class="built_in">Ball</span>(i,<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;t;i++)&#123;</span><br><span class="line">        vector&lt;set&lt;Ball&gt;&gt; ballOfPos2;</span><br><span class="line">        ballOfPos2.<span class="built_in">resize</span>(L+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;=L;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(ballOfPos[j].<span class="built_in">size</span>()==<span class="number">1</span>)&#123;</span><br><span class="line">                set&lt;Ball&gt;::iterator it = ballOfPos[j].<span class="built_in">begin</span>();</span><br><span class="line">                <span class="keyword">if</span>(j==L)&#123;</span><br><span class="line">                    ballOfPos2[j<span class="number">-1</span>].<span class="built_in">insert</span>(<span class="built_in">Ball</span>((*it).id, <span class="number">0</span>));</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(j==<span class="number">0</span>)&#123;</span><br><span class="line">                    ballOfPos2[j+<span class="number">1</span>].<span class="built_in">insert</span>(<span class="built_in">Ball</span>((*it).id, <span class="number">1</span>));</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>((*it).dir == <span class="number">1</span>)&#123;</span><br><span class="line">                        ballOfPos2[j+<span class="number">1</span>].<span class="built_in">insert</span>(<span class="built_in">Ball</span>((*it).id, <span class="number">1</span>));</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        ballOfPos2[j<span class="number">-1</span>].<span class="built_in">insert</span>(<span class="built_in">Ball</span>((*it).id, <span class="number">0</span>));</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span> <span class="keyword">if</span>(ballOfPos[j].<span class="built_in">size</span>()==<span class="number">2</span>)&#123;</span><br><span class="line">                set&lt;Ball&gt;::iterator it1 = ballOfPos[j].<span class="built_in">begin</span>();</span><br><span class="line">                set&lt;Ball&gt;::iterator it2 = ++it1; it1--;</span><br><span class="line">                <span class="keyword">if</span>((*it1).dir == <span class="number">1</span>)&#123;</span><br><span class="line">                    ballOfPos2[j<span class="number">-1</span>].<span class="built_in">insert</span>(<span class="built_in">Ball</span>((*it1).id, <span class="number">0</span>));</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    ballOfPos2[j+<span class="number">1</span>].<span class="built_in">insert</span>(<span class="built_in">Ball</span>((*it1).id, <span class="number">1</span>));</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>((*it2).dir == <span class="number">1</span>)&#123;</span><br><span class="line">                    ballOfPos2[j<span class="number">-1</span>].<span class="built_in">insert</span>(<span class="built_in">Ball</span>((*it2).id, <span class="number">0</span>));</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    ballOfPos2[j+<span class="number">1</span>].<span class="built_in">insert</span>(<span class="built_in">Ball</span>((*it2).id, <span class="number">1</span>));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ballOfPos = ballOfPos2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=L;i++)&#123;</span><br><span class="line">        set&lt;Ball&gt;::iterator it = ballOfPos[i].<span class="built_in">begin</span>();</span><br><span class="line">        <span class="keyword">for</span>(;it!=ballOfPos[i].<span class="built_in">end</span>();it++)&#123;</span><br><span class="line">            pos[(*it).id] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//output</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">0</span>) cout&lt;&lt;pos[i];</span><br><span class="line">        <span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;pos[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="20180303（URL映射）"><a href="#20180303（URL映射）" class="headerlink" title="20180303（URL映射）"></a>20180303（URL映射）</h1><p>问题描述</p>
+<p>　　URL 映射是诸如 Django、Ruby on Rails 等网页框架 (web frameworks) 的一个重要组件。对于从浏览器发来的 HTTP 请求，URL 映射模块会解析请求中的 URL 地址，并将其分派给相应的处理代码。现在，请你来实现一个简单的 URL 映射功能。<br>　　本题中 URL 映射功能的配置由若干条 URL 映射规则组成。当一个请求到达时，URL 映射功能会将请求中的 URL 地址按照配置的先后顺序逐一与这些规则进行匹配。当遇到第一条完全匹配的规则时，匹配成功，得到匹配的规则以及匹配的参数。若不能匹配任何一条规则，则匹配失败。<br>　　本题输入的 URL 地址是以斜杠 / 作为分隔符的路径，保证以斜杠开头。其他合法字符还包括大小写英文字母、阿拉伯数字、减号 -、下划线 _ 和小数点 .。例如，/person/123/ 是一个合法的 URL 地址，而 /person/123? 则不合法（存在不合法的字符问号 ?）。另外，英文字母区分大小写，因此 /case/ 和 /CAse/ 是不同的 URL 地址。<br>　　对于 URL 映射规则，同样是以斜杠开始。除了可以是正常的 URL 地址外，还可以包含参数，有以下 3 种：<br>　　字符串 <str>：用于匹配一段字符串，注意字符串里不能包含斜杠。例如，abcde0123。<br>　　整数 <int>：用于匹配一个不带符号的整数，全部由阿拉伯数字组成。例如，01234。<br>　　路径 <path>：用于匹配一段字符串，字符串可以包含斜杠。例如，abcd/0123/。<br>　　以上 3 种参数都必须匹配非空的字符串。简便起见，题目规定规则中 <str> 和 <int> 前面一定是斜杠，后面要么是斜杠，要么是规则的结束（也就是该参数是规则的最后一部分）。而 <path> 的前面一定是斜杠，后面一定是规则的结束。无论是 URL 地址还是规则，都不会出现连续的斜杠。</p>
+<p>输入格式</p>
+<p>　　输入第一行是两个正整数 <em>n</em> 和 <em>m</em>，分别表示 URL 映射的规则条数和待处理的 URL 地址个数，中间用一个空格字符分隔。<br>　　第 2 行至第 <em>n</em>+1 行按匹配的先后顺序描述 URL 映射规则的配置信息。第 <em>i</em>+1 行包含两个字符串 <em>pi</em> 和 <em>ri</em>，其中 <em>pi</em> 表示 URL 匹配的规则，<em>ri</em> 表示这条 URL 匹配的名字。两个字符串都非空，且不包含空格字符，两者中间用一个空格字符分隔。<br>　　第 <em>n</em>+2 行至第 <em>n</em>+<em>m</em>+1 行描述待处理的 URL 地址。第 <em>n</em>+1+<em>i</em> 行包含一个字符串 <em>qi</em>，表示待处理的 URL 地址，字符串中不包含空格字符。</p>
+<p>输出格式</p>
+<p>　　输入共 <em>m</em> 行，第 <em>i</em> 行表示 <em>qi</em> 的匹配结果。如果匹配成功，设匹配了规则 <em>pj</em> ，则输出对应的 <em>rj</em>。同时，如果规则中有参数，则在同一行内依次输出匹配后的参数。注意整数参数输出时要把前导零去掉。相邻两项之间用一个空格字符分隔。如果匹配失败，则输出 404。</p>
+<p>样例输入</p>
+<p>5 4<br>/articles/2003/ special_case_2003<br>/articles/<int>/ year_archive<br>/articles/<int>/<int>/ month_archive<br>/articles/<int>/<int>/<str>/ article_detail<br>/static/<path> static_serve<br>/articles/2004/<br>/articles/1985/09/aloha/<br>/articles/hello/<br>/static/js/jquery.js</p>
+<p>样例输出</p>
+<p>year_archive 2004<br>article_detail 1985 9 aloha<br>404<br>static_serve js/jquery.js</p>
+<p>样例说明</p>
+<p>　　对于第 1 个地址 /articles/2004/，无法匹配第 1 条规则，可以匹配第 2 条规则，参数为 2004。<br>　　对于第 2 个地址 /articles/1985/09/aloha/，只能匹配第 4 条规则，参数依次为 1985、9（已经去掉前导零）和 aloha。<br>　　对于第 3 个地址 /articles/hello/，无法匹配任何一条规则。<br>　　对于第 4 个地址 /static/js/jquery.js，可以匹配最后一条规则，参数为 js/jquery.js。</p>
+<h2 id="代码1-2"><a href="#代码1-2" class="headerlink" title="代码1"></a>代码1</h2><p>假如自己不会正则表达式，如何做这道题，还是可以做的。我们先把每个规则和名字建立映射，<code>vector&lt;array&lt;string,2&gt;&gt; pToName</code> ，然后输入URL，依次遍历pToName的每个规则，看是否匹配。</p>
+<p>我们写一个函数<code>bool isMatch(const string&amp; p, const string&amp; u), vector&lt;string&gt;&amp; params</code> 假如我们考虑规则p和URL u，我们按照<code>/</code> 字符进程分割p和u，看对应是否匹配，若有参数匹配，则记录这个参数到params中，最后若p和u完全匹配，则返回true</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Param</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> type; <span class="comment">//0:int 1:str/path</span></span><br><span class="line">    <span class="keyword">int</span> value;</span><br><span class="line">    string str;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line">vector&lt;array&lt;string,2&gt;&gt; pToName;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isInt</span><span class="params">(string s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">isdigit</span>(s[i]))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isStr</span><span class="params">(string s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">isdigit</span>(s[i]) &amp;&amp; !<span class="built_in">isalpha</span>(s[i]) &amp;&amp; s[i]!=<span class="string">&#x27;-&#x27;</span> &amp;&amp; s[i]!=<span class="string">&#x27;_&#x27;</span> &amp;&amp; s[i]!=<span class="string">&#x27;.&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isPath</span><span class="params">(string s)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">isdigit</span>(s[i]) &amp;&amp; !<span class="built_in">isalpha</span>(s[i]) &amp;&amp; s[i]!=<span class="string">&#x27;-&#x27;</span> &amp;&amp; s[i]!=<span class="string">&#x27;_&#x27;</span> &amp;&amp; s[i]!=<span class="string">&#x27;.&#x27;</span> &amp;&amp; s[i]!=<span class="string">&#x27;/&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isMatch</span><span class="params">(<span class="keyword">const</span> string&amp; p, <span class="keyword">const</span> string&amp; u, vector&lt;Param&gt;&amp; params)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(p[<span class="number">0</span>]!=u[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> i1=<span class="number">1</span>,i2,j1=<span class="number">1</span>,j2;</span><br><span class="line">    <span class="keyword">while</span>(i1&lt;p.<span class="built_in">size</span>() &amp;&amp; j1&lt;u.<span class="built_in">size</span>())&#123;</span><br><span class="line">        i2 = p.<span class="built_in">find</span>(<span class="string">&#x27;/&#x27;</span>,i1);</span><br><span class="line">        string s1 = p.<span class="built_in">substr</span>(i1,i2-i1), s2;</span><br><span class="line">        <span class="keyword">if</span>(s1 == <span class="string">&quot;&lt;int&gt;&quot;</span>)&#123;</span><br><span class="line">            j2 = u.<span class="built_in">find</span>(<span class="string">&#x27;/&#x27;</span>,j1);</span><br><span class="line">            <span class="keyword">if</span>(i2==string::npos&amp;&amp;j2!=string::npos || i2!=string::npos&amp;&amp;j2==string::npos)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            s2 = u.<span class="built_in">substr</span>(j1,j2-j1);</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">isInt</span>(s2))&#123;</span><br><span class="line">                params.<span class="built_in">push_back</span>(&#123;<span class="number">0</span>,<span class="built_in">stoi</span>(s2),<span class="string">&quot;&quot;</span>&#125;);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            j1 = (j2==string::npos?u.<span class="built_in">size</span>():j2+<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(s1 == <span class="string">&quot;&lt;str&gt;&quot;</span>)&#123;</span><br><span class="line">            j2 = u.<span class="built_in">find</span>(<span class="string">&#x27;/&#x27;</span>,j1);</span><br><span class="line">            <span class="keyword">if</span>(i2==string::npos&amp;&amp;j2!=string::npos || i2!=string::npos&amp;&amp;j2==string::npos)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            s2 = u.<span class="built_in">substr</span>(j1,j2-j1);</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">isStr</span>(s2))&#123;</span><br><span class="line">                params.<span class="built_in">push_back</span>(&#123;<span class="number">1</span>,<span class="number">0</span>,s2&#125;);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            j1 = (j2==string::npos?u.<span class="built_in">size</span>():j2+<span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(s1 == <span class="string">&quot;&lt;path&gt;&quot;</span>)&#123;</span><br><span class="line">            s2 = u.<span class="built_in">substr</span>(j1);</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">isPath</span>(s2))&#123;</span><br><span class="line">                params.<span class="built_in">push_back</span>(&#123;<span class="number">1</span>,<span class="number">0</span>,s2&#125;);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            j1 = u.<span class="built_in">size</span>();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            j2 = u.<span class="built_in">find</span>(<span class="string">&#x27;/&#x27;</span>,j1);</span><br><span class="line">            <span class="keyword">if</span>(i2==string::npos&amp;&amp;j2!=string::npos || i2!=string::npos&amp;&amp;j2==string::npos)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            s2 = u.<span class="built_in">substr</span>(j1,j2-j1);</span><br><span class="line">            <span class="keyword">if</span>(s1 != s2)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            j1 = (j2==string::npos?u.<span class="built_in">size</span>():j2+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        i1 = (i2==string::npos?p.<span class="built_in">size</span>():i2+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i1&gt;=p.<span class="built_in">size</span>() &amp;&amp; j1&gt;=u.<span class="built_in">size</span>())&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    pToName.<span class="built_in">resize</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin&gt;&gt;pToName[i][<span class="number">0</span>]&gt;&gt;pToName[i][<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        string u;</span><br><span class="line">        cin&gt;&gt;u;</span><br><span class="line">        <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            vector&lt;Param&gt; params;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">isMatch</span>(pToName[i][<span class="number">0</span>], u, params))&#123;</span><br><span class="line">                cout&lt;&lt;pToName[i][<span class="number">1</span>];</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;params.<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(params[j].type == <span class="number">0</span>)&#123;</span><br><span class="line">                        cout&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;params[j].value;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        cout&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;params[j].str;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                cout&lt;&lt;endl;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(!flag)&#123;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;404&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//要考虑最后的/符号</span></span><br><span class="line"><span class="comment">//92行笔误，把j1写成i2了</span></span><br></pre></td></tr></table></figure>
+<h1 id="20180304（棋局评估）"><a href="#20180304（棋局评估）" class="headerlink" title="20180304（棋局评估）"></a>20180304（棋局评估）</h1><p>问题描述</p>
+<p>　　Alice和Bob正在玩井字棋游戏。<br>　　井字棋游戏的规则很简单：两人轮流往3*3的棋盘中放棋子，Alice放的是“X”，Bob放的是“O”，Alice执先。当同一种棋子占据一行、一列或一条对角线的三个格子时，游戏结束，该种棋子的持有者获胜。当棋盘被填满的时候，游戏结束，双方平手。<br>　　Alice设计了一种对棋局评分的方法：</p>
+<p>　　- 对于Alice已经获胜的局面，评估得分为(棋盘上的空格子数+1)；<br>　　- 对于Bob已经获胜的局面，评估得分为 -(棋盘上的空格子数+1)；<br>　　- 对于平局的局面，评估得分为0；</p>
+<img src="/2020/08/25/csp-201803/1.png" class="">
+<p><img src="csp-201803/1.png" alt="1"></p>
+<p>例如上图中的局面，Alice已经获胜，同时棋盘上有2个空格，所以局面得分为2+1=3。<br>　　由于Alice并不喜欢计算，所以他请教擅长编程的你，如果两人都以最优策略行棋，那么当前局面的最终得分会是多少？</p>
+<p>输入格式</p>
+<p>　　输入的第一行包含一个正整数<em>T</em>，表示数据的组数。<br>　　每组数据输入有3行，每行有3个整数，用空格分隔，分别表示棋盘每个格子的状态。0表示格子为空，1表示格子中为“X”，2表示格子中为“O”。保证不会出现其他状态。<br>　　保证输入的局面合法。(即保证输入的局面可以通过行棋到达，且保证没有双方同时获胜的情况)<br>　　保证输入的局面轮到Alice行棋。</p>
+<p>输出格式</p>
+<p>　　对于每组数据，输出一行一个整数，表示当前局面的得分。</p>
+<p>样例输入</p>
+<p>3<br>1 2 1<br>2 1 2<br>0 0 0<br>2 1 1<br>0 2 1<br>0 0 2<br>0 0 0<br>0 0 0<br>0 0 0</p>
+<p>样例输出</p>
+<p>3<br>-4<br>0</p>
+<h2 id="代码1-3"><a href="#代码1-3" class="headerlink" title="代码1"></a>代码1</h2><p>可以写一个函数<code>int dfs(int player)</code>来计算在当前棋局下若player来以最优策略下棋，可以得到多少分，分数为正表示Alice赢了，分数为负数表示对手赢了。player为0表示Alice，1表示对手。</p>
+<p>dfs函数先判断上一个人有没有赢，若赢了，则返回一个值，否则，继续。设置一个分数score，遍历每个可以下棋的地方，然后递归，根据返回值a来更新score，若player为0，则应该取score和a的最大值，否则选择最小值。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T;</span><br><span class="line"><span class="keyword">int</span> graph[<span class="number">3</span>][<span class="number">3</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//看player是否赢了</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isWin</span><span class="params">(<span class="keyword">int</span> player)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = (player==<span class="number">0</span>?<span class="number">1</span>:<span class="number">2</span>); <span class="comment">//看要找什么数字连续</span></span><br><span class="line">    <span class="keyword">if</span>(graph[<span class="number">0</span>][<span class="number">0</span>]==a &amp;&amp; graph[<span class="number">0</span>][<span class="number">1</span>]==a &amp;&amp; graph[<span class="number">0</span>][<span class="number">2</span>]==a)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(graph[<span class="number">1</span>][<span class="number">0</span>]==a &amp;&amp; graph[<span class="number">1</span>][<span class="number">1</span>]==a &amp;&amp; graph[<span class="number">1</span>][<span class="number">2</span>]==a)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(graph[<span class="number">2</span>][<span class="number">0</span>]==a &amp;&amp; graph[<span class="number">2</span>][<span class="number">1</span>]==a &amp;&amp; graph[<span class="number">2</span>][<span class="number">2</span>]==a)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(graph[<span class="number">0</span>][<span class="number">0</span>]==a &amp;&amp; graph[<span class="number">1</span>][<span class="number">0</span>]==a &amp;&amp; graph[<span class="number">2</span>][<span class="number">0</span>]==a)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(graph[<span class="number">0</span>][<span class="number">1</span>]==a &amp;&amp; graph[<span class="number">1</span>][<span class="number">1</span>]==a &amp;&amp; graph[<span class="number">2</span>][<span class="number">1</span>]==a)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(graph[<span class="number">0</span>][<span class="number">2</span>]==a &amp;&amp; graph[<span class="number">1</span>][<span class="number">2</span>]==a &amp;&amp; graph[<span class="number">2</span>][<span class="number">2</span>]==a)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(graph[<span class="number">0</span>][<span class="number">0</span>]==a &amp;&amp; graph[<span class="number">1</span>][<span class="number">1</span>]==a &amp;&amp; graph[<span class="number">2</span>][<span class="number">2</span>]==a)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(graph[<span class="number">0</span>][<span class="number">2</span>]==a &amp;&amp; graph[<span class="number">1</span>][<span class="number">1</span>]==a &amp;&amp; graph[<span class="number">2</span>][<span class="number">0</span>]==a)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//在player赢了的情况下，计算成绩</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">getScore</span><span class="params">(<span class="keyword">int</span> player)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(graph[i][j]==<span class="number">0</span>) ans++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ans++;</span><br><span class="line">    <span class="keyword">if</span>(player==<span class="number">0</span>) <span class="keyword">return</span> ans;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> -ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//看棋盘是否满了</span></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isFull</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(graph[i][j]==<span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> player)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> prePlayer = player^<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isWin</span>(prePlayer))&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">getScore</span>(prePlayer);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isFull</span>()) <span class="keyword">return</span> <span class="number">0</span>; <span class="comment">//平手</span></span><br><span class="line">    <span class="keyword">int</span> score = (player==<span class="number">0</span>?INT_MIN:INT_MAX);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(graph[i][j]!=<span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            graph[i][j] = (player==<span class="number">0</span>?<span class="number">1</span>:<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">int</span> a = <span class="built_in">dfs</span>(prePlayer);</span><br><span class="line">            <span class="keyword">if</span>(player==<span class="number">0</span>)&#123;</span><br><span class="line">                score = <span class="built_in">max</span>(score,a);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                score = <span class="built_in">min</span>(score,a);</span><br><span class="line">            &#125;</span><br><span class="line">            graph[i][j] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> score;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">3</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;<span class="number">3</span>;j++)&#123;</span><br><span class="line">                cin&gt;&gt;graph[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="built_in">dfs</span>(<span class="number">0</span>);</span><br><span class="line">        cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一开始70行的代码忘写了，细节。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/25/csp-201803/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="posts-csp-201809" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/25/csp-201809/">csp-201809</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/25/csp-201809/" class="archive-article-date">
+  	<time datetime="2020-08-25T17:26:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="20180901（卖菜）"><a href="#20180901（卖菜）" class="headerlink" title="20180901（卖菜）"></a>20180901（卖菜）</h1><p>问题描述</p>
+<p>　　在一条街上有n个卖菜的商店，按1至n的顺序排成一排，这些商店都卖一种蔬菜。<br>　　第一天，每个商店都自己定了一个价格。店主们希望自己的菜价和其他商店的一致，第二天，每一家商店都会根据他自己和相邻商店的价格调整自己的价格。具体的，每家商店都会将第二天的菜价设置为自己和相邻商店第一天菜价的平均值（用去尾法取整）。<br>　　注意，编号为1的商店只有一个相邻的商店2，编号为n的商店只有一个相邻的商店n-1，其他编号为i的商店有两个相邻的商店i-1和i+1。<br>　　给定第一天各个商店的菜价，请计算第二天每个商店的菜价。</p>
+<p>输入格式</p>
+<p>　　输入的第一行包含一个整数n，表示商店的数量。<br>　　第二行包含n个整数，依次表示每个商店第一天的菜价。</p>
+<p>输出格式</p>
+<p>　　输出一行，包含n个正整数，依次表示每个商店第二天的菜价。</p>
+<p>样例输入</p>
+<p>8<br>4 1 3 1 6 5 17 9</p>
+<p>样例输出</p>
+<p>2 2 1 3 4 9 10 13</p>
+<p>数据规模和约定</p>
+<p>　　对于所有评测用例，2 ≤ n ≤ 1000，第一天每个商店的菜价为不超过10000的正整数。</p>
+<h2 id="代码1"><a href="#代码1" class="headerlink" title="代码1"></a>代码1</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; prices;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; prices2;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    prices.<span class="built_in">resize</span>(n);</span><br><span class="line">    prices2.<span class="built_in">resize</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin&gt;&gt;prices[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">            prices2[i] = (prices[i]+prices[i+<span class="number">1</span>])/<span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i==n<span class="number">-1</span>)&#123;</span><br><span class="line">            prices2[i] = (prices[i]+prices[i<span class="number">-1</span>])/<span class="number">2</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            prices2[i] = (prices[i<span class="number">-1</span>]+prices[i]+prices[i+<span class="number">1</span>])/<span class="number">3</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//output</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">            cout&lt;&lt;prices2[i];</span><br><span class="line">        &#125;<span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;prices2[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="20180902（买菜）"><a href="#20180902（买菜）" class="headerlink" title="20180902（买菜）"></a>20180902（买菜）</h1><h2 id="代码1-1"><a href="#代码1-1" class="headerlink" title="代码1"></a>代码1</h2><p>这题也是使用双指针法，假如当前指针指向两个人所在的时间段[a,b]和[c,d]，先累加相交叉的时间段，然后应该会有一下几种情况：1. d&gt;b-1，前者指针推进，2. b&gt;d-1，累加相交叉的时间段，后者指针推进，3. 否则，两者指针都推进。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">vector&lt;array&lt;<span class="keyword">int</span>,2&gt;&gt; times1,times2;</span><br><span class="line"><span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    times1.<span class="built_in">resize</span>(n);</span><br><span class="line">    times2.<span class="built_in">resize</span>(n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> a,b;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">        times1[i] = &#123;a,b&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin&gt;&gt;a&gt;&gt;b;</span><br><span class="line">        times2[i] = &#123;a,b&#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;n &amp;&amp; j&lt;n)&#123;</span><br><span class="line">        <span class="keyword">int</span> a=times1[i][<span class="number">0</span>],b=times1[i][<span class="number">1</span>],c=times2[j][<span class="number">0</span>],d=times2[j][<span class="number">1</span>];</span><br><span class="line">        ans += <span class="built_in">max</span>(<span class="number">0</span>,<span class="built_in">min</span>(b,d)-<span class="built_in">max</span>(a,c));</span><br><span class="line">        <span class="keyword">if</span>(d&gt;b<span class="number">-1</span>)&#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(b&gt;d<span class="number">-1</span>)&#123;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            i++;</span><br><span class="line">            j++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="20180903（元素选择器）"><a href="#20180903（元素选择器）" class="headerlink" title="20180903（元素选择器）"></a>20180903（元素选择器）</h1><img src="/2020/08/25/csp-201809/1.jpg" class="">
+<p><img src="csp-201809/1.jpg" alt="1"></p>
+<img src="/2020/08/25/csp-201809/2.jpg" class="">
+<p><img src="csp-201809/2.jpg" alt="1"></p>
+<img src="/2020/08/25/csp-201809/3.jpg" class="">
+<p><img src="csp-201809/3.jpg" alt="1"></p>
+<h2 id="代码1-2"><a href="#代码1-2" class="headerlink" title="代码1"></a>代码1</h2><p>设计一个struct来表示一行：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Line</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> layer; <span class="comment">//从0开始</span></span><br><span class="line">    string ele; </span><br><span class="line">    string id; <span class="comment">//空字符串表示没有id属性</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以表示每一行了。然后输入所有行到<code>vector&lt;Line&gt; lines</code>中。对于查询，若查询的是标签或id，就好办了，直接线性遍历匹配；若查询的是后代，则要用到栈，匹配一个祖先就压栈，直到所有祖先都压栈了，然后就看下一层级下有没有对应的，若有，就记录结果，那什么时候弹栈呢？假如你上次压栈的是1层的，这次又到了a层，那就弹栈，直到栈顶的层数比a小或空栈。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Line</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> layer; <span class="comment">//从0开始</span></span><br><span class="line">    string ele;</span><br><span class="line">    string id; <span class="comment">//空字符串表示没有id属性</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line">vector&lt;Line&gt; lines;</span><br><span class="line"></span><br><span class="line"><span class="function">Line <span class="title">dealLine</span><span class="params">(string str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>, dotNum=<span class="number">0</span>;</span><br><span class="line">    Line ans;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;str.<span class="built_in">size</span>() &amp;&amp; str[i]==<span class="string">&#x27;.&#x27;</span>)&#123;</span><br><span class="line">        dotNum++;</span><br><span class="line">        i++;</span><br><span class="line">    &#125;</span><br><span class="line">    ans.layer = dotNum/<span class="number">2</span>;</span><br><span class="line">    <span class="keyword">int</span> k=str.<span class="built_in">find</span>(<span class="string">&#x27; &#x27;</span>,i);</span><br><span class="line">    <span class="keyword">if</span>(i&lt;str.<span class="built_in">size</span>() &amp;&amp; k!=string::npos)&#123;</span><br><span class="line">        ans.ele = str.<span class="built_in">substr</span>(i,k-i);</span><br><span class="line">        i = k+<span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i&lt;str.<span class="built_in">size</span>())&#123;</span><br><span class="line">        ans.ele = str.<span class="built_in">substr</span>(i);</span><br><span class="line">        i = str.<span class="built_in">size</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(i&lt;str.<span class="built_in">size</span>())&#123;</span><br><span class="line">        ans.id = str.<span class="built_in">substr</span>(i+<span class="number">1</span>);</span><br><span class="line">        <span class="comment">//全变为小写</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;ans.id.<span class="built_in">size</span>();j++)&#123;</span><br><span class="line">            ans.id[j] = <span class="built_in">tolower</span>(ans.id[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dealSelect</span><span class="params">(string str, vector&lt;string&gt;&amp; selections)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;str.<span class="built_in">size</span>())&#123;</span><br><span class="line">        <span class="keyword">int</span> k = str.<span class="built_in">find</span>(<span class="string">&#x27; &#x27;</span>,i);</span><br><span class="line">        <span class="keyword">if</span>(k == string::npos)&#123;</span><br><span class="line">            selections.<span class="built_in">push_back</span>(str.<span class="built_in">substr</span>(i));</span><br><span class="line">            i = str.<span class="built_in">size</span>();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            selections.<span class="built_in">push_back</span>(str.<span class="built_in">substr</span>(i,k-i));</span><br><span class="line">            i = k+<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    cin.<span class="built_in">get</span>();</span><br><span class="line">    lines.<span class="built_in">resize</span>(n+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        string line;</span><br><span class="line">        <span class="built_in">getline</span>(cin,line);</span><br><span class="line">        lines[i] = <span class="built_in">dealLine</span>(line);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        string line;</span><br><span class="line">        <span class="built_in">getline</span>(cin,line);</span><br><span class="line">        vector&lt;string&gt; selections;</span><br><span class="line">        <span class="built_in">dealSelect</span>(line, selections);</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; ans; <span class="comment">//保存结果</span></span><br><span class="line">        <span class="keyword">if</span>(selections.<span class="built_in">size</span>()==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(selections[<span class="number">0</span>][<span class="number">0</span>]==<span class="string">&#x27;#&#x27;</span>)&#123;</span><br><span class="line">                string s = selections[<span class="number">0</span>].<span class="built_in">substr</span>(<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)&#123; <span class="comment">//全变为小写</span></span><br><span class="line">                    s[i] = <span class="built_in">tolower</span>(s[i]);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(lines[i].id==s)&#123;</span><br><span class="line">                        ans.<span class="built_in">push_back</span>(i);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(lines[i].ele==selections[<span class="number">0</span>])&#123;</span><br><span class="line">                        ans.<span class="built_in">push_back</span>(i);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            stack&lt;<span class="keyword">int</span>&gt; stk; <span class="comment">//保存已经找到的祖先的层级</span></span><br><span class="line">            <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                <span class="keyword">while</span>(!stk.<span class="built_in">empty</span>() &amp;&amp; stk.<span class="built_in">top</span>()&gt;=lines[i].layer)&#123;</span><br><span class="line">                    stk.<span class="built_in">pop</span>();</span><br><span class="line">                    k--;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(selections[k][<span class="number">0</span>]==<span class="string">&#x27;#&#x27;</span>)&#123;</span><br><span class="line">                    string s = selections[k].<span class="built_in">substr</span>(<span class="number">1</span>)l</span><br><span class="line">                    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;s.<span class="built_in">size</span>();i++)&#123; <span class="comment">//全变为小写</span></span><br><span class="line">                    	s[i] = <span class="built_in">tolower</span>(s[i]);</span><br><span class="line">                	&#125;</span><br><span class="line">                    <span class="keyword">if</span>(s==lines[i].id)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(k==selections.<span class="built_in">size</span>()<span class="number">-1</span>)&#123;</span><br><span class="line">                            ans.<span class="built_in">push_back</span>(i);</span><br><span class="line">                        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                            stk.<span class="built_in">push</span>(lines[i].layer);</span><br><span class="line">                            k++;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">if</span>(selections[k]==lines[i].ele)&#123;</span><br><span class="line">                        <span class="keyword">if</span>(k==selections.<span class="built_in">size</span>()<span class="number">-1</span>)&#123;</span><br><span class="line">                            ans.<span class="built_in">push_back</span>(i);</span><br><span class="line">                        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                            stk.<span class="built_in">push</span>(lines[i].layer);</span><br><span class="line">                            k++;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//output</span></span><br><span class="line">        cout&lt;&lt;ans.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;ans.<span class="built_in">size</span>();i++) cout&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;ans[i];</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>80分。错误。我没有注意到id属性大小写不敏感</p>
+<h3 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a>测试数据</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">11</span> <span class="number">5</span></span><br><span class="line"><span class="selector-tag">html</span></span><br><span class="line">.<span class="selector-class">.head</span></span><br><span class="line">...<span class="selector-class">.title</span></span><br><span class="line">.<span class="selector-class">.body</span></span><br><span class="line">...<span class="selector-class">.h1</span></span><br><span class="line">...<span class="selector-class">.p</span> <span class="selector-id">#subtitle</span></span><br><span class="line">...<span class="selector-class">.div</span> <span class="selector-id">#main</span></span><br><span class="line">.....<span class="selector-class">.h2</span></span><br><span class="line">.....<span class="selector-class">.p</span> <span class="selector-id">#one</span></span><br><span class="line">.....<span class="selector-class">.div</span></span><br><span class="line">.......<span class="selector-class">.p</span> <span class="selector-id">#two</span></span><br><span class="line"><span class="selector-tag">p</span></span><br><span class="line"><span class="selector-id">#subtitle</span></span><br><span class="line"><span class="selector-tag">h3</span></span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">p</span></span><br><span class="line"><span class="selector-tag">div</span> <span class="selector-tag">div</span> p</span><br></pre></td></tr></table></figure>
+<h1 id="20180904（再卖菜）"><a href="#20180904（再卖菜）" class="headerlink" title="20180904（再卖菜）"></a>20180904（再卖菜）</h1><p>问题描述</p>
+<p>　　在一条街上有n个卖菜的商店，按1至n的顺序排成一排，这些商店都卖一种蔬菜。<br>　　第一天，每个商店都自己定了一个正整数的价格。店主们希望自己的菜价和其他商店的一致，第二天，每一家商店都会根据他自己和相邻商店的价格调整自己的价格。具体的，每家商店都会将第二天的菜价设置为自己和相邻商店第一天菜价的平均值（用去尾法取整）。<br>　　注意，编号为1的商店只有一个相邻的商店2，编号为n的商店只有一个相邻的商店n-1，其他编号为i的商店有两个相邻的商店i-1和i+1。<br>　　给定第二天各个商店的菜价，可能存在不同的符合要求的第一天的菜价，请找到符合要求的第一天菜价中字典序最小的一种。<br>　　字典序大小的定义：对于两个不同的价格序列(a1, a2, …, an)和(b1, b2, b3, …, bn)，若存在i (i&gt;=1), 使得ai&lt;bi，且对于所有j&lt;i，aj=bj，则认为第一个序列的字典序小于第二个序列。</p>
+<p>输入格式</p>
+<p>　　输入的第一行包含一个整数n，表示商店的数量。<br>　　第二行包含n个正整数，依次表示每个商店第二天的菜价。</p>
+<p>输出格式</p>
+<p>　　输出一行，包含n个正整数，依次表示每个商店第一天的菜价。</p>
+<p>样例输入</p>
+<p>8<br>2 2 1 3 4 9 10 13</p>
+<p>样例输出</p>
+<p>2 2 2 1 6 5 16 10</p>
+<p>数据规模和约定</p>
+<p>　　对于30%的评测用例，2&lt;=n&lt;=5，第二天每个商店的菜价为不超过10的正整数；<br>　　对于60%的评测用例，2&lt;=n&lt;=20，第二天每个商店的菜价为不超过100的正整数；<br>　　对于所有评测用例，2&lt;=n&lt;=300，第二天每个商店的菜价为不超过100的正整数。<br>　　请注意，以上都是给的第二天菜价的范围，第一天菜价可能会超过此范围。</p>
+<h2 id="代码1-3"><a href="#代码1-3" class="headerlink" title="代码1"></a>代码1</h2><p>设置第一天菜价为prices1, 第二天菜价为prices2。因为prices2[0]=2，所以prices1[0]+prices1[1]的取值范围只能是[2*2, 3*2-1]，也就是[4,5]；因为prices2[1]=2，所以prices1[0]+prices1[1]+prices1[2]的取值范围是[2*3,3*3-1]，也就是[6, 8]；后面的以此类推。用<code>vector&lt;array&lt;int&gt;&gt; scopes</code> 保存每2/3天的菜价总和范围，<code>scopes[0]</code>表示第0和1天的，<code>scopes[1]</code>表示第0,1,2天的，<code>scopes[n-1]</code>表示第n-2, n-1天的。</p>
+<p>我们采用dfs的方法，以题目给的样例为例，首先在第一天的时候，遍历每种可能的情况[1,4]，然后第二天根据第一天的取值，遍历每种可能的情况，第三天也是……。若中间出现有一天，不能取到合法的值的时候，就是要回溯的时候。若顺利地进行到了最后一天，那么这个结果就是最终结果。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; prices1, prices2;</span><br><span class="line">vector&lt;array&lt;<span class="keyword">int</span>,2&gt;&gt; scopes; <span class="comment">//计算每三天的菜价范围</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> day)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(day == n)&#123;</span><br><span class="line">        flag = <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(day==<span class="number">0</span>)&#123; <span class="comment">//不超过scopes[0]的最大值</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;scopes[day][<span class="number">1</span>];i++)&#123;</span><br><span class="line">            prices1[day] = i;</span><br><span class="line">            <span class="built_in">dfs</span>(day+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(flag) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(day==<span class="number">1</span> &amp;&amp; day==n<span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> a = scopes[day<span class="number">-1</span>][<span class="number">0</span>]-prices1[day<span class="number">-1</span>];</span><br><span class="line">        prices1[day] = (a&gt;=<span class="number">1</span>?a:<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">dfs</span>(day+<span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(day==<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> a = scopes[day<span class="number">-1</span>][<span class="number">0</span>]-prices1[day<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">int</span> i = (a&gt;=<span class="number">1</span>?a:<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(;i+prices1[day<span class="number">-1</span>]&lt;=scopes[day<span class="number">-1</span>][<span class="number">1</span>]&amp;&amp;i+prices1[day<span class="number">-1</span>]&lt;scopes[day][<span class="number">1</span>];i++)&#123;</span><br><span class="line">            prices1[day] = i;</span><br><span class="line">            <span class="built_in">dfs</span>(day+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(flag) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(day==n<span class="number">-1</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> a = scopes[day<span class="number">-1</span>][<span class="number">0</span>]-prices1[day<span class="number">-1</span>]-prices1[day<span class="number">-2</span>];</span><br><span class="line">        a = (a&gt;=<span class="number">1</span>?a:<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> b = scopes[day<span class="number">-1</span>][<span class="number">1</span>]-prices1[day<span class="number">-1</span>]-prices1[day<span class="number">-2</span>];</span><br><span class="line">        <span class="keyword">int</span> c = scopes[day][<span class="number">0</span>]-prices1[day<span class="number">-1</span>];</span><br><span class="line">        c = (c&gt;=<span class="number">1</span>?c:<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> d = scopes[day][<span class="number">1</span>]-prices1[day<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">max</span>(a,c)&lt;=<span class="built_in">min</span>(b,d))&#123;</span><br><span class="line">            prices1[day] = <span class="built_in">max</span>(a,c);</span><br><span class="line">            <span class="built_in">dfs</span>(day+<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = scopes[day<span class="number">-1</span>][<span class="number">0</span>]-prices1[day<span class="number">-1</span>]-prices1[day<span class="number">-2</span>];</span><br><span class="line">        a = (a&gt;=<span class="number">1</span>?a:<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> b = scopes[day<span class="number">-1</span>][<span class="number">1</span>]-prices1[day<span class="number">-1</span>]-prices1[day<span class="number">-2</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=a;i&lt;=b&amp;&amp;i+prices1[day<span class="number">-1</span>]&lt;scopes[day][<span class="number">1</span>];i++)&#123;</span><br><span class="line">            prices1[day] = i;</span><br><span class="line">            <span class="built_in">dfs</span>(day+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">if</span>(flag) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    prices1.<span class="built_in">resize</span>(n);</span><br><span class="line">    prices2.<span class="built_in">resize</span>(n);</span><br><span class="line">    scopes.<span class="built_in">resize</span>(n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin&gt;&gt;prices2[i];</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">0</span> || i==n<span class="number">-1</span>)&#123;</span><br><span class="line">            scopes[i][<span class="number">0</span>] = prices2[i]*<span class="number">2</span>;</span><br><span class="line">            scopes[i][<span class="number">1</span>] = (prices2[i]+<span class="number">1</span>)*<span class="number">2</span><span class="number">-1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            scopes[i][<span class="number">0</span>] = prices2[i]*<span class="number">3</span>;</span><br><span class="line">            scopes[i][<span class="number">1</span>] = (prices2[i]+<span class="number">1</span>)*<span class="number">3</span><span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">dfs</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//output</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">0</span>) cout&lt;&lt;prices1[i];</span><br><span class="line">        <span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;prices1[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>80分。运行超时</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/25/csp-201809/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-csp-201812" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -984,586 +1224,9 @@ C^m_n=C^m_{n-1}+C^{m-1}_{n-1}</script><p>具体如何写递归，可以看代码
 
 
   
-    <article id="posts-局域网技术与组网工程实验" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/">局域网技术与组网工程实验</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/" class="archive-article-date">
-  	<time datetime="2020-07-25T18:03:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="交换机基础"><a href="#交换机基础" class="headerlink" title="交换机基础"></a>交换机基础</h1><h2 id="通过telnet配置交换机"><a href="#通过telnet配置交换机" class="headerlink" title="通过telnet配置交换机"></a>通过telnet配置交换机</h2><p><strong>使用telnet方式访问交换机的前提条件是什么</strong></p>
-<p>对交换机进行初始化配置，否则用户无法正确登录和访问。初始化配置是为交换机配置正确的网段和IP地址，以便实现交换机互联。交换机配置的工作包括：</p>
-<ol>
-<li>配置正确的交换机IP地址，这里所说的为交换机配置IP地址，实际上是指在交换机上配置管理VLAN接口的IP地址。</li>
-<li>确定与PC相连的交换机端口属于该管理VLAN</li>
-<li>如果PC和交换机相连的端口在同一个局域网内，则其IP地址必须配置为同一个网段；否则，要保证PC和交换机必须路由可达。</li>
-</ol>
-<h1 id="生成树协议STP"><a href="#生成树协议STP" class="headerlink" title="生成树协议STP"></a>生成树协议STP</h1><h2 id="交换机STP原理"><a href="#交换机STP原理" class="headerlink" title="交换机STP原理"></a>交换机STP原理</h2><p>STP（Spanning Tree Protocol）是生成树协议，该协议的原理是按照树的结构来构造网络拓扑，消除网络中的环路，避免由于环路的存在而造成广播风暴以及MAC地址表不稳定等问题。可在提高可靠性的同时又能避免环路带来的各种问题。</p>
-<h3 id="STP的工作过程"><a href="#STP的工作过程" class="headerlink" title="STP的工作过程"></a>STP的工作过程</h3><p>运行STP算法的网桥（交换机），在规定的间隔内（默认2秒），通过网桥协议数据单元（BPDU）的组播帧与其他交换机交换配置信息，完成生成树的构建。</p>
-<h4 id="选举根桥-Root"><a href="#选举根桥-Root" class="headerlink" title="选举根桥(Root)"></a>选举根桥(Root)</h4><p>通过比较网桥优先级选取根网桥，给定广播域内只有一个根网桥。一般情况下， 网桥的BID（桥ID）最小的那个作为根网桥。</p>
-<p>每个交换机假设自己为根，互相发送BPDU报文，然后通过比较BID竞选根桥。</p>
-<h4 id="根端口-RP-选举"><a href="#根端口-RP-选举" class="headerlink" title="根端口(RP)选举"></a>根端口(RP)选举</h4><p>交换机通过RP来向根交换机发送信息，可以有最小的路径开销，根端口负责向根交换机发送数据，并且通过这个端口发送数据较快。</p>
-<ol>
-<li><p>非根交换机根据<strong>根路径开销</strong>（RPC，Root Path Cost）来选举根端口。根路径开销是指接收由根桥发送的BPDU所经过的所有路径的<strong>路径开销</strong>之和，交换机在接收BPDU时累加路径开销，转发BPDU时不累加路径开销。路径开销是设置在交换机的端口上的，表示这个端口的开销。</p>
-</li>
-<li><p>若该交换机的根路径开销相同，则比较两个路径的上一个交换机的BID（多个端口连接的对端交换机的BID），例如，有ABCD，AEFD两个从A到达D的路径，则比较C和F的BID来选择应该将哪个端口设置为RP。</p>
-</li>
-<li>若交换机多个端口连接的对端交换机也相同（即BID相同），比如ABDE, ACDE，从D的两个端口分别连接E的两个端口。此时比较连接的对端交换机的端口的PID。</li>
-</ol>
-<p>RP的选举是向上的。与DP的选举相反，DP是向下的，指向深层的交换机和主机。</p>
-<h4 id="指定端口-DP-选举"><a href="#指定端口-DP-选举" class="headerlink" title="指定端口(DP)选举"></a>指定端口(DP)选举</h4><p>选举指定端口是相对于两个交换机的，比如有两个交换机A和B相连，</p>
-<ol>
-<li>比较A和B的RPC，选择RPC较小的那个交换机连接的端口为指定端口。</li>
-<li>若RPC相同，则选择BID较小的那个交换机连接的端口作为DP。</li>
-</ol>
-<h4 id="阻塞端口（AP）"><a href="#阻塞端口（AP）" class="headerlink" title="阻塞端口（AP）"></a>阻塞端口（AP）</h4><p>阻塞非跟端口和非指定端口。</p>
-<p>网络中不再有环路了。</p>
-<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><ol>
-<li>STP协议中端口处在（Forwarding）状态可以转发用户报文</li>
-<li>STP协议中桥ID(BID)的构成包括？（桥优先级，桥背板MAC地址）</li>
-</ol>
-<h1 id="交换机以太网端口"><a href="#交换机以太网端口" class="headerlink" title="交换机以太网端口"></a>交换机以太网端口</h1><h2 id="端口镜像配置方法"><a href="#端口镜像配置方法" class="headerlink" title="端口镜像配置方法"></a>端口镜像配置方法</h2><p>将指定的一个或多个端口的报文复制到观察端口，用于报文的分析和监视。</p>
-<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/1.png" class="">
-<p><img src="局域网技术与组网工程实验/1.png" alt="1"></p>
-<p>先设置观察端口，再设置镜像端口。缺省情况下，系统没有配置本地观察端口，如果要修改观察端口，需要删除原来的配置后再重新配置（将和观察端口绑定的镜像端口删除掉，再配置它们的观察端口）。</p>
-<p>一个观察端口可以观察多个镜像端口，同时，一个镜像端口也可以被很多个观察端口观察。</p>
-<p>设置观察端口后，该端口自动配置为Trunk端口，删除观察端口后，该端口自动配置为Access端口，且加入VLAN1。</p>
-<h2 id="端口绑定"><a href="#端口绑定" class="headerlink" title="端口绑定"></a>端口绑定</h2><p>利用了交换机的地址学习功能，只要取消了端口的地址学习功能，那么它就只能知道你告诉它的主机应该往哪个端口发送，而你没有告诉它的，它则不知道往哪里发送，因为这个端口不能学习了，这个你告诉它的主机就是存在于它的静态地址表项中的。如果你再设置：这个端口抛弃它不知道往哪里发的报文（目的MAC不在它的静态地址表项中），那它就只能转发目的MAC地址存在于静态地址表项中的报文，从而实现端口绑定的功能。</p>
-<ol>
-<li>取消该端口的MAC地址学习功能</li>
-<li>将授权设备的MAC地址添加到该端口的静态地址表项中。</li>
-</ol>
-<h2 id="题目-1"><a href="#题目-1" class="headerlink" title="题目"></a>题目</h2><ol>
-<li><p>negotiation 命令所在的视图是：（端口视图）</p>
-</li>
-<li><p>关于基于端口的镜像说法正确的是？（ABCD）</p>
-<ul>
-<li><p>A、</p>
-<p>  在S3700和S5700交换机上可以有两个观察端口。</p>
-</li>
-<li><p>B、</p>
-<p>  一个观察端口可以监控多个镜像端口。</p>
-</li>
-<li><p>C、</p>
-<p>  一个镜像端口可以被多个观察端口监控。</p>
-</li>
-<li><p>D、</p>
-<p>  在配置镜像端口前，先要设置好观察端口。</p>
-</li>
-</ul>
-</li>
-<li><p>关于MAC地址与端口绑定的说法正确的是？（AC）</p>
-<ul>
-<li><p>A、</p>
-<p>  静态MAC地址表项的优先级高于动态MAC地址表项。</p>
-</li>
-<li><p>B、</p>
-<p>  交换机的端口被shutdown后，与该端口绑定的静态MAC地址表项和动态MAC地址表项都会被清空。</p>
-</li>
-<li><p>C、</p>
-<p>  端口绑定是通过禁用端口学习功能，并将授权主机MAC地址与授权端口配对信息添加到静态MAC地址表项来实现的。</p>
-</li>
-<li><p>D、</p>
-<p>  同一时刻、相同的MAC地址，在交换机的MAC地址表中可能会存在多个交换机端口与之绑定。</p>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="交换机链路聚合"><a href="#交换机链路聚合" class="headerlink" title="交换机链路聚合"></a>交换机链路聚合</h1><h1 id="VLAN"><a href="#VLAN" class="headerlink" title="VLAN"></a>VLAN</h1><h2 id="虚拟局域网原理"><a href="#虚拟局域网原理" class="headerlink" title="虚拟局域网原理"></a>虚拟局域网原理</h2><h3 id="解决的问题"><a href="#解决的问题" class="headerlink" title="解决的问题"></a>解决的问题</h3><p>早期以太网基于CSMA/CD的共享通讯介质的通讯技术，当主机数目过多时会导致冲突严重，广播泛滥，性能显著下降甚至网络不可用等问题。通过交换机虽然可以解决冲突问题，但是仍然不能隔离广播报文和提升网络质量。VLAN技术可以把一个物理LAN划分为多个逻辑的VLAN，每个VLAN是一个广播域，VLAN内的主机通信就像在一个LAN内一样，而VLAN间则不能直接互通，这样，广播报文就限制在一个VLAN内。</p>
-<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/2.png" class="">
-<p><img src="局域网技术与组网工程实验/2.png" alt="2"></p>
-<h3 id="VLAN标签"><a href="#VLAN标签" class="headerlink" title="VLAN标签"></a>VLAN标签</h3><p>IEEE 802.1协议规定，在以太网数据帧的目的MAC地址之后，协议类型字段之前加上4字节的VLAN标签（VLAN tag），用以表示VLAN信息。</p>
-<p>在以太网交换网络中，以太网帧主要有以下两种：有标记帧（Tagged帧）和无标记帧（Untagged 帧）。主机，服务器，Hub和傻瓜交换机只能收发Untagged帧；交换机，路由器既能收发Tagged帧也能收发Untagged帧。</p>
-<h3 id="接口的链路类型"><a href="#接口的链路类型" class="headerlink" title="接口的链路类型"></a>接口的链路类型</h3><p>现网中属于同一个VLAN的用户可能被连在不同的交换机上，且跨越交换机的VLAN不止一个，这就需要交换机间的接口能够同时识别和发送多个VLAN的数据帧。</p>
-<p>​    根据接口连接对象以及对收发数据帧处理的不同，分为4种接口链路类型：Access, Trunk, Hybrid, QinQ。</p>
-<h4 id="Access接口"><a href="#Access接口" class="headerlink" title="Access接口"></a>Access接口</h4><p>Access接口一般用于主机/服务器和交换机的相连。交换机内部只处理Tagged帧，主机和服务器不能处理Tagged帧，所以Access接口需要给收到的数据帧添加VLAN Tag，因此Access接口也必须设置自己的缺省VLAN（PVID）。配置了PVID后，该Access接口也就加入了该VLAN。</p>
-<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/3.png" class="">
-<p><img src="局域网技术与组网工程实验/3.png" alt="3"></p>
-<h4 id="Trunk接口"><a href="#Trunk接口" class="headerlink" title="Trunk接口"></a>Trunk接口</h4><p>Trunk一般用于连接交换机，路由器。它可以允许多个VLAN的帧带Tag通过，但是只允许一个VLAN的帧从该接口上不带Tag（即剥除Tag）。</p>
-<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/4.png" class="">
-<p><img src="局域网技术与组网工程实验/4.png" alt="4"></p>
-<h3 id="VLAN划分"><a href="#VLAN划分" class="headerlink" title="VLAN划分"></a>VLAN划分</h3><p>基于接口划分是最常用的VLAN划分方式。网络管理员预先给交换机的每个接口配置不同的PVID。</p>
-<p>优点是：定义成员简单，配置过程简单明了<br>缺点是：移动成员需要重新配置VLAN，配置不够灵活</p>
-<h3 id="VLAN内互访"><a href="#VLAN内互访" class="headerlink" title="VLAN内互访"></a>VLAN内互访</h3><p>VLAN内互访首先要进行ARP过程，这个过程与普通的局域网内的ARP过程的区别是：</p>
-<ol>
-<li>交换机转发数据帧时检查是否是能够通过的VLAN的帧</li>
-<li>MAC地址表项是：（MAC，VID，端口）</li>
-</ol>
-<p>由于Trunk接口可以允许多个VLAN的帧通过链路，这被称作<strong>透传</strong>。</p>
-<h3 id="管理VLAN"><a href="#管理VLAN" class="headerlink" title="管理VLAN"></a>管理VLAN</h3><p>为交换机配置IP地址，通常是指在交换机上配置管理VLAN接口的IP地址。</p>
-<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><ol>
-<li><p>三层交换机和路由器是如何实现VLAN间通信的？</p>
-<p> 三层交换机配置了很多VLANIF虚拟接口，并在该接口下配置了IP地址，三层交换机的各个端口是如何配置的呢？access端口配置了PVID，trunk端口配置了可允许特定VLAND的帧通过。当三层交换机收到一个帧时，通过它的目的IP地址就可以通过路由表或者MAC地址表知道它应该往哪个端口发送（假如是portA），并且知道了该目的网络属于哪个VLAN。</p>
-<p> 路由器配置了子接口，以及下面的IP地址，在子接口下配置了dot1q termination vlan，这样的话，当路由器知道要往哪个子接口转发帧时，就可以将对应的VLAN标签加在帧上。</p>
- <img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/14.png" class="">
-<p> <img src="局域网技术与组网工程实验/14.png" alt="14"></p>
-</li>
-</ol>
-<h2 id="VLAN实验"><a href="#VLAN实验" class="headerlink" title="VLAN实验"></a>VLAN实验</h2><p>如图所示，某企业的交换机连接有很多用户，且相同业务用户通过不同的设备接入企业网络。为了通信的安全性和避免广播风暴，企业希望相同业务用户之间可以互相访问，不同业务用户不能互相访问。现在，通过在交换机上配置基于接口划分的VLAN，来满足企业的需求。</p>
-<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/10.jpg" class="">
-<p><img src="局域网技术与组网工程实验/10.jpg" alt="10"></p>
-<ol>
-<li><p>由于User1和User2是处于同一个VLAN，因此应该设置同一个网段的IP，因此我设置User1的IP是：192.168.10.1，User2的IP是：192.168.10.2。同理，我设置User3和User4的IP分别为：192.168.20.3，192.168.20.4。它们的子网掩码都是255.255.255.0。</p>
-</li>
-<li><p>配置SwitchA的VLAN以及交换机接口的链路类型</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$&lt;SwitchA&gt; system-view <span class="comment">#进入系统视图</span></span><br><span class="line">$[SwitchA] vlan batch 2 to 3 <span class="comment">#创建VID为从2到3的VLAN</span></span><br><span class="line">$[SwitchA-vlan] quit <span class="comment">#从vlan视图中退出来</span></span><br><span class="line">$[SwitchA] int g0/0/1 <span class="comment">#进入g0/0/1端口视图</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/1] port link-type access <span class="comment">#g0/0/1端口设置为access接口</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/1] port default vlan 2 <span class="comment">#g0/0/1的PVID设置为2</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/1] quit</span><br><span class="line">$[SwitchA] int g0/0/2 <span class="comment">#进入g0/0/2端口视图</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/2] port link-type access <span class="comment">#g0/0/2端口设置为access接口</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/2] port default vlan 3 <span class="comment">#g0/0/2的PVID设置为3</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/2] quit</span><br><span class="line">$[SwitchA] int g0/0/3 <span class="comment">#进入g0/0/3端口视图</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/3] port link-type trunk <span class="comment">#g0/0/3设置为trunk接口</span></span><br><span class="line">$[SwitchA-GigabitEthernet0/0/3] port trunk allow-pass vlan 2 to 3 <span class="comment">#让vlan tag为2,3的帧通过</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置SwitchB的VLAN以及交换机接口的链路类型，与2的配置一模一样</p>
-</li>
-</ol>
-<h2 id="题目-2"><a href="#题目-2" class="headerlink" title="题目"></a>题目</h2><ol>
-<li>IEEE 802.1Q协议中，VLAN标签的长度是：（4字节）</li>
-</ol>
-<h1 id="三层交换机"><a href="#三层交换机" class="headerlink" title="三层交换机"></a>三层交换机</h1><h2 id="三层交换机原理"><a href="#三层交换机原理" class="headerlink" title="三层交换机原理"></a>三层交换机原理</h2><p>VLAN间互访需要路由器的三层交换功能的支持。</p>
-<p>但是每一个VLAN都要使用一条独占的物理连接连接到路由器的一个接口上，这对路由器是不现实的。使用Trunk技术和路由器子接口技术来解决这个问题，交换机与路由器只有一个物理连接连接到路由器的一个物理接口，然后这个物理接口被划分为多个逻辑接口。</p>
-<p>由于路由器使用软件实现数据交换，效率不行，因此就有了三层交换机。</p>
-<p>二层交换机和路由器的功能的集合构成了三层交换机，三层交换机有如下特性：</p>
-<ol>
-<li>二层交换引擎：实现同一个网段内的快速二层转发</li>
-<li>三层路由引擎：实现跨VLAN的三层路由转发。三层交换机的交换功能是路由器的交换功能的裁剪版，比如，IP选项，报文分片功能都被裁剪掉了；三层交换机使用精确地址匹配的方式，便于硬件实现；当收到数据帧时，发现目的MAC不在地址表项中，就转向三层路由引擎，查询目的IP地址所在的网段之后，向目的网段广播一个ARP包，发现目的MAC在地址表项中时，直接在二层进行转发，这就是后面要提到的流转发方式。</li>
-<li>每一个VLAN对应一个IP网段</li>
-<li>使用流交换方式。报文到报文的交换方式与流交换方式的区别：如果每一个报文都要经历第三层处理，并且业务流转发是基于第三层地址的，这种交换方式就是报文到报文交换方式；如果只是第一个报文经过第三层处理，其他后续报文只进行第二层转发，这种就是流交换方式。</li>
-</ol>
-<h3 id="三层交换机与路由器的不同"><a href="#三层交换机与路由器的不同" class="headerlink" title="三层交换机与路由器的不同"></a>三层交换机与路由器的不同</h3><p>主要的不同在于三层交换功能：</p>
-<ol>
-<li>查询路由表项时，三层交换机得到的结果是某个精确路由对应的VLAN或网段，而路由器得到的是最长匹配的网络号对应的下一跳IP地址。</li>
-<li>三层交换机采用流交换方式，路由器采用报文到报文的交换方式</li>
-<li>三层交换机裁剪了很多功能</li>
-</ol>
-<h2 id="题目-3"><a href="#题目-3" class="headerlink" title="题目"></a>题目</h2><ol>
-<li><p>以下关于三层交换机的描述正确的是（A）</p>
-<ul>
-<li><p>A、</p>
-<p>  三层交换机使用硬件支持多个VLAN的二层转发。</p>
-</li>
-<li><p>B、</p>
-<p>  三层交换机适合用于大型网络间的路由。</p>
-</li>
-<li><p>C、</p>
-<p>  三层交换机使用报文到报文的交换方式。</p>
-</li>
-<li><p>D、</p>
-<p>  三层交换机和同性能的路由器相比更加昂贵。</p>
-</li>
-</ul>
-</li>
-<li><p>[Huawei] interface vlanif 10</p>
-<p> [Huawei-Vlanif10] ip address 10.10.10.1 24</p>
-<p> 以上命令用于配置（B）。</p>
-<ul>
-<li><p>A、</p>
-<p>  vlan10管理接口的IP地址。</p>
-</li>
-<li><p>B、</p>
-<p>  vlan10三层接口的IP地址。</p>
-</li>
-<li><p>C、</p>
-<p>  vlan10二层转发接口的IP地址。</p>
-</li>
-<li><p>D、</p>
-<p>  除vlan10外的其它vlan的路由接口IP地址。</p>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="路由器基础"><a href="#路由器基础" class="headerlink" title="路由器基础"></a>路由器基础</h1><p>通用路由平台VRP（Versatile Routing Platform）：</p>
-<ol>
-<li>以IP业务为核心，采用组件化的体系结构</li>
-<li>提供了基于应用的可裁剪和可扩展的功能</li>
-</ol>
-<h2 id="题目-4"><a href="#题目-4" class="headerlink" title="题目"></a>题目</h2><ol>
-<li><p>目前绝大多数华为设备使用的都是（B）版本。</p>
-<ul>
-<li><p>A、</p>
-<p>  VRP8</p>
-</li>
-<li><p>B、</p>
-<p>  VRP5</p>
-</li>
-<li><p>C、</p>
-<p>  VRP3</p>
-</li>
-<li><p>D、</p>
-<p>  VRP2</p>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="路由器基础管理"><a href="#路由器基础管理" class="headerlink" title="路由器基础管理"></a>路由器基础管理</h1><h1 id="静态路由基础"><a href="#静态路由基础" class="headerlink" title="静态路由基础"></a>静态路由基础</h1><h2 id="静态路由配置"><a href="#静态路由配置" class="headerlink" title="静态路由配置"></a>静态路由配置</h2><h3 id="串口连接"><a href="#串口连接" class="headerlink" title="串口连接"></a>串口连接</h3><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/5.png" class="">
-<p><img src="局域网技术与组网工程实验/5.png" alt="5"></p>
-<p>在串行接口上，可以通过指定下一跳路由或出端口来配置静态路由。</p>
-<h3 id="以太网连接"><a href="#以太网连接" class="headerlink" title="以太网连接"></a>以太网连接</h3><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/6.png" class="">
-<p><img src="局域网技术与组网工程实验/6.png" alt="6"></p>
-<p>在以太网接口上配置静态路由时，必须要指定下一跳地址。</p>
-<h2 id="负载分担"><a href="#负载分担" class="headerlink" title="负载分担"></a>负载分担</h2><p>两个路由器通过多条物理线路进行连接，多条物理线路对应多个网段和多个路由器接口，在每一个路由器接口上设置静态路由后，可以支持<strong>等值负载分担（ECMP，Equal-Cost Multiple Path）</strong> 。</p>
-<p>ECMP是指到达同一个目的地有多条等价链路，流量在这些等价链路上平均分配，不会考虑链路带宽的差异。</p>
-<p>ECMP的缺点是：在路径间带宽差异大时，带宽利用率低。</p>
-<h2 id="路由备份"><a href="#路由备份" class="headerlink" title="路由备份"></a>路由备份</h2><p>又叫浮动静态路由。在链路正常的情况下，只有主路由在路由表中，在链路出现故障时，浮动静态路由会被激活。</p>
-<p>设置浮动静态路由时，设置它的优先级比主路由的优先级低一些。</p>
-<h2 id="静态路由及路由器子接口实验"><a href="#静态路由及路由器子接口实验" class="headerlink" title="静态路由及路由器子接口实验"></a>静态路由及路由器子接口实验</h2><p>请运用静态路由，以及路由器子接口实现VLAN间通信，使得5台PC机可以互相通信。</p>
-<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/11.jpg" class="">
-<p><img src="局域网技术与组网工程实验/11.jpg" alt="11"></p>
-<p>分析：R1的g0/0/1物理端口必须划分为两个逻辑接口，因为这个端口底下有两个VLAN。同时，为了保证不同网段的主机能够跨路由器进行通信，R1和R2必须要进行静态路由设置。</p>
-<p>我的拓扑图是下面的：</p>
-<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/11.png" class="">
-<p><img src="局域网技术与组网工程实验/11.png" alt="11"></p>
-<ol>
-<li><p>按照题目要求将PC01-PC05的IP地址和子网掩码先配置一下，等一下配置完了路由器，再来配置PC们的默认网关。</p>
-</li>
-<li><p>配置SWITCH1的VLAN和端口链路类型，和R1连接的g0/0/1端口要设置为trunk，和SWITCH2相连接的g0/0/4端口要设置为trunk。在系统视图下</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/1 <span class="comment">#进入g0/0/1端口</span></span><br><span class="line">port link-type trunk <span class="comment">#g0/0/1设置为trunk</span></span><br><span class="line">port trunk allow-pass vlan 10 to 20 <span class="comment">#因为vlan10和20的主机都有可能访问外网，因此这个链路要允许10和20的vlan帧通过</span></span><br></pre></td></tr></table></figure>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/2</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 10</span><br></pre></td></tr></table></figure>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/3</span><br><span class="line">port link-type access</span><br><span class="line">port default vlan 20</span><br></pre></td></tr></table></figure>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/4</span><br><span class="line">port link-type trunk</span><br><span class="line">port trunk allow-pass vlan 10 to 20</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>SWITCH2与SWITCH1类似。SWITCH3不需要配置，因为R2的g0/0/1对应的网段没有设置VLAN。</p>
-</li>
-<li><p>配置R1的逻辑接口，IP和静态路由。在系统视图下</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/0</span><br><span class="line">ip address 192.168.30.1 255.255.255.0</span><br></pre></td></tr></table></figure>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip route-static 10.1.1.0 255.255.255.0 192.168.30.2 <span class="comment">#R1的一个静态路由：到达10.1.1.0网络的下一条IP是192.168.30.2</span></span><br></pre></td></tr></table></figure>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/1</span><br><span class="line">int g0/0/1.1 <span class="comment">#在g0/0/1下面创建了一个逻辑接口</span></span><br><span class="line">dot1q termination vid 10 <span class="comment">#g0/0/1.1接口对VLAN TAG为10的帧去掉tag</span></span><br><span class="line">ip address 192.168.10.1 255.255.255.0</span><br><span class="line">arp broadcast <span class="built_in">enable</span> <span class="comment">#允许进行ARP广播</span></span><br></pre></td></tr></table></figure>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/1</span><br><span class="line">int g0/0/1.2 <span class="comment">#在g0/0/1下面创建了一个逻辑接口</span></span><br><span class="line">dot1q termination vid 20 <span class="comment">#g0/0/1.2接口对VLAN TAG为20的帧去掉tag</span></span><br><span class="line">ip address 192.168.20.1 255.255.255.0</span><br><span class="line">arp broadcast <span class="built_in">enable</span> <span class="comment">#允许进行ARP广播</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置R2的接口IP和静态路由</p>
-</li>
-<li><p>配置每个主机的默认网关。PC01和PC03的默认网关是192.168.10.1，因为192.168.10.1是一个逻辑接口的IP地址，与VLAN20相连接。其他的网关配置也类似。</p>
-</li>
-</ol>
-<h2 id="题目-5"><a href="#题目-5" class="headerlink" title="题目"></a>题目</h2><ol>
-<li><p>两个路由器R1和R2之间有3条链路，带宽分别是10Mbps、 20Mbps和30Mbps。如果使用等值负载分担，则R1和R2之间的总带宽为（B）</p>
-<ul>
-<li><p>A、</p>
-<p>  20M</p>
-</li>
-<li><p>B、</p>
-<p>  30M</p>
-</li>
-<li><p>C、</p>
-<p>  50M</p>
-</li>
-<li><p>D、</p>
-<p>  60M</p>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="以太网帧结构"><a href="#以太网帧结构" class="headerlink" title="以太网帧结构"></a>以太网帧结构</h1><p>Ethernet_II帧的length类型值大于等于1536，帧长度在64到1518之间</p>
-<p>802.3帧的length类型值大于1536，帧长度小于1500</p>
-<h1 id="RIP路由协议"><a href="#RIP路由协议" class="headerlink" title="RIP路由协议"></a>RIP路由协议</h1><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/12.png" class="">
-<p><img src="局域网技术与组网工程实验/12.png" alt="12"></p>
-<h2 id="路由环路问题"><a href="#路由环路问题" class="headerlink" title="路由环路问题"></a>路由环路问题</h2><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/13.png" class="">
-<p><img src="局域网技术与组网工程实验/13.png" alt="12"></p>
-<p>一开始，各个路由器的表项是：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">A</span>: <span class="number">11.4.0.0</span> S<span class="number">0</span> <span class="number">2</span></span><br><span class="line"><span class="attribute">B</span>: <span class="number">11.4.0.0</span> S<span class="number">1</span> <span class="number">1</span></span><br><span class="line"><span class="attribute">C</span>: <span class="number">11.4.0.0</span> E<span class="number">0</span> <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p>1、当网络11.4.0.0 发生故障，路由器C 最先收到故障信息，路由器C 把网络11.4.0.0 设为不可达，并等待更新周期到来通告这一路由变化给相邻路由器。如果，路由器B的路由更新周期在路由器C之前到来，那么路由器C就会从路由器B那里学习到去往11.4.0.0的新路由（实际上，这一路由已经是错误路由了）。这样路由器C的路由表中就记录了一条错误路由（经过路由器B，可去往网络11.4.0.0，跳数增加到2 ）。<br>2、路由器C 学习了一条错误信息后，它会把这样的路由信息再次通告给路由器B，根据通告原则，路由器B也会更新这样一条错误路由信息，认为可以通过路由器C去往网络11.4.0.0，跳数增加到 3 。<br>3。这样，路由器 B 认为 可以通过路由器C 去往网络11.4.0.0，路由器C 认为 可以通过路由器B 去往网络11.4.0.0，就形成了环路。</p>
-<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ol>
-<li><p>水平分割</p>
-<p> 一种消除路由环路并加快网络收敛的方法是通过叫做“水平分割”的技术实现的。其规则就是不向原始路由更新的方向再次发送路由更新信息（个人理解为单向更新，单向反馈）。比如有三台路由器ABC，B向C学习到访问网络10.4.0.0的路径以后，不再向C声明自己可以通过C访问10.4.0.0网络的路径信息，A向B学习到访问10.4.0.0网络路径信息后，也不再向B声明，而一旦网络10.4.0.0发生故障无法访问，C会向A和B发送该网络不可达到的路由更新信息，但不会再学习A和B发送的能够到达10.4.0.0的错误信息。</p>
-<p> 从接口X发出的路由更新中不能包括那些出口也为X的路由信息。</p>
-</li>
-<li><p>路由中毒</p>
-<p> 定义最大值在一定程度上解决了路由环路问题，但并不彻底，可以看到，在达到最大值之前，路由环路还是存在的。为此，路由中毒就可以彻底解决这个问题。其原理是这样的：假设有三台路由器ABC，当网络10.4.0.0出现故障无法访问的时候，路由器C便向邻居路由发送相关路由更新信息，并将其度量值标为无穷大，告诉它们网络10.4.0.0不可到达，路由器B收到毒化消息后将该链路路由表项标记为无穷大，表示该路径已经失效，并向邻居A路由器通告，依次毒化各个路由器，告诉邻居10.4.0.0这个网络已经失效，不再接收更新信息，从而避免了路由环路。</p>
-</li>
-<li><p>毒性反转</p>
-</li>
-<li><p>抑制</p>
-</li>
-<li><p>触发更新</p>
-</li>
-</ol>
-<h2 id="题目-6"><a href="#题目-6" class="headerlink" title="题目"></a>题目</h2><ol>
-<li><p>距离向量路由算法采用哪些方法来减少路由环路？（ABCD）</p>
-<ul>
-<li><p>A、</p>
-<p>  水平分割</p>
-</li>
-<li><p>B、</p>
-<p>  毒性反转</p>
-</li>
-<li><p>C、</p>
-<p>  抑制</p>
-</li>
-<li><p>D、</p>
-<p>  触发更新</p>
-</li>
-</ul>
-</li>
-</ol>
-<h1 id="OSPF路由协议"><a href="#OSPF路由协议" class="headerlink" title="OSPF路由协议"></a>OSPF路由协议</h1><h2 id="LS与DV的不同"><a href="#LS与DV的不同" class="headerlink" title="LS与DV的不同"></a>LS与DV的不同</h2><p>采用链路状态路由协议的路由器不是交换到达目的地的距离，而是收集所有的链路信息来维护一张网络拓扑结构图，进而根据这个拓扑图计算最佳路由。当网络拓扑结构发生变化时，只需要将相应记录而非整个数据库通知其他节点，收到信息的各路由器相应地修改自身的链路状态数据库，并重新计算路由后，就可以继续正常工作了。</p>
-<h2 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF"></a>OSPF</h2><p>OSPF是开放最短路径优先协议，基于链路状态的内部网关协议。</p>
-<h3 id="Router-ID"><a href="#Router-ID" class="headerlink" title="Router ID"></a>Router ID</h3><p>一台路由器要运行OSPF协议，必须存在Router ID，这个可以手工配置，如果没有ID号，则：</p>
-<ol>
-<li>若系统当前配置了Loopback接口的IP地址，则选择最后配置的Loopback接口的IP作为router id。</li>
-<li>若系统当前没有配置Loopback接口，则选取第一个配置并UP的物理接口的IP地址作为router id。</li>
-</ol>
-<h3 id="区域（Area）"><a href="#区域（Area）" class="headerlink" title="区域（Area）"></a>区域（Area）</h3><p>OSPF将自治系统（AS）划分为多个区域，最重要的区域是骨干区域0，可以实现一种分级的管理。</p>
-<p>对于物理上与骨干区域不连续的区域，需要配置<strong>虚连接</strong>（virtual links）来保持与骨干区域在逻辑上的连续性。虚连接是在两台ABR之间，通过一个非骨干区域内部路由而建立的一条逻辑上的连接通道。</p>
-<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/7.png" class="">
-<p><img src="局域网技术与组网工程实验/7.png" alt="7"></p>
-<p><strong>区域边界路由器（ABR, Area Border Router）</strong>：连接骨干区域与非骨干区域的路由器。</p>
-<h3 id="路由聚合"><a href="#路由聚合" class="headerlink" title="路由聚合"></a>路由聚合</h3><p>AS被划分为不同的区域后，每一个区域通过ABR相连，区域间可以通过路由汇聚来减少路由信息，减少路由表的规模。</p>
-<h3 id="OSPF中关键的表"><a href="#OSPF中关键的表" class="headerlink" title="OSPF中关键的表"></a>OSPF中关键的表</h3><p>邻居表</p>
-<p>LSDB</p>
-<p>路由表</p>
-<h3 id="DR和BDR"><a href="#DR和BDR" class="headerlink" title="DR和BDR"></a>DR和BDR</h3><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/8.png" class="">
-<p><img src="局域网技术与组网工程实验/8.png" alt="8"></p>
-<h3 id="OSPF报文"><a href="#OSPF报文" class="headerlink" title="OSPF报文"></a>OSPF报文</h3><p>有5种OSPF报文：</p>
-<ol>
-<li><p>Hello报文：发现，维持邻居关系，选举DR，BDR</p>
-</li>
-<li><p>DD（Database Description）报文：用于形成LSDB</p>
-<p> 路由器使用DD报文进行主从路由器的选举和数据库摘要信息的交互，Router ID大的作为主路由器；DD报文包含LSA的头部信息，用来描述LSDB的摘要信息</p>
-</li>
-<li><p>LSR（LSA Request）报文：请求LSA</p>
-</li>
-<li><p>LSU（LSA Update）：收到LSR后，应答LSA</p>
-</li>
-<li><p>LSACK（Link State ACK）：收到LSU后，对LSU进行确认</p>
-</li>
-</ol>
-<h3 id="邻居状态机"><a href="#邻居状态机" class="headerlink" title="邻居状态机"></a>邻居状态机</h3><img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/9.png" class="">
-<p><img src="局域网技术与组网工程实验/9.png" alt="9"></p>
-<p>在2-way状态时，双方都已经建立了邻居关系，这时可以进行发送数据信息了。</p>
-<p>ExStart表示双方可以发送信息了。</p>
-<h3 id="启动OSPF"><a href="#启动OSPF" class="headerlink" title="启动OSPF"></a>启动OSPF</h3><p>OSPF支持多进程，一台路由器上启动的OSPF进程之间由不同的进程号区分。OSPF进程号在启动OSPF时进行设置，它只在本地有效，不影响与其他路由器之间的报文交换。</p>
-<p>如果在启动OSPF时不指定进程号，将使用缺省的进程号1；关闭OSPF时不指定进程号，缺省关闭进程号1。</p>
-<p>在同一个区域中的进程号必须一致。</p>
-<h2 id="OSPF路由协议实验"><a href="#OSPF路由协议实验" class="headerlink" title="OSPF路由协议实验"></a>OSPF路由协议实验</h2><p>网络拓扑图如下所示，请使用OSPF路由协议配置各台路由器，使得PC1、PC2、PC3可以互相连通。</p>
-<img src="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/12.jpg" class="">
-<p><img src="局域网技术与组网工程实验/12.jpg" alt="12"></p>
-<ol>
-<li><p>配置R1的接口IP地址，loopback接口地址</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/0</span><br><span class="line">ip address 192.168.1.1 24</span><br></pre></td></tr></table></figure>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int g0/0/1</span><br><span class="line">ip address 192.168.10.1 24</span><br></pre></td></tr></table></figure>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int loopback1</span><br><span class="line">ip address 192.168.31.11 24 <span class="comment">#设置loopback接口地址</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置R2,R3的，和R1类似</p>
-</li>
-<li><p>配置各个主机的IP和默认网关</p>
-</li>
-</ol>
-<h2 id="题目-7"><a href="#题目-7" class="headerlink" title="题目"></a>题目</h2><ol>
-<li><p>哪些类型的网络需要指定路由器？（AD）</p>
-<ul>
-<li><p>A、</p>
-<p>  广播类型</p>
-</li>
-<li><p>B、</p>
-<p>  点到点类型</p>
-</li>
-<li><p>C、</p>
-<p>  点到多点类型</p>
-</li>
-<li><p>D、</p>
-<p>  非广播多路访问</p>
-</li>
-</ul>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">计算机专业课</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/25/%E5%B1%80%E5%9F%9F%E7%BD%91%E6%8A%80%E6%9C%AF%E4%B8%8E%E7%BB%84%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%AE%9E%E9%AA%8C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-hexo的使用" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/21/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/">hexo的使用</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/21/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-07-22T02:20:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-介绍"><a href="#1-介绍" class="headerlink" title="1. 介绍"></a>1. 介绍</h1><p>在电脑上安装hexo之后，就可以把自己写的博客文章放进hexo项目中，然后再使用特定的主题（theme）来将这些md格式的文章转换为html代码，之后再由hexo上传到某个远程网站上（一般是github.io），就可以打开这个网站看到自己的网页文章了。这样的话，不用写html代码，就可以方便地使用别人的轮子来搭建自己的网页博客。</p>
-<h2 id="1-1-github的操作"><a href="#1-1-github的操作" class="headerlink" title="1.1 github的操作"></a>1.1 github的操作</h2><p>github提供了可以进行网页显示的仓库：github.io。你在自己的账户下创建一个名为 {your_account_name}.github.io 的仓库，<strong>注意</strong>：这里的your_account_name必须与你的github账户名字完全一样，比如，我账户名字是 zhouhuahui，所以我创建的仓库是：zhouhuahui.github.io。</p>
-<p>把html文档存放在这个仓库中，就可以通过访问 zhouhuahui.github.io 网站来访问我的网页了。</p>
-<h2 id="1-2-hexo安装"><a href="#1-2-hexo安装" class="headerlink" title="1.2 hexo安装"></a>1.2 hexo安装</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/docs/">https://hexo.io/docs/</a> 有非常详尽的步骤，而且确实比较简单。</p>
-<h2 id="1-3-其他教程"><a href="#1-3-其他教程" class="headerlink" title="1.3 其他教程"></a>1.3 其他教程</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html">https://www.cnblogs.com/liuxianan/p/build-blog-website-by-hexo-github.html</a></p>
-<h1 id="2-hexo基本配置"><a href="#2-hexo基本配置" class="headerlink" title="2. hexo基本配置"></a>2. hexo基本配置</h1><p>我们需要配置一下hexo根目录下的 <code>_config.yml</code> 文件。</p>
-<h2 id="2-1-修改site-url"><a href="#2-1-修改site-url" class="headerlink" title="2.1 修改site url"></a>2.1 修改site url</h2><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># URL</span><br><span class="line">## If your site <span class="keyword">is</span> <span class="keyword">put</span> in <span class="keyword">a</span> subdirectory, <span class="keyword">set</span> url <span class="keyword">as</span> <span class="string">&#x27;http://yoursite.com/child&#x27;</span> <span class="built_in">and</span> root <span class="keyword">as</span> <span class="string">&#x27;/child/&#x27;</span></span><br><span class="line">ur<span class="variable">l:</span> http<span class="variable">s:</span>//zhouhuahui.github.io</span><br><span class="line">roo<span class="variable">t:</span> /</span><br></pre></td></tr></table></figure>
-<h2 id="2-2-修改作者名字"><a href="#2-2-修改作者名字" class="headerlink" title="2.2 修改作者名字"></a>2.2 修改作者名字</h2><figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># Site</span><br><span class="line"><span class="symbol">title:</span> Hexo</span><br><span class="line"><span class="symbol">subtitle:</span> <span class="comment">&#x27;&#x27;</span></span><br><span class="line"><span class="symbol">description:</span> <span class="comment">&#x27;&#x27;</span></span><br><span class="line"><span class="symbol">keywords:</span></span><br><span class="line"><span class="symbol">author:</span> zhouhuahui</span><br><span class="line"><span class="symbol">language:</span> en</span><br><span class="line"><span class="symbol">timezone:</span> <span class="comment">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<h2 id="2-3-修改deploy"><a href="#2-3-修改deploy" class="headerlink" title="2.3 修改deploy"></a>2.3 修改deploy</h2><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">deploy:</span></span><br><span class="line"><span class="symbol">  type:</span> git</span><br><span class="line"><span class="symbol">  repository:</span> git@github.com:zhouhuahui/zhouhuahui.github.io.git</span><br><span class="line"><span class="symbol">  branch:</span> master</span><br></pre></td></tr></table></figure>
-<h1 id="3-hexo基本指令"><a href="#3-hexo基本指令" class="headerlink" title="3. hexo基本指令"></a>3. hexo基本指令</h1><h2 id="3-1-创建一个post"><a href="#3-1-创建一个post" class="headerlink" title="3.1 创建一个post"></a>3.1 创建一个post</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<h2 id="3-2-清空public文件夹"><a href="#3-2-清空public文件夹" class="headerlink" title="3.2 清空public文件夹"></a>3.2 清空public文件夹</h2><p>在自己的博客根目录下面，有两个重要的文件夹：public, source。source是放自己的文章的地方，public是将要上传到github上，并进行网页显示的内容，public文件夹自己不要动，用指令操作就可以了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
-<h2 id="3-3-在public下生成静态内容"><a href="#3-3-在public下生成静态内容" class="headerlink" title="3.3 在public下生成静态内容"></a>3.3 在public下生成静态内容</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
-<h2 id="3-4-上传到github-部署"><a href="#3-4-上传到github-部署" class="headerlink" title="3.4 上传到github(部署)"></a>3.4 上传到github(部署)</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>在执行上述命令之前，要先用npm安装一个东西：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>如果觉得这个慢，可以将源定为淘宝的镜像</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm -registry=https://registry.npm.taobao.org</span><br><span class="line">cnpm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>可能会出现ssh之类的问题，在另一篇博客中写。</p>
-<h2 id="3-5-本地显示"><a href="#3-5-本地显示" class="headerlink" title="3.5 本地显示"></a>3.5 本地显示</h2><p>在本地模拟网页的显示，跟访问github.io网站的效果一样。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo s <span class="comment">#在4000端口创建一个服务器</span></span><br></pre></td></tr></table></figure>
-<p>在浏览器中输入：<code>localhost:4000</code> 进行访问</p>
-<h1 id="4-yilia主题配置"><a href="#4-yilia主题配置" class="headerlink" title="4. yilia主题配置"></a>4. yilia主题配置</h1><h2 id="4-1-修改theme"><a href="#4-1-修改theme" class="headerlink" title="4.1 修改theme"></a>4.1 修改theme</h2><p>theme存放在/themes/文件夹中，里面有一个landscape的文件夹，是系统默认主题的文件夹。因此我可以把别人的主题文件夹克隆过来。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/litten/hexo-theme-yilia">https://github.com/litten/hexo-theme-yilia</a> 我使用yilia主题</p>
-<h3 id="4-1-1-安装"><a href="#4-1-1-安装" class="headerlink" title="4.1.1 安装"></a>4.1.1 安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">clone</span> https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br></pre></td></tr></table></figure>
-<h3 id="4-1-2-主题配置"><a href="#4-1-2-主题配置" class="headerlink" title="4.1.2 主题配置"></a>4.1.2 主题配置</h3><h4 id="4-1-2-1-修改主题"><a href="#4-1-2-1-修改主题" class="headerlink" title="4.1.2.1 修改主题"></a>4.1.2.1 修改主题</h4><p>在hexo根目录下有一个<code>_config.yml</code>，配置theme：<code>theme: yilia</code></p>
-<h4 id="4-1-2-2-解决错误"><a href="#4-1-2-2-解决错误" class="headerlink" title="4.1.2.2 解决错误"></a>4.1.2.2 解决错误</h4><p>我在 <code>localhost:4000</code> 里面点击“所有文章”之后，报错，按照它给的解决办法很快解决了，之后就可以查看所有文章了。先输入命令 <code>npm i hexo-generator-json-content --save</code> ，然后在hexo项目的根目录下面的 <code>_config.yml</code> 文件末尾加入：</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">jsonContent:</span></span><br><span class="line">  <span class="attr">meta:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">pages:</span> <span class="literal">false</span></span><br><span class="line">  <span class="attr">posts:</span></span><br><span class="line">    <span class="attr">title:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">date:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">path:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">text:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">raw:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">content:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">slug:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">updated:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">comments:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">link:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">permalink:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">excerpt:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">categories:</span> <span class="literal">false</span></span><br><span class="line">    <span class="attr">tags:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<h4 id="4-1-2-3-更改头像"><a href="#4-1-2-3-更改头像" class="headerlink" title="4.1.2.3 更改头像"></a>4.1.2.3 更改头像</h4><p>如果想要设置自己的头像，怎么办呢？在themes/yilia/下的_config.yml文件中，修改或增加以下信息：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#你的头像url</span></span><br><span class="line">avatar: http:<span class="regexp">//</span>localhost:<span class="number">9000</span><span class="regexp">/1000/</span><span class="number">10</span><span class="regexp">/10/im</span>ages/shanna.jpg</span><br><span class="line"><span class="comment">#不一定是这个地址，只是你的头像的地址</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-1-3-更新"><a href="#4-1-3-更新" class="headerlink" title="4.1.3 更新"></a>4.1.3 更新</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span> themes/yilia</span><br><span class="line">$ git pull</span><br></pre></td></tr></table></figure>
-<p>如果对这个yilia的主题用的不好，可以看看：<a target="_blank" rel="noopener" href="https://github.com/litten/BlogBackup/tree/master/themes/yilia">https://github.com/litten/BlogBackup/tree/master/themes/yilia</a></p>
-<h2 id="4-2-上传图片"><a href="#4-2-上传图片" class="headerlink" title="4.2 上传图片"></a>4.2 上传图片</h2><p>如果你想要在文件中加入一些图片，怎么办呢？你需要<code>asset folder</code><br>首先更改 <code>_config.yml</code> 文件，找到writing部分，设置post_asset_folder为true，然后，就发生一些变化：如果你 <code>hexo new a</code>，出现的是 <code>a文件夹</code>和 <code>a.md</code>，而不仅仅是<code>a.md</code>。假如 <code>a文件夹</code> 中有一个 <code>a.jpg</code>，如何让它显示出来呢，使用下面的hexo命令：</p>
-<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="template-variable">&#123;% asset_img a.img %&#125;</span> <span class="comment">#表示从asset folder中找a.img图片</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-3-无法显示数学公式"><a href="#4-3-无法显示数学公式" class="headerlink" title="4.3 无法显示数学公式"></a>4.3 无法显示数学公式</h2><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7ab21c7f0674">https://www.jianshu.com/p/7ab21c7f0674</a> 这是很好的一篇教程</p>
-<h3 id="4-3-1-更换markdown渲染引擎"><a href="#4-3-1-更换markdown渲染引擎" class="headerlink" title="4.3.1 更换markdown渲染引擎"></a>4.3.1 更换markdown渲染引擎</h3><p>更换Hexo的markdown渲染引擎，<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fsun11%2Fhexo-renderer-kramed">hexo-renderer-kramed</a>引擎是在默认的渲染引擎<a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fhexojs%2Fhexo-renderer-marked">hexo-renderer-marked</a>的基础上修改了一些bug，两者比较接近，也比较轻量级。</p>
-<p>在git中执行下述命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm uninstall hexo-renderer-marked --save</span><br><span class="line">$ npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
-<h3 id="4-3-2-更改配置"><a href="#4-3-2-更改配置" class="headerlink" title="4.3.2 更改配置"></a>4.3.2 更改配置</h3><p>在 <code>/themes/yilia/_config.yml</code> 中找到下面的行，然后更改：<code>mathjax: true</code></p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># Content</span></span><br><span class="line"></span><br><span class="line"><span class="meta"># 文章太长，截断按钮文字</span></span><br><span class="line">excerpt_link: more</span><br><span class="line"><span class="meta"># 文章卡片右下角常驻链接，不需要请设置为false</span></span><br><span class="line">show_all_link: <span class="string">&#x27;展开全文&#x27;</span></span><br><span class="line"><span class="meta"># 数学公式</span></span><br><span class="line">mathjax: <span class="literal">true</span></span><br><span class="line"><span class="meta"># 是否在新窗口打开链接</span></span><br><span class="line">open_in_new: <span class="literal">false</span></span><br></pre></td></tr></table></figure>
-<h2 id="4-4-无法显示mermaid"><a href="#4-4-无法显示mermaid" class="headerlink" title="4.4 无法显示mermaid"></a>4.4 无法显示mermaid</h2><p><a target="_blank" rel="noopener" href="https://github.com/webappdevelp/hexo-filter-mermaid-diagrams">https://github.com/webappdevelp/hexo-filter-mermaid-diagrams</a></p>
-<p>很简单，只需要下载一个插件，然后更改配置。最后</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo g</span><br></pre></td></tr></table></figure>
-<h2 id="4-5-代码行显示错乱"><a href="#4-5-代码行显示错乱" class="headerlink" title="4.5 代码行显示错乱"></a>4.5 代码行显示错乱</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41287260/article/details/103051056">https://blog.csdn.net/weixin_41287260/article/details/103051056</a></p>
-<p>这是由于yilia主题让代码自动换行的结果，可以修改yilia主题下的某个文件，禁止换行。</p>
-<p>修改<code>themes/yilia/source/main.0cf68a.css</code>的内容：将<code>white-space:pre-wrap</code>删除。</p>
-<h2 id="4-6-修改代码块的样式"><a href="#4-6-修改代码块的样式" class="headerlink" title="4.6 修改代码块的样式"></a>4.6 修改代码块的样式</h2><p>直接修改编译好的文件。路径为：<code>theme/yilia/source/main.0cf68a.css</code>:</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">(<span class="number">1</span>)修改代码背景色，</span><br><span class="line">搜索 <span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span>, 修改<span class="attribute">background</span>后面的颜色</span><br><span class="line">将 pre&#123;<span class="attribute">background</span>:<span class="number">#272822</span>;</span><br><span class="line">改为 pre&#123;<span class="attribute">background</span>:<span class="number">#fff5e1</span>; #米黄色背景</span><br><span class="line"></span><br><span class="line">(<span class="number">2</span>)修改行号颜色，</span><br><span class="line">搜索 <span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> <span class="selector-class">.gutter</span> pre <span class="selector-class">.line</span></span><br><span class="line">将<span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> <span class="selector-class">.gutter</span> pre .line&#123;<span class="attribute">color</span>:<span class="number">#666</span></span><br><span class="line">改为<span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> <span class="selector-class">.gutter</span> pre .line&#123;<span class="attribute">color</span>:<span class="number">#fc0000</span></span><br><span class="line"></span><br><span class="line">(<span class="number">3</span>)修改代码字体颜色 </span><br><span class="line">搜索 <span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> <span class="selector-class">.line</span></span><br><span class="line">将<span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> .line&#123;<span class="attribute">color</span>:<span class="number">#fff</span>;</span><br><span class="line">修改为<span class="selector-class">.article-entry</span> <span class="selector-class">.highlight</span> .line&#123;<span class="attribute">color</span>:<span class="number">#00ff0d</span>;</span><br></pre></td></tr></table></figure>
-<h2 id="4-7-trouble"><a href="#4-7-trouble" class="headerlink" title="4.7 trouble"></a>4.7 trouble</h2><ol>
-<li> <figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#是个特殊的字符，使用它时前后加一个空格。不然hexo g的时候会出错</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>不要使用多级列表</p>
-</li>
-<li><p>列表后换行，才能写代码区</p>
-</li>
-<li><p>不要再行的开头写行内代码区，以防万一，直接在开头添加一些无关紧要的字符。我有一次在开头使用行内代码区：</p>
- <figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">​```&lt;meta&gt;``` 标签...</span><br></pre></td></tr></table></figure>
-<p> 上面的写法被hexo/yilia解析错误，导致yilia主题运行出现严重错误。</p>
-</li>
-<li><p>不要在代码块中使用<code>tab</code>进行缩进。</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/21/hexo%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/8/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/10/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/8/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/10/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1748,6 +1411,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">默认</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">恋爱</a>
               </li>
             
             <div class="clearfix"></div>
