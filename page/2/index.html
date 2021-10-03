@@ -152,6 +152,91 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-论文阅读：viper-vldb2021" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/">论文阅读：viper(vldb2021)</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/" class="archive-article-date">
+  	<time datetime="2021-09-10T23:01:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="论文网址"><a href="#论文网址" class="headerlink" title="论文网址"></a>论文网址</h1><p><a target="_blank" rel="noopener" href="https://hpides.github.io/viper/">https://hpides.github.io/viper/</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>However, simply drop-in replacing existing storage with PMem does not yield good results, as block-based access behaves differently in PMem than on disk and ignores PMem’s byte addressability, layout, and unique performance characteristics.</p>
+<p>要解决如何正确地将KV持久化到PM中；要利用好字节存取能力和它特殊的性能特征。</p>
+<p>In this paper, we propose three PMem-specific access patterns and implement them in a hybrid PMem-DRAM KVS called Viper.</p>
+<p>三种访问模式；hybrid PMem-DRAM KVS</p>
+<p>We employ a DRAM-based hash index and a PMem-aware storage layout to utilize the random-write speed of DRAM and efficient sequential-write performance PMem.</p>
+<p>将Hash索引存储到DRAM中，因为DRAM的随机写性能很好；再利用PM的很好的顺序写性能。</p>
+<p>“我感觉这篇文章比较有意思的点在与它通过存储布局设计把不同threads的读写操作都尽量均衡的分配到了不同的DIMM上，并且把粒度（VPage）设为4kb（实测中这样的offset在顺序写时候Latency最低），Viper没有做缓存设计（因为实际测试中DRAM和PMem的顺序写入的Latency差不多）”</p>
+<img src="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/image-20210911071525723.png" class="">
+<p><img src="论文阅读：viper-vldb2021/image-20210911071525723.png" alt="image-20210911071525723"></p>
+<h1 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h1><p>由于这篇论文应用了PM的顺序写性能，而且openGauss的日志也是顺序写的，因此可以参考这篇论文来探讨如何将PM应用于openGauss的日志系统。</p>
+<p>在spitfire论文中，探讨了dram-pm-ssd的三层存储结构，其实在openGauss中应该也可以用这种结构来实现日志系统。如果单纯地使用PM持久化日志，由于日志过于庞大，全部存储在PM中不太合适，我想最终还是要dump到磁盘当中的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Tidb" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1072,103 +1157,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/08/30/leetcode/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-finalshell-cisoAnyConnection连接到ecnu服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">finalshell-cisoAnyConnection连接到ecnu服务器</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2021-08-23T02:12:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="连接到ecnu-VPN"><a href="#连接到ecnu-VPN" class="headerlink" title="连接到ecnu VPN"></a>连接到ecnu VPN</h1><p>1.首先下载ciscoAnyConnection软件，这个软件可以连接到ecnu VPN。下载网址是：</p>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1khUL60elE1l_WLr8yel81g">https://pan.baidu.com/s/1khUL60elE1l_WLr8yel81g</a><br>提取码：df7l</p>
-<p>2.cisco软件中输入ecnu VPN网址：<code>vpn-ct.ecnu.edu.cn</code></p>
-<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102031046.png" class="">
-<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102031046.png" alt="image-20210823102031046"></p>
-<p>3.点击<code>Connect</code>，然后输入自己的ecnu学号和密码。点击’OK’，然后就连接到VPN了。</p>
-<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102308562.png" class="">
-<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102308562.png" alt="image-20210823102308562"></p>
-<h1 id="finalshell进行ssh连接"><a href="#finalshell进行ssh连接" class="headerlink" title="finalshell进行ssh连接"></a>finalshell进行ssh连接</h1><p>1.下载finalshell：<a target="_blank" rel="noopener" href="http://www.hostbuf.com/downloads/finalshell_install.exe">http://www.hostbuf.com/downloads/finalshell_install.exe</a></p>
-<p>2.安装后，进行如下操作：</p>
-<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102645672.png" class="">
-<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102645672.png" alt="image-20210823102645672"></p>
-<p>按照步骤执行；其中第4步的<code>proxy代理ip</code>是<code>58.198.176.182</code>。即使连接到ecnu VPN，也不能直接ssh到特定主机，必须要先和跳板机连接，这个<code>proxy代理ip</code>就是跳板机。</p>
-<p>这个跳板机的用户名和密码都是<code>proxy</code>。</p>
-<p>连接成功后会出现下免得界面：</p>
-<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823103203312.png" class="">
-<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823103203312.png" alt="image-20210823103203312"></p>
-<p>3.在这个界面的命令行内使用ssh命令连接到私网的特定主机，比如<code>10.11.6.29</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh 10.11.6.29 -l zhouhuahui <span class="comment"># -l选项指定登录主机的用户</span></span><br></pre></td></tr></table></figure>
-<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823103427327.png" class="">
-<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823103427327.png" alt="image-20210823103427327"></p>
-<p>要以特定主机登录，必须要让这个主机的管理员创建一个用户名和密码。</p>
-<p>4.如果要从主机或跳板机退出登录，只需执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">logout</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">展开全文 >></a>
         </p>
       
 

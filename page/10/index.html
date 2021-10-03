@@ -152,6 +152,86 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-编译原理" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">编译原理</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  	<time datetime="2020-07-22T01:53:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-导论"><a href="#1-导论" class="headerlink" title="1 导论"></a>1 导论</h1><p>参考<a target="_blank" rel="noopener" href="https://mooc1-1.chaoxing.com/mycourse/studentcourse?courseId=202958283&amp;clazzid=16789409&amp;enc=b11b381e4fa3a9e9277463a553fcb148&amp;cpi=66311343&amp;vc=1">吉林大学编译原理网课资源</a></p>
+<h2 id="1-1-编译原理思维导图"><a href="#1-1-编译原理思维导图" class="headerlink" title="1.1 编译原理思维导图"></a>1.1 编译原理思维导图</h2><img src="/2020/07/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/compiler.png" class="">
+<h2 id="1-2-编译器的组成及各部分的功能及作用"><a href="#1-2-编译器的组成及各部分的功能及作用" class="headerlink" title="1.2 编译器的组成及各部分的功能及作用"></a>1.2 编译器的组成及各部分的功能及作用</h2><ol>
+<li>词法分析 词法分析器根据词法规则识别出源程序中的各个记号（token），每个记号代表一类单词。源程序中常见的记号可以归为几大类：关键字、标识符、字面量和特殊符号。词法分析器的输入是源程序，输出是识别的记号流。词法分析器的任务是把源文件的字符流转换成记号流。本质上它查看连续的字符然后把它们识别为“单词”。 2. 语法分析 语法分析器根据语法规则识别出记号流中的结构（短语、句子），并构造一棵能够正确反映该结构的语法树。 3. 语义分析 语义分析器根据语义规则对语法树中的语法单元进行静态语义检查，如类型检查和转换等，其目的在于保证语法正确的结构在语义上也是合法的。 4. 中间代码生成 中间代码生成器根据语义分析器的输出生成中间代码。中间代码可以有若干种形式，它们的共同特征是与具体机器无关。最常用的一种中间代码是三地址码，它的一种实现方式是四元式。三地址码的优点是便于阅读、便于优化。 5. 中间代码优化 优化是编译器的一个重要组成部分，由于编译器将源程序翻译成中间代码的工作是机械的、按固定模式进行的，因此，生成的中间代码往往在时间和空间上有很大浪费。当需要生成高效目标代码时，就必须进行优化。 6. 目标代码生成 目标代码生成是编译器的最后一个阶段。在生成目标代码时要考虑以下几个问题：计算机的系统结构、指令系统、寄存器的分配以及内存的组织等。编译器生成的目标程序代码可以有多种形式：汇编语言、可重定位二进制代码、内存形式。 7 符号表管理 符号表的作用是记录源程序中符号的必要信息，并加以合理组织，从而在编译器的各个阶段能对它们进行快速、准确的查找和操作。符号表中的某些内容甚至要保留到程序的运行阶段。 8 出错处理 用户编写的源程序中往往会有一些错误，可分为静态错误和动态错误两类。所谓动态错误，是指源程序中的逻辑错误，它们发生在程序运行的时候，也被称作动态语义错误，如变量取值为零时作为除数，数组元素引用时下标出界等。静态错误又可分为语法错误和静态语义错误。语法错误是指有关语言结构上的错误，如单词拼写错、表达式中缺少操作数、begin和end不匹配等。静态语义错误是指分析源程序时可以发现的语言意义上的错误，如加法的两个操作数中一个是整型变量名，而另一个是数组名等。</li>
+</ol>
+        
+          <a class="article-more-a" href="/2020/07/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">计算机专业课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/21/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-typora的使用" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

@@ -152,6 +152,103 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-finalshell-cisoAnyConnection连接到ecnu服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">finalshell-cisoAnyConnection连接到ecnu服务器</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2021-08-23T02:12:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="连接到ecnu-VPN"><a href="#连接到ecnu-VPN" class="headerlink" title="连接到ecnu VPN"></a>连接到ecnu VPN</h1><p>1.首先下载ciscoAnyConnection软件，这个软件可以连接到ecnu VPN。下载网址是：</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1khUL60elE1l_WLr8yel81g">https://pan.baidu.com/s/1khUL60elE1l_WLr8yel81g</a><br>提取码：df7l</p>
+<p>2.cisco软件中输入ecnu VPN网址：<code>vpn-ct.ecnu.edu.cn</code></p>
+<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102031046.png" class="">
+<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102031046.png" alt="image-20210823102031046"></p>
+<p>3.点击<code>Connect</code>，然后输入自己的ecnu学号和密码。点击’OK’，然后就连接到VPN了。</p>
+<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102308562.png" class="">
+<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102308562.png" alt="image-20210823102308562"></p>
+<h1 id="finalshell进行ssh连接"><a href="#finalshell进行ssh连接" class="headerlink" title="finalshell进行ssh连接"></a>finalshell进行ssh连接</h1><p>1.下载finalshell：<a target="_blank" rel="noopener" href="http://www.hostbuf.com/downloads/finalshell_install.exe">http://www.hostbuf.com/downloads/finalshell_install.exe</a></p>
+<p>2.安装后，进行如下操作：</p>
+<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102645672.png" class="">
+<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102645672.png" alt="image-20210823102645672"></p>
+<p>按照步骤执行；其中第4步的<code>proxy代理ip</code>是<code>58.198.176.182</code>。即使连接到ecnu VPN，也不能直接ssh到特定主机，必须要先和跳板机连接，这个<code>proxy代理ip</code>就是跳板机。</p>
+<p>这个跳板机的用户名和密码都是<code>proxy</code>。</p>
+<p>连接成功后会出现下免得界面：</p>
+<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823103203312.png" class="">
+<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823103203312.png" alt="image-20210823103203312"></p>
+<p>3.在这个界面的命令行内使用ssh命令连接到私网的特定主机，比如<code>10.11.6.29</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh 10.11.6.29 -l zhouhuahui <span class="comment"># -l选项指定登录主机的用户</span></span><br></pre></td></tr></table></figure>
+<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823103427327.png" class="">
+<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823103427327.png" alt="image-20210823103427327"></p>
+<p>要以特定主机登录，必须要让这个主机的管理员创建一个用户名和密码。</p>
+<p>4.如果要从主机或跳板机退出登录，只需执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">logout</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-开源项目推荐" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1774,90 +1871,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/08/10/%E5%B7%A5%E4%BD%9C%E6%8F%8F%E8%BF%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-学习MIT6-824" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/05/%E5%AD%A6%E4%B9%A0MIT6-824/">学习MIT6.824</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/05/%E5%AD%A6%E4%B9%A0MIT6-824/" class="archive-article-date">
-  	<time datetime="2021-08-05T15:20:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>RAFT可视化介绍，简单了解RAFT：<a target="_blank" rel="noopener" href="http://thesecretlivesofdata.com/raft/">http://thesecretlivesofdata.com/raft/</a></p>
-<p>RAFT官网，这里面有RAFT Visualization部分：<a target="_blank" rel="noopener" href="https://raft.github.io/">https://raft.github.io/</a></p>
-<p>Raft作者的博士论文下载：<a href="https://link.zhihu.com/?target=https%3A//github.com/ongardie/dissertation/blob/master/book.pdf%3Fraw%3Dtrue">https://link.zhihu.com/?target=https%3A//github.com/ongardie/dissertation/blob/master/book.pdf%3Fraw%3Dtrue</a></p>
-<p>MIT助教写的资料：<a target="_blank" rel="noopener" href="https://thesquareplanet.com/blog/students-guide-to-raft/">https://thesquareplanet.com/blog/students-guide-to-raft/</a></p>
-<p>MIT6.824课程schedule：<a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.824/schedule.html">https://pdos.csail.mit.edu/6.824/schedule.html</a></p>
-<p>raft论文：<a target="_blank" rel="noopener" href="https://raft.github.io/raft.pdf">https://raft.github.io/raft.pdf</a></p>
-<p>PingCAP博客（有TiDB）：<a target="_blank" rel="noopener" href="https://pingcap.com/blog-cn/#Raft">https://pingcap.com/blog-cn/#Raft</a></p>
-<p>github上的一个对MIT6.824-2021的参考答案MrGuin/6.824-labs-2021：<a target="_blank" rel="noopener" href="https://github.com/MrGuin/6.824-labs-2021">https://github.com/MrGuin/6.824-labs-2021</a></p>
-<p>Anarion-zuo/AnBlogs上有6.824和6.828，cs143的文章：<a target="_blank" rel="noopener" href="https://github.com/Anarion-zuo/AnBlogs">https://github.com/Anarion-zuo/AnBlogs</a></p>
-<p>6.824课程的翻译：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/166409783">https://zhuanlan.zhihu.com/p/166409783</a></p>
-<p>其他整理的参考资料：<a target="_blank" rel="noopener" href="https://github.com/tianbingJ/Trepang">https://github.com/tianbingJ/Trepang</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/05/%E5%AD%A6%E4%B9%A0MIT6-824/">展开全文 >></a>
         </p>
       
 

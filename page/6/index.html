@@ -152,6 +152,103 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-js中基本数据类型及其用法" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/11/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/">js中基本数据类型及其用法</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/11/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-10-11T21:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h1><p>在js中，有6种不同的数据类型：</p>
+<ul>
+<li>string</li>
+<li>number</li>
+<li>boolean</li>
+<li>object</li>
+<li>function</li>
+<li>symbol</li>
+</ul>
+<p>3种对象类型：</p>
+<ul>
+<li>Object</li>
+<li>Date</li>
+<li>Array</li>
+</ul>
+<p>2种不包含任何值的数据类型</p>
+<ul>
+<li>null</li>
+<li>undefined</li>
+</ul>
+<h1 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h1><p>typeof操作符可以返回string, number, boolean, object, function, undefined</p>
+<p>特殊地，null的数据类型是object</p>
+<h1 id="Object-prototype"><a href="#Object-prototype" class="headerlink" title="Object.prototype"></a>Object.prototype</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = <span class="string">&#x27;zhou&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person()</span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(arr) <span class="comment">//[object Array]</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(date) <span class="comment">//[object Date]</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(p1) <span class="comment">//[object Object]</span></span><br></pre></td></tr></table></figure>
+<p>由于js中只有3种对象类型，Object.prototype.toString.call只会返回上述三种结果之一。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/11/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-css-vertical-align属性" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1105,135 +1202,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-RESTful-API" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/20/RESTful-API/">RESTful-API</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/20/RESTful-API/" class="archive-article-date">
-  	<time datetime="2020-09-21T05:34:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-什么是REST"><a href="#1-什么是REST" class="headerlink" title="1. 什么是REST"></a>1. 什么是REST</h1><p>REST全称是Representational State Transfer。REST本身并没有创造新的技术、组件或服务，而隐藏在RESTful背后的理念就是使用Web的现有特征和能力， 更好地使用现有Web标准中的一些准则和约束。虽然REST本身受Web技术的影响很深， 但是理论上REST架构风格并不是绑定在HTTP上，只不过目前HTTP是唯一与REST相关的实例。 所以我们这里描述的REST也是通过HTTP实现的REST。</p>
-<h1 id="2-理解REST"><a href="#2-理解REST" class="headerlink" title="2. 理解REST"></a>2. 理解REST</h1><p>从资源的定义、获取、表述、关联、状态变迁等角度，列举一些关键概念并加以解释。</p>
-<h2 id="2-1-资源与URL"><a href="#2-1-资源与URL" class="headerlink" title="2.1 资源与URL"></a>2.1 资源与URL</h2><p>要让一个资源可以被识别，需要有个唯一标识，在Web中这个唯一标识就是URI(Uniform Resource Identifier)。</p>
-<p>URL设计上的一些技巧</p>
-<ol>
-<li><p>使用/来表示资源的层级关系</p>
-</li>
-<li><p>使用_或-来让URI可读性更好</p>
-</li>
-<li><p>使用?用来过滤资源(query)</p>
- <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/pulls?<span class="keyword">state</span>=closed</span><br></pre></td></tr></table></figure>
-<p> 用来表示git项目中已经关闭的推入请求</p>
- <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/pulls/</span>?page=<span class="number">2</span>&amp;per_page=<span class="number">100</span></span><br></pre></td></tr></table></figure>
-<p> 指定第几页，以及每页的记录数。</p>
-</li>
-<li><p>,或;可以用来表示同级资源的关系</p>
- <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/git/gi</span>t <span class="regexp">/block-sha1/</span>sha1.h<span class="regexp">/compare/</span>e3af72cdafab5993d18fae056f87e1d675913d08;bd63e61bdf38e872d5215c07b264dcc16e4febca</span><br></pre></td></tr></table></figure>
-<p> 比较某个文件在随意两次提交记录之间的差异</p>
-</li>
-</ol>
-<h2 id="2-2-统一资源接口"><a href="#2-2-统一资源接口" class="headerlink" title="2.2 统一资源接口"></a>2.2 统一资源接口</h2><p>接口应该使用标准的HTTP方法如GET，PUT，POST，PATCH，DELETE，并遵循这些方法的语义。</p>
-<ol>
-<li>GET（SELECT）：从服务器取出资源（一项或多项）。</li>
-<li>POST（CREATE）：在服务器新建一个资源。</li>
-<li>PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。</li>
-<li>PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。</li>
-<li>DELETE（DELETE）：从服务器删除资源。</li>
-</ol>
-<p>下面是一些例子：</p>
-<ol>
-<li><p>列出所有动物园。</p>
- <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">GET</span> /zoos</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取某个指定动物园的信息</p>
- <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET <span class="regexp">/zoos/</span>ID</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新建一个动物园</p>
- <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">POST <span class="string">/zoos</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>更新某个指定动物园的信息（提供该动物园的全部信息）</p>
- <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PUT <span class="regexp">/zoos/</span>ID</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>更新某个指定动物园的信息（提供该动物园的部分信息）</p>
- <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PATCH <span class="regexp">/zoos/</span>ID</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除某个动物园</p>
- <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="regexp">/zoos/I</span>D</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除某个指定动物园的指定动物</p>
- <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="regexp">/zoos/I</span>D<span class="regexp">/animals/I</span>D</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="2-3-资源的表述"><a href="#2-3-资源的表述" class="headerlink" title="2.3 资源的表述"></a>2.3 资源的表述</h2><p>资源在外界的具体呈现，可以有多种表述(或成为表现、表示)形式，在客户端和服务端之间传送的也是资源的表述，而不是资源本身。 例如文本资源可以采用html、xml、json等格式，图片可以使用PNG或JPG展现出来。</p>
-<p>资源的表述包括数据和描述数据的元数据，例如，HTTP头”Content-Type” 就是这样一个元数据属性。</p>
-<p>可以通过HTTP内容协商，客户端可以通过Accept头请求一种特定格式的表述，服务端则通过Content-Type告诉客户端资源的表述形式。</p>
-<p>以github为例，请求某组织资源的json格式的表述形式:</p>
-<p>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/20/RESTful-API/">展开全文 >></a>
         </p>
       
 
