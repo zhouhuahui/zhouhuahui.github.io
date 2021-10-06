@@ -152,6 +152,109 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Tidb-talent-plan" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/13/Tidb-talent-plan/">Tidb talent plan</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/13/Tidb-talent-plan/" class="archive-article-date">
+  	<time datetime="2021-09-14T02:32:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Tidb-talen-plan"><a href="#Tidb-talen-plan" class="headerlink" title="Tidb talen plan"></a>Tidb talen plan</h1><h2 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h2><p>这是一个学习造一个简单的Tidb数据库的网站：<a target="_blank" rel="noopener" href="https://university.pingcap.com/talent-plan/">https://university.pingcap.com/talent-plan/</a>  </p>
+<img src="/2021/09/13/Tidb-talent-plan/image-20210914103409549.png" class="">
+<p><img src="Tidb-talent-plan/image-20210914103409549.png" alt="image-20210914103409549"></p>
+<h2 id="在线操作Tidb数据库"><a href="#在线操作Tidb数据库" class="headerlink" title="在线操作Tidb数据库"></a>在线操作Tidb数据库</h2><p><a target="_blank" rel="noopener" href="https://tour.pingcap.com/">https://tour.pingcap.com/</a></p>
+<h1 id="tinysql"><a href="#tinysql" class="headerlink" title="tinysql"></a>tinysql</h1><h2 id="proj1-part2-Table-Codec"><a href="#proj1-part2-Table-Codec" class="headerlink" title="proj1-part2 Table Codec"></a>proj1-part2 Table Codec</h2><p>这是这一部分的网址</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tidb-incubator/tinysql/blob/course/courses/proj1-part2-README-zh_CN.md">https://github.com/tidb-incubator/tinysql/blob/course/courses/proj1-part2-README-zh_CN.md</a></p>
+<h3 id="概览-1"><a href="#概览-1" class="headerlink" title="概览"></a>概览</h3><p>介绍表上的数据如何映射到TinyKV上</p>
+<h3 id="Table-Codec"><a href="#Table-Codec" class="headerlink" title="Table Codec"></a>Table Codec</h3><p>经过分析，一个类似有序的数组的排列可能是比较有用的，虽然PG中一个表的所有row是不可能用有序的数组形式的，PG的表存储和索引构建比较复杂，但是这里仅仅构建一个简单的Tidb数据库，因此就直接用类有序数组来存储所有行了。我觉得一个B数是一个不错的选择，具体应该是什么，看后面的课程吧。</p>
+<p>Tidb的TinySQL是建立在TinuKV之上的，因此要构建TinyKV，要先知道TinyKV的接口：</p>
+<ol>
+<li>Key和Value都是bytes数组</li>
+<li>Scan(startKey)</li>
+<li>Set(Key, value)</li>
+</ol>
+<p>在Tidb中行数据是以key-value对存在的，因此如何设计key和value的格式呢？</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Key:</span> tablePrefix_tableID_recordPrefixSep_rowID</span><br><span class="line"><span class="symbol">Value:</span> [col1, col2, col3, col4]</span><br></pre></td></tr></table></figure>
+<p>其中 Key 的 tablePrefix/recordPrefixSep 都是特定的字符串常量，用于在 KV 空间内区分其他数据。 对于索引，会为每一个索引分配表内唯一的 indexID（一个索引是类似于hash或者B树之类的结构），然后按照如下规则编码成 Key-Value pair：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">Key:</span> tablePrefix_tableID_indexPrefixSep_indexID_indexColumnsValue</span><br><span class="line"><span class="symbol">Value:</span> rowID</span><br></pre></td></tr></table></figure>
+<p>当然，我们还需要考虑非唯一索引，这个时候上面的方法就行不通了，我们需要将 rowID 也编码进 Key 里使之成为唯一的：</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Key</span>: tablePrefix_tableID_indexPrefixSep_indexID_ColumnsValue_rowID</span><br><span class="line">Value：<span class="built_in">null</span></span><br></pre></td></tr></table></figure>
+<p>从<code>tinysql/tablecodec.go</code>源码中可以看到tablePrefix, recordPrefixSep是什么</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> (</span><br><span class="line">	tablePrefix     = []<span class="keyword">byte</span>&#123;<span class="string">&#x27;t&#x27;</span>&#125;</span><br><span class="line">	recordPrefixSep = []<span class="keyword">byte</span>(<span class="string">&quot;_r&quot;</span>)</span><br><span class="line">	indexPrefixSep  = []<span class="keyword">byte</span>(<span class="string">&quot;_i&quot;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>在tinysql目录下，测试<code>DecodeRecordKey</code>代码，运行:</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">go test github.com<span class="regexp">/pingcap/</span>tidb/tablecodec <span class="string">&quot;-check.f&quot;</span> TestRecordKey</span><br></pre></td></tr></table></figure>
+<p>注意，这里<code>&quot;-check.f&quot;</code>不要忘了双引号。</p>
+<h2 id="proj2-语法分析"><a href="#proj2-语法分析" class="headerlink" title="proj2 语法分析"></a>proj2 语法分析</h2><p>2021.9.16号开始学习proj2</p>
+<p>编译原理的知识需要仔细讲一下，或者提供一个ppt来供系统学习编译原理的状态机，词法分析，语法分析等理论。</p>
+<p>关于TiDB SQL Parser的源码实现，有很多原理没有讲清楚，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%union &#123;</span><br><span class="line">    offset int // offset</span><br><span class="line">    item interface&#123;&#125;</span><br><span class="line">    ident string</span><br><span class="line">    expr ast.ExprNode</span><br><span class="line">    statement ast.StmtNode</span><br><span class="line">&#125;zhongjifu </span><br></pre></td></tr></table></figure>
+<p>在<code>parser.y</code>文件的<code>definitions</code>部分，定义了很多终极符和非终极符，终极符是以小写字母开头的，非终极符是以大写字母开头的。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/13/Tidb-talent-plan/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-stl" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -402,7 +505,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据库#</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		
 		</ul>
@@ -1061,83 +1164,9 @@
 
 
   
-    <article id="post-持久内存编程PMDK" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/06/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/">持久内存编程PMDK</a>
-    </h1>
-  
-
-        
-        <a href="/2021/09/06/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/" class="archive-article-date">
-  	<time datetime="2021-09-07T05:24:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】持久内存开发资料汇总：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/391107604">https://zhuanlan.zhihu.com/p/391107604</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/06/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1278,10 +1307,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据库#</a>
               </li>
              
               <li class="article-tag-list-item">

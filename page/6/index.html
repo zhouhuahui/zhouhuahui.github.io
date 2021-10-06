@@ -152,6 +152,97 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-安装MySQL8时的问题" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/02/%E5%AE%89%E8%A3%85MySQL8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/">安装MySQL8时的问题</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/02/%E5%AE%89%E8%A3%85MySQL8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2021-03-02T08:18:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这是在windows系统下安装MySQL。由于我有MySQL8.0.19-winx64的zip文件，因此选择使用.zip安装方式</p>
+<ol>
+<li><p>添加环境变量，我的电脑-&gt;属性-&gt;高级-&gt;环境变量选择Path,在其后面添加: 你的mysql bin文件夹的路径 ：<code>D:\APP\mysql8.0.19-winx64\mysql8.0.19-winx64\bin</code>；</p>
+</li>
+<li><p>以管理员方式打开cmd，运行</p>
+ <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">mysqld</span> --<span class="comment">initialize</span><span class="literal">-</span><span class="comment">insecure</span> --<span class="comment">user=mysql</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>按照很多mysql5的教程，接下来会输出 <code>mysql install</code>，但是这样用在mysql8上，会报错：<code>Can&#39;t connect to MySQL server on &#39;localhost&#39; (10061)</code>，之后找到了另一篇博客，应该输入：<code>mysqld --install mysql</code>；</p>
+</li>
+<li><p>cmd下输入<code>net start mysql</code>，意思是启动mysql</p>
+</li>
+<li><p><code>mysql -uroot -p</code> 进入mysql命令行，如果要输入密码，由于没有密码设置，就直接按回车；</p>
+</li>
+<li><p>这时修改密码：</p>
+ <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">use mysql;</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">user</span> <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> identified <span class="keyword">with</span> mysql_native_password <span class="keyword">by</span> <span class="string">&#x27;zhou19981209&#x27;</span>; </span><br><span class="line">flush <span class="keyword">privileges</span>;</span><br></pre></td></tr></table></figure>
+<p> 如果不设置密码，之后使用navicat连接到mysql时，会报错：<code>Client does not support authentication protocol requested by server</code>；</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/02/%E5%AE%89%E8%A3%85MySQL8%E6%97%B6%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-go语言" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1415,148 +1506,9 @@
 
 
   
-    <article id="posts-C语言基础" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/28/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/">C语言基础</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/28/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2020-09-29T04:35:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="C语言输入输出"><a href="#C语言输入输出" class="headerlink" title="C语言输入输出"></a>C语言输入输出</h1><h2 id="scanf-amp-printf"><a href="#scanf-amp-printf" class="headerlink" title="scanf() &amp; printf()"></a>scanf() &amp; printf()</h2><p>头文件：<code>#include&lt;stdio.h&gt;</code></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//in: 1 2</span></span><br><span class="line"><span class="keyword">int</span> x = <span class="built_in">scanf</span>(<span class="string">&quot;%d%d%d&quot;</span>,&amp;a,&amp;b,&amp;c);</span><br><span class="line"><span class="comment">//out: a=1,b=2,c保持不变,x=3</span></span><br></pre></td></tr></table></figure>
-<p>当扫描到文件结束符后，就自动结束输入</p>
-<p>x为正确接收到值的变量个数。当scanf函数的第一个变量格式不正确时返回值为0，即，当scanf函数的第n个变量格式不正确时，返回值为n-1；当scanf在扫描到了合法字符之前扫描到了输入结束符，则返回-1。</p>
-<h3 id="输入浮点数"><a href="#输入浮点数" class="headerlink" title="输入浮点数"></a>输入浮点数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> f;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%lf&quot;</span>,&amp;f);</span><br><span class="line"></span><br><span class="line"><span class="keyword">float</span> f2;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%f&quot;</span>,&amp;f2);</span><br></pre></td></tr></table></figure>
-<p>上面的<code>lf</code>格式对应<code>double</code>数据类型，<code>f</code>格式对应<code>float</code>数据类型。</p>
-<h3 id="输入16进制数"><a href="#输入16进制数" class="headerlink" title="输入16进制数"></a>输入16进制数</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//int: A</span></span><br><span class="line"><span class="keyword">int</span> a;</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%X&quot;</span>,&amp;a);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);</span><br><span class="line"><span class="comment">//out: 10</span></span><br></pre></td></tr></table></figure>
-<h3 id="输入多个单词"><a href="#输入多个单词" class="headerlink" title="输入多个单词"></a>输入多个单词</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>,&amp;a) &gt; <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="输出填充字符"><a href="#输出填充字符" class="headerlink" title="输出填充字符"></a>输出填充字符</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//%0xld:要是输出小于x位，用0补上，使输出达到x位；否则正常输出。</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%02ld\n&quot;</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%02ld\n&quot;</span>,<span class="number">111</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;------\n&quot;</span>); </span><br><span class="line">    <span class="comment">//%xld:要是输出小于x位，用空格补上，使输出达到x位；否则正常输出。</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%2ld\n&quot;</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%2ld\n&quot;</span>,<span class="number">111</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="getchar-amp-putchar"><a href="#getchar-amp-putchar" class="headerlink" title="getchar() &amp; putchar()"></a>getchar() &amp; putchar()</h2><p>头文件：<code>#include&lt;stdio.h&gt;</code></p>
-<p>函数 <code>int getchar(void)</code> 函数读取下一个可用的字符，若到达了文件的结尾，则返回<code>-1</code>。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> c = getchar();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>int putchar(void)</code> 函数在同一个时间把一个字符输出到屏幕上。</p>
-<h2 id="fgets-和cin-get"><a href="#fgets-和cin-get" class="headerlink" title="fgets()和cin.get()"></a>fgets()和cin.get()</h2><p>头文件：<code>#include&lt;stdio.h&gt;</code></p>
-<p>函数 <code>char *fgets(char *str, int n, FILE* stream)</code> 从指定的流 stream 读取一行，并把它存储在 <strong>str</strong> 所指向的字符串内。当读取 <strong>(n-1)</strong> 个字符时，或者读取到换行符时，或者到达文件末尾时，它会停止。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">char</span> *<span class="title">fgets</span><span class="params">(<span class="keyword">char</span> *s, <span class="keyword">int</span> size, FILE *stream)</span></span>; <span class="comment">//size是自定义读入字符的最大个数，包括\0</span></span><br><span class="line"><span class="comment">//如果size=5，而输入是abc\n，则缓冲区中为abc\n\0</span></span><br><span class="line"><span class="comment">//如果size=4，而输入是abc\n，则缓冲区中为abc\0</span></span><br><span class="line"><span class="comment">//如果size=3，而输入为abc\n，则缓冲区为ab\0</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//输入</span></span><br><span class="line"><span class="keyword">const</span> in MAXNUM = <span class="number">105</span>;</span><br><span class="line"><span class="keyword">char</span> str[MAXNUM];</span><br><span class="line">cin &gt;&gt; str; <span class="comment">// 遇到空白字符停止</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">fgets</span>(str, MAXNUM, stdin); <span class="comment">// 可以把换行符也输入进来</span></span><br><span class="line">                           <span class="comment">// MAXNUM参数表示最多只能输入多少个字符,包括\0</span></span><br><span class="line">                           <span class="comment">// 在没有达到MAXNUM个，且遇到了回车符，就停止输入，同时也把回车符加入到str中</span></span><br><span class="line"></span><br><span class="line">cin.<span class="built_in">get</span>(str, MAXNUM); <span class="comment">// 默认遇到换行符停止</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出</span></span><br><span class="line">cout&lt;&lt;str&lt;&lt;endl;</span><br><span class="line"></span><br><span class="line"><span class="built_in">puts</span>(str); <span class="comment">// 默认在结尾输出换行</span></span><br></pre></td></tr></table></figure>
-<h2 id="cin-ignore"><a href="#cin-ignore" class="headerlink" title="cin.ignore()"></a>cin.ignore()</h2><p>cin.ignore()函数是C++标准输入流（cin）中的一个方法。cin.ignore()函数中有两个参数，分别为数值型的a 和 字符型的 ch ，即cin.ignore( a, ch )。它表示从输入流 cin 中提取字符，提取的字符被忽略，不被使用。而每抛弃一个字符，它都要进行计数和比较字符：<strong>如果计数值达到 a 或者被抛弃的字符是 ch</strong> ，则cin.ignore() 函数执行终止；否则，它继续等待。</p>
-<p>它的一个常用功能就是用来清除以回车结束的输入缓冲区的内容，消除上一次输入对下一次输入的影响。例如可以这么用，cin.ignore(1024, ‘\n’)，通常把第一个参数设置得足够大，这样实际上是为了只有第二个参数 ‘\n’ 起作用，所以这一句就是把回车（包括回车）之前的所以字符从输入缓冲流中清除出去。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cin.<span class="built_in">ignore</span>(INT_MAX, <span class="string">&#x27;\n&#x27;</span>); </span><br></pre></td></tr></table></figure>
-<p>例子：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 10005</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">char</span> a[MAXN], b;</span><br><span class="line">    cin.<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>); <span class="comment">// 增加输入输出的速度</span></span><br><span class="line">	cin.<span class="built_in">get</span>(a, MAXN);</span><br><span class="line">    cin.<span class="built_in">ignore</span>(INT_MAX, <span class="string">&#x27;\n&#x27;</span>); </span><br><span class="line">    cin&gt;&gt;b;</span><br><span class="line">    cout&lt;&lt;a&lt;&lt;<span class="string">&quot;,&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输入：</span></span><br><span class="line"><span class="comment">// 1234567890</span></span><br><span class="line"><span class="comment">// fight</span></span><br><span class="line"><span class="comment">// 输出：</span></span><br><span class="line"><span class="comment">// ?</span></span><br></pre></td></tr></table></figure>
-<h2 id="getline"><a href="#getline" class="headerlink" title="getline()"></a>getline()</h2><p>需要额外引入string包。</p>
-<p>只能用来给string类型输入字符串。</p>
-<p>不把分隔符读入string中，同时把分隔符从缓冲区中移出。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 10005</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	string a;</span><br><span class="line">    <span class="keyword">char</span> b;</span><br><span class="line">    cin.<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>); <span class="comment">// 增加输入输出的速度</span></span><br><span class="line">    <span class="comment">// cin.ignore(INT_MAX, &#x27;\n&#x27;); </span></span><br><span class="line">    cin&gt;&gt;b;</span><br><span class="line">    cout&lt;&lt;a&lt;&lt;<span class="string">&quot;,&quot;</span>&lt;&lt;b&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="sscanf-amp-sprintf"><a href="#sscanf-amp-sprintf" class="headerlink" title="sscanf() &amp; sprintf()"></a>sscanf() &amp; sprintf()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> str[] = <span class="string">&quot;123&quot;</span></span><br><span class="line"><span class="built_in">sscanf</span>(str,<span class="string">&quot;%d&quot;</span>,&amp;a); </span><br></pre></td></tr></table></figure>
-<p>从字符串中读入数组。由此看来，sscanf()和scanf()有很多相似之处。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">double</span> a = <span class="number">12.123</span>;</span><br><span class="line"><span class="keyword">char</span> str[<span class="number">20</span>];</span><br><span class="line"><span class="built_in">sprintf</span>(str,<span class="string">&quot;%.3lf&quot;</span>,a);</span><br></pre></td></tr></table></figure>
-<p>将数字输出到字符串中。</p>
-<h1 id="C语言字符串"><a href="#C语言字符串" class="headerlink" title="C语言字符串"></a>C语言字符串</h1><p>头文件：<code>#include&lt;string.h&gt;</code></p>
-<p>C语言字符串操作要保证给字符串开足够大的空间。</p>
-<h2 id="strcpy"><a href="#strcpy" class="headerlink" title="strcpy()"></a>strcpy()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s1[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">char</span> s2[<span class="number">10</span>];</span><br><span class="line"><span class="built_in">strcpy</span>(s1,s2); <span class="comment">//复制字符串s2到s1</span></span><br></pre></td></tr></table></figure>
-<h2 id="strcat"><a href="#strcat" class="headerlink" title="strcat()"></a>strcat()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s1[<span class="number">10</span>];</span><br><span class="line"><span class="keyword">char</span> s2[<span class="number">10</span>];</span><br><span class="line"><span class="built_in">strcat</span>(s1,s2); <span class="comment">//连接字符串s2到s1的末尾</span></span><br></pre></td></tr></table></figure>
-<h2 id="strlen"><a href="#strlen" class="headerlink" title="strlen()"></a>strlen()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strlen</span>(s1); <span class="comment">//返回s1的长度</span></span><br></pre></td></tr></table></figure>
-<h2 id="strcmp"><a href="#strcmp" class="headerlink" title="strcmp()"></a>strcmp()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">strcmp</span>(s1,s2);</span><br><span class="line"><span class="comment">//如果 s1 和 s2 是相同的，则返回 0；如果 s1&lt;s2 则返回小于 0；如果 s1&gt;s2 则返回大于 0。</span></span><br></pre></td></tr></table></figure>
-<h2 id="strchr"><a href="#strchr" class="headerlink" title="strchr()"></a>strchr()</h2><p>返回字符首次出现的指针位置。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> s1[<span class="number">10</span>] = <span class="string">&quot;123&quot;</span>;</span><br><span class="line"><span class="keyword">int</span> pos =<span class="number">0</span> ;</span><br><span class="line"><span class="built_in">strchr</span>(s1+pos,<span class="string">&#x27;1&#x27;</span>)-s1; </span><br><span class="line"><span class="comment">//从s1的pos位置开始查找，找到第一个&#x27;1&#x27;字符的位置。out: 0</span></span><br></pre></td></tr></table></figure>
-<p>可以通过strchr()函数实现C++中string对象的find()函数的操作。</p>
-<h2 id="strncpy"><a href="#strncpy" class="headerlink" title="strncpy()"></a>strncpy()</h2><p>函数格式：<code>char *strncpy(char *dest, const char *src, size_t n)</code></p>
-<p>n：要从源中复制的字符数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">   <span class="keyword">char</span> src[<span class="number">40</span>];</span><br><span class="line">   <span class="keyword">char</span> dest[<span class="number">12</span>];</span><br><span class="line">  </span><br><span class="line">   <span class="built_in">memset</span>(dest, <span class="string">&#x27;\0&#x27;</span>, <span class="keyword">sizeof</span>(dest));</span><br><span class="line">   <span class="built_in">strcpy</span>(src, <span class="string">&quot;This is runoob.com&quot;</span>);</span><br><span class="line">   <span class="built_in">strncpy</span>(dest, src, <span class="number">10</span>);</span><br><span class="line"> </span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;最终的目标字符串： %s\n&quot;</span>, dest);</span><br><span class="line">   </span><br><span class="line">   <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//out: 最终的目标字符串： This is ru</span></span><br></pre></td></tr></table></figure>
-<p>注意：strncpy不会在最后加上<code>\0</code>结束符。</p>
-<h1 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h1><h2 id="void-指针"><a href="#void-指针" class="headerlink" title="void*指针"></a>void*指针</h2><p>在使用C语言进行开发的过程中，经常会遇到<code>void*</code>这样一个特殊的指针。</p>
-<p>下面是<code>void *</code>指针的使用场景。</p>
-<h3 id="用作泛型，接收任意数据类型指针"><a href="#用作泛型，接收任意数据类型指针" class="headerlink" title="用作泛型，接收任意数据类型指针"></a>用作泛型，接收任意数据类型指针</h3><p><code>void*</code>用于指向特定地址，而无需关心这个地址上存放着什么类型的数据。例如常见的memcpy等函数就用到<code>void*</code>，函数原型如下:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">memcpy</span><span class="params">(<span class="keyword">void</span> *des, <span class="keyword">void</span> *src, <span class="keyword">size_t</span> n)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>此处的void <em>des和void </em>src可以接收任意类型的数据类型指针，既然是内存拷贝，入参就不应该限制传入什么类型的指针，逻辑上十分合理。</p>
-<h3 id="动态内存申请与释放"><a href="#动态内存申请与释放" class="headerlink" title="动态内存申请与释放"></a>动态内存申请与释放</h3><p>动态内存申请函数返回值一般都是<code>void*</code>，如果申请成功则返回的是申请的内存块的首地址，申请失败则返回一个空指针NULL，NULL相当于<code>（void *）0</code>。C库的malloc函数原型如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> *<span class="title">malloc</span><span class="params">(<span class="keyword">size_t</span> size)</span></span>;</span><br></pre></td></tr></table></figure>
-<p>一般申请完内存之后会与指针类型强制转换一起使用，如下所示。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> </span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">char</span>    *name;</span><br><span class="line">    <span class="keyword">int</span>     age;</span><br><span class="line">    ...</span><br><span class="line">&#125;animal, *<span class="keyword">animal_t</span>;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">animal_t</span> dog = (<span class="keyword">animal_t</span> )<span class="built_in">malloc</span>(<span class="built_in"><span class="keyword">sizeof</span></span>(animal));</span><br><span class="line"><span class="keyword">if</span>(!dog)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;malloc failed\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="函数指针"><a href="#函数指针" class="headerlink" title="函数指针"></a>函数指针</h2><p>如果在程序中定义了一个函数，那么在编译时系统就会为这个函数代码分配一段存储空间，这段存储空间的首地址称为这个函数的地址。而且函数名表示的就是这个地址。既然是地址我们就可以定义一个指针变量来存放，这个指针变量就叫作函数指针变量，简称函数指针。</p>
-<p>定义一个指向函数的指针变量 p，p的类型是<code>int(*)(int，int)</code>:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in"><span class="keyword">int</span></span>(*p)(<span class="keyword">int</span>, <span class="keyword">int</span>);</span><br></pre></td></tr></table></figure>
-<p>例子：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta"># <span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Max</span><span class="params">(<span class="keyword">int</span>, <span class="keyword">int</span>)</span></span>;  <span class="comment">//函数声明</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in"><span class="keyword">int</span></span>(*p)(<span class="keyword">int</span>, <span class="keyword">int</span>);  <span class="comment">//定义一个函数指针</span></span><br><span class="line">    <span class="keyword">int</span> a, b, c;</span><br><span class="line">    p = Max;  <span class="comment">//把函数Max赋给指针变量p, 使p指向Max函数</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;please enter a and b:&quot;</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d%d&quot;</span>, &amp;a, &amp;b);</span><br><span class="line">    c = (*p)(a, b);  <span class="comment">//通过函数指针调用Max函数</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a = %d\nb = %d\nmax = %d\n&quot;</span>, a, b, c);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Max</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span>  <span class="comment">//定义Max函数</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> z;</span><br><span class="line">    <span class="keyword">if</span> (x &gt; y)</span><br><span class="line">    &#123;</span><br><span class="line">        z = x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        z = y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> z;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">please</span> enter a and b:<span class="number">3</span> <span class="number">4</span></span><br><span class="line"><span class="attribute">a</span> = <span class="number">3</span></span><br><span class="line"><span class="attribute">b</span> = <span class="number">4</span></span><br><span class="line"><span class="attribute">max</span> = <span class="number">4</span></span><br></pre></td></tr></table></figure>
-<p>指向函数的指针变量没有 ++ 和 — 运算</p>
-<h1 id="预处理语句"><a href="#预处理语句" class="headerlink" title="预处理语句"></a>预处理语句</h1><h2 id="ifndef"><a href="#ifndef" class="headerlink" title="ifndef"></a>ifndef</h2><p>在<code>.h</code>文件中，经常会看到这样的代码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __A_H_</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __A_H_</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// your declaration</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>假如：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// b.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;a.h&quot;</span></span></span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// c.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;a.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;b.h&quot;</span></span></span><br></pre></td></tr></table></figure>
-<p>当我们编译<code>a.h</code>，<code>a.c</code>，<code>b.h</code>，<code>b.c</code>, <code>c.c</code>时，如果没有<code>a.h</code>文件中的预处理语句<code>ifndef</code>，那么<code>a.h</code>中的代码就会出现两次，导致重复声明；当有了<code>ifndef</code>预处理语句时：包含<code>a.h</code>会使得<code>__A_H_</code>常量被定义并且将它的代码包含再<code>c.c</code>中，然后再包含<code>b.h</code>时由于<code>__A_H_</code>时，就由于<code>__A_H_</code>被定义，所以不会再包含重复的代码了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/28/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/7/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1697,10 +1649,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">前端</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据库#</a>
               </li>
              
               <li class="article-tag-list-item">
