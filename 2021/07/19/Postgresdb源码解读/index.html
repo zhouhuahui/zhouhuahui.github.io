@@ -45,7 +45,7 @@
 <meta property="og:image" content="https://zhouhuahui.github.io/2021/07/19/Postgresdb%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/Postgresdb源码解读/image-20210812100520993.png">
 <meta property="og:image" content="https://zhouhuahui.github.io/2021/07/19/Postgresdb%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/Postgresdb源码解读/1567945832709627.png">
 <meta property="article:published_time" content="2021-07-20T02:39:05.000Z">
-<meta property="article:modified_time" content="2021-09-07T00:05:13.412Z">
+<meta property="article:modified_time" content="2021-10-07T07:08:32.789Z">
 <meta property="article:author" content="fantasy">
 <meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
@@ -298,7 +298,7 @@
 <p>6 pg_attribute 存储表的属性信息。</p>
 <p>7 pg_index 存储索引的具体信息。</p>
 <hr>
-<p>PostgreSQL数据库系统的主要功能都集中于Main模块中的main函数，在初始化数据集簇，启动数据库服务器时，都将从这里开始执行。Main模块主要的工作时确定当前的操作系统平台，并据此做一些平台相关的环境变量设置和初始化，然后通过对命令行参数的判断，将控制转到相应的模块中去。下图是main函数的调用流程。<br><img src="/2021/07/19/Postgresdb%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/102035387252554.png" class=""></p>
+<p>PostgreSQL数据库系统的主要功能都集中于Main模块中的main函数，在初始化数据库集簇，启动数据库服务器时，都将从这里开始执行。Main模块主要的工作是确定当前的操作系统平台，并据此做一些平台相关的环境变量设置和初始化，然后通过对命令行参数的判断，将控制转到相应的模块中去。下图是main函数的调用流程。<br><img src="/2021/07/19/Postgresdb%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/102035387252554.png" class=""></p>
 <p><img src="Postgresdb源码解读/102035387252554.png" alt="img"></p>
 <p>PostgreSQL守护进程Postmaster为用户连接请求分配后台(background)Postgres服务进程，还将启动相关的后端(backend)服务进程：SysLogger(系统日志进程)，PgStat(统计数据收集进程)等。</p>
 <p>下图为PG 8.0中各个文件夹（模块）之间的调用关系：</p>
@@ -325,7 +325,7 @@
 <li>如果有很多用户同时使用缓存，需要将内容尽量缩小</li>
 <li>频繁访问的磁盘块必须长期放在缓存中</li>
 </ul>
-<h3 id="WAL-Buffer"><a href="#WAL-Buffer" class="headerlink" title="WAL Buffer"></a>WAL Buffer</h3><p>WAL Buffer是用来临时存储数据库变化的缓存区域。存储在WAL Buffer(Write-ahead logging)中的内容会根据提前定义好的时间点参数要求写入到磁盘的WAL文件中。在备份和恢复的场景下，WAL Buffer和WAL文件是极其重要的。</p>
+<h3 id="WAL-Buffer"><a href="#WAL-Buffer" class="headerlink" title="WAL Buffer"></a>WAL Buffer</h3><p>WAL Buffer是用来临时存储数据库变化的缓存区域。存储在WAL Buffer(Write-ahead log)中的内容会根据提前定义好的时间点参数要求写入到磁盘的WAL文件中。在备份和恢复的场景下，WAL Buffer和WAL文件是极其重要的。</p>
 <h3 id="Clog"><a href="#Clog" class="headerlink" title="Clog"></a>Clog</h3><p>【1】Commit Log(CLOG) keeps the states of all transactions (e.g., in_progress,committed,aborted) for Concurrency Control (CC) mechanism.</p>
 <h2 id="Postgres进程类型"><a href="#Postgres进程类型" class="headerlink" title="Postgres进程类型"></a>Postgres进程类型</h2><p>在【1】官网上有很重要的一句话：A collection of multiple processes cooperatively managing one database cluster is usually referred to as a ‘PostgreSQL server’</p>
 <img src="/2021/07/19/Postgresdb%E6%BA%90%E7%A0%81%E8%A7%A3%E8%AF%BB/fig-2-01.png" class="">

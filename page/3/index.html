@@ -152,6 +152,93 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-读论文：DUDETM" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/">读论文：DUDETM</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/" class="archive-article-date">
+  	<time datetime="2021-09-08T06:21:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="事务内存"><a href="#事务内存" class="headerlink" title="事务内存"></a>事务内存</h1><p>【1】</p>
+<h1 id="DUDETM-Building-Durable-Transactions-with-Decoupling-for-Persistent-Memory"><a href="#DUDETM-Building-Durable-Transactions-with-Decoupling-for-Persistent-Memory" class="headerlink" title="DUDETM: Building Durable Transactions with Decoupling for Persistent Memory"></a>DUDETM: Building Durable Transactions with Decoupling for Persistent Memory</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="undo-logging"><a href="#undo-logging" class="headerlink" title="undo logging"></a>undo logging</h3><p>In <em>undo logging</em>, the original (old) values are stored to a log before they are modifified by a transaction. Having its old value preserved in the log, the data can be modified <em>in-place</em>. Therefore, a memory load can directly read the latest value without being intercepted and remapped to a different address.</p>
+<p>为何undo logging可以避免很大的开销呢，因为针对一个数据写入，它先写入日志，再写入状态机，这样的话，数据读可以直接读到最新的数据（不像redo logging，当把全部数据写入的日志都持久化之后，才写入状态机）；但是undo logging有一个问题：</p>
+<p>To enforce this order, the system uses the <em>persist</em> operation, which is implemented by a sequence of instructions , for <em>every</em> update. </p>
+<h3 id="redo-logging"><a href="#redo-logging" class="headerlink" title="redo logging"></a>redo logging</h3><p>However, since the data updates are buffered in the log, the reads of them in a transaction must be remapped to the log to obtain the latest values.</p>
+<p>The dilemma between undo and redo logging is essentially a trade-off between persist ordering cost and update redirection cost.</p>
+<p>The key insight of our solution is <em>decoupling</em> a durable transaction into three <em>fully asyn</em>chronous* steps. </p>
+<p>(1) Perform: execute the transaction in a shadow memory , and produce a redo log for the transaction.</p>
+<p>(2) Persist: flflush the redo log of each transaction to persistent memory in an atomic manner. </p>
+<p>(3) Reproduce: modify original data in persistent memory according to the persisted redo log. It is essential that we never directly write back dirty data from shadow memory to persistent memory – all the updates are realized via the redo log.</p>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
+<li>为什么“However, since the data updates are buffered in the log, the reads of them in a transaction must be remapped to the log to obtain the latest values.”</li>
+</ol>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】初识事务内存（Transactional Memory）：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/151425608">https://zhuanlan.zhihu.com/p/151425608</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-持久内存编程PMDK" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -264,6 +351,7 @@
 <h1 id="223-矩形面积"><a href="#223-矩形面积" class="headerlink" title="223 矩形面积"></a>223 矩形面积</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">computeArea</span><span class="params">(<span class="keyword">int</span> ax1, <span class="keyword">int</span> ay1, <span class="keyword">int</span> ax2, <span class="keyword">int</span> ay2, <span class="keyword">int</span> bx1, <span class="keyword">int</span> by1, <span class="keyword">int</span> bx2, <span class="keyword">int</span> by2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> x = <span class="built_in">min</span>(ax2,bx2) - <span class="built_in">max</span>(ax1,bx1);</span><br><span class="line">        x = (x&gt;=<span class="number">0</span>?x:<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> y = <span class="built_in">min</span>(ay2,by2) - <span class="built_in">max</span>(ay1,by1);</span><br><span class="line">        y = (y&gt;=<span class="number">0</span>?y:<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> (ax2-ax1)*(ay2-ay1) + (bx2-bx1)*(by2-by1) - x*y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h1 id="371-两整数之和"><a href="#371-两整数之和" class="headerlink" title="371 两整数之和"></a>371 两整数之和</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> t = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">32</span>;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> c = (a&amp;<span class="number">1</span>) + (b&amp;<span class="number">1</span>) + t; <span class="comment">// 这里的括号不能省</span></span><br><span class="line">            ans = ans | ((c%<span class="number">2</span>)&lt;&lt;i);</span><br><span class="line"></span><br><span class="line">            t = c/<span class="number">2</span>;</span><br><span class="line">            a = a&gt;&gt;<span class="number">1</span>;</span><br><span class="line">            b = b&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h1 id="405-数字转换为十六进制数"><a href="#405-数字转换为十六进制数" class="headerlink" title="405 数字转换为十六进制数"></a>405 数字转换为十六进制数</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * 将num转换为unsigned int类型的n, 这里有个坑：-1右移之后还是-1,原因是左边补1而不是0</span></span><br><span class="line"><span class="comment">     * 考虑n的低4位，转换为10进制数，然后转换为对应的1-9,a-f字符，然后累加到ans前面</span></span><br><span class="line"><span class="comment">     * n右移4位</span></span><br><span class="line"><span class="comment">     * 重复上述操作，直到n为0</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function">string <span class="title">toHex</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">unsigned</span> <span class="keyword">int</span> n = (<span class="keyword">unsigned</span> <span class="keyword">int</span>)num;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">&quot;0&quot;</span>;</span><br><span class="line">        string ans;</span><br><span class="line">        <span class="keyword">while</span>(n !=<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> a = n &amp; (<span class="number">15</span>);</span><br><span class="line">            <span class="keyword">char</span> temp[<span class="number">2</span>];</span><br><span class="line">            temp[<span class="number">0</span>] = (a&gt;=<span class="number">10</span>?(a<span class="number">-10</span>+<span class="string">&#x27;a&#x27;</span>):(<span class="string">&#x27;0&#x27;</span>+a));</span><br><span class="line">            temp[<span class="number">1</span>] = <span class="string">&#x27;\0&#x27;</span>;</span><br><span class="line">            ans = <span class="built_in">string</span>(temp) + ans;</span><br><span class="line">            n &gt;&gt;= <span class="number">4</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="414-第三大的数"><a href="#414-第三大的数" class="headerlink" title="414 第三大的数"></a>414 第三大的数</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">thirdMax</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">        priority_queue&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i:nums)&#123;</span><br><span class="line">            q.<span class="built_in">push</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> maxnum = q.<span class="built_in">top</span>(); </span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>() &amp;&amp; q.<span class="built_in">top</span>()==maxnum) &#123;</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> temp;</span><br><span class="line">        <span class="keyword">if</span>(!q.<span class="built_in">empty</span>())&#123;</span><br><span class="line">            temp = q.<span class="built_in">top</span>();</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> maxnum;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(!q.<span class="built_in">empty</span>() &amp;&amp; q.<span class="built_in">top</span>()==temp) &#123;</span><br><span class="line">            q.<span class="built_in">pop</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (q.<span class="built_in">empty</span>()?maxnum:q.<span class="built_in">top</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h1 id="430-扁平化多级双向链表"><a href="#430-扁平化多级双向链表" class="headerlink" title="430 扁平化多级双向链表"></a>430 扁平化多级双向链表</h1><p>思路：当p指针移动到3号点时，会做下述事情：</p>
 <ol>
 <li>递归将<code>p-&gt;child</code>扁平化，并返回子链表扁平化后的头结点和尾结点ht, 保存<code>p-&gt;next</code>到next中</li>
@@ -1167,139 +1255,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/08/18/javascript%E8%AF%AD%E8%A8%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-设计模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2021-08-18T08:59:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h1><p>其实24种基本的设计模式中并没有发布订阅模式，它是观察者模式的一个变体。</p>
-<p>订阅者（Subscriber）把自己想订阅的事件注册（Subscribe）到调度中心（Topic），当发布者（Publisher）发布该事件（Publish topic）到调度中心，也就是该事件触发时，由调度中心统一调度（Fire Event）订阅者注册到调度中心的处理代码。</p>
-<h2 id="例子：猎人工会"><a href="#例子：猎人工会" class="headerlink" title="例子：猎人工会"></a>例子：猎人工会</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 猎人工会是调度中心</span></span><br><span class="line"><span class="comment"> * 猎人是发布者和订阅者</span></span><br><span class="line"><span class="comment"> * 猎人发布主题（猎物），订阅相应的主题</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一家猎人工会</span></span><br><span class="line"><span class="comment">//主要功能包括任务发布大厅(topics)，以及订阅任务(subscribe)，发布任务(publish)</span></span><br><span class="line"><span class="keyword">let</span> HunterUnion = &#123;</span><br><span class="line">    <span class="attr">type</span>: <span class="string">&#x27;hunt&#x27;</span>,</span><br><span class="line">    <span class="attr">topics</span>: <span class="built_in">Object</span>.create(<span class="literal">null</span>),</span><br><span class="line">    <span class="attr">subscribe</span>: <span class="function"><span class="keyword">function</span> (<span class="params">topic, fn</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">this</span>.topics[topic])&#123;</span><br><span class="line">            <span class="built_in">this</span>.topics[topic] = [];  </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">this</span>.topics[topic].push(fn);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">publish</span>: <span class="function"><span class="keyword">function</span> (<span class="params">topic, money</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!<span class="built_in">this</span>.topics[topic])</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> fn <span class="keyword">of</span> <span class="built_in">this</span>.topics[topic])&#123;</span><br><span class="line">            fn(money)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//定义一个猎人类</span></span><br><span class="line"><span class="comment">//包括姓名，级别</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Hunter</span>(<span class="params">name, level</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = name</span><br><span class="line">    <span class="built_in">this</span>.level = level</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//猎人可在猎人工会发布订阅任务</span></span><br><span class="line">Hunter.prototype.subscribe = <span class="function"><span class="keyword">function</span> (<span class="params">topic, fn</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.level + <span class="string">&#x27;猎人&#x27;</span> + <span class="built_in">this</span>.name + <span class="string">&#x27;订阅了狩猎&#x27;</span> + topic + <span class="string">&#x27;的任务&#x27;</span>)</span><br><span class="line">    HunterUnion.subscribe(topic, fn)</span><br><span class="line">&#125;</span><br><span class="line">Hunter.prototype.publish = <span class="function"><span class="keyword">function</span> (<span class="params">topic, money</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>.level + <span class="string">&#x27;猎人&#x27;</span> + <span class="built_in">this</span>.name + <span class="string">&#x27;发布了狩猎&#x27;</span> + topic + <span class="string">&#x27;的任务&#x27;</span>)</span><br><span class="line">    HunterUnion.publish(topic, money)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//猎人工会走来了几个猎人</span></span><br><span class="line"><span class="keyword">let</span> hunterMing = <span class="keyword">new</span> Hunter(<span class="string">&#x27;小明&#x27;</span>, <span class="string">&#x27;黄金&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> hunterJin = <span class="keyword">new</span> Hunter(<span class="string">&#x27;小金&#x27;</span>, <span class="string">&#x27;白银&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> hunterZhang = <span class="keyword">new</span> Hunter(<span class="string">&#x27;小张&#x27;</span>, <span class="string">&#x27;黄金&#x27;</span>)</span><br><span class="line"><span class="keyword">let</span> hunterPeter = <span class="keyword">new</span> Hunter(<span class="string">&#x27;Peter&#x27;</span>, <span class="string">&#x27;青铜&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//小明，小金，小张分别订阅了狩猎tiger的任务</span></span><br><span class="line">hunterMing.subscribe(<span class="string">&#x27;tiger&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">money</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;小明表示：&#x27;</span> + (money &gt; <span class="number">200</span> ? <span class="string">&#x27;&#x27;</span> : <span class="string">&#x27;不&#x27;</span>) + <span class="string">&#x27;接取任务&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">hunterJin.subscribe(<span class="string">&#x27;tiger&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">money</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;小金表示：接取任务&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">hunterZhang.subscribe(<span class="string">&#x27;tiger&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">money</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;小张表示：接取任务&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//Peter订阅了狩猎sheep的任务</span></span><br><span class="line">hunterPeter.subscribe(<span class="string">&#x27;sheep&#x27;</span>, <span class="function"><span class="keyword">function</span>(<span class="params">money</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;Peter表示：接取任务&#x27;</span>)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//Peter发布了狩猎tiger的任务</span></span><br><span class="line">hunterPeter.publish(<span class="string">&#x27;tiger&#x27;</span>, <span class="number">198</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//猎人们发布(发布者)或订阅(观察者/订阅者)任务都是通过猎人工会(调度中心)关联起来的，他们没有直接的交流。</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/hf872914334/article/details/88899326">https://blog.csdn.net/hf872914334/article/details/88899326</a></p>
-<h2 id="例子：发布订阅的封装"><a href="#例子：发布订阅的封装" class="headerlink" title="例子：发布订阅的封装"></a>例子：发布订阅的封装</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// global.js</span></span><br><span class="line"><span class="keyword">var</span> Event = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> list = &#123;&#125;,</span><br><span class="line">          listen,</span><br><span class="line">          trigger,</span><br><span class="line">          remove;</span><br><span class="line">          listen = <span class="function"><span class="keyword">function</span>(<span class="params">key,fn</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(!list[key]) &#123;</span><br><span class="line">                list[key] = [];</span><br><span class="line">            &#125;</span><br><span class="line">            list[key].push(fn);</span><br><span class="line">        &#125;;</span><br><span class="line">        trigger = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> key = <span class="built_in">Array</span>.prototype.shift.call(<span class="built_in">arguments</span>),</span><br><span class="line">                 fns = list[key];</span><br><span class="line">            <span class="keyword">if</span>(!fns || fns.length === <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>, fn; fn = fns[i++];) &#123;</span><br><span class="line">                fn.apply(<span class="built_in">this</span>,<span class="built_in">arguments</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        remove = <span class="function"><span class="keyword">function</span>(<span class="params">key,fn</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">var</span> fns = list[key];</span><br><span class="line">            <span class="keyword">if</span>(!fns) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!fn) &#123;</span><br><span class="line">                fns &amp;&amp; (fns.length = <span class="number">0</span>);</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">var</span> i = fns.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">                    <span class="keyword">var</span> _fn = fns[i];</span><br><span class="line">                    <span class="keyword">if</span>(_fn === fn) &#123;</span><br><span class="line">                        fns.splice(i,<span class="number">1</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            <span class="attr">listen</span>: listen,</span><br><span class="line">            <span class="attr">trigger</span>: trigger,</span><br><span class="line">            <span class="attr">remove</span>: remove</span><br><span class="line">        &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// a.js</span></span><br><span class="line"><span class="keyword">var</span> a = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> count = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">var</span> button = <span class="built_in">document</span>.getElementById(<span class="string">&quot;count&quot;</span>);</span><br><span class="line">    button.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        Event.trigger(<span class="string">&quot;add&quot;</span>,count++);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// b.js</span></span><br><span class="line"><span class="keyword">var</span> b = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> div = <span class="built_in">document</span>.getElementById(<span class="string">&quot;showcount&quot;</span>);</span><br><span class="line">    Event.listen(<span class="string">&#x27;add&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">count</span>)</span>&#123;</span><br><span class="line">        div.innerHTML = count;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;global.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;count&quot;</span>&gt;</span>点将我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;showcount&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span> = <span class="string">&quot;a.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span> = <span class="string">&quot;b.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>点击count button，相当与发布了一个<code>add</code>消息，然后在<code>b.js</code>中订阅add消息的函数就会被调度中心执行。因此如果想要count button取消对<code>add</code>消息的订阅，只需要在调度中心中<code>remove</code>就好了。</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/itgezhu/p/10947405.html">https://www.cnblogs.com/itgezhu/p/10947405.html</a></p>
-<h2 id="例子：jquery中的发布订阅"><a href="#例子：jquery中的发布订阅" class="headerlink" title="例子：jquery中的发布订阅"></a>例子：jquery中的发布订阅</h2><p>需求：我（订阅者）后天结婚，规划了3件事情，需要（发布者）后天点击提交按钮后执行这三件事。<br>分析：提前写好三个方法，未来某段时间触发三个方法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> $pond1 = $.Callbacks();<span class="comment">//创建一个事件池</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//给提交按钮注册</span></span><br><span class="line">$(<span class="string">&#x27;.submit&#x27;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $pond1.fire();<span class="comment">//触发事件池中的方法</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> fn1 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">1</span>)&#125;;</span><br><span class="line"><span class="keyword">let</span> fn2 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">2</span>)&#125;;</span><br><span class="line"><span class="keyword">let</span> fn3 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">3</span>)&#125;;</span><br><span class="line">$pond1.add(fn1);<span class="comment">//将事件添加进事件池</span></span><br><span class="line">$pond1.add(fn2);</span><br><span class="line">$pond1.add(fn3);</span><br><span class="line"><span class="keyword">let</span> fn4 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;<span class="built_in">console</span>.log(<span class="number">4</span>)&#125;;</span><br><span class="line">$pond1.add(fn4);</span><br><span class="line"></span><br><span class="line">$pond1.remove(fn3);<span class="comment">//移除事件</span></span><br></pre></td></tr></table></figure>
-<p>关于<code>$.Callbacks()</code>的具体使用，可以参考：<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000004331027">https://segmentfault.com/a/1190000004331027</a><br>这里面详细讲解了<code>$.Callbacks()</code>实例的各个方法：add(), fire(), fireWith(), empty(), has(), remove(), disable()等。</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d755909b85f8">https://www.jianshu.com/p/d755909b85f8</a></p>
-<h2 id="发布订阅需要考虑的点"><a href="#发布订阅需要考虑的点" class="headerlink" title="发布订阅需要考虑的点"></a>发布订阅需要考虑的点</h2><ol>
-<li>订阅处理</li>
-</ol>
-<p>订阅者可以在消息通道中订阅或者取消订阅某个话题。</p>
-<ol>
-<li>安全</li>
-</ol>
-<p>连接到任何消息通道必须受到安全策略的限制，以防止未经授权的用户或应用程序窃听。</p>
-<ol>
-<li>内容筛选</li>
-</ol>
-<p>根据每条消息的内容检查和分发消息。每个订户都可以指定其感兴趣的内容。</p>
-<p>订阅者通常只对发布者分发的消息的子集感兴趣。消息服务通常允许订户缩小以下用户接收到的消息集。</p>
-<p>考虑允许订户通过通配符订阅多个主题。每个主题都有一个专用的输出通道，每个使用者都可以订阅所有相关主题。</p>
-<ol>
-<li>双向通信</li>
-</ol>
-<p>发布订阅系统中的通道被视为单向的。</p>
-<p>如果特定订户需要向发布服务器发送确认或通信状态，请考虑使用请求/回复模式。此模式使用一个通道向订阅服务器发送消息，以及一个单独的回复通道向发布服务器进行通信。</p>
-<ol>
-<li>消息排序</li>
-</ol>
-<p>使用者实例接收消息的顺序不一定得到保证，也不一定反映消息的创建顺序。</p>
-<p>设计该系统以确保消息处理是等量的，以帮助消除对消息处理顺序的任何依赖。</p>
-<ol>
-<li>消息优先级</li>
-</ol>
-<p>有些解决方案可能需要按特定顺序处理消息。优先级队列模式提供了一种确保特定消息先于其他消息传递的机制。</p>
-<ol>
-<li>有毒信息</li>
-</ol>
-<p>格式错误的消息或需要访问不可用资源的任务可能会导致服务实例失败。系统应防止此类消息返回到队列，否则可能导致系统故障。</p>
-<ol>
-<li>消息重复</li>
-</ol>
-<p>同一消息可能会发送多次。例如，发送者可能在发布消息后出现了异常，没有记录自己已经成功发送了消息，然后，发送者的新实例可能会启动并重复该消息。</p>
-<p>消息基础结构应基于消息ID实现重复消息检测和删除（也称为重复数据消除），以便最多提供一次消息传递。</p>
-<ol>
-<li>消息过期</li>
-</ol>
-<p>消息的生命周期可能有限。如果在这段时间内没有处理，它可能不再有价值，应该丢弃。发送方可以指定过期时间作为消息中数据的一部分。在决定是否执行与消息关联的业务逻辑之前，接收者可以检查此信息，以确保消息没有过期。</p>
-<ol>
-<li>消息调度</li>
-</ol>
-<p>例如，消息可能会被暂时禁止，直到特定的日期和时间才被处理。</p>
-<p>参考：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d755909b85f8">https://www.jianshu.com/p/d755909b85f8</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">后端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/18/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">展开全文 >></a>
         </p>
       
 
