@@ -152,6 +152,99 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-mysql存储大文本和图片" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E5%A4%A7%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87/">mysql存储大文本和图片</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E5%A4%A7%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87/" class="archive-article-date">
+  	<time datetime="2021-03-08T07:39:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>可以使用TEXT,BLOB俩种类型来存储长文本。</p>
+<ol>
+<li>TEXT</li>
+</ol>
+<p>TEXT有4有类型：</p>
+<p>TINYTEXT 256bytes</p>
+<p>TEXT 64kb</p>
+<p>MEDIUMTEXT 16Mb</p>
+<p>LONGTEXT 4GB</p>
+<ol>
+<li>BLOB</li>
+</ol>
+<p>TINYBLOB</p>
+<p>BLOB、</p>
+<p>MEDIUMBLOB</p>
+<p>LONGBLOB</p>
+<p>blob 保存的是二进制数据，利用这个特性，可以把图片存储到数据库里面。text只能存储文本。</p>
+<p>长文本使用的是text的，因为blob存储的是二进制格式，所以长文本里面的搜有数据都是二进制数据，在上传图文的时候，传过来是String,保存起来，读取都需要转换，还有javaBean设计的时候也要把文本的类型弄成BLOB类型，在加上hibernate 4 ，生成blob对象还要LobHelper,各种麻烦，于是就使用text来存储。</p>
+<p>如何存储图片？？</p>
+<p>答：把文字与图片的地址都存储成text类型，使用特定的标签把图片地址包起来，然后在解析的时候，使用正则表达式把图片拿出来，再去服务器去访问。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E5%A4%A7%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-npm安装全局mysql包来使node连接到本地mysql" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1351,87 +1444,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/10/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-js-认识this" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/08/js-%E8%AE%A4%E8%AF%86this/">js-认识this</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/08/js-%E8%AE%A4%E8%AF%86this/" class="archive-article-date">
-  	<time datetime="2020-10-09T01:22:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在js语言中，this不总是指向一个对象，有时候它会指向window对象，有时候，它会指向调用方法的那个对象，有时候也可以自己将对象绑定到this上。</p>
-<p>观察下面的例子。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> o = &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">name</span>: <span class="string">&quot;zhou&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">func1</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">if</span> (<span class="built_in">this</span>.name) &#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span></span><br><span class="line"><span class="javascript">            &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(<span class="string">&quot;can&#x27;t find&quot;</span>)</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="attr">func2</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (<span class="built_in">this</span>.name) &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span></span><br><span class="line"><span class="javascript">                &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.log(<span class="string">&quot;can&#x27;t find&quot;</span>)</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="attr">func3</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (<span class="built_in">this</span>.name) &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span></span><br><span class="line"><span class="javascript">                &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.log(<span class="string">&quot;can&#x27;t find&quot;</span>)</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="attr">func4</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">if</span> (<span class="built_in">this</span>.name) &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.log(<span class="built_in">this</span>.name)</span></span><br><span class="line"><span class="javascript">                &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="javascript">                    <span class="built_in">console</span>.log(<span class="string">&quot;can&#x27;t find&quot;</span>)</span></span><br><span class="line"><span class="javascript">                &#125;</span></span><br><span class="line"><span class="javascript">            &#125;.bind(<span class="built_in">this</span>)</span></span><br><span class="line"><span class="javascript">        &#125;,</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">    o.func1();</span></span><br><span class="line"><span class="javascript">    o.func2()();</span></span><br><span class="line"><span class="javascript">    o.func3()();</span></span><br><span class="line"><span class="javascript">    o.func4()();</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>最后的输出是：</p>
-<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">zhou </span><br><span class="line">can&#x27;<span class="built_in">t</span> <span class="built_in">find</span></span><br><span class="line">zhou</span><br><span class="line">zhou</span><br></pre></td></tr></table></figure>
-<p>func1中的this指向对象<code>o</code>；func2中的this指向<code>window</code>对象。</p>
-<p>箭头函数可以将词法作用域绑定到外层对象，所以，func3中的匿名对象中的this指向外层对象<code>o</code>，否则，this指向<code>window</code>对象。</p>
-<p>使用js中原生的<code>Function.bind</code>方法，可以将方法中的this绑定到你想指定的对象，在func4中，将匿名对象中的this和对象<code>o</code>绑定。<code>.bind(this)</code> 里面的this指的就是对象<code>o</code>。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/08/js-%E8%AE%A4%E8%AF%86this/">展开全文 >></a>
         </p>
       
 

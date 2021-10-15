@@ -152,6 +152,194 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-网络协议分析实验" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/">网络协议分析实验</a>
+    </h1>
+  
+
+        
+        <a href="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/" class="archive-article-date">
+  	<time datetime="2020-06-24T20:39:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="实验1：以太网MAC帧"><a href="#实验1：以太网MAC帧" class="headerlink" title="实验1：以太网MAC帧"></a>实验1：以太网MAC帧</h1><img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/1.png" class="">
+<p><img src="网络协议分析实验/1.png" alt="0"></p>
+<p>以上是以太网帧的格式，其中，LLC-PDU长度/类型表示：如果LLC-PDU为数据时，则表示以字节为单位的长度，如果LLC-PDU是上层协议时，表示的是上层协议类型。由于LLC-PDU最长只能是1500，那么，如果LLC-PDU长度/类型字段值小于或等于05DC(1500)，则表示数据长度，如果LLC-PDU长度/类型字段大于05DC，则表示上层协议类型。下面是值与协议类型对照表</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">0800H: IP协议</span></span><br><span class="line"><span class="section">0806H: ARP协议</span></span><br><span class="line"><span class="section">86DDH: IPV6协议</span></span><br><span class="line"><span class="section">其他(大于05DC): 自定义数据类型</span></span><br></pre></td></tr></table></figure>
+<p>由于LLC-PDU包含了LLC帧首部的4个字节：DSAP(1B), SSAP(1B), 控制(2B                               )，因此如果LLC-PDU长度/类型字段值为0040时，LLC-PDU的数据字段只能为64-4=60字节。</p>
+<p>LLC的控制字段：输入02H表示LLC信息帧（显示0200）；（注：回车后变成0200，该帧变为：信息帧，控制字段的长度变为2字节）</p>
+<p>windows cmd下输入<code>ipconfig</code> 命令可以看到以太网适配器的IP地址、子网掩码及默认网关；<br>windows cmd下输入<code>route print</code> 命令可以查看路由表</p>
+<ol>
+<li><p>说明DSAP和SSAP的含义？如果编辑一个监控帧，如何设置控制字段？</p>
+<p> （1）DSAP：目的服务访问点</p>
+<pre><code>       SSAP：源服务访问点
+</code></pre><p> （2）LLC控制字段有16位，其中两位SS字段用来执行监控功能，00表示准备接受RR，10表示未准备接受RNR，01表示拒绝REJ；4位x位用于保留，设为0；以为P/F位，命令LLC/PDU传输或响应LLC/PDU传输。</p>
+</li>
+<li><p>说明为什么数据区不需要数据长度的限制？</p>
+<p> 以太网帧的协议类型/数据长度字段为0700表示自定义数据帧，对于此类数据帧没有长度限制。</p>
+</li>
+<li><p>解释路由表项的含义</p>
+<p> 在路由表项中查不到目的网络地址或主机地址的IP包，被自动送往网关路由器202.198.151.254, 跃点数表示传输过程中最多需要经过多少个网络才能到达目标，目的是防止无用的IP包在网上流散。</p>
+</li>
+</ol>
+<h1 id="实验2：IP，IPV6"><a href="#实验2：IP，IPV6" class="headerlink" title="实验2：IP，IPV6"></a>实验2：IP，IPV6</h1><h2 id="IP"><a href="#IP" class="headerlink" title="IP"></a>IP</h2><p>IP是一个无连接的、不可靠的、点对点的协议，只能尽力(Best Effort)传送数据，不能保证数据的到达</p>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/2.png" class="">
+<p><img src="网络协议分析实验/2.png" alt="0"></p>
+<p>以上是IP协议的格式。</p>
+<p>首部长度：可以表示的最大长度是15个单位（一个单位占4字节），因此IP首部最大长度为60字节。<br>总长度：整个IP数据包的长度，不超过最大传输单元MTU<br>标志：占3位，目前只有前两位有意义<br>标志字段的MF(More Fragment)：1表示后面还有分片<br>标志字段的DF(Don’t Fragment)：0表示允许分片<br>片偏移：以8个字节为偏移单位<br>协议：1表示ICMP；6表示TCP；17表示UDP；<br>首部校验和：</p>
+<p><strong>如何计算机首部校验和</strong>：</p>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/11.png" class="">
+<p><img src="网络协议分析实验/11.png" alt="0"></p>
+<p>每两个16位的计算过程采用反码加法算法，如</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="code"> 1100111</span></span><br><span class="line"><span class="section"> 1011101</span></span><br><span class="line"><span class="section">---------</span></span><br><span class="line">11000100</span><br><span class="line"><span class="section">|-----&gt;1</span></span><br><span class="line"><span class="section">---------</span></span><br><span class="line"><span class="code"> 1000101</span></span><br></pre></td></tr></table></figure>
+<p><strong>IP数据包分片示例</strong></p>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/3.png" class="">
+<p><img src="网络协议分析实验/3.png" alt="0"></p>
+<p><strong>如何编辑IP包</strong></p>
+<p>下面是编辑IP包的整个流程：<br>目的MAC地址-&gt;源MAC地址-&gt;源IP地址-&gt;目的IP地址-&gt;IP总长度-&gt;首部校验和</p>
+<h2 id="IPV6"><a href="#IPV6" class="headerlink" title="IPV6"></a>IPV6</h2><p>由于IPv4最大的问题在于网络地址资源有限，严重制约了互联网的应用和发展。IPv6的使用，不仅能解决网络地址资源数量的问题，而且也解决了多种接入设备连入互联网的障碍。</p>
+<p><strong>如何编辑IPV6包</strong></p>
+<p>与编辑IP包不同的是，不需要计算总长度，只需要计算有效载荷长度。</p>
+<h2 id="IP分片"><a href="#IP分片" class="headerlink" title="IP分片"></a>IP分片</h2><p>在windows cmd下输入命令<code>ping -l 3000 172.16.0.12</code> 表示向主机172.16.0.12发送长度为3000的ICMP报文。发送完了之后，打开协议分析器，检查具有相同表示字段的IP包有几个，这些包的内容是什么。</p>
+<p>最后发现有一个ICMP报文，两个IP报文。ICMP报文的帧长度为1410，则可以算出IP协议部分的长度为1410-14=1396，但是由于IP协议部分包含了8字节的ICMP首部，所以数据字段为1396-20-8=1368字节；第一个IP报文的帧长度为1410，则IP协议部分长度为1410-14=1396，数据部分长度为1396-20=1376字节；第二个IP报文的帧长度为290，则IP协议部分的长度为290-14=276字节，数据部分的长度为276-20=256。验算：1368+1376+256=3000。</p>
+<h1 id="实验3：ARP协议"><a href="#实验3：ARP协议" class="headerlink" title="实验3：ARP协议"></a>实验3：ARP协议</h1><p>地址解析协议，即ARP（Address Resolution Protocol），是根据<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/IP地址">IP地址</a>获取<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/物理地址/2129">物理地址</a>的一个<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/TCP%2FIP协议">TCP/IP协议</a>。<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/主机/455151">主机</a>发送信息时将包含目标IP地址的ARP请求广播到局域网络上的所有主机，并接收返回消息，以此确定目标的物理地址；收到返回消息后将该IP地址和物理地址存入本机ARP缓存中并保留一定时间，下次请求时直接查询ARP缓存以节约资源。</p>
+<p>下面是ARP协议的工作过程的形象描述</p>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/4.png" class="">
+<p><img src="网络协议分析实验/4.png" alt="0"></p>
+<p><strong>ARP高速缓存</strong><br>存放了最近IP地址到MAC地址之间的映射<br>windows cmd下输入<code>arp -a</code> 可以查看主机的arp缓存表</p>
+<p>arp协议直接封装在以太网帧中，下面是arp报文的格式。</p>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/5.png" class="">
+<p><img src="网络协议分析实验/5.png" alt="0"></p>
+<p><strong>编辑arp包</strong><br>以太网帧首部中，目的MAC地址是全1，在arp报文首部中，目的硬件地址是全0。</p>
+<p><strong>arp欺骗</strong><br>arp欺骗主要是在arp包首部的源MAC地址和源IP地址做手脚。如果使得源MAC地址和源IP地址不匹配，则会对接收这个arp包的主机造成欺骗。</p>
+<ol>
+<li>若A,C,D在同一个网段，则D发送一个ARP请求报文给A，在其他都正常的情况下，将ARP层的源IP地址改为C的IP地址。那么在A的ARP缓存表中记录了C的IP地址和D的MAC地址的映射，每次发给C信息时，都会经过D</li>
+<li>网关在发送ARP应答报文时，在ARP层将源MAC地址改为错误的MAC地址，那么主机就会收到网关IP和错误MAC的映射，导致发送的包永远也到不了网关，因此上不了网。</li>
+<li>主机给网关发送ARP应答报文时，在ARP层将源MAC地址改为错误的MAC地址，那么主机永远也不会收到网关的报文，因此也上不了网。</li>
+</ol>
+<p><strong>如何避免arp欺骗呢？</strong></p>
+<h1 id="实验4：ICMP协议"><a href="#实验4：ICMP协议" class="headerlink" title="实验4：ICMP协议"></a>实验4：ICMP协议</h1><p>ICMP（Internet Control Message Protocol）Internet控制<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/报文/3164352">报文</a>协议。它是<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/TCP%2FIP协议簇">TCP/IP协议簇</a>的一个子协议，用于在IP<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/主机/455151">主机</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/路由">路由</a>器之间传递控制消息。控制消息是指<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/网络通">网络通</a>不通、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/主机/455151">主机</a>是否可达、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/路由/363497">路由</a>是否可用等网络本身的消息。这些控制消息虽然并不传输用户数据，但是对于用户数据的传递起着重要的作用。</p>
+<p>ICMP协议封装在IP数据包中<br><img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/6.png" class=""></p>
+<p><img src="网络协议分析实验/6.png" alt="0"></p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#常用的类型，代码</span></span><br><span class="line">类型：<span class="number">8</span>    代码：<span class="number">0</span>    请求回显(<span class="built_in">ping</span>请求)</span><br><span class="line">类型：<span class="number">0</span>    代码：<span class="number">0</span>    回显应答(<span class="built_in">ping</span>请求)</span><br></pre></td></tr></table></figure>
+<p>ping 202.198.151.151 测试网络联通性</p>
+<p>tracert 202.198.151.151 测试目的主机路由线路的程序</p>
+<p>如何编辑ICMP报文：就是填个ICMP首部的类型和代码字段，其他部分就按正常流程来。</p>
+<h1 id="实验5：UDP-DNS"><a href="#实验5：UDP-DNS" class="headerlink" title="实验5：UDP,DNS"></a>实验5：UDP,DNS</h1><h2 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h2><p>UDP协议直接封装在IP数据包中：<br><img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/7.png" class=""></p>
+<p><img src="网络协议分析实验/7.png" alt="0"></p>
+<p>UDP在计算校验和时，除了包含UDP的首部和数据以外，还包含了一个12字节的伪报头，伪报头包含IP报头的源IP和目的IP，让UDP检测数据确实已到达正确的目的端。<br>UDP的有效负载长度和IPV6的不一样，它包含了UDP报文的整个长度，而不仅仅是数据的长度。</p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><p>在windows cmd下输入命令<code>nslookup host34.netlab</code> 可以查询域名为host34.netlab的服务器名称和ip地址。</p>
+<p>在实验中编辑DNS报文的时候有几个点要注意：</p>
+<ol>
+<li><p>UDP的源端口可以随便填写个大于1024的数，因为我们不要求本机的某个端口可以接受到DNS应答，只需要本机捕获到相应的DNS报文即可。</p>
+</li>
+<li><p>UDP的目的端口写53</p>
+</li>
+<li><p>在实际中，DNS的数据帧是要广播出去的，但在实验中，可以指定目的主机的MAC地址和IP地址</p>
+</li>
+<li><p>对DNS的编辑，主要是域名循环体的编辑，如果你要查询host34.netlab的ip地址，你可以弄3个域名循环体，第一个域名循环体的长度写6(host34的长度是6)，然后域标记写host34，第二个域名循环体的长度写6(netlab的长度是6)，然后域标记写netlab，第三个域名循环体的长度写0，表示结束。</p>
+ <img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/8.png" class="">
+<p> <img src="网络协议分析实验/8.png" alt="0"></p>
+</li>
+</ol>
+<h1 id="实验6：TCP，端口扫描"><a href="#实验6：TCP，端口扫描" class="headerlink" title="实验6：TCP，端口扫描"></a>实验6：TCP，端口扫描</h1><p>下面是TCP协议的报文格式：<br><img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/9.png" class=""></p>
+<p><img src="网络协议分析实验/9.png" alt="0"></p>
+<p>选项字段：长度可变，TCP最初只规定了一种选项，即最大报文段长度MSS，告诉对方我的缓存所能接收的报文段的数据字段的最大长度是MSS字节。MSS是TCP报文段中的数据字段的最大长度。</p>
+<h2 id="TCP三次握手"><a href="#TCP三次握手" class="headerlink" title="TCP三次握手"></a>TCP三次握手</h2><p>步骤如下：</p>
+<ol>
+<li>打开TCP工具，切换到客户端模式。</li>
+<li>地址输入172.16.0.253，这时学校的子网内的服务器，可以接受http请求，所以端口写80。</li>
+<li>点击连接</li>
+<li>在客户端发送一个数据</li>
+<li>点击断开</li>
+<li>查看协议分析器，找一下，就可以发现TCP连接，发送数据和断开连接的过程。</li>
+</ol>
+<img src="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/10.png" class="">
+<p><img src="网络协议分析实验/10.png" alt="0"></p>
+<p>有时候断开连接的时候，第二个主机的ACK和FIN放在一起了，表示第二个主机没有数据要发送了，可以直接断开，正常来说，第二个主机是要先发送ACK，再发送一点数据，然后再发送FIN的。</p>
+<h2 id="TCP端口扫描"><a href="#TCP端口扫描" class="headerlink" title="TCP端口扫描"></a>TCP端口扫描</h2><p>TCP端口SYN扫描，如果端口开放会有应答，否则会有RST回答。</p>
+<p>使用TCP工具连接到172.16.0.253来做实验。</p>
+<h2 id="UDP端口扫描"><a href="#UDP端口扫描" class="headerlink" title="UDP端口扫描"></a>UDP端口扫描</h2><p>UDP端口扫描是借助于ICMP协议的端口不可达报文来实现。如果目的主机端口开放，没有ICMP差错报文，反之，会收到ICMP目的端口不可达差错报文。</p>
+<p>使用UDP工具连接到172.16.0.253来做实验。</p>
+<h1 id="实验7：FTP-HTTP"><a href="#实验7：FTP-HTTP" class="headerlink" title="实验7：FTP,HTTP"></a>实验7：FTP,HTTP</h1><h2 id="FTP"><a href="#FTP" class="headerlink" title="FTP"></a>FTP</h2><p>FTP协议的控制端口是21，数据端口是（20，如果采用PORT模式，不确定，如果采用PASV模式）</p>
+<p>Port模式</p>
+<p>FTP <a target="_blank" rel="noopener" href="https://baike.baidu.com/item/客户端">客户端</a>首先和服务器的TCP 21端口建立连接，用来发送命令，客户端需要接收数据的时候在这个通道上发送PORT命令。PORT命令包含了客户端用什么端口接收数据。例如：Port172.16.0.16,192,13，表示新开的端口是192×256+13=49165。在传送数据的时候，服务器端通过自己的TCP 20端口连接至客户端的49165端口发送数据。FTP server必须和客户端建立一个新的连接用来传送数据。</p>
+<p>Passive模式</p>
+<p>建立控制通道和Standard模式类似，但建立连接后发送Pasv命令。服务器收到Pasv命令后，打开一个临时端口（端口号大于1023小于65535）并且通知客户端在这个端口上传送数据的请求，客户端连接FTP服务器此端口，然后FTP服务器将通过这个端口传送数据。</p>
+<p>很多<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/防火墙">防火墙</a>在设置的时候都是不允许接受外部发起的连接的，所以许多位于防火墙后或内网的FTP服务器不支持PASV模式，因为客户端无法穿过防火墙打开FTP服务器的高端端口；而许多内网的客户端不能用PORT模式登陆FTP服务器，因为从服务器的TCP 20无法和内部网络的客户端建立一个新的连接，造成无法工作。</p>
+<h2 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h2><p>主页访问：通过get方法提取网站主页文件。</p>
+<p>页面提交：通过post方法提交信息。</p>
+<p>HTTP是应用层协议，是WWW服务的支撑协议。</p>
+<p>HTTP是基于客户/服务器模式，且面向连接的。典型的HTTP事务处理有如下的过程：</p>
+<p>（1）客户与服务器建立连接；</p>
+<p>（2）客户向服务器提出请求；</p>
+<p>（3）服务器接受请求，并根据请求返回相应的文件作为应答；</p>
+<p>（4）客户与服务器关闭连接。</p>
+<p>HTTP是一种无状态协议，即服务器不保留与客户交易时的任何状态。这就大大减轻了服务器记忆负担，从而保持较快的响应速度。</p>
+<p>端口是80.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">计算机专业课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
