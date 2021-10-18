@@ -152,6 +152,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-csp-201703" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/27/csp-201703/">csp-201703</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/27/csp-201703/" class="archive-article-date">
+  	<time datetime="2020-08-27T22:09:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="20170301（分蛋糕）"><a href="#20170301（分蛋糕）" class="headerlink" title="20170301（分蛋糕）"></a>20170301（分蛋糕）</h1><h2 id="代码1"><a href="#代码1" class="headerlink" title="代码1"></a>代码1</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,k;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; weights;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n&gt;&gt;k;</span><br><span class="line">    weights.<span class="built_in">resize</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) cin&gt;&gt;weights[i];</span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>,i=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i&lt;n)&#123;</span><br><span class="line">        <span class="keyword">int</span> w = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(w&lt;k &amp;&amp; i&lt;n)&#123;</span><br><span class="line">            w+=weights[i];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        ans++;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="20170302（学生排队）"><a href="#20170302（学生排队）" class="headerlink" title="20170302（学生排队）"></a>20170302（学生排队）</h1><h2 id="代码1-1"><a href="#代码1-1" class="headerlink" title="代码1"></a>代码1</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n,m;</span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> id;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">Node</span> *<span class="title">pre</span>, *<span class="title">next</span>;</span></span><br><span class="line">    <span class="built_in">Node</span>(<span class="keyword">int</span> x)&#123;</span><br><span class="line">        id = x;</span><br><span class="line">        pre = next = <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Node* head;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">eraseNode</span><span class="params">(Node* node)</span></span>&#123;</span><br><span class="line">    node-&gt;pre-&gt;next = node-&gt;next;</span><br><span class="line">    <span class="keyword">if</span>(node-&gt;next) <span class="comment">//error</span></span><br><span class="line">        node-&gt;next-&gt;pre = node-&gt;pre;</span><br><span class="line">    <span class="keyword">delete</span> node;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//node1后面加入x节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addNode</span><span class="params">(Node* node1, <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    Node* node = <span class="keyword">new</span> <span class="built_in">Node</span>(x);</span><br><span class="line">    node-&gt;pre = node1;</span><br><span class="line">    node-&gt;next = node1-&gt;next;</span><br><span class="line">    node1-&gt;next = node;</span><br><span class="line">    <span class="keyword">if</span>(node-&gt;next)</span><br><span class="line">        node-&gt;next-&gt;pre = node;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    Node* node;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">            head = <span class="keyword">new</span> <span class="built_in">Node</span>(i);</span><br><span class="line">            node = head;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            node-&gt;next = <span class="keyword">new</span> <span class="built_in">Node</span>(i);</span><br><span class="line">            node-&gt;next-&gt;pre = node;</span><br><span class="line">            node = node-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> p,q;</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        cin&gt;&gt;p&gt;&gt;q;</span><br><span class="line">        Node *node1, *node2;</span><br><span class="line">        node1 = head;</span><br><span class="line">        <span class="keyword">while</span>(node1-&gt;id != p) node1 = node1-&gt;next;</span><br><span class="line">        node2 = node1;</span><br><span class="line">        <span class="keyword">if</span>(q&gt;<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span>(q-- &amp;&amp; node2-&gt;next) node2 = node2-&gt;next;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">while</span>(q++ &amp;&amp; node2-&gt;pre) node2 = node2-&gt;pre;</span><br><span class="line">            node2 = node2-&gt;pre;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">eraseNode</span>(node1);</span><br><span class="line">        <span class="built_in">addNode</span>(node2,p);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//output</span></span><br><span class="line">    node = head-&gt;next;</span><br><span class="line">    <span class="keyword">while</span>(node)&#123;</span><br><span class="line">        <span class="keyword">if</span>(node == head-&gt;next) cout&lt;&lt;node-&gt;id;</span><br><span class="line">        <span class="keyword">else</span> cout&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;node-&gt;id;</span><br><span class="line">        node = node-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="20170303（Markdown）"><a href="#20170303（Markdown）" class="headerlink" title="20170303（Markdown）"></a>20170303（Markdown）</h1><h2 id="代码1-2"><a href="#代码1-2" class="headerlink" title="代码1"></a>代码1</h2><p>我们以一个区块为处理单位，区块后必须有空行。在处理区块时，要看它是什么类型的，注意，在区块内要检测出行内的强调和超级链接格式，当一遇到<code>_</code> 字符时，就肯定是强调，当一遇到<code>[</code> 字符时，肯定就是链接。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">vector&lt;string&gt; markdown;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isSpaceLine</span><span class="params">(<span class="keyword">const</span> string&amp; line)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;line.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(line[i]!=<span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dealQiangdiao</span><span class="params">(string&amp; line, <span class="keyword">int</span> beg, <span class="keyword">int</span> ed)</span></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&lt;em&gt;&quot;</span>;</span><br><span class="line">    cout&lt;&lt;line.<span class="built_in">substr</span>(beg+<span class="number">1</span>,ed-beg<span class="number">-1</span>);</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&lt;/em&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dealLink</span><span class="params">(string&amp; line, <span class="keyword">int</span> beg, <span class="keyword">int</span> ed)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i1=beg+<span class="number">1</span>,i2;</span><br><span class="line">    <span class="keyword">for</span>(;line[i1]!=<span class="string">&#x27;]&#x27;</span>;i1++)&#123;&#125;;</span><br><span class="line">    i2 = i1+<span class="number">1</span>;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;&lt;a href=\&quot;&quot;</span>&lt;&lt;line.<span class="built_in">substr</span>(i2+<span class="number">1</span>,ed-i2<span class="number">-1</span>)&lt;&lt;<span class="string">&quot;\&quot;&gt;&quot;</span>&lt;&lt;line.<span class="built_in">substr</span>(beg+<span class="number">1</span>,i1-beg<span class="number">-1</span>)&lt;&lt;<span class="string">&quot;&lt;/a&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dealLine</span><span class="params">(string&amp; line, <span class="keyword">int</span> beg)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i1=beg; <span class="comment">//error</span></span><br><span class="line">    <span class="keyword">for</span>(;i1&lt;line.<span class="built_in">size</span>();)&#123;</span><br><span class="line">        <span class="keyword">if</span>(line[i1]==<span class="string">&#x27;_&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> i2 = i1+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> i3 = <span class="number">-1</span>, i4;</span><br><span class="line">            <span class="keyword">for</span>(;line[i2]!=<span class="string">&#x27;_&#x27;</span>;i2++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(line[i2] == <span class="string">&#x27;[&#x27;</span>)</span><br><span class="line">                    i3 = i2;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(line[i2] == <span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">                    i4 = i2;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i3==<span class="number">-1</span>)&#123;</span><br><span class="line">                <span class="built_in">dealQiangdiao</span>(line, i1, i2);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">&quot;&lt;em&gt;&quot;</span>;</span><br><span class="line">                cout&lt;&lt;line.<span class="built_in">substr</span>(i1+<span class="number">1</span>,i3-i1<span class="number">-1</span>);</span><br><span class="line">                <span class="built_in">dealLink</span>(line,i3,i4);</span><br><span class="line">                cout&lt;&lt;line.<span class="built_in">substr</span>(i4+<span class="number">1</span>,i2-i4<span class="number">-1</span>);</span><br><span class="line">                cout&lt;&lt;<span class="string">&quot;&lt;/em&gt;&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i1 = i2+<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(line[i1]==<span class="string">&#x27;[&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> i2 = i1+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">int</span> i3 = <span class="number">-1</span>, i4;</span><br><span class="line">            <span class="keyword">for</span>(;line[i2]!=<span class="string">&#x27;)&#x27;</span>;i2++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(line[i2] == <span class="string">&#x27;_&#x27;</span> &amp;&amp; i3==<span class="number">-1</span>)</span><br><span class="line">                    i3 = i2;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(line[i2] == <span class="string">&#x27;_&#x27;</span>)</span><br><span class="line">                    i4 = i2;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i3==<span class="number">-1</span>)&#123;</span><br><span class="line">                <span class="built_in">dealLink</span>(line,i1,i2);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> i5 = i1+<span class="number">1</span>,i6;</span><br><span class="line">                <span class="keyword">for</span>(;line[i5]!=<span class="string">&#x27;]&#x27;</span>;i5++)&#123;&#125;;</span><br><span class="line">                i6 = i5+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(i3&gt;i1 &amp;&amp; i3&lt;i5)&#123;</span><br><span class="line">                    cout&lt;&lt;<span class="string">&quot;&lt;a href=\&quot;&quot;</span>&lt;&lt;line.<span class="built_in">substr</span>(i6+<span class="number">1</span>,i2-i6<span class="number">-1</span>)&lt;&lt;<span class="string">&quot;\&quot;&gt;&quot;</span>;</span><br><span class="line">                    cout&lt;&lt;line.<span class="built_in">substr</span>(i1+<span class="number">1</span>,i3-i1<span class="number">-1</span>);</span><br><span class="line">                    <span class="built_in">dealQiangdiao</span>(line,i3,i4);</span><br><span class="line">                    cout&lt;&lt;line.<span class="built_in">substr</span>(i4+<span class="number">1</span>,i5-i4<span class="number">-1</span>)&lt;&lt;<span class="string">&quot;&lt;/a&gt;&quot;</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    cout&lt;&lt;<span class="string">&quot;&lt;a href=\&quot;&quot;</span>&lt;&lt;line.<span class="built_in">substr</span>(i6+<span class="number">1</span>,i3-i6<span class="number">-1</span>);</span><br><span class="line">                    <span class="built_in">dealQiangdiao</span>(line,i3,i4);</span><br><span class="line">                    cout&lt;&lt;line.<span class="built_in">substr</span>(i4+<span class="number">1</span>,i2-i4<span class="number">-1</span>);</span><br><span class="line">                    cout&lt;&lt;<span class="string">&quot;\&quot;&gt;&quot;</span>&lt;&lt;line.<span class="built_in">substr</span>(i1+<span class="number">1</span>,i5-i1<span class="number">-1</span>)&lt;&lt;<span class="string">&quot;&lt;/a&gt;&quot;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            i1 = i2+<span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            cout&lt;&lt;line[i1++];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dealBlock</span><span class="params">(<span class="keyword">int</span> beg, <span class="keyword">int</span> ed)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sharpNum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;markdown[beg].<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(markdown[beg][i] == <span class="string">&#x27;#&#x27;</span>)&#123;</span><br><span class="line">            sharpNum++;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(sharpNum&gt;<span class="number">0</span> &amp;&amp; markdown[beg][i]==<span class="string">&#x27; &#x27;</span> &amp;&amp; beg==ed)&#123; <span class="comment">//是标题</span></span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;&lt;h&quot;</span>&lt;&lt;sharpNum&lt;&lt;<span class="string">&quot;&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">for</span>(;markdown[beg][i]==<span class="string">&#x27; &#x27;</span>;i++)&#123;&#125;;</span><br><span class="line">        <span class="built_in">dealLine</span>(markdown[beg],i);</span><br><span class="line">        cout&lt;&lt;<span class="string">&quot;&lt;/h&quot;</span>&lt;&lt;sharpNum&lt;&lt;<span class="string">&quot;&gt;&quot;</span>&lt;&lt;endl;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        i = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(markdown[beg].<span class="built_in">substr</span>(<span class="number">0</span>,<span class="number">2</span>) == <span class="string">&quot;* &quot;</span>)&#123; <span class="comment">//是无序列表</span></span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;&lt;ul&gt;&quot;</span>&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> lineNum=beg;lineNum&lt;=ed;lineNum++)&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">&quot;&lt;li&gt;&quot;</span>;</span><br><span class="line">                i = <span class="number">2</span>;</span><br><span class="line">                <span class="keyword">for</span>(;markdown[lineNum][i]==<span class="string">&#x27; &#x27;</span>;i++)&#123;&#125;;</span><br><span class="line">                <span class="built_in">dealLine</span>(markdown[lineNum],i);</span><br><span class="line">                cout&lt;&lt;<span class="string">&quot;&lt;/li&gt;&quot;</span>&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;&lt;/ul&gt;&quot;</span>&lt;&lt;endl; <span class="comment">//error: &lt;/ul</span></span><br><span class="line">        &#125;<span class="keyword">else</span>&#123; <span class="comment">//是普通段落</span></span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;&lt;p&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> lineNum=beg;lineNum&lt;=ed;lineNum++)&#123;</span><br><span class="line">                <span class="built_in">dealLine</span>(markdown[lineNum],<span class="number">0</span>);</span><br><span class="line">                <span class="keyword">if</span>(lineNum != ed)</span><br><span class="line">                    cout&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;&lt;/p&gt;&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    string line;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">getline</span>(cin,line))&#123;</span><br><span class="line">        markdown.<span class="built_in">push_back</span>(line);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> i1=<span class="number">0</span>,i2;</span><br><span class="line">    <span class="keyword">while</span>(i1&lt;markdown.<span class="built_in">size</span>() &amp;&amp; <span class="built_in">isSpaceLine</span>(markdown[i1])) i1++;</span><br><span class="line">    <span class="keyword">while</span>(i1&lt;markdown.<span class="built_in">size</span>())&#123; <span class="comment">//error:line.size()</span></span><br><span class="line">        i2 = i1;</span><br><span class="line">        <span class="keyword">while</span>(i2&lt;markdown.<span class="built_in">size</span>() &amp;&amp; !<span class="built_in">isSpaceLine</span>(markdown[i2])) i2++;</span><br><span class="line">        <span class="built_in">dealBlock</span>(i1,i2<span class="number">-1</span>);</span><br><span class="line">        i1 = i2;</span><br><span class="line">        <span class="keyword">while</span>(i1&lt;markdown.<span class="built_in">size</span>() &amp;&amp; <span class="built_in">isSpaceLine</span>(markdown[i1])) i1++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>29行i1赋值错误；130行，markdown写成line了。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/27/csp-201703/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-csp-201709" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1014,121 +1092,6 @@ C^m_n=C^m_{n-1}+C^{m-1}_{n-1}</script><p>具体如何写递归，可以看代码
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/08/21/csp-201912/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-最大流与最小割" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/">最大流与最小割</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/" class="archive-article-date">
-  	<time datetime="2020-08-21T18:50:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h1><p>给定指定的一个有向图,其中有两个特殊的点<strong>源S(Sources)</strong>和汇<strong>T(Sinks)</strong>,每条边有指定的<strong>容量(Capacity)</strong>,求满足条件的从S到T的<strong>最大流(MaxFlow)</strong>.</p>
-<img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/1.webp" class="">
-<p><img src="最大流与最小割/1.webp" alt="1"></p>
-<p>对于每个边，我们定义了3个属性：</p>
-<ol>
-<li>capacity: 用C<x,y>表示，最大容量，上图中边的数值就是capacity</li>
-<li>flow: 用F<x,y>表示，每条边的流量</li>
-<li>residual: 用R<x,y>表示，残留，R<x,y> = C<x,y> - F<x,y></li>
-</ol>
-<p>斜对称性：F<x,y> = -F<y,x>. 基于斜对称性，当flow为负时，残留值可能大于最大容量</p>
-<p>对于上图，假如存在一条流的路径：S-&gt;A-&gt;C-&gt;T. 那么这条路径的流就是<strong>这条路径的所有边的最大残留的最小值</strong>，也就是R<A,C>=12. 此时，可以更新每条边的flow和residual, F<S,A>=0+12=12, R<S,A>=16-12=4, F<A,C>=0+12=12, R<A,C>=12-12=0, F<C,T>=0+12=12, R<C,T>=20-12=8, 每次边的flow增加一定数量，residual就必定减少一定数量，这个数量可以为负值. 这条路径被称为<strong>增广路</strong>，原因是路上的每个边的残留值都大于0，意味着可以有流从这个路径上通过。</p>
-<h1 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h1><p>一般使用Edmonds-Karp算法，即最短路径增广算法，简称EK算法。</p>
-<p>通过多次运行BFS算法，得到一条增广路，也就是从S到T的可行的流大于0的路径，然后更新相关边的属性值，其中有一点要注意：设这条路径的流是flow，则flow<x,y>+=flow, flow<y,x>+=(-flow), residual<y,x>-=(-flow)，每次一个边的残留值减去一个值，对应的反向边的残留值就会加上一个值。不断运行BFS算法，直到找不到一条增广路了。</p>
-<p>下面是一个运行EK算法的例子：黑色数字表示残留值，一开始残留值就是最大容量值，红色数字表示流量值。</p>
-<ol>
-<li><p>第一次运行BFS得到一个增广路：</p>
- <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/2.webp" class="">
-<p> <img src="最大流与最小割/2.webp" alt="2"></p>
-<p> 更新残留值：</p>
- <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/3.webp" class="">
-<p> <img src="最大流与最小割/3.webp" alt="3"></p>
-</li>
-<li><p>第二次运行BFS算法得到一个增广路</p>
- <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/4.webp" class="">
-<p> <img src="最大流与最小割/4.webp" alt="4"></p>
-<p> 更新残留值：</p>
- <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/5.webp" class="">
-<p> <img src="最大流与最小割/5.webp" alt="5"></p>
-</li>
-<li><p>第三次运行BFS得到一个增广路</p>
- <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/6.webp" class="">
-<p> <img src="最大流与最小割/6.webp" alt="6"></p>
-<p> 更新残留值：</p>
- <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/7.webp" class="">
-<p> <img src="最大流与最小割/7.webp" alt="7"></p>
-</li>
-</ol>
-<h1 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h1><p>最大流最小割定理(Maximum Flow, Minimum Cut Theorem):网络的最大流等于最小割</p>
-<p>我们把S能到达的点集设为s, 不能到达的点集设为t，构造一个割集C[s,t]。如下图所示</p>
-<img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/8.png" class="">
-<p><img src="最大流与最小割/8.png" alt="7"></p>
-<p>C[s,t] 中含有边<A,C>, <D,C>, <D,T>, <C,B>.<br>其中满流边是前三个，它们构成了最小割。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/">展开全文 >></a>
         </p>
       
 

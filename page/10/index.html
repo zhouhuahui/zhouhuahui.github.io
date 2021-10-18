@@ -152,6 +152,121 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-最大流与最小割" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/">最大流与最小割</a>
+    </h1>
+  
+
+        
+        <a href="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/" class="archive-article-date">
+  	<time datetime="2020-08-21T18:50:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h1><p>给定指定的一个有向图,其中有两个特殊的点<strong>源S(Sources)</strong>和汇<strong>T(Sinks)</strong>,每条边有指定的<strong>容量(Capacity)</strong>,求满足条件的从S到T的<strong>最大流(MaxFlow)</strong>.</p>
+<img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/1.webp" class="">
+<p><img src="最大流与最小割/1.webp" alt="1"></p>
+<p>对于每个边，我们定义了3个属性：</p>
+<ol>
+<li>capacity: 用C<x,y>表示，最大容量，上图中边的数值就是capacity</li>
+<li>flow: 用F<x,y>表示，每条边的流量</li>
+<li>residual: 用R<x,y>表示，残留，R<x,y> = C<x,y> - F<x,y></li>
+</ol>
+<p>斜对称性：F<x,y> = -F<y,x>. 基于斜对称性，当flow为负时，残留值可能大于最大容量</p>
+<p>对于上图，假如存在一条流的路径：S-&gt;A-&gt;C-&gt;T. 那么这条路径的流就是<strong>这条路径的所有边的最大残留的最小值</strong>，也就是R<A,C>=12. 此时，可以更新每条边的flow和residual, F<S,A>=0+12=12, R<S,A>=16-12=4, F<A,C>=0+12=12, R<A,C>=12-12=0, F<C,T>=0+12=12, R<C,T>=20-12=8, 每次边的flow增加一定数量，residual就必定减少一定数量，这个数量可以为负值. 这条路径被称为<strong>增广路</strong>，原因是路上的每个边的残留值都大于0，意味着可以有流从这个路径上通过。</p>
+<h1 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h1><p>一般使用Edmonds-Karp算法，即最短路径增广算法，简称EK算法。</p>
+<p>通过多次运行BFS算法，得到一条增广路，也就是从S到T的可行的流大于0的路径，然后更新相关边的属性值，其中有一点要注意：设这条路径的流是flow，则flow<x,y>+=flow, flow<y,x>+=(-flow), residual<y,x>-=(-flow)，每次一个边的残留值减去一个值，对应的反向边的残留值就会加上一个值。不断运行BFS算法，直到找不到一条增广路了。</p>
+<p>下面是一个运行EK算法的例子：黑色数字表示残留值，一开始残留值就是最大容量值，红色数字表示流量值。</p>
+<ol>
+<li><p>第一次运行BFS得到一个增广路：</p>
+ <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/2.webp" class="">
+<p> <img src="最大流与最小割/2.webp" alt="2"></p>
+<p> 更新残留值：</p>
+ <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/3.webp" class="">
+<p> <img src="最大流与最小割/3.webp" alt="3"></p>
+</li>
+<li><p>第二次运行BFS算法得到一个增广路</p>
+ <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/4.webp" class="">
+<p> <img src="最大流与最小割/4.webp" alt="4"></p>
+<p> 更新残留值：</p>
+ <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/5.webp" class="">
+<p> <img src="最大流与最小割/5.webp" alt="5"></p>
+</li>
+<li><p>第三次运行BFS得到一个增广路</p>
+ <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/6.webp" class="">
+<p> <img src="最大流与最小割/6.webp" alt="6"></p>
+<p> 更新残留值：</p>
+ <img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/7.webp" class="">
+<p> <img src="最大流与最小割/7.webp" alt="7"></p>
+</li>
+</ol>
+<h1 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h1><p>最大流最小割定理(Maximum Flow, Minimum Cut Theorem):网络的最大流等于最小割</p>
+<p>我们把S能到达的点集设为s, 不能到达的点集设为t，构造一个割集C[s,t]。如下图所示</p>
+<img src="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/8.png" class="">
+<p><img src="最大流与最小割/8.png" alt="7"></p>
+<p>C[s,t] 中含有边<A,C>, <D,C>, <D,T>, <C,B>.<br>其中满流边是前三个，它们构成了最小割。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/08/21/%E6%9C%80%E5%A4%A7%E6%B5%81%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%89%B2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-工作日记-2020" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1244,6 +1359,14 @@ a^{2m-1}</script><h2 id="如何插入内联公式"><a href="#如何插入内联�
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* master</span><br><span class="line">  remotes<span class="regexp">/origin/</span>HEAD -&gt; origin/master</span><br><span class="line">  remotes<span class="regexp">/origin/</span>featrue_org</span><br><span class="line">  remotes<span class="regexp">/origin/</span>feature_ob</span><br><span class="line">  remotes<span class="regexp">/origin/m</span>aster</span><br></pre></td></tr></table></figure>
 <p>然后我们可以clone所有分支：</p>
 <figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout -<span class="keyword">b </span>featrue_org <span class="keyword">origin/feature_org</span></span><br><span class="line"><span class="keyword"></span>git checkout -<span class="keyword">b </span>feature_ob <span class="keyword">origin/feature_ob</span></span><br></pre></td></tr></table></figure>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="fatal-refusing-to-merge-unrelated-histories"><a href="#fatal-refusing-to-merge-unrelated-histories" class="headerlink" title="fatal: refusing to merge unrelated histories"></a>fatal: refusing to merge unrelated histories</h2><p>这是在git pull时遇到的，可以这样解决：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git pull origin main --allow-unrelated-histories</span><br></pre></td></tr></table></figure>
+<h2 id="如何编辑冲突"><a href="#如何编辑冲突" class="headerlink" title="如何编辑冲突"></a>如何编辑冲突</h2><p>在git pull时肯定会遇到conflict，这时需要我们看哪些文件conflict了。比如：</p>
+<p><img src="git的使用/image-20211016201744441.png" alt="image-20211016201744441"></p>
+<p>通过git status也可以查询到。</p>
+<p>然后打开对应的文件，会看到类似于这样的内容：</p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a123</span><br><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line"><span class="section">b789</span></span><br><span class="line"><span class="section">=======</span></span><br><span class="line">b45678910</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; 6853e5ff961e684d3a6c02d4d06183b5ff330dcc</span><br><span class="line">c</span><br></pre></td></tr></table></figure>
+<p>其中：冲突标记&lt;&lt;&lt;&lt;&lt;&lt;&lt; （7个&lt;）与<code>=======</code>之间的内容是我的修改，<code>=======</code>与&gt;&gt;&gt;&gt;&gt;&gt;&gt;之间的内容是别人的修改。最简单的编辑冲突的办法，就是直接编辑冲突了的文件，把冲突标记删掉，把冲突解决正确。</p>
 
       
 
@@ -1646,147 +1769,6 @@ a^{2m-1}</script><h2 id="如何插入内联公式"><a href="#如何插入内联�
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-计算机组成原理" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
-    </h1>
-  
-
-        
-        <a href="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  	<time datetime="2020-06-25T23:37:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="计算机组成与设计"><a href="#计算机组成与设计" class="headerlink" title="计算机组成与设计"></a>计算机组成与设计</h1><h2 id="理解程序性能"><a href="#理解程序性能" class="headerlink" title="理解程序性能"></a>理解程序性能</h2><p>算法：决定源代码的数量和执行I/O操作的数量</p>
-<p>程序语言，编译器和体系结构：决定每行源代码对应机器指令的数量</p>
-<p>处理器和存储器系统：决定指令执行的速度快慢</p>
-<p>I/0系统（硬件和操作系统）：n决定I/O操作执行的速度快慢</p>
-<h2 id="处理器（CPU）内部构成"><a href="#处理器（CPU）内部构成" class="headerlink" title="处理器（CPU）内部构成"></a>处理器（CPU）内部构成</h2><p>数据通路：负责完成算术运算</p>
-<p>控制器：负责指导数据通路、存储器和I/O设备按照程序的指令正确执行</p>
-<p>高速缓冲存储器Cache：快速访问数据的小而快的SRAM存储器</p>
-<h2 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h2><p>抽象便于构建复杂系统，掩盖底层计算机系统细节</p>
-<p>指令集体系结构（ISA）：硬件和底层软件之间的接口</p>
-<p>应用二进制接口（ABI）：n基本指令集和操作系统接口</p>
-<p>实现：相关的细节和接口，遵循体系结构抽象的硬件</p>
-<h2 id="数据安全"><a href="#数据安全" class="headerlink" title="数据安全"></a>数据安全</h2><p>易失性主存储器：断电时会丢掉所有数据</p>
-<p>非易失性二级存储器：<br>磁盘<br>闪存<br>光盘</p>
-<h2 id="存储体系"><a href="#存储体系" class="headerlink" title="存储体系"></a>存储体系</h2><img src="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/1.png" class="">
-<h2 id="性能的定义"><a href="#性能的定义" class="headerlink" title="性能的定义"></a>性能的定义</h2><ol>
-<li>响应时间：完成某任务需要的总时间，包括硬盘访问、内存访问、I/O活动、操作系统开销和CPU执行时间等。</li>
-<li>吞吐率：也叫带宽，单位时间内完成的任务数量</li>
-</ol>
-<h2 id="性能的测量"><a href="#性能的测量" class="headerlink" title="性能的测量"></a>性能的测量</h2><ol>
-<li><p>消逝时间：总的响应时间，包括处理时间, I/O操作, OS开销, 空闲时间等</p>
-<p> 决定了系统的性能</p>
-</li>
-<li><p>CPU时间：在程序本身花费的时间，不包括等待I/O或者运行其他程序的时间；</p>
-<p> 包括运行用户程序的时间和操作系统为用户服务花去的CPU时间</p>
-</li>
-</ol>
-<h2 id="CPU时钟"><a href="#CPU时钟" class="headerlink" title="CPU时钟"></a>CPU时钟</h2><p>主时钟不断产生固定频率的时钟</p>
-<p>时钟周期：一个时钟持续的时间</p>
-<p>始终频率：每秒包含的时钟周期数</p>
-<p>计算机性能改进：<br>减少程序的时钟周期数量<br>增加时钟频率<br>硬件设计者需要权衡时钟频率和时钟周期数量</p>
-<h2 id="指令数和每条指令的平均时钟周期数（CPI）"><a href="#指令数和每条指令的平均时钟周期数（CPI）" class="headerlink" title="指令数和每条指令的平均时钟周期数（CPI）"></a>指令数和每条指令的平均时钟周期数（CPI）</h2><img src="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/2.png" class="">
-<h2 id="Amdahl’s-Law"><a href="#Amdahl’s-Law" class="headerlink" title="Amdahl’s Law"></a>Amdahl’s Law</h2><img src="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/3.png" class="">
-<p>在改进计算机的某个方面时期望总性能的提高与改进大小成正比</p>
-<h1 id="数据的表示和运算"><a href="#数据的表示和运算" class="headerlink" title="数据的表示和运算"></a>数据的表示和运算</h1><p>根据IEEE754标准，浮点数的阶码用移码表示。<br>对于单精度浮点数的阶码，有8位，则其<strong>偏置常数</strong>是127，如果阶码的值是2的话，阶码就应该表示为128+2=130的无符号8位二进制的形式（或者将补码的最高一位加1，溢出的不管，也可以得到同样的结果）</p>
-<h1 id="计算机的语言"><a href="#计算机的语言" class="headerlink" title="计算机的语言"></a>计算机的语言</h1><h2 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h2><p>一台计算机的全部指令</p>
-<p>MIPS指令集</p>
-<h2 id="寄存器和主存储器"><a href="#寄存器和主存储器" class="headerlink" title="寄存器和主存储器"></a>寄存器和主存储器</h2><p>寄存器的访问速度比主存快得多</p>
-<p>对主存储器数据的操作要用取数指令lw和存数指令sw。</p>
-<p>编译器必须尽量使用寄存器访问变量：<br>仅仅把不经常使用的变量放到内存（spilling register，寄存器溢出）；<br>寄存器的高效利用对系统优化非常重要</p>
-<h1 id="处理器"><a href="#处理器" class="headerlink" title="处理器"></a>处理器</h1><h2 id="CPU-overview"><a href="#CPU-overview" class="headerlink" title="CPU overview"></a>CPU overview</h2><img src="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/4.png" class="">
-<p>这张图是为了MIPS指令集而设计的CPU概览，受MIPS指令集的设计影响很大，总体来说，CPU会为每种可能都走一遍，但是由控制器来决定最终选择谁的结果。PC的更新由多选器决定是PC+4还是指令中指定的新的PC；ALU的源操作数可以是两个寄存器或者一个寄存器和立即数；保存到寄存器中的数据可以来自ALU的计算结果或者存储器中取出来的结果。</p>
-<h2 id="MIPS流水线"><a href="#MIPS流水线" class="headerlink" title="MIPS流水线"></a>MIPS流水线</h2><p>5段，每段一步</p>
-<ol>
-<li><p>IF: 从存储器读取指令</p>
-</li>
-<li><p>ID: 指令解码并读取寄存器</p>
-</li>
-<li><p>EX: 执行操作或计算地址</p>
-</li>
-<li><p>MEM: 访问存储器操作数</p>
-</li>
-<li><p>WB: 将结果写回寄存器</p>
-</li>
-</ol>
-<h3 id="冒险"><a href="#冒险" class="headerlink" title="冒险"></a>冒险</h3><p>结构冒险：需要的资源被占用</p>
-<p>数据冒险：需要等待前面指令完成其数据读写操作</p>
-<p>控制冒险：根据前面正在执行的指令决策控制操作</p>
-<p>结构冒险：在单存储器中的MIPS流水线，Load/Store对存储读/写数据时，取下一条指令的操作只能阻塞到数据访问周期结束，将导致流水线冒泡。因此流水的数据通路需要将指令和数据分别存储。</p>
-<p>数据冒险：存在这样的指令，必须依赖于之前访问数据的指令完成</p>
-<h2 id="转发（旁路）"><a href="#转发（旁路）" class="headerlink" title="转发（旁路）"></a>转发（旁路）</h2><img src="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/5.png" class="">
-<h2 id="分支预测"><a href="#分支预测" class="headerlink" title="分支预测"></a>分支预测</h2><p>延长流水线并不能提前确定分支结果</p>
-<p>预测分支结果：仅在预测错误时，才发生阻塞</p>
-<p>在 MIPS 流水线中：<br>可以预测分支不发生<br>预测正确时，分支后的取指操作将不会有任何延迟，流水线全速执行。</p>
-<p>静态分值预测和动态分支预测</p>
-<h2 id="怎样阻塞流水线"><a href="#怎样阻塞流水线" class="headerlink" title="怎样阻塞流水线"></a>怎样阻塞流水线</h2><ol>
-<li>将ID/EX 寄存器中的控制变量的值置为0</li>
-<li>阻止更新 PC 和 IF/ID 寄存器中的值</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">计算机专业课</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">展开全文 >></a>
         </p>
       
 

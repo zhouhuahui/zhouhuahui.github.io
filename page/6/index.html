@@ -152,6 +152,111 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-mysql存储时间" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E6%97%B6%E9%97%B4/">mysql存储时间</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E6%97%B6%E9%97%B4/" class="archive-article-date">
+  	<time datetime="2021-03-08T07:43:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、MySQL的五种日期和时间类型</p>
+<p> MySQl中有多种表示日期和时间的数据类型。其中YEAR表示年份，DATE表示日期，TIME表示时间，DATETIME和TIMESTAMP表示日期和时间。它们的对比如下：</p>
+<p>YEAR ，字节数为1，取值范围为“1901——2155”</p>
+<p>DATE，字节数为4，取值范围为“1000-01-01——9999-12-31”</p>
+<p>TIME，字节数为3，取值范围为“-838:59:59——838:59:59”</p>
+<p>DATETIME，字节数为8，取值范围为“1000-01-01 00:00:00——9999-12-31 23:59:59”</p>
+<p>TIMESTAMP，字节数为4，取值范围为“19700101080001——20380119111407”</p>
+<p> 当插入值超出有效取值范围时，系统会报错，并将零值插入到数据库中。</p>
+<p>2、YEAR类型</p>
+<p> 给YEAR类型复制可以有三种方法。</p>
+<p> 第一种是直接插入4位字符串或者4位数字。</p>
+<p> 第二种是插入2位字符串，这种情况下如果插入‘00’~‘69’，则相当于插入2000~2069；如果插入‘70’~‘99’，则相当于插入1970~1999。第二种情况下插入的如果是‘0’，则与插入‘00’效果相同，都是表示2000年。</p>
+<p> 第三种是插入2位数字，它与第二种（插入两位字符串）不同之处仅在于：如果插入的是一位数字0，则表示的是0000，而不是2000年。所以在给YEAR类型赋值时，一定要分清0和‘0’，虽然两者相差个引号，但实际效果确实相差了2000年。</p>
+<p>3、TIME类型</p>
+<p> TIME类型表示为“时：分：秒”，尽管小时范围一般是0~23，但是为了表示某些特殊时间间隔，MySQL将TIME的小时范围扩发了，而且支持负值。</p>
+<p>对TIME类型赋值，标准格式是‘HH：MM：SS’，但不一定非要是这种格式。</p>
+<p> 如果插入的是‘D HH：MM：SS’格式，则类似插入了‘（D*24+HH）：MM：SS’。比如插入‘2 23:50:50’，相当于插入了‘71:50:50’。</p>
+<p> 如果插入的是‘HH：MM’或‘SS’格式，则效果是其他未被表示位的值赋为零值。比如插入‘30’，相当于插入了‘00:00:30’；如果插入‘11:25’，相当于插入了‘11:25:00’。</p>
+<p> 另外也可以插入‘D HH’和‘D HH：MM’，效果按上面的例子可以推理出来了吧。</p>
+<p>在MySQl中，对于’HHMMSS’格式，系统能够自动转化为标准格式。</p>
+<p> 如果我们想插入当前系统的时间，则可以插入CURRENT_TIME或者NOW()。</p>
+<p> TIME类型只占3个字节，如果只是存储时间数据，它最合适了。</p>
+<p>4、DATE类型</p>
+<p> MySQL是以YYYY-MM-DD格式来显示DATE类型的值，插入数据时，数据可以保持这种格式。另外，MySQL还支持一些不严格的语法格式，分隔符“-”可以用“@”、“.”等众多富豪来替代。</p>
+<p> 在插入数据时，也可以使用“YY-MM-DD”格式，YY转化成对应的年份的规则与YEAR类型类似。</p>
+<p> 如果我们想插入当前系统的时间，则可以插入CURRENT_DATE或者NOW()。</p>
+<p>5、DATETIME类型</p>
+<p> 标准格式为“YYYY-MM-DD HH：MM：SS”，具体赋值方法与上面各种类型的方法相似。</p>
+<p>6、TIMESTAMP类型</p>
+<p> TIMESTAMP的取值范围比较小，没有DATETIME的取值范围大，因此输入值时一定要保证在TIMESTAMP的范围之内。它的插入也与插入其他日期和时间数据类型类似。</p>
+<p> 那么TIMESTAMP类型如何插入当前时间？第一，可以使用CURRENT_TIMESTAMP；第二，输入NULL，系统自动输入当前的TIMESTAMP；第三，无任何输入，系统自动输入当前的TIMESTAMP。</p>
+<p> 另外有很特殊的一点：TIMESTAMP的数值是与时区相关。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E6%97%B6%E9%97%B4/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-mysql存储大文本和图片" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1349,101 +1454,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/10/09/js-%E9%97%AD%E5%8C%85/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-浏览器渲染页面的过程" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">浏览器渲染页面的过程</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-10-09T01:57:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Safari和Chrome使用webkit内核进行页面渲染。</p>
-<h1 id="webkit引擎渲染流程"><a href="#webkit引擎渲染流程" class="headerlink" title="webkit引擎渲染流程"></a>webkit引擎渲染流程</h1><p>浏览器包含3个很重要的进程：浏览器进程，网络进程，渲染进程。</p>
-<p>渲染进程会从网络进程请求html文档的内容。</p>
-<p>渲染引擎（渲染进程）开始解析HTML文档，构建DOM树，如果遇到了CSS文件，那么会边下载解析CSS，边构建DOM树，待CSS解析完成后，就可以构建渲染树了。也就是说，CSS会阻塞渲染树的构建，而不会阻塞DOM树的构建。</p>
-<p>当CSS在解析过程中，会禁止js脚本的执行。原因是，脚本在文档解析阶段会请求样式信息，如果当时还没有解析完CSS，就去执行脚本，脚本就会得到错误的结果。</p>
-<p>在HTML文档的解析过程中，遇到js脚本时，会阻塞HTML文档的解析，然后下载js脚本，当CSS解析完成后，立即执行js脚本。当js脚本下载执行完毕后在继续解析HTML。</p>
-<p>当遇到图片文件时，会边下载图片，边解析HTML文本，甚至不等图片下载完成，就进行页面渲染。</p>
-<p><strong>为了达到更好的用户体验，渲染引擎会力求尽快将内容显示在屏幕上，它不必等到整个HTML文档解析完毕后，就会构建渲染树，设置布局并渲染页面</strong>，在不断接收和处理来自网络的其余内容的同时，渲染引擎会将部分内容解析并显示出来。</p>
-<img src="/2020/10/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/1.png" class="">
-<p><img src="浏览器渲染页面的过程/1.png" alt="1"></p>
-<h2 id="html解析流程例子"><a href="#html解析流程例子" class="headerlink" title="html解析流程例子"></a>html解析流程例子</h2><ol>
-<li>用户输入网址（假设是个html页面，并且是第一次访问），浏览器向服务器发出请求，服务器返回html文件； </li>
-<li>浏览器开始载入html代码，发现＜head＞标签内有一个＜link＞标签引用外部CSS文件； </li>
-<li>浏览器又发出CSS文件的请求，服务器返回这个CSS文件； </li>
-<li>浏览器继续载入html中＜body＞部分的代码，并且CSS文件已经拿到手了，可以开始渲染页面了； </li>
-<li>浏览器在代码中发现一个＜img＞标签引用了一张图片，向服务器发出请求。此时浏览器不会等到图片下载完，而是继续解析后面的代码； </li>
-<li>服务器返回图片文件，由于图片占用了一定面积，影响了后面段落的排布，因此浏览器需要回过头来重新渲染这部分代码； </li>
-<li>浏览器发现了一个包含一行Javascript代码的＜script＞标签，赶快运行它； </li>
-<li>Javascript脚本执行了这条语句，它命令浏览器隐藏掉代码中的某个＜div＞ （style.display=”none”）。突然少了这么一个元素，浏览器不得不重新渲染这部分代码； </li>
-</ol>
-<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><h2 id="预解析"><a href="#预解析" class="headerlink" title="预解析"></a>预解析</h2><p>在执行脚本时，其他线程会解析文档的其余部分，找出并下载需要通过网络下载的资源，通过这种方式，资源可以在并行连接上下载，从而提高总体速度。预解析不会修改DOM树，而是将这项工作交由主解析器处理。</p>
-<p>参考 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018652029">https://segmentfault.com/a/1190000018652029</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">展开全文 >></a>
         </p>
       
 

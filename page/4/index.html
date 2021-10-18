@@ -152,6 +152,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-redis" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/18/redis/">redis</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/18/redis/" class="archive-article-date">
+  	<time datetime="2021-08-19T01:38:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>《redis设计与实现》配套网站（包括详细注释的redis源码）：redisbook.com</p>
+<p>redis3.0详细注释的代码：<a target="_blank" rel="noopener" href="https://github.com/huangz1990/redis-3.0-annotated">https://github.com/huangz1990/redis-3.0-annotated</a></p>
+<p>如何阅读Redis源码：<a target="_blank" rel="noopener" href="https://blog.huangz.me/diary/2014/how-to-read-redis-source-code.html">https://blog.huangz.me/diary/2014/how-to-read-redis-source-code.html</a></p>
+<p>W3Cschool的《Redis设计与实现》：<a target="_blank" rel="noopener" href="https://www.w3cschool.cn/hdclil/cnv2lozt.html">https://www.w3cschool.cn/hdclil/cnv2lozt.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">后端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/18/redis/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-javascript语言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -2169,175 +2246,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/07/31/Spring%E6%A1%86%E6%9E%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-postgreSQL的编译和测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/30/postgreSQL%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E6%B5%8B%E8%AF%95/">postgreSQL的编译和测试</a>
-    </h1>
-  
-
-        
-        <a href="/2021/07/30/postgreSQL%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E6%B5%8B%E8%AF%95/" class="archive-article-date">
-  	<time datetime="2021-07-30T11:03:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在centos 7虚拟机环境下使用eclipse编译和测试postgresql-13.3</p>
-<h1 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">yum clean all <span class="comment"># 清除缓存目录下的软件包及旧的header</span></span><br><span class="line"></span><br><span class="line">yum list pkg1 <span class="comment"># 查看pkg1是否安装</span></span><br><span class="line"></span><br><span class="line">yum install -y pkg1 <span class="comment"># 安装pkg1</span></span><br></pre></td></tr></table></figure>
-<h1 id="依赖安装"><a href="#依赖安装" class="headerlink" title="依赖安装"></a>依赖安装</h1><p>根据postgresql-13.3源码根目录下的<code>INSTALL</code>文件的描述，必须安装下述软件：</p>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">-   GNU make version <span class="number">3.80</span> <span class="built_in">or</span> newer <span class="built_in">is</span> required; other make programs <span class="built_in">or</span></span><br><span class="line">    older GNU make versions will *<span class="built_in">not</span>* work. (GNU make <span class="built_in">is</span> sometimes</span><br><span class="line">    installed under the name <span class="string">&quot;gmake&quot;</span>.) <span class="keyword">To</span> test <span class="keyword">for</span> GNU make enter:</span><br><span class="line"></span><br><span class="line">        make --version</span><br><span class="line"></span><br><span class="line">-   You need an ISO/<span class="keyword">ANSI</span> C compiler (at least C99-compliant). Recent</span><br><span class="line">    versions <span class="keyword">of</span> GCC are recommended, but PostgreSQL <span class="built_in">is</span> known <span class="keyword">to</span> build</span><br><span class="line">    <span class="keyword">using</span> a wide variety <span class="keyword">of</span> compilers <span class="keyword">from</span> different vendors.</span><br><span class="line"></span><br><span class="line">-   tar <span class="built_in">is</span> required <span class="keyword">to</span> unpack the source distribution, <span class="keyword">in</span> addition <span class="keyword">to</span></span><br><span class="line">    either gzip <span class="built_in">or</span> bzip2.</span><br><span class="line"></span><br><span class="line">-   The GNU Readline library <span class="built_in">is</span> used <span class="keyword">by</span> <span class="keyword">default</span>. It allows psql (the</span><br><span class="line">    PostgreSQL command line SQL interpreter) <span class="keyword">to</span> remember <span class="keyword">each</span> command</span><br><span class="line">    you type, <span class="built_in">and</span> allows you <span class="keyword">to</span> use arrow keys <span class="keyword">to</span> recall <span class="built_in">and</span> edit</span><br><span class="line">    previous commands. This <span class="built_in">is</span> very helpful <span class="built_in">and</span> <span class="built_in">is</span> strongly recommended.</span><br><span class="line">    <span class="keyword">If</span> you don<span class="comment">&#x27;t want to use it then you must specify the</span></span><br><span class="line">    <span class="string">&quot;--without-readline&quot;</span> <span class="keyword">option</span> <span class="keyword">to</span> <span class="string">&quot;configure&quot;</span>. <span class="keyword">As</span> an alternative, you</span><br><span class="line">    can often use the BSD-licensed <span class="string">&quot;libedit&quot;</span> library, originally</span><br><span class="line">    developed <span class="keyword">on</span> NetBSD. The <span class="string">&quot;libedit&quot;</span> library <span class="built_in">is</span> GNU</span><br><span class="line">    Readline-compatible <span class="built_in">and</span> <span class="built_in">is</span> used <span class="keyword">if</span> <span class="string">&quot;libreadline&quot;</span> <span class="built_in">is</span> <span class="built_in">not</span> found, <span class="built_in">or</span> <span class="keyword">if</span></span><br><span class="line">    <span class="string">&quot;--with-libedit-preferred&quot;</span> <span class="built_in">is</span> used <span class="keyword">as</span> an <span class="keyword">option</span> <span class="keyword">to</span> <span class="string">&quot;configure&quot;</span>. <span class="keyword">If</span></span><br><span class="line">    you are <span class="keyword">using</span> a package-based Linux distribution, be aware that you</span><br><span class="line">    need both the readline <span class="built_in">and</span> readline-devel packages, <span class="keyword">if</span> those are</span><br><span class="line">    separate <span class="keyword">in</span> your distribution.</span><br><span class="line"></span><br><span class="line">-   The zlib compression library <span class="built_in">is</span> used <span class="keyword">by</span> <span class="keyword">default</span>. <span class="keyword">If</span> you don<span class="comment">&#x27;t want</span></span><br><span class="line">    <span class="keyword">to</span> use it <span class="keyword">then</span> you must specify the <span class="string">&quot;--without-zlib&quot;</span> <span class="keyword">option</span> <span class="keyword">to</span></span><br><span class="line">    <span class="string">&quot;configure&quot;</span>. <span class="keyword">Using</span> this <span class="keyword">option</span> disables support <span class="keyword">for</span> compressed</span><br><span class="line">    archives <span class="keyword">in</span> pg_dump <span class="built_in">and</span> pg_restore.</span><br></pre></td></tr></table></figure>
-<p><strong>GNU make version 3.80</strong></p>
-<p>我的centos 7中默认安装了GNU make version 3.82</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># make --version</span></span><br><span class="line">GNU Make 3.82</span><br></pre></td></tr></table></figure>
-<p><strong>Recent versions of GCC</strong></p>
-<p>centos 7的gcc版本是</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost ~]<span class="comment"># gcc -v</span></span><br><span class="line">gcc version 4.8.5 20150623 (Red Hat 4.8.5-11) (GCC) </span><br></pre></td></tr></table></figure>
-<p>因此，不需要再安装了。</p>
-<p><strong>tar, gzip, bzip2</strong></p>
-<p>已经安装好了</p>
-<p><strong>readline</strong></p>
-<p>已经安装好了</p>
-<p><strong>zlib</strong></p>
-<p>已经安装好了</p>
-<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">If you are building <span class="built_in">from</span> <span class="keyword">a</span> Git tree instead <span class="keyword">of</span> <span class="keyword">using</span> <span class="keyword">a</span> released source</span><br><span class="line">package, <span class="keyword">or</span> <span class="keyword">if</span> you want <span class="built_in">to</span> <span class="built_in">do</span> server development, you also need <span class="keyword">the</span></span><br><span class="line">following packages:</span><br><span class="line"></span><br><span class="line">-   Flex <span class="keyword">and</span> Bison are needed <span class="built_in">to</span> build <span class="built_in">from</span> <span class="keyword">a</span> Git checkout, <span class="keyword">or</span> <span class="keyword">if</span> you</span><br><span class="line">    changed <span class="keyword">the</span> actual scanner <span class="keyword">and</span> parser definition <span class="built_in">files</span>. If you need</span><br><span class="line">    them, be sure <span class="built_in">to</span> <span class="built_in">get</span> Flex <span class="number">2.5</span><span class="number">.31</span> <span class="keyword">or</span> later <span class="keyword">and</span> Bison <span class="number">1.875</span> <span class="keyword">or</span> later.</span><br><span class="line">    Other lex <span class="keyword">and</span> yacc programs cannot be used.</span><br><span class="line"></span><br><span class="line">-   Perl <span class="number">5.8</span><span class="number">.3</span> <span class="keyword">or</span> later is needed <span class="built_in">to</span> build <span class="built_in">from</span> <span class="keyword">a</span> Git checkout, <span class="keyword">or</span> <span class="keyword">if</span></span><br><span class="line">    you changed <span class="keyword">the</span> input <span class="built_in">files</span> <span class="keyword">for</span> <span class="keyword">any</span> <span class="keyword">of</span> <span class="keyword">the</span> build steps that use Perl</span><br><span class="line">    scripts. If building <span class="keyword">on</span> <span class="title">Windows</span> <span class="title">you</span> <span class="title">will</span> <span class="title">need</span> <span class="title">Perl</span> <span class="title">in</span> <span class="title">any</span> <span class="title">case</span>. <span class="title">Perl</span></span><br><span class="line">    is also required <span class="built_in">to</span> run some test suites.</span><br></pre></td></tr></table></figure>
-<p><strong>Flex</strong></p>
-<p><strong>Bison</strong></p>
-<h1 id="eclipse-helios安装"><a href="#eclipse-helios安装" class="headerlink" title="eclipse helios安装"></a>eclipse helios安装</h1><p><a target="_blank" rel="noopener" href="http://www.eclipse.org/downloads/packages/release/helios/sr2/eclipse-ide-cc-developers">http://www.eclipse.org/downloads/packages/release/helios/sr2/eclipse-ide-cc-developers</a> 这是下载安装包的网址。</p>
-<h1 id="configure"><a href="#configure" class="headerlink" title="configure"></a>configure</h1><p>【2】【3】先创建安装目录，我在$HOME/Desktop文件里创建了postgres/13.3文件夹用于安装。</p>
-<p>在解压的postgresql源码目录下执行命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=<span class="variable">$HOME</span>/Desktop/postgres/13.3 --enable-depend --enable-cassert --enable-debug</span><br></pre></td></tr></table></figure>
-<p>其中—prefix指定PostgreSQL要安装的目录 （这个目录可以任意指定，但是建议使用绝对路径，这样在后续开发过程中不会出现因路径问题而产生的一系列莫名其妙的问题） —enable-depend、 —enable-cassert及 —enable-debug对于开发来说是必须的，尤其是 —enable-debug如果要调试和开发PostgreSQL源码必须进行指定。</p>
-<p><strong>如果要调试方便，需要在configure后修改编译选项</strong></p>
-<p>找到<code>src/Makefile.global</code>文件，然后修改下述代码：</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CFLAGS = -Wall -Wmissing-prototypes -Wpointer-arith -Wdeclaration-<span class="keyword">after</span>-<span class="keyword">statement</span> -Werror=vla -Wendif-labels -Wmissing-<span class="keyword">format</span>-<span class="keyword">attribute</span> -Wformat-<span class="keyword">security</span> -fno-<span class="keyword">strict</span>-aliasing -fwrapv -fexcess-<span class="type">precision</span>=standard -g -O2</span><br></pre></td></tr></table></figure>
-<p>将<code>-O2</code>选项去掉，它是编译器优化选项，如果打开了，代码的执行顺序会变化，使得使用gdb追踪代码比较困难，gdb调试的时候打印变量值时会出现<code>&lt;value optimized out&gt;</code>。</p>
-<h1 id="编译"><a href="#编译" class="headerlink" title="编译"></a>编译</h1><h2 id="eclipse下编译"><a href="#eclipse下编译" class="headerlink" title="eclipse下编译"></a>eclipse下编译</h2><p>首先，在helios eclipse中的<code>File-&gt;import</code>中选择<code>C/C++-&gt;Import Existing Code</code>，然后填写如下表格。</p>
-<img src="/2021/07/30/postgreSQL%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E6%B5%8B%E8%AF%95/image-20210730224054266.png" class="">
-<p><img src="postgreSQL的编译和测试/image-20210730224054266.png" alt="image-20210730224054266"></p>
-<p>点击NEXT，然后将“Existing Code Location”指向<strong>已经configure的</strong>postgreSQL源码的目录，具体见下面。然后等待编译完成。</p>
-<img src="/2021/07/30/postgreSQL%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E6%B5%8B%E8%AF%95/image-20210730225458552.png" class="">
-<p><img src="postgreSQL的编译和测试/image-20210730225458552.png" alt="image-20210730225458552"></p>
-<p>最后在console中出现这个代码表示make成功。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">All of PostgreSQL successfully made. Ready to install.</span><br></pre></td></tr></table></figure>
-<h2 id="linux命令行编译"><a href="#linux命令行编译" class="headerlink" title="linux命令行编译"></a>linux命令行编译</h2><p>在postgresql源码根目录下执行：</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">make</span></span><br></pre></td></tr></table></figure>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="eclipse下安装"><a href="#eclipse下安装" class="headerlink" title="eclipse下安装"></a>eclipse下安装</h2><img src="/2021/07/30/postgreSQL%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E6%B5%8B%E8%AF%95/image-20210730230530689.png" class="">
-<p><img src="postgreSQL的编译和测试/image-20210730230530689.png" alt="image-20210730230530689"></p>
-<p>右击右边的<code>Make Target</code>下面的<code>postgresql-13.3</code>，然后点击<code>New</code>，出现一个窗口，按照下述方式填写。</p>
-<img src="/2021/07/30/postgreSQL%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E6%B5%8B%E8%AF%95/image-20210730230728013.png" class="">
-<p><img src="postgreSQL的编译和测试/image-20210730230728013.png" alt="image-20210730230728013"></p>
-<p>点击<code>OK</code>，就会在<code>Make Target</code>下出现绿色的<code>install</code>选项，双击<code>install</code>进行安装。在console中出现下面的文字，表示安装成功。</p>
-<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PostgreSQL installation complete.</span><br></pre></td></tr></table></figure>
-<h2 id="命令行安装"><a href="#命令行安装" class="headerlink" title="命令行安装"></a>命令行安装</h2><p>在postgresql根目录下执行命令：</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make <span class="keyword">install</span></span><br></pre></td></tr></table></figure>
-<h1 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h1><p>在<code>$HOME//Desktop/postgres/13.3</code>的bash中运行下述代码：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$HOME</span>/Desktop/postgres/13.3/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> PGDATA=DemoDir</span><br><span class="line">initdb</span><br></pre></td></tr></table></figure>
-<p>注意，不能在root下执行上述代码，在普通用户中执行。</p>
-<p>注意：上述环境变量的配置是暂时的，我在关机重启后就不能使用postgres的命令了；如果要永远改变，需要将变量放在<code>~/.bash_profile</code>文件中。</p>
-<hr>
-<p>如果不想在环境变量中指定<code>PGDATA</code>，可以在initdb参数中指定。当然initdb可以指定很多参数：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">initdb <span class="variable">$HOME</span>/Documents/postgresql-13.3/DemoDir -X /mnt/pmem0/pg_wal</span><br><span class="line"><span class="comment"># -X选项指定了PG日志存储的目录，如果不指定-X,则默认在/data/pg_wal中</span></span><br></pre></td></tr></table></figure>
-<h1 id="启动和关闭"><a href="#启动和关闭" class="headerlink" title="启动和关闭"></a>启动和关闭</h1><p>启动：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pg_ctl -D /home/zhouhuahui/postgresql-13.3/data -l logfile start </span><br><span class="line"><span class="comment"># 如果在环境变量中设置了PGDATA，则不用加-D选项</span></span><br><span class="line"><span class="comment"># 默认在5432端口启动</span></span><br><span class="line"><span class="comment"># 若要换到其他端口，可以在postgresql.conf文件中修改port，比如port=5435</span></span><br></pre></td></tr></table></figure>
-<p>关闭：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pg_ctl stop -m smart</span><br><span class="line"><span class="comment"># 以smart方式关闭数据库服务器</span></span><br></pre></td></tr></table></figure>
-<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>查看我们创建的数据库</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -l -p 5432 <span class="comment"># 如果不加-p选项，默认在5432端口启动服务器</span></span><br></pre></td></tr></table></figure>
-<p>创建数据库</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">createdb mydb</span> </span><br></pre></td></tr></table></figure>
-<p>登录到数据库</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">psql mydb</span></span><br></pre></td></tr></table></figure>
-<hr>
-<p>首先运行数据库，然后使用下述命令查看进程</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps x</span><br></pre></td></tr></table></figure>
-<p>然后选择postgres程序的pid，比如是7426，使用gdb进行调试</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gdb</span><br><span class="line">attach 7426</span><br></pre></td></tr></table></figure>
-<p>这个时候可能会出现<code>Missing seperate debuginfos</code>的错误，参考<code>问题/调试错误</code>解决。</p>
-<h2 id="pgbench"><a href="#pgbench" class="headerlink" title="pgbench"></a>pgbench</h2><p>参考《pgbench(postgresql压力测试工具)》：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35651267/article/details/87969328">https://blog.csdn.net/qq_35651267/article/details/87969328</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">createdb pgbench -p 5435</span><br><span class="line">pgbench -i pgbench -p 5435</span><br><span class="line">pgbench -c 32 -j 8 -T 120 -p 5435 pgbench</span><br></pre></td></tr></table></figure>
-<p>nvm: 1620，1592</p>
-<p>disk: 1193, 1207</p>
-<h1 id="取消安装"><a href="#取消安装" class="headerlink" title="取消安装"></a>取消安装</h1><p>在项目根目录下执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">make uninstall</span><br><span class="line">make clean</span><br><span class="line">make distclean</span><br></pre></td></tr></table></figure>
-<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><h2 id="yum命令错误"><a href="#yum命令错误" class="headerlink" title="yum命令错误"></a>yum命令错误</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Repodata <span class="keyword">is</span> <span class="keyword">over</span> <span class="number">2</span> weeks old. Install yum-cron? Or <span class="built_in">run</span>: yum makecache fast</span><br></pre></td></tr></table></figure>
-<p>直接运行下述命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br></pre></td></tr></table></figure>
-<h2 id="configure错误"><a href="#configure错误" class="headerlink" title="configure错误"></a>configure错误</h2><p>configure时出现:</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">configure: <span class="built_in">error</span>: <span class="built_in">readline</span> library <span class="keyword">not</span> found</span><br><span class="line">If you have <span class="built_in">readline</span> already installed, see config.<span class="built_in">log</span> <span class="keyword">for</span> details on the</span><br><span class="line">failure.  It <span class="built_in">is</span> possible the compiler isn&#x27;t looking <span class="keyword">in</span> the proper <span class="built_in">directory</span>.</span><br><span class="line">Use --without-<span class="built_in">readline</span> to disable <span class="built_in">readline</span> support.</span><br></pre></td></tr></table></figure>
-<p>但是我已经安装了<code>readline</code>。根据博客的经验，【1】可能时缺少<code>readline-devel</code>，因此把它安装了试试。然后再测试，又出现<code>zlib</code>未安装的提示，因此安装了<code>zlib-devel</code>，这次成功了。</p>
-<h2 id="用户错误"><a href="#用户错误" class="headerlink" title="用户错误"></a>用户错误</h2><p>当我要<code>initdb</code>时，发现postgres要求用户不是root，因此我切换到普通用户，然后将<code>/root/Desktop</code>目录下的<code>eclipse</code>安装目录，<code>eclipse workspace</code>目录以及<code>postgres</code>目录拷贝到<code>/home/zhouhuahui/Desktop</code>下。但是却发现，这些拷贝的文件夹都有锁。</p>
-<img src="/2021/07/30/postgreSQL%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E6%B5%8B%E8%AF%95/image-20210730235559744.png" class="">
-<p><img src="postgreSQL的编译和测试/image-20210730235559744.png" alt="image-20210730235559744"></p>
-<p>通过<code>chown</code>命令可以给指定用户开锁。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">su</span><br><span class="line">chown zhouhuahui <span class="string">&quot;eclipse workspace&quot;</span> -R</span><br><span class="line">chown zhouhuahui <span class="string">&quot;eclipse&quot;</span> -R</span><br><span class="line">chown zhouhuahui <span class="string">&quot;postgres&quot;</span> -R</span><br></pre></td></tr></table></figure>
-<h2 id="调试错误"><a href="#调试错误" class="headerlink" title="调试错误"></a>调试错误</h2><p>当使用<code>gdb attach 7426</code>命令对postgres进程进行调试时，出现：<code>Missing seperate debuginfos: use debuginfo-install....</code>的错误，这个可能是确收glib导致的。</p>
-<p>首先，进入root用户：<code>su</code></p>
-<p>然后，修改<code>/etc/yum.repos.d/CentOS-Debuginfo.repo</code>文件：设置<code>enable=1</code>。</p>
-<p>接着，<code>yum install glibc</code></p>
-<p>最后：<code>debuginfo-install glibc</code></p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】<a target="_blank" rel="noopener" href="https://www.cnblogs.com/shuaixf/archive/2011/11/29/2268292.html">https://www.cnblogs.com/shuaixf/archive/2011/11/29/2268292.html</a></p>
-<p>【2】<a target="_blank" rel="noopener" href="https://blog.csdn.net/anzelin_ruc/article/details/8539411">https://blog.csdn.net/anzelin_ruc/article/details/8539411</a></p>
-<p>【3】Postgres8源码分析_彭智勇</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/30/postgreSQL%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E6%B5%8B%E8%AF%95/">展开全文 >></a>
         </p>
       
 
