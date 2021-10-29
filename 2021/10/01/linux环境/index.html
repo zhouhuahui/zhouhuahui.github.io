@@ -16,7 +16,7 @@
 <meta property="og:description" content="CentOS 之 XXX is not in the sudoers file解决方法这种情况下要修改&#x2F;etc&#x2F;sudoers文件，将相应的用户名注册进去，比如我的用户名是zhouhuahui，需要这么做：  进入root用户模式。可以直接以root账号登录centos 添加文件的写权限。chmod u+w &#x2F;etc&#x2F;sudoers。 编辑&#x2F;etc&#x2F;sudoers文件，在root ALL&#x3D;(ALL">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-10-01T13:00:54.000Z">
-<meta property="article:modified_time" content="2021-10-16T12:32:26.976Z">
+<meta property="article:modified_time" content="2021-10-18T05:42:50.162Z">
 <meta property="article:author" content="fantasy">
 <meta property="article:tag" content="linux">
 <meta name="twitter:card" content="summary">
@@ -48,7 +48,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="https://zhouhuahui.github.io/2021/10/03/love-story/image-20211018104917844.png" class="js-avatar">
+			<img src="https://zhouhuahui.github.io/2021/10/03/love-story/image-20211018104917844_2.png" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/"></a></h1>
@@ -106,7 +106,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="https://zhouhuahui.github.io/2021/10/03/love-story/image-20211018104917844.png" class="js-avatar">
+				<img src="https://zhouhuahui.github.io/2021/10/03/love-story/image-20211018104917844_2.png" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author"></h1>
@@ -231,6 +231,13 @@
 <li>测试, <code>cmake --version</code>，大功告成</li>
 </ol>
 <h1 id="linux下安装VPN"><a href="#linux下安装VPN" class="headerlink" title="linux下安装VPN"></a>linux下安装VPN</h1><p>点击<a target="_blank" rel="noopener" href="https://www.v2fly.org/guide/install.html#windows-%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F">链接</a></p>
+<h1 id="centos7下安装bison"><a href="#centos7下安装bison" class="headerlink" title="centos7下安装bison"></a>centos7下安装bison</h1><p>yum默认的bison版本不够，需要自己下载编译。<a target="_blank" rel="noopener" href="http://savannah.gnu.org/projects/bison/">bison下载</a>。假如我要下载bison3.7的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://ftp.gnu.org/gnu/bison/bison-3.7.tar.gz --no-check-certificate</span><br></pre></td></tr></table></figure>
+<p>解压：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mkdir bison</span><br><span class="line">tar zxvf bison-3.7.tar.gz -C bison/</span><br></pre></td></tr></table></figure>
+<p>编译，进入bison根目录，查看<code>INSTALL</code>文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> bison/bison-3.7</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<h1 id="centos7下更新源"><a href="#centos7下更新源" class="headerlink" title="centos7下更新源"></a>centos7下更新源</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo</span><br></pre></td></tr></table></figure>
 <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
       
 
@@ -373,7 +380,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CentOS-%E4%B9%8B-XXX-is-not-in-the-sudoers-file%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">CentOS 之 XXX is not in the sudoers file解决方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centos%E7%9A%84scl%E8%BD%AF%E4%BB%B6%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">centos的scl软件集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#centos%E4%B8%8B%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%9A%84gcc-g-gdb"><span class="toc-number">2.1.</span> <span class="toc-text">centos下安装最新的gcc, g++, gdb</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4update-alternatives"><span class="toc-number">3.</span> <span class="toc-text">linux软件版本管理命令update-alternatives</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centos7%E4%B8%8B%E7%9A%84yum%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">centos7下的yum包管理工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centos7%E4%B8%8B%E5%AE%89%E8%A3%85cmake"><span class="toc-number">5.</span> <span class="toc-text">centos7下安装cmake</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E4%B8%8B%E5%AE%89%E8%A3%85VPN"><span class="toc-number">6.</span> <span class="toc-text">linux下安装VPN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">7.</span> <span class="toc-text">引用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CentOS-%E4%B9%8B-XXX-is-not-in-the-sudoers-file%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">CentOS 之 XXX is not in the sudoers file解决方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centos%E7%9A%84scl%E8%BD%AF%E4%BB%B6%E9%9B%86"><span class="toc-number">2.</span> <span class="toc-text">centos的scl软件集</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#centos%E4%B8%8B%E5%AE%89%E8%A3%85%E6%9C%80%E6%96%B0%E7%9A%84gcc-g-gdb"><span class="toc-number">2.1.</span> <span class="toc-text">centos下安装最新的gcc, g++, gdb</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4update-alternatives"><span class="toc-number">3.</span> <span class="toc-text">linux软件版本管理命令update-alternatives</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centos7%E4%B8%8B%E7%9A%84yum%E5%8C%85%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">centos7下的yum包管理工具</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centos7%E4%B8%8B%E5%AE%89%E8%A3%85cmake"><span class="toc-number">5.</span> <span class="toc-text">centos7下安装cmake</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#linux%E4%B8%8B%E5%AE%89%E8%A3%85VPN"><span class="toc-number">6.</span> <span class="toc-text">linux下安装VPN</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centos7%E4%B8%8B%E5%AE%89%E8%A3%85bison"><span class="toc-number">7.</span> <span class="toc-text">centos7下安装bison</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#centos7%E4%B8%8B%E6%9B%B4%E6%96%B0%E6%BA%90"><span class="toc-number">8.</span> <span class="toc-text">centos7下更新源</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">9.</span> <span class="toc-text">引用</span></a></li></ol>
                     </div>
                 </span>
             </div>
