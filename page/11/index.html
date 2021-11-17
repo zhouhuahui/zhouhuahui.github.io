@@ -152,6 +152,126 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-概率论与数理统计" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/01/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/">概率论与数理统计</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/01/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/" class="archive-article-date">
+  	<time datetime="2020-07-01T04:47:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-随机事件及概率"><a href="#1-随机事件及概率" class="headerlink" title="1 随机事件及概率"></a>1 随机事件及概率</h1><h2 id="1-1-随机试验"><a href="#1-1-随机试验" class="headerlink" title="1.1 随机试验"></a>1.1 随机试验</h2><h2 id="1-2-样本空间与随机事件"><a href="#1-2-样本空间与随机事件" class="headerlink" title="1.2 样本空间与随机事件"></a>1.2 样本空间与随机事件</h2><p>我们将随机试验E的所有可能结果组成的集合称为E的<strong>样本空间</strong>，记为S，<strong>样本点</strong>是S中的元素。<br>比如，E(抛硬币)的样本空间是{H, T}</p>
+<p>我们称实验E的样本空间S的子集为E的<strong>随机事件</strong>，当且仅当这一子集中的一个样本点出现时，称这一事件发生。例如，实验E（连续三次抛掷一个硬币），事件A（第一次为H），则A={HHH，HHT，HTH，HTT}</p>
+<p>事件间的关系和事件的运算。<br>相等<br>和事件<br>积事件<br>差事件<br>A与B互不相容<br>A与B互为逆事件（对立事件）：A与B的和事件是样本空间S，A与B的积事件是空集。</p>
+<h2 id="1-3-频率与概率"><a href="#1-3-频率与概率" class="headerlink" title="1.3 频率与概率"></a>1.3 频率与概率</h2><p>频率与概率是相对于<strong>事件</strong>来说的，A发生的频率，A发生的概率。</p>
+<p>概率是事件A在一次试验中发生的可能性的大小。</p>
+<p>根据概率的定义，概率的集合函数满足：<br>1.非负性<br>2.规范性<br>3.可列可加性 </p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/1.png" class="">
+<p>由概率，可得概率的性质：<br>1.空事件的概率为0<br>2.有限可加性<br>3.若A是B的子集，则<code>P(B-A)=P(B)-P(A)</code>。利用了性质2<br>4.逆事件的概率。<br>4.加法公式 <img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/2.png" class=""></p>
+<h2 id="1-4-等可能概型（古典概型）"><a href="#1-4-等可能概型（古典概型）" class="headerlink" title="1.4 等可能概型（古典概型）"></a>1.4 等可能概型（古典概型）</h2><p><strong>等可能概型</strong>：<br>1.试验的样本空间只包含有限个元素<br>2.试验中每个基本事件发生的可能性相同</p>
+<h2 id="1-5-条件概率"><a href="#1-5-条件概率" class="headerlink" title="1.5 条件概率"></a>1.5 条件概率</h2><p>在事件A发生的条件下事件B发生的概率，即为<strong>条件概率</strong>，<code>P(B|A)</code></p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/3.png" class="">
+<p><strong>乘法定理</strong>：<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/4.png" class=""></p>
+<h3 id="1-5-1-全概率公式与贝叶斯公式"><a href="#1-5-1-全概率公式与贝叶斯公式" class="headerlink" title="1.5.1 全概率公式与贝叶斯公式"></a>1.5.1 全概率公式与贝叶斯公式</h3><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/5.png" class="">
+<p>全概率公式的意义是：在很多实际问题中，P(A)不容易直接求得，但是却容易找到S的一个<strong>划分</strong>，通过间接的方式求得P(A)。</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/6.png" class="">
+<p>复杂事件A发生了，关心是哪种划分导致了A的发生，即A发生的情况下划分发生的概率，全概率公式讨论划分发生的情况下A发生的概率。</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/7.png" class="">
+<p>机器调整的良好和机器调整的不好是两个划分，每个划分由对应的概率，但是这种概率是<strong>先验概率</strong>，当第产品生产出来之后，根据贝叶斯公式，可以计算产品合格情况下机器良好的概率，或者产品不合格情况下机器良好的概率，进而调整机器良好的概率，这个概率是<strong>后验概率</strong>。</p>
+<h2 id="1-6-独立性"><a href="#1-6-独立性" class="headerlink" title="1.6 独立性"></a>1.6 独立性</h2><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/8.png" class="">
+<h1 id="2-一维随机变量及其分布"><a href="#2-一维随机变量及其分布" class="headerlink" title="2 一维随机变量及其分布"></a>2 一维随机变量及其分布</h1><h2 id="2-1-随机变量"><a href="#2-1-随机变量" class="headerlink" title="2.1 随机变量"></a>2.1 随机变量</h2><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/9.png" class="">
+<p>当样本空间不是实数集合，X=X(e)表示随机变量，比如，空气污染正常表示1，空气污染严重表示2，这两个事件不是实数，所以需要函数来把事件映射到实数上；当样本空间本身是实数时，就没有必要进行映射，X就是随机变量。</p>
+<p>样本空间相当于定义域，样本点相当于定义域上的每个可能取值，而随机变量就是相当于函数中的变量x。不过这里用X表示随机变量，x表示随机变量的某个可能取值。</p>
+<h2 id="2-2-离散型随机变量及其分布律"><a href="#2-2-离散型随机变量及其分布律" class="headerlink" title="2.2 离散型随机变量及其分布律"></a>2.2 离散型随机变量及其分布律</h2><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/10.png" class="">
+<p>分布律就是X取某个值的概率。</p>
+<h3 id="2-2-1-二项分布"><a href="#2-2-1-二项分布" class="headerlink" title="2.2.1 二项分布"></a>2.2.1 二项分布</h3><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/11.png" class="">
+<p>二项分布就是二项展开式的单项。</p>
+<h3 id="2-2-2-泊松分布"><a href="#2-2-2-泊松分布" class="headerlink" title="2.2.2 泊松分布"></a>2.2.2 泊松分布</h3><p>泊松分布是由二项分布推出来的。</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/12.png" class="">
+<p>我们怎么推出这个公式呢？我们在一个很小的区间内，假设发生次数为lamda，且这个区间分为n个划分，则可假设每个划分下只会出现发生或者不发生，即为0/1分布，且划分内发生的概率为p=lamda/n，则区间内发生次数为k的概率可以通过二项分布B(n,p)算出来。</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/13.png" class="">
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/14.png" class="">
+<p>这个所谓的区间及其发生次数，可以表示，1分钟内来电次数，也可以表示，很多产品中的次品数量。区间长度是n，发生次数是lamda。p=n*lamda。同时，这个情况也要满足一些条件：平稳性，无后效性。</p>
+<p>一般，当n&gt;=20，p&lt;=0.05时，用泊松定理计算的结果效果很好。</p>
+<h3 id="2-2-3-几何分布"><a href="#2-2-3-几何分布" class="headerlink" title="2.2.3 几何分布"></a>2.2.3 几何分布</h3><p>由二项分布推出来的，两次成功时中间的试验次数</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/18.png" class="">
+<h2 id="2-3-随机变量的分布函数"><a href="#2-3-随机变量的分布函数" class="headerlink" title="2.3 随机变量的分布函数"></a>2.3 随机变量的分布函数</h2><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/15.png" class="">
+<p>随机变量的分布函数F(x)满足右连续性。这个分布函数就是指小于等于某个值的概率，与分布律不一样，分布律表示等于某个值的概率。</p>
+<h2 id="2-4-连续型随机变量及其概率密度"><a href="#2-4-连续型随机变量及其概率密度" class="headerlink" title="2.4 连续型随机变量及其概率密度"></a>2.4 连续型随机变量及其概率密度</h2><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/16.png" class="">
+<p>二项分布与泊松分布是离散型随机变量分布，均匀分布，指数分数，正态分布等是连续型随机变量分布。</p>
+<h3 id="2-4-1-均匀分布"><a href="#2-4-1-均匀分布" class="headerlink" title="2.4.1 均匀分布"></a>2.4.1 均匀分布</h3><img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/17.png" class="">
+<h3 id="2-4-2-指数分布"><a href="#2-4-2-指数分布" class="headerlink" title="2.4.2 指数分布"></a>2.4.2 指数分布</h3><p>泊松分布描述某事件在特定时间间隔中发生的次数<br>指数分布给出两次连续事件发生时的等待时间的分布</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/19.png" class="">
+<p>指数分布具有无记忆性，也就是说，在等待时间大于s的情况下等待时间大于s+t的概率和本来等待时间大于t的概率相同。</p>
+<p>指数分布怎么由泊松分布推出来的呢？要计算F(t)（事件第一次发生的时间为t的概率），则计算1-p(T&gt;t)，P(T&gt;t)表示在0-t区间发生了0次事件的概率，即计算泊松分布在lamda, k=0下的函数值。</p>
+<img src="/2020/06/30/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/20.png" class="">
+<p>因此指数分布中的参数theta等于泊松分布中的参数lamda。</p>
+<h1 id="参数估计与假设检验"><a href="#参数估计与假设检验" class="headerlink" title="参数估计与假设检验"></a>参数估计与假设检验</h1><h2 id="最大似然估计"><a href="#最大似然估计" class="headerlink" title="最大似然估计"></a>最大似然估计</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26614750">https://zhuanlan.zhihu.com/p/26614750</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数学</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/01/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-计算机组成原理" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -159,13 +279,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
+      <a class="article-title" href="/2020/06/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">计算机组成原理</a>
     </h1>
   
 
         
-        <a href="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  	<time datetime="2020-06-25T23:37:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-25</time>
+        <a href="/2020/06/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  	<time datetime="2020-06-25T23:37:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-26</time>
 </a>
         
       </header>
@@ -263,7 +383,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/">展开全文 >></a>
         </p>
       
 
@@ -300,13 +420,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/">网络协议分析实验</a>
+      <a class="article-title" href="/2020/06/25/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/">网络协议分析实验</a>
     </h1>
   
 
         
-        <a href="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/" class="archive-article-date">
-  	<time datetime="2020-06-24T20:39:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-24</time>
+        <a href="/2020/06/25/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/" class="archive-article-date">
+  	<time datetime="2020-06-24T20:39:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-25</time>
 </a>
         
       </header>
@@ -451,7 +571,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/24/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/25/%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E5%AE%9E%E9%AA%8C/">展开全文 >></a>
         </p>
       
 
@@ -488,13 +608,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/23/hello-world/">Hello World</a>
+      <a class="article-title" href="/2020/06/24/hello-world/">Hello World</a>
     </h1>
   
 
         
-        <a href="/2020/06/23/hello-world/" class="archive-article-date">
-  	<time datetime="2020-06-23T19:09:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
+        <a href="/2020/06/24/hello-world/" class="archive-article-date">
+  	<time datetime="2020-06-23T19:09:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-24</time>
 </a>
         
       </header>
@@ -522,7 +642,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/23/hello-world/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/06/24/hello-world/">展开全文 >></a>
         </p>
       
 

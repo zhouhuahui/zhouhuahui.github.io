@@ -152,6 +152,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-每日技术阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/10/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">每日技术阅读</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/10/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/" class="archive-article-date">
+  	<time datetime="2021-09-10T00:33:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>每天都要阅读一些技术类的文章，但是如果把所有这些文章都做笔记是不太现实的，但是如果把这些文章都只想过眼云烟一样读一下，又很快忘了，所以在这个文章里记录每个月读的文章链接，标题，以及自己的一点想法。</p>
+<h1 id="2021-9"><a href="#2021-9" class="headerlink" title="2021.9"></a>2021.9</h1><h2 id="数据库读写分离"><a href="#数据库读写分离" class="headerlink" title="数据库读写分离"></a>数据库读写分离</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/findbetterme/p/10820590.html">https://www.cnblogs.com/findbetterme/p/10820590.html</a></p>
+<p>提到了最终一致性。在分布式系统中，对于某些对实时性要求不高的场合里，可以放弃一些一致性，比如采用读写分离的方式，将一些读操作放在从服务器上执行，虽然慢了点，但是等个几分钟也不是不可以。比如，我刚在github.io上发布了新的博客，总是要刷新好几遍才会出来我更新的东西，这就是读写分离。</p>
+<h2 id="为什么选择Rust"><a href="#为什么选择Rust" class="headerlink" title="为什么选择Rust"></a>为什么选择Rust</h2><p><a target="_blank" rel="noopener" href="https://www.techug.com/post/why-we-choose-rust-to-dev.html">https://www.techug.com/post/why-we-choose-rust-to-dev.html</a></p>
+<p>这篇文章对Rust和C++，go语言进行了比较，解释了为什么在大型项目中选择Rust语言。</p>
+<h2 id="Optimistic-Lock-Coupling"><a href="#Optimistic-Lock-Coupling" class="headerlink" title="Optimistic Lock Coupling"></a>Optimistic Lock Coupling</h2><h2 id="乐观锁与悲观锁"><a href="#乐观锁与悲观锁" class="headerlink" title="乐观锁与悲观锁"></a>乐观锁与悲观锁</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.hollischuang.com/archives/934">https://www.hollischuang.com/archives/934</a><br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1604426171880146821&amp;wfr=spider&amp;for=pc">https://baijiahao.baidu.com/s?id=1604426171880146821&amp;wfr=spider&amp;for=pc</a></p>
+<p>悲观锁就是大学时学的那种常见的锁，在做任何更新之前都要获取锁，因为它总是悲观地认为在修改过程中会有别的进程也要修改同样的数据；在乐观锁中，不会获取锁，以提高并发度。</p>
+<ul>
+<li>数据版本,为数据增加的一个版本标识。当读取数据时，将版本标识的值一同读出，数据每更新一次，同时对版本标识进行更新。当我们提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的版本标识进行比对，如果数据库表当前版本号与第一次取出来的版本标识值相等，则予以更新，否则认为是过期数据。</li>
+<li>乐观锁适用于多读应用类型</li>
+<li>但是有个问题是：在高并发地对同一行数据进行修改时，乐观锁会导致大量进程的更新失败。</li>
+</ul>
+<p>在MySQL中，悲观锁的使用是<code>select for update</code>；乐观锁的应用是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">update order_table set status = ‘取消’ where order_id = 001 and status = ‘待支付’ and ....;</span><br><span class="line"></span><br><span class="line">update order_table set status = ‘已发货’ where order_id = 001 and status = ‘已支付’ and ....;   </span><br><span class="line"></span><br><span class="line"># 在实际应用中我们在更新数据的时候，更严谨的做法是带上更新前的“状态”</span><br></pre></td></tr></table></figure>
+<h2 id="perf"><a href="#perf" class="headerlink" title="perf"></a>perf</h2><p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2017/09/flame-graph.html">如何读懂火焰图</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.brendangregg.com/flamegraphs.html">火焰图官方</a></p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/10/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-处理数据库读写冲突" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -159,13 +248,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/">处理数据库读写冲突</a>
+      <a class="article-title" href="/2021/09/10/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/">处理数据库读写冲突</a>
     </h1>
   
 
         
-        <a href="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/" class="archive-article-date">
-  	<time datetime="2021-09-09T23:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
+        <a href="/2021/09/10/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/" class="archive-article-date">
+  	<time datetime="2021-09-09T23:44:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
 </a>
         
       </header>
@@ -230,7 +319,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/09/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/10/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/">展开全文 >></a>
         </p>
       
 
@@ -434,13 +523,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/">读论文：DUDETM</a>
+      <a class="article-title" href="/2021/09/08/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/">读论文：DUDETM</a>
     </h1>
   
 
         
-        <a href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/" class="archive-article-date">
-  	<time datetime="2021-09-08T06:21:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-07</time>
+        <a href="/2021/09/08/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/" class="archive-article-date">
+  	<time datetime="2021-09-08T06:21:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-08</time>
 </a>
         
       </header>
@@ -484,7 +573,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/07/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/08/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/">展开全文 >></a>
         </p>
       
 
@@ -521,13 +610,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/06/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/">持久内存编程PMDK</a>
+      <a class="article-title" href="/2021/09/07/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/">持久内存编程PMDK</a>
     </h1>
   
 
         
-        <a href="/2021/09/06/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/" class="archive-article-date">
-  	<time datetime="2021-09-07T05:24:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-06</time>
+        <a href="/2021/09/07/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/" class="archive-article-date">
+  	<time datetime="2021-09-07T05:24:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-07</time>
 </a>
         
       </header>
@@ -558,7 +647,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/06/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/07/%E6%8C%81%E4%B9%85%E5%86%85%E5%AD%98%E7%BC%96%E7%A8%8BPMDK/">展开全文 >></a>
         </p>
       
 
@@ -595,13 +684,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/30/leetcode/">leetcode</a>
+      <a class="article-title" href="/2021/08/31/leetcode/">leetcode</a>
     </h1>
   
 
         
-        <a href="/2021/08/30/leetcode/" class="archive-article-date">
-  	<time datetime="2021-08-31T04:24:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-30</time>
+        <a href="/2021/08/31/leetcode/" class="archive-article-date">
+  	<time datetime="2021-08-31T04:24:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-31</time>
 </a>
         
       </header>
@@ -750,7 +839,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/30/leetcode/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/08/31/leetcode/">展开全文 >></a>
         </p>
       
 
@@ -787,13 +876,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">finalshell-cisoAnyConnection连接到ecnu服务器</a>
+      <a class="article-title" href="/2021/08/23/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">finalshell-cisoAnyConnection连接到ecnu服务器</a>
     </h1>
   
 
         
-        <a href="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2021-08-23T02:12:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-22</time>
+        <a href="/2021/08/23/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2021-08-23T02:12:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-23</time>
 </a>
         
       </header>
@@ -847,7 +936,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/08/23/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">展开全文 >></a>
         </p>
       
 
@@ -884,13 +973,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/22/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/">开源项目推荐</a>
+      <a class="article-title" href="/2021/08/23/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/">开源项目推荐</a>
     </h1>
   
 
         
-        <a href="/2021/08/22/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="archive-article-date">
-  	<time datetime="2021-08-23T01:38:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-22</time>
+        <a href="/2021/08/23/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="archive-article-date">
+  	<time datetime="2021-08-23T01:38:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-23</time>
 </a>
         
       </header>
@@ -922,7 +1011,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/22/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/08/23/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/">展开全文 >></a>
         </p>
       
 
@@ -959,13 +1048,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+      <a class="article-title" href="/2021/08/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
     </h1>
   
 
         
-        <a href="/2021/08/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2021-08-23T01:35:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-22</time>
+        <a href="/2021/08/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="archive-article-date">
+  	<time datetime="2021-08-23T01:35:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-23</time>
 </a>
         
       </header>
@@ -996,7 +1085,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/22/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/08/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">展开全文 >></a>
         </p>
       
 
@@ -1080,92 +1169,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/08/22/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A4%BA%E4%BE%8B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-跳表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/19/%E8%B7%B3%E8%A1%A8/">跳表</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/19/%E8%B7%B3%E8%A1%A8/" class="archive-article-date">
-  	<time datetime="2021-08-19T14:05:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="跳表"><a href="#跳表" class="headerlink" title="跳表"></a>跳表</h1><p>跳表 (SkipList) 是由 William Pugh 提出的。他在论文呢 《Skip lists: a probabilistic alternative to balanced trees》中详细的介绍了跳表的结构、插入和删除操作的细节。</p>
-<img src="/2021/08/19/%E8%B7%B3%E8%A1%A8/fad7acb0-cfff-11ea-ac11-e713d24749d6.jpg" class="">
-<p><img src="跳表/fad7acb0-cfff-11ea-ac11-e713d24749d6.jpg" alt="在这里插入图片描述"></p>
-<ul>
-<li>图 a 中，所有元素按顺序排列，被存储在一个链表中，则一次查询最多比较 N 个链表节点；</li>
-<li>图 b 中，每隔 2 个链表节点，新增一个额外的指针，该指针指向间距为 2 的下一个节点，如此以来，借助这些额外的指针，一次查询至多只需要 n/2 + 1 次比较； 图 c 中，在图 b 的基础上，每隔 4 个链表节点，新增一个额外的指针，指向间距为 4 的下一个节点，一次查询至多需要 n/4 + 2 次比较。</li>
-</ul>
-<h1 id="跳表查找"><a href="#跳表查找" class="headerlink" title="跳表查找"></a>跳表查找</h1><p>为了在跳跃表中搜索一个关键字，我们从顶层开始，直到找到该搜索关键字或一个比关键字小但下一链接又比关键字大的节点，然后向下移一层并重复这个过程。如此继续，直到搜索成功或在底层搜索失败。</p>
-<img src="/2021/08/19/%E8%B7%B3%E8%A1%A8/5cf9f280-d010-11ea-9783-dd8480e0636f.jpg" class="">
-<p><img src="跳表/5cf9f280-d010-11ea-9783-dd8480e0636f.jpg" alt="在这里插入图片描述"></p>
-<p>快速查询的效率是：O(log_n)</p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>《拒绝做SQL boy…》中有一章节讲跳表：<a target="_blank" rel="noopener" href="https://gitbook.cn/books/5f16777f3ff24476fa473e93/index.html#undefined">https://gitbook.cn/books/5f16777f3ff24476fa473e93/index.html#undefined</a></p>
-<p>图解跳表：<a target="_blank" rel="noopener" href="http://www.360doc.com/content/20/1204/11/13328254_949434656.shtml">http://www.360doc.com/content/20/1204/11/13328254_949434656.shtml</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据结构与算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/19/%E8%B7%B3%E8%A1%A8/">展开全文 >></a>
         </p>
       
 

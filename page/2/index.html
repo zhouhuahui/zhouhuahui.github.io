@@ -152,6 +152,101 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-yacc" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/28/yacc/">yacc</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/28/yacc/" class="archive-article-date">
+  	<time datetime="2021-09-28T02:28:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="yacc-introduction"><a href="#yacc-introduction" class="headerlink" title="yacc introduction"></a>yacc introduction</h1><ol>
+<li>Section 1 describes the preparation of grammar rules, </li>
+<li>Section 2 the preparation of the user supplied actions associated with these rules, and </li>
+<li>Section 3 the preparation of lexical analyzers. </li>
+<li>Section 4 describes the operation of the parser</li>
+</ol>
+<p>参考<a target="_blank" rel="noopener" href="http://dinosaur.compilertools.net/yacc/index.html">yacc</a></p>
+<h1 id="section1-Basic-Specifications"><a href="#section1-Basic-Specifications" class="headerlink" title="section1: Basic Specifications"></a>section1: Basic Specifications</h1><p>every specification file consists of three sections: the declarations, (grammar) rules, and programs. The sections are separated by double percent <code>%%</code> marks. (The percent <code>%&#39;</code> is generally used in Yacc specifications as an escape character.)</p>
+<p>Names representing tokens must be declared; this is most simply done by writing</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">%<span class="selector-tag">token</span></span>   name1  name2</span><br></pre></td></tr></table></figure>
+<p>The parser is designed to recognize the start symbol;</p>
+<figure class="highlight haml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">%<span class="selector-tag">start</span></span>   symbol</span><br></pre></td></tr></table></figure>
+<p>The rules section is made up of one or more grammar rules. A grammar rule has the form:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">A</span>  :  BODY  ;</span><br></pre></td></tr></table></figure>
+<p>A represents a nonterminal name, and BODY represents a sequence of zero or more <strong>names and literals</strong>. The colon and the semicolon are Yacc punctuation.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">A</span> :  <span class="string">&#x27;(&#x27;</span>  B  <span class="string">&#x27;)&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>‘(‘就是一个literal</p>
+<h1 id="section2-Actions"><a href="#section2-Actions" class="headerlink" title="section2: Actions"></a>section2: Actions</h1><p>With each grammar rule, the user may associate actions to be performed each time the rule is recognized in the input process.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">A</span> :  <span class="string">&#x27;(&#x27;</span>  B  <span class="string">&#x27;)&#x27;</span></span><br><span class="line">     &#123;       <span class="built_in">hello</span>( <span class="number">1</span>, <span class="string">&quot;abc&quot;</span> );  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">XXX :  <span class="type">YYY</span>  ZZZ</span><br><span class="line">       &#123;       printf(<span class="string">&quot;a message\n&quot;</span>);</span><br><span class="line">               flag = <span class="number">25</span>;  &#125;</span><br></pre></td></tr></table></figure>
+<p>yacc采用$$$$符号来表示返回值，用<code>$1, $2, $3...</code>等符号来引用被同一个产生式中前面的action返回的结果。</p>
+<figure class="highlight gams"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exp</span>:  <span class="string">&#x27;(&#x27;</span>  expr  <span class="string">&#x27;)&#x27;</span>  &#123;  <span class="symbol">$</span><span class="symbol">$</span> = <span class="symbol">$</span><span class="number">2</span> ;  &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/28/yacc/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-IO多路复用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -159,13 +254,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/23/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">IO多路复用</a>
+      <a class="article-title" href="/2021/09/24/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">IO多路复用</a>
     </h1>
   
 
         
-        <a href="/2021/09/23/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2021-09-24T06:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-23</time>
+        <a href="/2021/09/24/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2021-09-24T06:33:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-24</time>
 </a>
         
       </header>
@@ -232,7 +327,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/23/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/24/IO%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8/">展开全文 >></a>
         </p>
       
 
@@ -269,13 +364,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/16/ARIES/">ARIES</a>
+      <a class="article-title" href="/2021/09/17/ARIES/">ARIES</a>
     </h1>
   
 
         
-        <a href="/2021/09/16/ARIES/" class="archive-article-date">
-  	<time datetime="2021-09-17T00:30:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-16</time>
+        <a href="/2021/09/17/ARIES/" class="archive-article-date">
+  	<time datetime="2021-09-17T00:30:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-17</time>
 </a>
         
       </header>
@@ -342,7 +437,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/16/ARIES/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/17/ARIES/">展开全文 >></a>
         </p>
       
 
@@ -454,13 +549,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/13/Tidb-talent-plan/">Tidb talent plan</a>
+      <a class="article-title" href="/2021/09/14/Tidb-talent-plan/">Tidb talent plan</a>
     </h1>
   
 
         
-        <a href="/2021/09/13/Tidb-talent-plan/" class="archive-article-date">
-  	<time datetime="2021-09-14T02:32:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-13</time>
+        <a href="/2021/09/14/Tidb-talent-plan/" class="archive-article-date">
+  	<time datetime="2021-09-14T02:32:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-14</time>
 </a>
         
       </header>
@@ -520,7 +615,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/13/Tidb-talent-plan/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/14/Tidb-talent-plan/">展开全文 >></a>
         </p>
       
 
@@ -557,13 +652,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/11/stl/">stl</a>
+      <a class="article-title" href="/2021/09/12/stl/">stl</a>
     </h1>
   
 
         
-        <a href="/2021/09/11/stl/" class="archive-article-date">
-  	<time datetime="2021-09-12T06:02:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-11</time>
+        <a href="/2021/09/12/stl/" class="archive-article-date">
+  	<time datetime="2021-09-12T06:02:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-12</time>
 </a>
         
       </header>
@@ -650,7 +745,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/11/stl/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/12/stl/">展开全文 >></a>
         </p>
       
 
@@ -687,13 +782,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/">论文阅读：viper(vldb2021)</a>
+      <a class="article-title" href="/2021/09/11/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/">论文阅读：viper(vldb2021)</a>
     </h1>
   
 
         
-        <a href="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/" class="archive-article-date">
-  	<time datetime="2021-09-10T23:01:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
+        <a href="/2021/09/11/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/" class="archive-article-date">
+  	<time datetime="2021-09-10T23:01:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-11</time>
 </a>
         
       </header>
@@ -735,7 +830,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/11/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/">展开全文 >></a>
         </p>
       
 
@@ -772,13 +867,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/10/Tidb/">Tidb</a>
+      <a class="article-title" href="/2021/09/11/Tidb/">Tidb</a>
     </h1>
   
 
         
-        <a href="/2021/09/10/Tidb/" class="archive-article-date">
-  	<time datetime="2021-09-10T22:55:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
+        <a href="/2021/09/11/Tidb/" class="archive-article-date">
+  	<time datetime="2021-09-10T22:55:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-11</time>
 </a>
         
       </header>
@@ -811,7 +906,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/10/Tidb/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/11/Tidb/">展开全文 >></a>
         </p>
       
 
@@ -848,13 +943,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/">2021ecnu校园地助学贷款</a>
+      <a class="article-title" href="/2021/09/10/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/">2021ecnu校园地助学贷款</a>
     </h1>
   
 
         
-        <a href="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/" class="archive-article-date">
-  	<time datetime="2021-09-10T07:28:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
+        <a href="/2021/09/10/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/" class="archive-article-date">
+  	<time datetime="2021-09-10T07:28:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
 </a>
         
       </header>
@@ -906,7 +1001,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/10/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/">展开全文 >></a>
         </p>
       
 
@@ -943,13 +1038,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/09/%E9%94%81/">锁</a>
+      <a class="article-title" href="/2021/09/10/%E9%94%81/">锁</a>
     </h1>
   
 
         
-        <a href="/2021/09/09/%E9%94%81/" class="archive-article-date">
-  	<time datetime="2021-09-10T01:04:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
+        <a href="/2021/09/10/%E9%94%81/" class="archive-article-date">
+  	<time datetime="2021-09-10T01:04:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
 </a>
         
       </header>
@@ -979,96 +1074,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/09/%E9%94%81/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-每日技术阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">每日技术阅读</a>
-    </h1>
-  
-
-        
-        <a href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/" class="archive-article-date">
-  	<time datetime="2021-09-10T00:33:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>每天都要阅读一些技术类的文章，但是如果把所有这些文章都做笔记是不太现实的，但是如果把这些文章都只想过眼云烟一样读一下，又很快忘了，所以在这个文章里记录每个月读的文章链接，标题，以及自己的一点想法。</p>
-<h1 id="2021-9"><a href="#2021-9" class="headerlink" title="2021.9"></a>2021.9</h1><h2 id="数据库读写分离"><a href="#数据库读写分离" class="headerlink" title="数据库读写分离"></a>数据库读写分离</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/findbetterme/p/10820590.html">https://www.cnblogs.com/findbetterme/p/10820590.html</a></p>
-<p>提到了最终一致性。在分布式系统中，对于某些对实时性要求不高的场合里，可以放弃一些一致性，比如采用读写分离的方式，将一些读操作放在从服务器上执行，虽然慢了点，但是等个几分钟也不是不可以。比如，我刚在github.io上发布了新的博客，总是要刷新好几遍才会出来我更新的东西，这就是读写分离。</p>
-<h2 id="为什么选择Rust"><a href="#为什么选择Rust" class="headerlink" title="为什么选择Rust"></a>为什么选择Rust</h2><p><a target="_blank" rel="noopener" href="https://www.techug.com/post/why-we-choose-rust-to-dev.html">https://www.techug.com/post/why-we-choose-rust-to-dev.html</a></p>
-<p>这篇文章对Rust和C++，go语言进行了比较，解释了为什么在大型项目中选择Rust语言。</p>
-<h2 id="Optimistic-Lock-Coupling"><a href="#Optimistic-Lock-Coupling" class="headerlink" title="Optimistic Lock Coupling"></a>Optimistic Lock Coupling</h2><h2 id="乐观锁与悲观锁"><a href="#乐观锁与悲观锁" class="headerlink" title="乐观锁与悲观锁"></a>乐观锁与悲观锁</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.hollischuang.com/archives/934">https://www.hollischuang.com/archives/934</a><br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1604426171880146821&amp;wfr=spider&amp;for=pc">https://baijiahao.baidu.com/s?id=1604426171880146821&amp;wfr=spider&amp;for=pc</a></p>
-<p>悲观锁就是大学时学的那种常见的锁，在做任何更新之前都要获取锁，因为它总是悲观地认为在修改过程中会有别的进程也要修改同样的数据；在乐观锁中，不会获取锁，以提高并发度。</p>
-<ul>
-<li>数据版本,为数据增加的一个版本标识。当读取数据时，将版本标识的值一同读出，数据每更新一次，同时对版本标识进行更新。当我们提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的版本标识进行比对，如果数据库表当前版本号与第一次取出来的版本标识值相等，则予以更新，否则认为是过期数据。</li>
-<li>乐观锁适用于多读应用类型</li>
-<li>但是有个问题是：在高并发地对同一行数据进行修改时，乐观锁会导致大量进程的更新失败。</li>
-</ul>
-<p>在MySQL中，悲观锁的使用是<code>select for update</code>；乐观锁的应用是：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">update order_table set status = ‘取消’ where order_id = 001 and status = ‘待支付’ and ....;</span><br><span class="line"></span><br><span class="line">update order_table set status = ‘已发货’ where order_id = 001 and status = ‘已支付’ and ....;   </span><br><span class="line"></span><br><span class="line"># 在实际应用中我们在更新数据的时候，更严谨的做法是带上更新前的“状态”</span><br></pre></td></tr></table></figure>
-<h2 id="perf"><a href="#perf" class="headerlink" title="perf"></a>perf</h2><p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2017/09/flame-graph.html">如何读懂火焰图</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.brendangregg.com/flamegraphs.html">火焰图官方</a></p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/10/%E9%94%81/">展开全文 >></a>
         </p>
       
 

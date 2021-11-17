@@ -152,6 +152,105 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-Apache-Tomcat-Web服务器搭建" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/12/Apache-Tomcat-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">Apache Tomcat Web服务器搭建</a>
+    </h1>
+  
+
+        
+        <a href="/2020/09/12/Apache-Tomcat-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" class="archive-article-date">
+  	<time datetime="2020-09-12T07:05:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h1><p>下载jdk-13.0.2_windows-x64_bin.exe，然后安装。配置以下环境变量：</p>
+<ol>
+<li>%JAVA_HOME%\lib\dt.jar</li>
+<li>%JAVA_HOME%\lib\tools.jar</li>
+<li>%JAVA_HOME%\bin</li>
+</ol>
+<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>下载apache-tomcat-9.0.17-windows-x64.zip，然后解压到一个文件夹，比如 <code>D:\APP\tomcat-9.0.17\</code>。</p>
+<p>配置环境变量：</p>
+<ol>
+<li>TOMCAT = D:\APP\tomcat-9.0.17</li>
+<li>%TOMCAT%\lib\servlet-api.jar</li>
+</ol>
+<h2 id="启动web-server"><a href="#启动web-server" class="headerlink" title="启动web server"></a>启动web server</h2><p>运行 %TOMCAT%\bin\startup.bat</p>
+<h2 id="tomcat文件夹结构"><a href="#tomcat文件夹结构" class="headerlink" title="tomcat文件夹结构"></a>tomcat文件夹结构</h2><img src="/2020/09/11/Apache-Tomcat-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/1.jpg" class="">
+<p><img src="Apache-Tomcat-Web服务器搭建/1.jpg" alt="1"></p>
+<p>%TOMCAT%\conf\下很重要的配置文件是server.xml, web.xml</p>
+<p>我们网站的根目录是%TOMCAT%\webapps\ROOT\。我们写的所有.jsp和.html程序都写在ROOT下。%TOMCAT%\webapps\ROOT\WEB-INF\web.xml是对ROOT这个网站的特殊配置，如果你想要对所有网站的配置都相同，则可以直接用%TOMCAT%\conf\web.xml。</p>
+<p>%TOMCAT%\work保存解析.jsp文件后得到的很多.java, .class文件，这是运行网站所需要的。</p>
+<h2 id="conf-server-xml"><a href="#conf-server-xml" class="headerlink" title="conf/server.xml"></a>conf/server.xml</h2><p><strong>修改端口号</strong></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector <span class="attribute">port</span>=<span class="string">&quot;80&quot;</span> <span class="attribute">protocol</span>=<span class="string">&quot;HTTP/1.1&quot;</span>...</span><br></pre></td></tr></table></figure>
+<p><strong>配置虚拟目录</strong></p>
+<p>可以有多个网站，不止%TOMCAT%\webapps\ROOT\一个。</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context </span><br><span class="line">path=<span class="string">&quot;/test&quot;</span> <span class="comment">#&#x27;/&#x27;必须有，表示此虚拟目录的名称</span></span><br><span class="line"><span class="section">http://localhost:8080/test</span></span><br><span class="line">docBase=<span class="string">&quot;e:\testWeb&quot;</span> <span class="comment">#虚拟目录的绝对路径</span></span><br><span class="line">reloadable=<span class="string">&quot;true&quot;</span> /&gt; <span class="comment">#当虚拟目录下的class被更新时，自动被加载</span></span><br></pre></td></tr></table></figure>
+<h2 id="conf-web-xml-WEB-INF-web-xml"><a href="#conf-web-xml-WEB-INF-web-xml" class="headerlink" title="conf/web.xml(WEB-INF/web.xml)"></a>conf/web.xml(WEB-INF/web.xml)</h2><p>原来有：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;welcome-<span class="keyword">file</span>-list&gt;</span><br><span class="line">  &lt;welcome-<span class="keyword">file</span>&gt;<span class="built_in">index</span>.html&lt;/welcome-<span class="keyword">file</span>&gt;</span><br><span class="line">  &lt;welcome-<span class="keyword">file</span>&gt;<span class="built_in">index</span>.htm&lt;/welcome-<span class="keyword">file</span>&gt;</span><br><span class="line">  &lt;welcome-<span class="keyword">file</span>&gt;<span class="built_in">index</span>.jsp&lt;/welcome-<span class="keyword">file</span>&gt;</span><br><span class="line">&lt;/welcome-<span class="keyword">file</span>-list&gt;</span><br></pre></td></tr></table></figure>
+<p>这表示默认显示的页面，默认是index.html。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/12/Apache-Tomcat-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-单片机控制" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -159,13 +258,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/10/%E5%8D%95%E7%89%87%E6%9C%BA%E6%8E%A7%E5%88%B6/">单片机控制</a>
+      <a class="article-title" href="/2020/09/11/%E5%8D%95%E7%89%87%E6%9C%BA%E6%8E%A7%E5%88%B6/">单片机控制</a>
     </h1>
   
 
         
-        <a href="/2020/09/10/%E5%8D%95%E7%89%87%E6%9C%BA%E6%8E%A7%E5%88%B6/" class="archive-article-date">
-  	<time datetime="2020-09-11T02:23:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-10</time>
+        <a href="/2020/09/11/%E5%8D%95%E7%89%87%E6%9C%BA%E6%8E%A7%E5%88%B6/" class="archive-article-date">
+  	<time datetime="2020-09-11T02:23:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-11</time>
 </a>
         
       </header>
@@ -334,7 +433,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/10/%E5%8D%95%E7%89%87%E6%9C%BA%E6%8E%A7%E5%88%B6/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/11/%E5%8D%95%E7%89%87%E6%9C%BA%E6%8E%A7%E5%88%B6/">展开全文 >></a>
         </p>
       
 
@@ -371,13 +470,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/08/notepad-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E6%8E%92%E7%89%88/">notepad-实现代码自动排版</a>
+      <a class="article-title" href="/2020/09/09/notepad-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E6%8E%92%E7%89%88/">notepad-实现代码自动排版</a>
     </h1>
   
 
         
-        <a href="/2020/09/08/notepad-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E6%8E%92%E7%89%88/" class="archive-article-date">
-  	<time datetime="2020-09-09T00:31:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-08</time>
+        <a href="/2020/09/09/notepad-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E6%8E%92%E7%89%88/" class="archive-article-date">
+  	<time datetime="2020-09-09T00:31:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
 </a>
         
       </header>
@@ -426,7 +525,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/08/notepad-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E6%8E%92%E7%89%88/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/09/notepad-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81%E8%87%AA%E5%8A%A8%E6%8E%92%E7%89%88/">展开全文 >></a>
         </p>
       
 
@@ -463,13 +562,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/08/%E7%BC%96%E7%A8%8B%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/">编程错误总结</a>
+      <a class="article-title" href="/2020/09/09/%E7%BC%96%E7%A8%8B%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/">编程错误总结</a>
     </h1>
   
 
         
-        <a href="/2020/09/08/%E7%BC%96%E7%A8%8B%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/" class="archive-article-date">
-  	<time datetime="2020-09-08T18:38:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-08</time>
+        <a href="/2020/09/09/%E7%BC%96%E7%A8%8B%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2020-09-08T18:38:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-09</time>
 </a>
         
       </header>
@@ -521,7 +620,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/08/%E7%BC%96%E7%A8%8B%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/09/%E7%BC%96%E7%A8%8B%E9%94%99%E8%AF%AF%E6%80%BB%E7%BB%93/">展开全文 >></a>
         </p>
       
 
@@ -558,13 +657,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/06/hadoop%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AD%A6%E9%99%A2%E5%AE%9E%E4%B9%A0/">hadoop大数据学院实习</a>
+      <a class="article-title" href="/2020/09/07/hadoop%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AD%A6%E9%99%A2%E5%AE%9E%E4%B9%A0/">hadoop大数据学院实习</a>
     </h1>
   
 
         
-        <a href="/2020/09/06/hadoop%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AD%A6%E9%99%A2%E5%AE%9E%E4%B9%A0/" class="archive-article-date">
-  	<time datetime="2020-09-06T22:34:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-06</time>
+        <a href="/2020/09/07/hadoop%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AD%A6%E9%99%A2%E5%AE%9E%E4%B9%A0/" class="archive-article-date">
+  	<time datetime="2020-09-06T22:34:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-07</time>
 </a>
         
       </header>
@@ -726,7 +825,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/06/hadoop%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AD%A6%E9%99%A2%E5%AE%9E%E4%B9%A0/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/07/hadoop%E5%A4%A7%E6%95%B0%E6%8D%AE%E5%AD%A6%E9%99%A2%E5%AE%9E%E4%B9%A0/">展开全文 >></a>
         </p>
       
 
@@ -763,13 +862,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/30/csp-201503-201312/">csp-201503-201312</a>
+      <a class="article-title" href="/2020/08/31/csp-201503-201312/">csp-201503-201312</a>
     </h1>
   
 
         
-        <a href="/2020/08/30/csp-201503-201312/" class="archive-article-date">
-  	<time datetime="2020-08-31T00:56:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-30</time>
+        <a href="/2020/08/31/csp-201503-201312/" class="archive-article-date">
+  	<time datetime="2020-08-31T00:56:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-31</time>
 </a>
         
       </header>
@@ -819,7 +918,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/30/csp-201503-201312/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/08/31/csp-201503-201312/">展开全文 >></a>
         </p>
       
 
@@ -856,13 +955,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/30/csp-201509/">csp-201509</a>
+      <a class="article-title" href="/2020/08/31/csp-201509/">csp-201509</a>
     </h1>
   
 
         
-        <a href="/2020/08/30/csp-201509/" class="archive-article-date">
-  	<time datetime="2020-08-30T23:44:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-30</time>
+        <a href="/2020/08/31/csp-201509/" class="archive-article-date">
+  	<time datetime="2020-08-30T23:44:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-31</time>
 </a>
         
       </header>
@@ -896,7 +995,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/30/csp-201509/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/08/31/csp-201509/">展开全文 >></a>
         </p>
       
 
@@ -933,13 +1032,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/30/csp-201512/">csp-201512</a>
+      <a class="article-title" href="/2020/08/31/csp-201512/">csp-201512</a>
     </h1>
   
 
         
-        <a href="/2020/08/30/csp-201512/" class="archive-article-date">
-  	<time datetime="2020-08-30T19:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-30</time>
+        <a href="/2020/08/31/csp-201512/" class="archive-article-date">
+  	<time datetime="2020-08-30T19:41:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-31</time>
 </a>
         
       </header>
@@ -981,7 +1080,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/30/csp-201512/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/08/31/csp-201512/">展开全文 >></a>
         </p>
       
 
@@ -1018,13 +1117,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/29/csp-201604/">csp-201604</a>
+      <a class="article-title" href="/2020/08/30/csp-201604/">csp-201604</a>
     </h1>
   
 
         
-        <a href="/2020/08/29/csp-201604/" class="archive-article-date">
-  	<time datetime="2020-08-29T20:31:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-29</time>
+        <a href="/2020/08/30/csp-201604/" class="archive-article-date">
+  	<time datetime="2020-08-29T20:31:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-30</time>
 </a>
         
       </header>
@@ -1069,7 +1168,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/29/csp-201604/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/08/30/csp-201604/">展开全文 >></a>
         </p>
       
 
@@ -1106,13 +1205,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/28/csp-201609/">csp-201609</a>
+      <a class="article-title" href="/2020/08/29/csp-201609/">csp-201609</a>
     </h1>
   
 
         
-        <a href="/2020/08/28/csp-201609/" class="archive-article-date">
-  	<time datetime="2020-08-28T22:43:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-28</time>
+        <a href="/2020/08/29/csp-201609/" class="archive-article-date">
+  	<time datetime="2020-08-28T22:43:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-29</time>
 </a>
         
       </header>
@@ -1153,96 +1252,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/28/csp-201609/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-csp-201612" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/28/csp-201612/">csp-201612</a>
-    </h1>
-  
-
-        
-        <a href="/2020/08/28/csp-201612/" class="archive-article-date">
-  	<time datetime="2020-08-28T17:28:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="20161201（中间数）"><a href="#20161201（中间数）" class="headerlink" title="20161201（中间数）"></a>20161201（中间数）</h1><h2 id="代码1"><a href="#代码1" class="headerlink" title="代码1"></a>代码1</h2><p>现将数字从小到大排序得到values[]，然后用<code>vector&lt;int&gt; minNum</code>，<code>vector&lt;int&gt; maxNum</code> 来表示每个数的比它小的数目和比它大的数目。若知道了minNum[i]，那么minNum[i+1]是下面这么算的。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(values[i] == values[i+<span class="number">1</span>])&#123;</span><br><span class="line">    minNum[i+<span class="number">1</span>] = minNum[i];</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&gt;=<span class="number">0</span>&amp;&amp;values[j]==values[i];j--)</span><br><span class="line">        a++;</span><br><span class="line">    minNum[i+<span class="number">1</span>] = minNum[i] + a;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>对于maxNum的计算也是类似。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; values;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; minNum,maxNum;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    values.<span class="built_in">resize</span>(n);</span><br><span class="line">    minNum.<span class="built_in">resize</span>(n);</span><br><span class="line">    maxNum.<span class="built_in">resize</span>(n);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) cin&gt;&gt;values[i];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">sort</span>(values.<span class="built_in">begin</span>(),values.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">            minNum[i] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;n&amp;&amp;values[j]==values[i];j++)&#123;</span><br><span class="line">                a++;</span><br><span class="line">            &#125;</span><br><span class="line">            maxNum[i] = n-a;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(values[i<span class="number">-1</span>] == values[i])&#123;</span><br><span class="line">                minNum[i] = minNum[i<span class="number">-1</span>];</span><br><span class="line">                maxNum[i] = maxNum[i<span class="number">-1</span>];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=i<span class="number">-1</span>;j&gt;=<span class="number">0</span>&amp;&amp;values[j]==values[i<span class="number">-1</span>];j--)</span><br><span class="line">                    a++;</span><br><span class="line">                minNum[i] = minNum[i<span class="number">-1</span>] + a;</span><br><span class="line">                a = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=i;j&lt;n&amp;&amp;values[j]==values[i];j++)&#123;</span><br><span class="line">                    a++;</span><br><span class="line">                &#125;</span><br><span class="line">                maxNum[i] = maxNum[i<span class="number">-1</span>]-a;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//output</span></span><br><span class="line">    <span class="keyword">bool</span> flag = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(minNum[i]==maxNum[i])&#123;</span><br><span class="line">            cout&lt;&lt;values[i]&lt;&lt;endl;</span><br><span class="line">            flag = <span class="literal">true</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(!flag) cout&lt;&lt;<span class="string">&quot;-1&quot;</span>&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="20161202（工资计算）"><a href="#20161202（工资计算）" class="headerlink" title="20161202（工资计算）"></a>20161202（工资计算）</h1><h2 id="代码1-1"><a href="#代码1-1" class="headerlink" title="代码1"></a>代码1</h2><p>这题把不同税前工资分段的税后工资分段算出来就可以了，然后if else</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> lowerBound[<span class="number">8</span>] = &#123;<span class="number">0</span>,<span class="number">3500</span>,<span class="number">5000</span>,<span class="number">8000</span>,<span class="number">12500</span>,<span class="number">38500</span>,<span class="number">58500</span>,<span class="number">83500</span>&#125;;</span><br><span class="line"><span class="keyword">int</span> rate[<span class="number">8</span>] = &#123;<span class="number">-1</span>,<span class="number">97</span>,<span class="number">90</span>,<span class="number">80</span>,<span class="number">75</span>,<span class="number">70</span>,<span class="number">65</span>,<span class="number">55</span>&#125;;</span><br><span class="line">vector&lt;array&lt;<span class="keyword">int</span>,2&gt;&gt; <span class="built_in">scopes</span>(<span class="number">8</span>); <span class="comment">//表示各个税后工资段</span></span><br><span class="line"><span class="keyword">int</span> T;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;T;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">            scopes[i][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">            scopes[i][<span class="number">1</span>] = <span class="number">3500</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(i&lt;<span class="number">7</span>)&#123;</span><br><span class="line">            scopes[i][<span class="number">0</span>] = scopes[i<span class="number">-1</span>][<span class="number">1</span>];</span><br><span class="line">            scopes[i][<span class="number">1</span>] = scopes[i][<span class="number">0</span>] + rate[i]*(lowerBound[i+<span class="number">1</span>]-lowerBound[i])/<span class="number">100</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            scopes[i][<span class="number">0</span>] = scopes[i<span class="number">-1</span>][<span class="number">1</span>];</span><br><span class="line">            scopes[i][<span class="number">1</span>] = <span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> S = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(scopes[i][<span class="number">1</span>]==<span class="number">-1</span> || T&lt;=scopes[i][<span class="number">1</span>])&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">                S = T;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                S = (T-scopes[i][<span class="number">0</span>])*<span class="number">100</span>/rate[i]+lowerBound[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//output</span></span><br><span class="line">    cout&lt;&lt;S&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="20161203（权限查询）"><a href="#20161203（权限查询）" class="headerlink" title="20161203（权限查询）"></a>20161203（权限查询）</h1><h2 id="代码1-2"><a href="#代码1-2" class="headerlink" title="代码1"></a>代码1</h2><p>当记录角色有哪些权限时，使用<code>unordered_map&lt;string,unoredered_map&lt;string,int&gt;&gt; roleToAuth</code>，我们用<code>unordered_map&lt;string,set&lt;string&gt;&gt; userToRole</code> 来表示每个用户有哪些角色。</p>
-<p>当查询的时候，我先查是否有这个用户，然后再查询是否有这个权限。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">unordered_map&lt;string,unordered_map&lt;string,<span class="keyword">int</span>&gt;&gt; roleToAuth;</span><br><span class="line">unordered_map&lt;string,set&lt;string&gt;&gt; userToRole;</span><br><span class="line"><span class="keyword">int</span> p,r,u,q;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    string auth;</span><br><span class="line">    cin&gt;&gt;p;</span><br><span class="line">    <span class="keyword">while</span>(p--) cin&gt;&gt;auth;</span><br><span class="line">    cin&gt;&gt;r;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;r;i++)&#123;</span><br><span class="line">        string role;</span><br><span class="line">        <span class="keyword">int</span> num;</span><br><span class="line">        cin&gt;&gt;role&gt;&gt;num;</span><br><span class="line">        <span class="keyword">while</span>(num--)&#123;</span><br><span class="line">            cin&gt;&gt;auth;</span><br><span class="line">            <span class="keyword">int</span> k = auth.<span class="built_in">find</span>(<span class="string">&#x27;:&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span>(k == string::npos)&#123;</span><br><span class="line">                roleToAuth[role][auth] = <span class="number">-1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">int</span> level = <span class="built_in">stoi</span>(auth.<span class="built_in">substr</span>(k+<span class="number">1</span>));</span><br><span class="line">                string authName = auth.<span class="built_in">substr</span>(<span class="number">0</span>,k);</span><br><span class="line">                <span class="keyword">if</span>(roleToAuth[role].<span class="built_in">find</span>(authName) != roleToAuth[role].<span class="built_in">end</span>())&#123;</span><br><span class="line">                    roleToAuth[role][authName] = <span class="built_in">max</span>(roleToAuth[role][authName],level);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    roleToAuth[role][authName] = level;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cin&gt;&gt;u;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;u;i++)&#123;</span><br><span class="line">        string user,role;</span><br><span class="line">        <span class="keyword">int</span> num;</span><br><span class="line">        cin&gt;&gt;user&gt;&gt;num;</span><br><span class="line">        <span class="keyword">while</span>(num--)&#123;</span><br><span class="line">            cin&gt;&gt;role;</span><br><span class="line">            userToRole[user].<span class="built_in">insert</span>(role);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cin&gt;&gt;q;</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">        string user,auth,authName;</span><br><span class="line">        cin&gt;&gt;user&gt;&gt;auth; <span class="comment">//error</span></span><br><span class="line">        <span class="keyword">int</span> level;</span><br><span class="line">        <span class="keyword">int</span> k = auth.<span class="built_in">find</span>(<span class="string">&#x27;:&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span>(k==string::npos)&#123;</span><br><span class="line">            authName = auth;</span><br><span class="line">            level = <span class="number">-1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            authName = auth.<span class="built_in">substr</span>(<span class="number">0</span>,k);</span><br><span class="line">            level = <span class="built_in">stoi</span>(auth.<span class="built_in">substr</span>(k+<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(userToRole.<span class="built_in">find</span>(user)==userToRole.<span class="built_in">end</span>())&#123; <span class="comment">//error: authName</span></span><br><span class="line">            cout&lt;&lt;<span class="string">&quot;false&quot;</span>&lt;&lt;endl;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            set&lt;string&gt;&amp; st = userToRole[user];</span><br><span class="line">            set&lt;string&gt;::iterator it = st.<span class="built_in">begin</span>(); <span class="comment">//这个用户的所有角色</span></span><br><span class="line">            <span class="keyword">bool</span> flag = <span class="literal">false</span>; <span class="comment">//是否查询到指定的权限</span></span><br><span class="line">            <span class="keyword">int</span> level2 = <span class="number">-1</span>; <span class="comment">//查询到的指定权限的等级</span></span><br><span class="line">            <span class="keyword">for</span>(;it!=st.<span class="built_in">end</span>();it++)&#123;</span><br><span class="line">                string role = (*it);</span><br><span class="line">                unordered_map&lt;string,unordered_map&lt;string,<span class="keyword">int</span>&gt;&gt;::iterator it2 = roleToAuth.<span class="built_in">find</span>(role);</span><br><span class="line">                <span class="keyword">if</span>(it2!=roleToAuth.<span class="built_in">end</span>())&#123;</span><br><span class="line">                    unordered_map&lt;string,<span class="keyword">int</span>&gt;::iterator it3 = (*it2).second.<span class="built_in">find</span>(authName);</span><br><span class="line">                    <span class="keyword">if</span>(it3 != (*it2).second.<span class="built_in">end</span>())&#123;</span><br><span class="line">                        flag = <span class="literal">true</span>;</span><br><span class="line">                        level2 = <span class="built_in">max</span>(level2,(*it3).second);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!flag)&#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">&quot;false&quot;</span>&lt;&lt;endl;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">if</span>(level2!=<span class="number">-1</span> &amp;&amp; level==<span class="number">-1</span>)&#123;</span><br><span class="line">                    cout&lt;&lt;level2&lt;&lt;endl;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(level2!=<span class="number">-1</span> &amp;&amp; level!=<span class="number">-1</span>)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(level&lt;=level2)&#123;</span><br><span class="line">                        cout&lt;&lt;<span class="string">&quot;true&quot;</span>&lt;&lt;endl;</span><br><span class="line">                    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                        cout&lt;&lt;<span class="string">&quot;false&quot;</span>&lt;&lt;endl;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(level2==<span class="number">-1</span>&amp;&amp;level==<span class="number">-1</span>)&#123;</span><br><span class="line">                    cout&lt;&lt;<span class="string">&quot;true&quot;</span>&lt;&lt;endl;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    cout&lt;&lt;<span class="string">&quot;false&quot;</span>&lt;&lt;endl;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意28行，因为在输入每个角色的很多权限时，可能出现<code>auth1:1</code> 和 <code>auth1:2</code>这两个输入，这是要比较1和2中较大者作为auth1的等级，一开始没有考虑这点时90分，考虑了就100分。还有60行，我被user，auth，authName给弄晕了，本来应该根据user来查询的，我写成根据authName来查询，而且我还忘了输入cin了。</p>
-<h1 id="20161204（压缩编码）"><a href="#20161204（压缩编码）" class="headerlink" title="20161204（压缩编码）"></a>20161204（压缩编码）</h1><h2 id="代码1-3"><a href="#代码1-3" class="headerlink" title="代码1"></a>代码1</h2><p>假设输入有n个点，那么考虑范围就是<code>[0, n*2-2]</code>，下面是递推公式。</p>
-<script type="math/tex; mode=display">
-C(i,j)=min(C(i,k-1),C(k+1,j)+W(i,j)), k\epsilon(i+1,i+3,...,j-1)</script><p>其中<code>W(i,j)</code> 表示$a_i$ 到 $a_j$ 范围内的频率相加之和。</p>
-<p>所以可以利用动态规划的方法，先算使得j-i=0的，再算j-i=3的，一直到j-i=n*2-2的。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line"><span class="comment">//ios::sync_with_stdio(false);</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXN 1005</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> C[<span class="number">2</span>*MAXN<span class="number">-1</span>][<span class="number">2</span>*MAXN<span class="number">-1</span>];</span><br><span class="line"><span class="keyword">int</span> W[<span class="number">2</span>*MAXN<span class="number">-1</span>][<span class="number">2</span>*MAXN<span class="number">-1</span>];</span><br><span class="line"><span class="keyword">int</span> F[<span class="number">2</span>*MAXN<span class="number">-1</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//freopen(&quot;D://input.txt&quot;,&quot;r&quot;,stdin);</span></span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        cin&gt;&gt;F[<span class="number">2</span>*i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> len=<span class="number">0</span>;len&lt;=n*<span class="number">2</span><span class="number">-2</span>;len=len+<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(len==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i+len&lt;<span class="number">2</span>*n<span class="number">-1</span>;i=i+<span class="number">2</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> j = i+len;</span><br><span class="line">                W[i][j] = F[i];</span><br><span class="line">                C[i][j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i+len&lt;<span class="number">2</span>*n<span class="number">-1</span>;i=i+<span class="number">2</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> j = i+len;</span><br><span class="line">                W[i][j] = W[i][i] + W[i+<span class="number">2</span>][j];</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=i+<span class="number">1</span>;k&lt;j;k=k+<span class="number">2</span>)&#123;</span><br><span class="line">                    <span class="keyword">int</span> temp = C[i][k<span class="number">-1</span>]+C[k+<span class="number">1</span>][j] + W[i][j];</span><br><span class="line">                    <span class="keyword">if</span>(k==i+<span class="number">1</span>) C[i][j] = temp;</span><br><span class="line">                    <span class="keyword">else</span> C[i][j] = <span class="built_in">min</span>(temp,C[i][j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//output</span></span><br><span class="line">    cout&lt;&lt;C[<span class="number">0</span>][<span class="number">2</span>*n<span class="number">-2</span>]&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这道题告诉我一个很重要的事实：能不用vector就不用vector，直接中静态数组，这样就是20分的区别，因为这题用vector就恰好超时，丢掉了那20分。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/08/28/csp-201612/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/08/29/csp-201609/">展开全文 >></a>
         </p>
       
 

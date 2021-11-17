@@ -152,6 +152,84 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-js-闭包" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/09/js-%E9%97%AD%E5%8C%85/">js-闭包</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/09/js-%E9%97%AD%E5%8C%85/" class="archive-article-date">
+  	<time datetime="2020-10-09T08:07:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>js中的闭包是个很难理解的概念，因为仔细思考，它似乎违背了编译原理的知识，可能是因为js是动态语言，而编译原理的知识是针对静态语言吧。看下面的例子。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> cnt = <span class="number">0</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            cnt++</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> cnt</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> s1 = func1()</span></span><br><span class="line"><span class="javascript">    s1()</span></span><br><span class="line"><span class="javascript">    s1()</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> s2 = func1()</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(s1())</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
+<p>这说明，js中的funtion并不是C语言中的函数，而是一个类似于对象的概念。当你执行func1()时，并不是执行一个函数，而是创造了一个对象，并执行这个对象里面的代码。当你第一次执行func1()时，创造了一个匿名对象，这个对象里面有数据cnt，而当你再次执行func1()时，又创造了一个匿名对象，这个对象里面也有cnt，但是与上一个不同。所以，上面的代码，输出3.</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/09/js-%E9%97%AD%E5%8C%85/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-浏览器渲染页面的过程" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -159,13 +237,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">浏览器渲染页面的过程</a>
+      <a class="article-title" href="/2020/10/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">浏览器渲染页面的过程</a>
     </h1>
   
 
         
-        <a href="/2020/10/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2020-10-09T01:57:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-08</time>
+        <a href="/2020/10/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/" class="archive-article-date">
+  	<time datetime="2020-10-09T01:57:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-09</time>
 </a>
         
       </header>
@@ -217,7 +295,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/08/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/10/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E7%9A%84%E8%BF%87%E7%A8%8B/">展开全文 >></a>
         </p>
       
 
@@ -254,13 +332,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/08/js-%E8%AE%A4%E8%AF%86this/">js-认识this</a>
+      <a class="article-title" href="/2020/10/09/js-%E8%AE%A4%E8%AF%86this/">js-认识this</a>
     </h1>
   
 
         
-        <a href="/2020/10/08/js-%E8%AE%A4%E8%AF%86this/" class="archive-article-date">
-  	<time datetime="2020-10-09T01:22:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-08</time>
+        <a href="/2020/10/09/js-%E8%AE%A4%E8%AF%86this/" class="archive-article-date">
+  	<time datetime="2020-10-09T01:22:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-09</time>
 </a>
         
       </header>
@@ -298,7 +376,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/08/js-%E8%AE%A4%E8%AF%86this/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/10/09/js-%E8%AE%A4%E8%AF%86this/">展开全文 >></a>
         </p>
       
 
@@ -335,13 +413,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/07/Vue-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/">Vue-响应式原理</a>
+      <a class="article-title" href="/2020/10/08/Vue-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/">Vue-响应式原理</a>
     </h1>
   
 
         
-        <a href="/2020/10/07/Vue-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" class="archive-article-date">
-  	<time datetime="2020-10-08T06:49:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-07</time>
+        <a href="/2020/10/08/Vue-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" class="archive-article-date">
+  	<time datetime="2020-10-08T06:49:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-08</time>
 </a>
         
       </header>
@@ -429,7 +507,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/07/Vue-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/10/08/Vue-%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/">展开全文 >></a>
         </p>
       
 
@@ -466,13 +544,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/28/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/">C语言基础</a>
+      <a class="article-title" href="/2020/09/29/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/">C语言基础</a>
     </h1>
   
 
         
-        <a href="/2020/09/28/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="archive-article-date">
-  	<time datetime="2020-09-29T04:35:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-28</time>
+        <a href="/2020/09/29/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/" class="archive-article-date">
+  	<time datetime="2020-09-29T04:35:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-29</time>
 </a>
         
       </header>
@@ -568,7 +646,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/28/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/29/C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80/">展开全文 >></a>
         </p>
       
 
@@ -605,13 +683,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/">css的flex布局</a>
+      <a class="article-title" href="/2020/09/27/css%E7%9A%84flex%E5%B8%83%E5%B1%80/">css的flex布局</a>
     </h1>
   
 
         
-        <a href="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/" class="archive-article-date">
-  	<time datetime="2020-09-27T00:35:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-26</time>
+        <a href="/2020/09/27/css%E7%9A%84flex%E5%B8%83%E5%B1%80/" class="archive-article-date">
+  	<time datetime="2020-09-27T00:35:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-27</time>
 </a>
         
       </header>
@@ -734,7 +812,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/26/css%E7%9A%84flex%E5%B8%83%E5%B1%80/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/27/css%E7%9A%84flex%E5%B8%83%E5%B1%80/">展开全文 >></a>
         </p>
       
 
@@ -771,13 +849,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/20/RESTful-API/">RESTful-API</a>
+      <a class="article-title" href="/2020/09/21/RESTful-API/">RESTful-API</a>
     </h1>
   
 
         
-        <a href="/2020/09/20/RESTful-API/" class="archive-article-date">
-  	<time datetime="2020-09-21T05:34:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-20</time>
+        <a href="/2020/09/21/RESTful-API/" class="archive-article-date">
+  	<time datetime="2020-09-21T05:34:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-21</time>
 </a>
         
       </header>
@@ -863,7 +941,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/20/RESTful-API/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/21/RESTful-API/">展开全文 >></a>
         </p>
       
 
@@ -900,13 +978,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/15/WEB%E5%89%8D%E7%AB%AF%EF%BC%88%E4%BA%8C%EF%BC%89/">WEB前端（二）</a>
+      <a class="article-title" href="/2020/09/16/WEB%E5%89%8D%E7%AB%AF%EF%BC%88%E4%BA%8C%EF%BC%89/">WEB前端（二）</a>
     </h1>
   
 
         
-        <a href="/2020/09/15/WEB%E5%89%8D%E7%AB%AF%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-09-16T07:36:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-15</time>
+        <a href="/2020/09/16/WEB%E5%89%8D%E7%AB%AF%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-09-16T07:36:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-16</time>
 </a>
         
       </header>
@@ -1068,7 +1146,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/15/WEB%E5%89%8D%E7%AB%AF%EF%BC%88%E4%BA%8C%EF%BC%89/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/16/WEB%E5%89%8D%E7%AB%AF%EF%BC%88%E4%BA%8C%EF%BC%89/">展开全文 >></a>
         </p>
       
 
@@ -1105,13 +1183,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/15/WEB%E5%89%8D%E7%AB%AF/">WEB前端</a>
+      <a class="article-title" href="/2020/09/16/WEB%E5%89%8D%E7%AB%AF/">WEB前端</a>
     </h1>
   
 
         
-        <a href="/2020/09/15/WEB%E5%89%8D%E7%AB%AF/" class="archive-article-date">
-  	<time datetime="2020-09-16T07:36:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-15</time>
+        <a href="/2020/09/16/WEB%E5%89%8D%E7%AB%AF/" class="archive-article-date">
+  	<time datetime="2020-09-16T07:36:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-16</time>
 </a>
         
       </header>
@@ -1594,7 +1672,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/15/WEB%E5%89%8D%E7%AB%AF/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/09/16/WEB%E5%89%8D%E7%AB%AF/">展开全文 >></a>
         </p>
       
 
@@ -1672,105 +1750,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/09/12/MySQL%E5%AE%89%E8%A3%85/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-Apache-Tomcat-Web服务器搭建" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/11/Apache-Tomcat-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">Apache Tomcat Web服务器搭建</a>
-    </h1>
-  
-
-        
-        <a href="/2020/09/11/Apache-Tomcat-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/" class="archive-article-date">
-  	<time datetime="2020-09-12T07:05:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h1><p>下载jdk-13.0.2_windows-x64_bin.exe，然后安装。配置以下环境变量：</p>
-<ol>
-<li>%JAVA_HOME%\lib\dt.jar</li>
-<li>%JAVA_HOME%\lib\tools.jar</li>
-<li>%JAVA_HOME%\bin</li>
-</ol>
-<h1 id="Tomcat"><a href="#Tomcat" class="headerlink" title="Tomcat"></a>Tomcat</h1><p>下载apache-tomcat-9.0.17-windows-x64.zip，然后解压到一个文件夹，比如 <code>D:\APP\tomcat-9.0.17\</code>。</p>
-<p>配置环境变量：</p>
-<ol>
-<li>TOMCAT = D:\APP\tomcat-9.0.17</li>
-<li>%TOMCAT%\lib\servlet-api.jar</li>
-</ol>
-<h2 id="启动web-server"><a href="#启动web-server" class="headerlink" title="启动web server"></a>启动web server</h2><p>运行 %TOMCAT%\bin\startup.bat</p>
-<h2 id="tomcat文件夹结构"><a href="#tomcat文件夹结构" class="headerlink" title="tomcat文件夹结构"></a>tomcat文件夹结构</h2><img src="/2020/09/11/Apache-Tomcat-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/1.jpg" class="">
-<p><img src="Apache-Tomcat-Web服务器搭建/1.jpg" alt="1"></p>
-<p>%TOMCAT%\conf\下很重要的配置文件是server.xml, web.xml</p>
-<p>我们网站的根目录是%TOMCAT%\webapps\ROOT\。我们写的所有.jsp和.html程序都写在ROOT下。%TOMCAT%\webapps\ROOT\WEB-INF\web.xml是对ROOT这个网站的特殊配置，如果你想要对所有网站的配置都相同，则可以直接用%TOMCAT%\conf\web.xml。</p>
-<p>%TOMCAT%\work保存解析.jsp文件后得到的很多.java, .class文件，这是运行网站所需要的。</p>
-<h2 id="conf-server-xml"><a href="#conf-server-xml" class="headerlink" title="conf/server.xml"></a>conf/server.xml</h2><p><strong>修改端口号</strong></p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Connector <span class="attribute">port</span>=<span class="string">&quot;80&quot;</span> <span class="attribute">protocol</span>=<span class="string">&quot;HTTP/1.1&quot;</span>...</span><br></pre></td></tr></table></figure>
-<p><strong>配置虚拟目录</strong></p>
-<p>可以有多个网站，不止%TOMCAT%\webapps\ROOT\一个。</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context </span><br><span class="line">path=<span class="string">&quot;/test&quot;</span> <span class="comment">#&#x27;/&#x27;必须有，表示此虚拟目录的名称</span></span><br><span class="line"><span class="section">http://localhost:8080/test</span></span><br><span class="line">docBase=<span class="string">&quot;e:\testWeb&quot;</span> <span class="comment">#虚拟目录的绝对路径</span></span><br><span class="line">reloadable=<span class="string">&quot;true&quot;</span> /&gt; <span class="comment">#当虚拟目录下的class被更新时，自动被加载</span></span><br></pre></td></tr></table></figure>
-<h2 id="conf-web-xml-WEB-INF-web-xml"><a href="#conf-web-xml-WEB-INF-web-xml" class="headerlink" title="conf/web.xml(WEB-INF/web.xml)"></a>conf/web.xml(WEB-INF/web.xml)</h2><p>原来有：</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;welcome-<span class="keyword">file</span>-list&gt;</span><br><span class="line">  &lt;welcome-<span class="keyword">file</span>&gt;<span class="built_in">index</span>.html&lt;/welcome-<span class="keyword">file</span>&gt;</span><br><span class="line">  &lt;welcome-<span class="keyword">file</span>&gt;<span class="built_in">index</span>.htm&lt;/welcome-<span class="keyword">file</span>&gt;</span><br><span class="line">  &lt;welcome-<span class="keyword">file</span>&gt;<span class="built_in">index</span>.jsp&lt;/welcome-<span class="keyword">file</span>&gt;</span><br><span class="line">&lt;/welcome-<span class="keyword">file</span>-list&gt;</span><br></pre></td></tr></table></figure>
-<p>这表示默认显示的页面，默认是index.html。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/09/11/Apache-Tomcat-Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%90%AD%E5%BB%BA/">展开全文 >></a>
         </p>
       
 

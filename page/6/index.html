@@ -152,6 +152,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-art-template的前端渲染用法" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/10/art-template%E7%9A%84%E5%89%8D%E7%AB%AF%E6%B8%B2%E6%9F%93%E7%94%A8%E6%B3%95/">art-template的前端渲染用法</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/10/art-template%E7%9A%84%E5%89%8D%E7%AB%AF%E6%B8%B2%E6%9F%93%E7%94%A8%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2021-03-10T08:17:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>目录<br>1.基础数据渲染<br>2.输出HTML<br>3.流程控制<br>4.遍历<br>5.调用自定义函数方法<br>6.子模板引入</p>
+<p>基础数据渲染</p>
+<h2 id="引入art-template-js文件"><a href="#引入art-template-js文件" class="headerlink" title="引入art-template.js文件"></a>引入art-template.js文件</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;template-debug.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="编写HTML模板"><a href="#编写HTML模板" class="headerlink" title="编写HTML模板"></a>编写HTML模板</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;test&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><span class="template-variable">&#123;&#123;<span class="name">title</span>&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="向模板插入数据，并输出到页面"><a href="#向模板插入数据，并输出到页面" class="headerlink" title="向模板插入数据，并输出到页面"></a>向模板插入数据，并输出到页面</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">    <span class="attr">title</span>:<span class="string">&quot;hello world&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> html = template(<span class="string">&quot;test&quot;</span>,data);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&#x27;content&#x27;</span>).innerHTML = html;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;test&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><span class="template-variable">&#123;&#123;<span class="name">title</span>&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>注意：<code>&#123;&#123;title&#125;&#125;</code>这是对内容编码输出，应该写成<code>&#123;&#123;@title&#125;&#125;</code>这是对内容不编码输出</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;test&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span><span class="template-tag">&#123;&#123;#<span class="name">title</span>&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">    <span class="attr">title</span>:<span class="string">&quot;&lt;p&gt;hello world&lt;/p&gt;&quot;</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> html = template(<span class="string">&quot;test&quot;</span>,data);</span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">&#x27;content&#x27;</span>).innerHTML = html;</span><br></pre></td></tr></table></figure>
+<h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;if value&#125;&#125;</span><br><span class="line">…</span><br><span class="line">&#123;&#123;else if value&#125;&#125;</span><br><span class="line">…</span><br><span class="line">&#123;&#123;else&#125;&#125;</span><br><span class="line">…</span><br><span class="line">&#123;&#123;/if&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>art-template里面的流程控制就相对其他模板来说强大很多了，直接看例子吧</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;test&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        </span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">if</span></span> <span class="attr">bok</span>==<span class="number">22</span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>线上<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        </span><span class="template-tag">&#123;&#123;<span class="keyword">else</span> <span class="keyword">if</span> bok==33&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        <span class="tag">&lt;<span class="name">h2</span>&gt;</span>隐藏<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        </span><span class="template-tag">&#123;&#123;<span class="keyword">else</span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>走这里<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        </span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">if</span></span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> data = &#123;</span></span><br><span class="line"><span class="javascript">        <span class="string">&quot;bok&quot;</span>:<span class="number">22</span></span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> html = template(<span class="string">&#x27;test&#x27;</span>,data);</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">&quot;app&quot;</span>).innerHTML = html;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>嵌套的写法：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;test&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        </span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">if</span></span> bok&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">            </span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">if</span></span> list.length&gt;=<span class="number">0</span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">                </span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">each</span></span> list&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">                    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><span class="template-variable">&#123;&#123;<span class="name">$index</span>&#125;&#125;</span><span class="xml">:</span><span class="template-variable">&#123;&#123;<span class="name">$value</span>&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">                </span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">each</span></span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">            </span><span class="template-tag">&#123;&#123;<span class="keyword">else</span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">                <span class="tag">&lt;<span class="name">p</span>&gt;</span>没有数据<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">            </span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">if</span></span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        </span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">if</span></span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> data = &#123;</span></span><br><span class="line"><span class="javascript">        <span class="string">&quot;bok&quot;</span>:<span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">list</span>:[<span class="string">&quot;a&quot;</span>,<span class="string">&quot;b&quot;</span>,<span class="string">&quot;c&quot;</span>]</span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> html = template(<span class="string">&#x27;test&#x27;</span>,data);</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">&quot;app&quot;</span>).innerHTML = html;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="循环遍历语句"><a href="#循环遍历语句" class="headerlink" title="循环遍历语句"></a>循环遍历语句</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;each name&#125;&#125;</span><br><span class="line">索引：&#123;&#123;$index&#125;&#125;</span><br><span class="line">值：&#123;&#123;$value&#125;&#125;</span><br><span class="line">&#123;&#123;/each&#125;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;test&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        </span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">if</span></span> <span class="attr">c</span>==<span class="number">100</span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">            <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">                </span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">each</span></span> person&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">                    <span class="tag">&lt;<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">                        编号：</span><span class="template-variable">&#123;&#123;<span class="name">$index</span>+<span class="number">1</span>&#125;&#125;</span><span class="xml">--姓名：</span><span class="template-variable">&#123;&#123;<span class="name">$value.name</span>&#125;&#125;</span><span class="xml">--年龄：</span><span class="template-variable">&#123;&#123;<span class="name">$value.age</span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">                    <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">                </span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">each</span></span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">            <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        </span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">if</span></span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> data = &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">c</span>:<span class="number">100</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">person</span>:[</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;jack&quot;</span>,<span class="attr">age</span>:<span class="number">18</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;tom&quot;</span>,<span class="attr">age</span>:<span class="number">19</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;jerry&quot;</span>,<span class="attr">age</span>:<span class="number">20</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;kid&quot;</span>,<span class="attr">age</span>:<span class="number">21</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;jade&quot;</span>,<span class="attr">age</span>:<span class="number">22</span>&#125;</span></span><br><span class="line"><span class="javascript">        ]</span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> html = template(<span class="string">&quot;test&quot;</span>,data);</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">&quot;content&quot;</span>).innerHTML = html;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="调用自定义方法"><a href="#调用自定义方法" class="headerlink" title="调用自定义方法"></a>调用自定义方法</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;test&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    </span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">if</span></span> <span class="attr">c</span>==<span class="number">100</span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">            </span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">each</span></span> person&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">                <span class="tag">&lt;<span class="name">li</span>&gt;</span>姓名：</span><span class="template-variable">&#123;&#123;<span class="name">$value.name</span>&#125;&#125;</span><span class="xml">--性别：</span><span class="template-variable">&#123;&#123;<span class="name">show</span>(<span class="name">$value.sex</span>)&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">            </span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">each</span></span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    </span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">if</span></span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span> =<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">	</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> data = &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">c</span>:<span class="number">100</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">person</span>:[</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;jack&quot;</span>,<span class="attr">age</span>:<span class="number">18</span>,<span class="attr">sex</span>:<span class="number">1</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;tom&quot;</span>,<span class="attr">age</span>:<span class="number">19</span>,<span class="attr">sex</span>:<span class="number">0</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;jerry&quot;</span>,<span class="attr">age</span>:<span class="number">20</span>,<span class="attr">sex</span>:<span class="number">0</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;kid&quot;</span>,<span class="attr">age</span>:<span class="number">21</span>,<span class="attr">sex</span>:<span class="number">1</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;jade&quot;</span>,<span class="attr">age</span>:<span class="number">22</span>,<span class="attr">sex</span>:<span class="number">0</span>&#125;</span></span><br><span class="line"><span class="javascript">        ]</span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript">    <span class="comment">//自定义函数</span></span></span><br><span class="line"><span class="javascript">   template.defaults.imports.show = <span class="function"><span class="keyword">function</span>(<span class="params">sex</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(sex);<span class="comment">//同样可以打印日志到控制台</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(sex==<span class="number">0</span>)&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="string">&quot;男&quot;</span></span></span><br><span class="line"><span class="javascript">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(sex==<span class="number">1</span>)&#123;</span></span><br><span class="line"><span class="javascript">              <span class="keyword">return</span> <span class="string">&quot;女&quot;</span></span></span><br><span class="line"><span class="javascript">      &#125;</span></span><br><span class="line"><span class="javascript">        &#125;;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> html = template(<span class="string">&quot;test&quot;</span>,data);</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">&quot;app&quot;</span>).innerHTML = html;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="调用子模板"><a href="#调用子模板" class="headerlink" title="调用子模板"></a>调用子模板</h2><p>引入子模板：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;include ‘main’&#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>数据默认为共享</p>
+<p>引入子模板：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;include ‘main’ a&#125;&#125; a</span><br></pre></td></tr></table></figure>
+<p>为制定数据，但是同样必须是父级数据，可以看看下面的例子，如果不注入a的话，引入的子模板是接受不到数据的</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;template-debug.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;main&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">       </span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">each</span></span> list&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">            <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123;<span class="name">$value</span>&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        </span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">each</span></span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">id</span>=<span class="string">&quot;test&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/html&quot;</span>&gt;</span><span class="handlebars"><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">            </span><span class="template-variable">&#123;&#123;<span class="name"><span class="builtin-name">each</span></span> person&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">                <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><span class="template-variable">&#123;&#123;<span class="name">$value.name</span>&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">            </span><span class="template-tag">&#123;&#123;/<span class="name"><span class="builtin-name">each</span></span>&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">        </span><span class="template-variable">&#123;&#123;<span class="name">include</span> <span class="string">&#x27;main&#x27;</span> a&#125;&#125;</span><span class="xml"></span></span></span><br><span class="line"><span class="xml"><span class="handlebars">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span></span><br><span class="line"><span class="xml"><span class="handlebars"></span></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> data = &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">person</span>:[</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;jack&quot;</span>,<span class="attr">age</span>:<span class="number">18</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;tom&quot;</span>,<span class="attr">age</span>:<span class="number">19</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;jerry&quot;</span>,<span class="attr">age</span>:<span class="number">20</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;kid&quot;</span>,<span class="attr">age</span>:<span class="number">21</span>&#125;,</span></span><br><span class="line"><span class="javascript">            &#123;<span class="attr">name</span>:<span class="string">&quot;jade&quot;</span>,<span class="attr">age</span>:<span class="number">22</span>&#125;</span></span><br><span class="line"><span class="javascript">        ],</span></span><br><span class="line"><span class="javascript">        <span class="attr">a</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">list</span>:[<span class="string">&#x27;文艺&#x27;</span>, <span class="string">&#x27;博客&#x27;</span>, <span class="string">&#x27;摄影&#x27;</span>, <span class="string">&#x27;电影&#x27;</span>, <span class="string">&#x27;民谣&#x27;</span>, <span class="string">&#x27;旅行&#x27;</span>, <span class="string">&#x27;吉他&#x27;</span>]</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> html = template(<span class="string">&quot;test&quot;</span>,data);</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.getElementById(<span class="string">&quot;app&quot;</span>).innerHTML=html;</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="嵌套渲染"><a href="#嵌套渲染" class="headerlink" title="嵌套渲染"></a>嵌套渲染</h2><p>对于列表list中每个元素item1，遍历item1对象中的map对象的每个元素item2</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> template = <span class="built_in">require</span>(<span class="string">&#x27;art-template&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> str = <span class="string">`</span></span><br><span class="line"><span class="string">&#123;&#123;each list item1 index1&#125;&#125;</span></span><br><span class="line"><span class="string">    &lt;p&gt;段落&#123;&#123;index1&#125;&#125;&lt;/p&gt;</span></span><br><span class="line"><span class="string">    &#123;&#123;each item1.map item2 index2&#125;&#125;</span></span><br><span class="line"><span class="string">        &#123;&#123;index2&#125;&#125;: &#123;&#123;item2.good&#125;&#125;</span></span><br><span class="line"><span class="string">    &#123;&#123;/each&#125;&#125;</span></span><br><span class="line"><span class="string">&#123;&#123;/each&#125;&#125;</span></span><br><span class="line"><span class="string">`</span></span><br><span class="line"><span class="keyword">var</span> json = &#123;</span><br><span class="line">    <span class="attr">list</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">map</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">good</span>: <span class="string">&#x27;apple&#x27;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">good</span>: <span class="string">&#x27;orange&#x27;</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">map</span>: [</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">good</span>: <span class="string">&#x27;banana&#x27;</span></span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="attr">good</span>: <span class="string">&#x27;penaple&#x27;</span></span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> str2 = template.render(str, json)</span><br><span class="line"><span class="built_in">console</span>.log(str2)</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/10/art-template%E7%9A%84%E5%89%8D%E7%AB%AF%E6%B8%B2%E6%9F%93%E7%94%A8%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-mysql存储时间" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -159,13 +260,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E6%97%B6%E9%97%B4/">mysql存储时间</a>
+      <a class="article-title" href="/2021/03/08/mysql%E5%AD%98%E5%82%A8%E6%97%B6%E9%97%B4/">mysql存储时间</a>
     </h1>
   
 
         
-        <a href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E6%97%B6%E9%97%B4/" class="archive-article-date">
-  	<time datetime="2021-03-08T07:43:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-07</time>
+        <a href="/2021/03/08/mysql%E5%AD%98%E5%82%A8%E6%97%B6%E9%97%B4/" class="archive-article-date">
+  	<time datetime="2021-03-08T07:43:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-08</time>
 </a>
         
       </header>
@@ -227,7 +328,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E6%97%B6%E9%97%B4/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/03/08/mysql%E5%AD%98%E5%82%A8%E6%97%B6%E9%97%B4/">展开全文 >></a>
         </p>
       
 
@@ -264,13 +365,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E5%A4%A7%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87/">mysql存储大文本和图片</a>
+      <a class="article-title" href="/2021/03/08/mysql%E5%AD%98%E5%82%A8%E5%A4%A7%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87/">mysql存储大文本和图片</a>
     </h1>
   
 
         
-        <a href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E5%A4%A7%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87/" class="archive-article-date">
-  	<time datetime="2021-03-08T07:39:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-07</time>
+        <a href="/2021/03/08/mysql%E5%AD%98%E5%82%A8%E5%A4%A7%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87/" class="archive-article-date">
+  	<time datetime="2021-03-08T07:39:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-08</time>
 </a>
         
       </header>
@@ -320,7 +421,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/03/07/mysql%E5%AD%98%E5%82%A8%E5%A4%A7%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/03/08/mysql%E5%AD%98%E5%82%A8%E5%A4%A7%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87/">展开全文 >></a>
         </p>
       
 
@@ -534,13 +635,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/11/03/go%E8%AF%AD%E8%A8%80/">go语言</a>
+      <a class="article-title" href="/2020/11/04/go%E8%AF%AD%E8%A8%80/">go语言</a>
     </h1>
   
 
         
-        <a href="/2020/11/03/go%E8%AF%AD%E8%A8%80/" class="archive-article-date">
-  	<time datetime="2020-11-03T22:38:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-03</time>
+        <a href="/2020/11/04/go%E8%AF%AD%E8%A8%80/" class="archive-article-date">
+  	<time datetime="2020-11-03T22:38:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-11-04</time>
 </a>
         
       </header>
@@ -986,7 +1087,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/11/03/go%E8%AF%AD%E8%A8%80/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/11/04/go%E8%AF%AD%E8%A8%80/">展开全文 >></a>
         </p>
       
 
@@ -1023,13 +1124,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/11/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/">js中基本数据类型及其用法</a>
+      <a class="article-title" href="/2020/10/12/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/">js中基本数据类型及其用法</a>
     </h1>
   
 
         
-        <a href="/2020/10/11/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-10-11T21:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
+        <a href="/2020/10/12/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2020-10-11T21:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-12</time>
 </a>
         
       </header>
@@ -1083,7 +1184,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/11/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/10/12/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/">展开全文 >></a>
         </p>
       
 
@@ -1120,13 +1221,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/">css-vertical-align属性</a>
+      <a class="article-title" href="/2020/10/11/css-vertical-align%E5%B1%9E%E6%80%A7/">css-vertical-align属性</a>
     </h1>
   
 
         
-        <a href="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/" class="archive-article-date">
-  	<time datetime="2020-10-10T22:08:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-10</time>
+        <a href="/2020/10/11/css-vertical-align%E5%B1%9E%E6%80%A7/" class="archive-article-date">
+  	<time datetime="2020-10-10T22:08:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
 </a>
         
       </header>
@@ -1189,7 +1290,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/10/11/css-vertical-align%E5%B1%9E%E6%80%A7/">展开全文 >></a>
         </p>
       
 
@@ -1226,13 +1327,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/10/css-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">css-水平垂直居中</a>
+      <a class="article-title" href="/2020/10/11/css-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">css-水平垂直居中</a>
     </h1>
   
 
         
-        <a href="/2020/10/10/css-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" class="archive-article-date">
-  	<time datetime="2020-10-10T20:43:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-10</time>
+        <a href="/2020/10/11/css-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" class="archive-article-date">
+  	<time datetime="2020-10-10T20:43:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
 </a>
         
       </header>
@@ -1285,7 +1386,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/10/css-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/10/11/css-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">展开全文 >></a>
         </p>
       
 
@@ -1322,13 +1423,13 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/09/js-%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1/">js-遍历对象</a>
+      <a class="article-title" href="/2020/10/10/js-%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1/">js-遍历对象</a>
     </h1>
   
 
         
-        <a href="/2020/10/09/js-%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-  	<time datetime="2020-10-09T22:51:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-09</time>
+        <a href="/2020/10/10/js-%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
+  	<time datetime="2020-10-09T22:51:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-10</time>
 </a>
         
       </header>
@@ -1375,85 +1476,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/09/js-%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-js-闭包" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/09/js-%E9%97%AD%E5%8C%85/">js-闭包</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/09/js-%E9%97%AD%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2020-10-09T08:07:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>js中的闭包是个很难理解的概念，因为仔细思考，它似乎违背了编译原理的知识，可能是因为js是动态语言，而编译原理的知识是针对静态语言吧。看下面的例子。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="function"><span class="keyword">function</span> <span class="title">func1</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">var</span> cnt = <span class="number">0</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            cnt++</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> cnt</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> s1 = func1()</span></span><br><span class="line"><span class="javascript">    s1()</span></span><br><span class="line"><span class="javascript">    s1()</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> s2 = func1()</span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(s1())</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">3</span><br></pre></td></tr></table></figure>
-<p>这说明，js中的funtion并不是C语言中的函数，而是一个类似于对象的概念。当你执行func1()时，并不是执行一个函数，而是创造了一个对象，并执行这个对象里面的代码。当你第一次执行func1()时，创造了一个匿名对象，这个对象里面有数据cnt，而当你再次执行func1()时，又创造了一个匿名对象，这个对象里面也有cnt，但是与上一个不同。所以，上面的代码，输出3.</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/09/js-%E9%97%AD%E5%8C%85/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/10/10/js-%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
         </p>
       
 
