@@ -6,15 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://zhouhuahui.github.io">
-  <title>Hexo</title>
+  <title>js-认识this | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://zhouhuahui.github.io/index.html">
+  <meta name="description" content="连接到ECS  首先下载Open VPN，然后使用附件的certs配置来配置open vpn，然后连接。下面是配置文件夹内的内容，基本把附件certs中的文件复制过去就好了。   然后打开finalshell，连接到对应的ip。   172.16.0.12 BtfQDDzWoYvCmiCXhm6f 172.16.0.67 23neMCCn5WhLbc4s6DWt 密码修改为：zhou1998120">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js-认识this">
+<meta property="og:url" content="https://zhouhuahui.github.io/2021/12/17/OB%E5%A4%8D%E8%B5%9B/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="连接到ECS  首先下载Open VPN，然后使用附件的certs配置来配置open vpn，然后连接。下面是配置文件夹内的内容，基本把附件certs中的文件复制过去就好了。   然后打开finalshell，连接到对应的ip。   172.16.0.12 BtfQDDzWoYvCmiCXhm6f 172.16.0.67 23neMCCn5WhLbc4s6DWt 密码修改为：zhou1998120">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/12/17/OB%E5%A4%8D%E8%B5%9B/OB复赛/image-20211122133121670.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/12/17/OB%E5%A4%8D%E8%B5%9B/OB复赛/image-20211122133321979.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/12/17/OB%E5%A4%8D%E8%B5%9B/OB复赛/image-20211123153137099.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/12/17/OB%E5%A4%8D%E8%B5%9B/OB复赛/image-20211123163724686.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/12/17/OB%E5%A4%8D%E8%B5%9B/OB复赛/image-20211123165808857.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/12/17/OB%E5%A4%8D%E8%B5%9B/OB复赛/image-20211123175221148.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/12/17/OB%E5%A4%8D%E8%B5%9B/OB复赛/image-20211210213832687.png">
+<meta property="og:image" content="https://zhouhuahui.github.io/2021/12/17/OB%E5%A4%8D%E8%B5%9B/OB复赛/image-20211130094435977.png">
+<meta property="article:published_time" content="2021-12-17T02:52:21.000Z">
+<meta property="article:modified_time" content="2021-12-17T02:56:53.190Z">
 <meta property="article:author" content="fantasy">
+<meta property="article:tag" content="数据库">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://zhouhuahui.github.io/2021/12/17/OB%E5%A4%8D%E8%B5%9B/OB复赛/image-20211122133121670.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,89 +164,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="posts-about-me" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+            <article id="post-OB复赛" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/3000/06/24/about-me/">about me</a>
-    </h1>
-  
-
-        
-        <a href="/3000/06/24/about-me/" class="archive-article-date">
-  	<time datetime="3000-06-23T19:28:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>3000-06-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">about me</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/3000/06/24/about-me/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-OB复赛" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/17/OB%E5%A4%8D%E8%B5%9B/">js-认识this</a>
+    <h1 class="article-title" itemprop="name">
+      js-认识this
     </h1>
   
 
@@ -414,164 +353,26 @@
       
 
       
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/17/OB%E5%A4%8D%E8%B5%9B/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/29/%E9%98%85%E8%AF%BB/">阅读</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/29/%E9%98%85%E8%AF%BB/" class="archive-article-date">
-  	<time datetime="2021-11-29T08:41:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="2021"><a href="#2021" class="headerlink" title="2021"></a>2021</h1><h2 id="11"><a href="#11" class="headerlink" title="11"></a>11</h2><h3 id="数字极简主义"><a href="#数字极简主义" class="headerlink" title="数字极简主义"></a>数字极简主义</h3><p><a target="_blank" rel="noopener" href="https://www.jiemian.com/article/3231125.html">数字极简主义：如何在嘈杂的世界中选择专注的生活|界面新闻 · 文化 (jiemian.com)</a></p>
-<h3 id="不完美焦虑：追求“更好”的背后"><a href="#不完美焦虑：追求“更好”的背后" class="headerlink" title="不完美焦虑：追求“更好”的背后"></a>不完美焦虑：追求“更好”的背后</h3><p><a target="_blank" rel="noopener" href="http://mpre.lifeweek.com.cn/h5/article/detail.do?artId=138843">不完美焦虑：追求“更好”背后 (lifeweek.com.cn)</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">默认</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/29/%E9%98%85%E8%AF%BB/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-LSM-tree" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/28/LSM-tree/">LSM tree</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/28/LSM-tree/" class="archive-article-date">
-  	<time datetime="2021-11-28T11:42:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="LSM-tree"><a href="#LSM-tree" class="headerlink" title="LSM tree"></a>LSM tree</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/181498475">LSM树详解 - 知乎 (zhihu.com)</a></p>
-<p>这里需要关注一个重点，LSM树(Log-Structured-Merge-Tree)正如它的名字一样，LSM树会将所有的数据插入、修改、删除等操作记录(注意是操作记录)保存在内存之中，当此类操作达到一定的数据量后，再批量地顺序写入到磁盘当中。LSM树的特点是：采用顺序写，提高了写的性能。</p>
-<p>因此当MemTable达到一定大小flush到持久化存储变成SSTable后，在不同的SSTable中，可能存在相同Key的记录，当然最新的那条记录才是准确的。这样设计的虽然大大提高了写性能，但同时也会带来一些问题：</p>
-<p>在Compact策略上，主要介绍两种基本策略：<a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=size-tiered&amp;search_source=Entity&amp;hybrid_search_source=Entity&amp;hybrid_search_extra={&quot;sourceType&quot;%3A&quot;article&quot;%2C&quot;sourceId&quot;%3A181498475}">size-tiered</a>和leveled。</p>
-<hr>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37003275">一文带你了解LSM Compaction - 知乎 (zhihu.com)</a></p>
-<p>随着数据写入不断增加，Minor Freeze不断触发，转储数据不断增多，一次查询可能需要越来越多的IO操作，读取延时也在不断变大。而执行Minor Compaction会使得转储文件数基本稳定，进而IO Seek次数会比较稳定，延迟就会稳定在一定范围。然而，Minor Compaction操作重写文件会带来很大的带宽压力以及短时间IO压力。因此可以认为，Minor Compaction就是使用短时间的IO消耗以及带宽消耗换取后续查询的低延迟。</p>
-<hr>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/399181835">OceanBase 存储引擎高级技术 - 知乎 (zhihu.com)</a>  OceanBase的LSM-tree</p>
-<hr>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jinking01/article/details/105377370">最容易理解的LSM树—以示例讲解合并查找过程_jinking01的专栏-CSDN博客</a> 这里用图示讲解了LSM-tree的合并查找过程，里面LSM-tree的实现是，memtable用AVL树实现，sstable用B-tree实现。虽然不知道OceanBase的sstable的实现过程是什么样的，不管是B-tree还是排序好的元组序列，其实查询效率都挺高的，也都可以称为索引组织表，如果是B-tree，肯定是索引组织表，如果是排序序列，用二分查找也不错。</p>
-
-      
-
       
     </div>
     <div class="article-info article-info-index">
@@ -591,16 +392,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/28/LSM-tree/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhouhuahui.github.io/2021/12/17/OB%E5%A4%8D%E8%B5%9B/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/3000/06/24/about-me/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          about me
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/29/%E9%98%85%E8%AF%BB/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">阅读</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -615,529 +484,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-布隆过滤器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/28/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">布隆过滤器</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/28/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2021-11-28T11:42:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a target="_blank" rel="noopener" href="https://developer.aliyun.com/article/773205">布隆过滤器，这一篇给你讲的明明白白-阿里云开发者社区 (aliyun.com)</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/28/%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E5%88%B0ECS"><span class="toc-number">1.</span> <span class="toc-text">连接到ECS</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8VS-code%E6%8F%92%E4%BB%B6remote-development%E6%9D%A5%E5%BC%80%E5%8F%91"><span class="toc-number">2.</span> <span class="toc-text">使用VS code插件remote development来开发</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8%E6%BA%90%E7%A0%81%E8%BF%9B%E8%A1%8C%E6%B5%8B%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text">如何使用源码进行测试</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%A4%9A%E4%BA%BA%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%8D%8F%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">如何多人在同一个服务器上协作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B0%83%E8%AF%95oceanbase"><span class="toc-number">5.</span> <span class="toc-text">调试oceanbase</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gdb"><span class="toc-number">5.1.</span> <span class="toc-text">gdb</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vscode-attach"><span class="toc-number">5.2.</span> <span class="toc-text">vscode attach</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vscode-launch"><span class="toc-number">5.3.</span> <span class="toc-text">vscode launch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%9F%E8%B8%AAsql%E7%9A%84%E6%89%A7%E8%A1%8C"><span class="toc-number">5.4.</span> <span class="toc-text">跟踪sql的执行</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%90%86%E8%AE%BA%E6%95%99%E7%A8%8B"><span class="toc-number">6.</span> <span class="toc-text">理论教程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E6%9E%90patch"><span class="toc-number">7.</span> <span class="toc-text">分析patch</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E7%BE%A4%E9%87%8C%E7%BB%99%E7%9A%84patch%E7%9A%84%E6%9B%B4%E6%94%B9%E5%89%8D%E5%90%8E%E5%AF%B9%E6%AF%94"><span class="toc-number">7.1.</span> <span class="toc-text">分析群里给的patch的更改前后对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#patch2-sysbench-3850"><span class="toc-number">7.2.</span> <span class="toc-text">patch2(sysbench: 3850)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#patch3"><span class="toc-number">7.3.</span> <span class="toc-text">patch3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#patch4"><span class="toc-number">7.4.</span> <span class="toc-text">patch4</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB"><span class="toc-number">8.</span> <span class="toc-text">源码阅读</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8EObExecuteResult-get-next-row-%E5%87%BD%E6%95%B0%E8%AF%BBNLJ%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="toc-number">8.1.</span> <span class="toc-text">从ObExecuteResult::get_next_row()函数读NLJ的流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="toc-number">8.2.</span> <span class="toc-text">内存管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ObArenaAllocator"><span class="toc-number">8.2.1.</span> <span class="toc-text">ObArenaAllocator</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#alloc"><span class="toc-number">8.2.1.1.</span> <span class="toc-text">alloc</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NLJ%E7%9A%84rescan%E6%B5%81%E7%A8%8B"><span class="toc-number">8.3.</span> <span class="toc-text">NLJ的rescan流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NLJ%E7%9A%84%E5%8F%B3%E8%A1%A8%E8%AF%BB%E5%8F%96%E6%B5%81%E7%A8%8B"><span class="toc-number">8.4.</span> <span class="toc-text">NLJ的右表读取流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%97%AE%E9%A2%98"><span class="toc-number">8.5.</span> <span class="toc-text">问题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%92%89%E9%92%89%E7%BE%A4%E6%B6%88%E6%81%AF"><span class="toc-number">9.</span> <span class="toc-text">钉钉群消息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">10.</span> <span class="toc-text">引用</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
-  
-    <article id="post-Cpp语言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/28/Cpp%E8%AF%AD%E8%A8%80/">Cpp语言</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/28/Cpp%E8%AF%AD%E8%A8%80/" class="archive-article-date">
-  	<time datetime="2021-11-28T05:47:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/152046509">C++中的static - 知乎 (zhihu.com)</a></p>
-<h1 id="operator类型转换"><a href="#operator类型转换" class="headerlink" title="operator类型转换"></a>operator类型转换</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chdhust/article/details/9613049">C++中Operator类型强制转换成员函数_chenglinhust的专栏-CSDN博客_operator 类型转换</a></p>
-<h1 id="C-将析构函数定义成virtual的真正原因"><a href="#C-将析构函数定义成virtual的真正原因" class="headerlink" title="C++将析构函数定义成virtual的真正原因"></a>C++将析构函数定义成virtual的真正原因</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/jacqueslim/article/details/6792105">C++将析构函数定义成virtual的真正原因_NEVER-CSDN博客_virtual 析构函数</a></p>
-<h1 id="显示调用析构函数"><a href="#显示调用析构函数" class="headerlink" title="显示调用析构函数"></a>显示调用析构函数</h1><p>用户显式调用析构函数的时候，只是单纯执行析构函数内的语句，不会释放对象对应的堆内存，摧毁对象</p>
-<h1 id="c-类继承中的using声明"><a href="#c-类继承中的using声明" class="headerlink" title="c++类继承中的using声明"></a>c++类继承中的using声明</h1><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/lfw19891101/article/details/4783217">c++类继承中的using声明，派生类中用using声明改变基类成员的访问权限_lfw19891101的专栏-CSDN博客</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/28/Cpp%E8%AF%AD%E8%A8%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Clion中写CMakeLists-txt" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/11/17/Clion%E4%B8%AD%E5%86%99CMakeLists-txt/">Clion中写CMakeLists.txt</a>
-    </h1>
-  
-
-        
-        <a href="/2021/11/17/Clion%E4%B8%AD%E5%86%99CMakeLists-txt/" class="archive-article-date">
-  	<time datetime="2021-11-17T12:55:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="CMakeLists-txt"><a href="#CMakeLists-txt" class="headerlink" title="CMakeLists.txt"></a>CMakeLists.txt</h1><img src="/2021/11/17/Clion%E4%B8%AD%E5%86%99CMakeLists-txt/image-20211117205702367.png" class="">
-<p><img src="C:\Users\fanta\Documents\a-hexo2\source\_posts\Clion中写CMakeLists-txt\image-20211117205702367.png" alt="image-20211117205702367"></p>
-<p>这是我的简单的项目目录，针对它该如何写<code>CMakeLists.txt</code>呢。</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cmake_minimum_required</span>(VERSION <span class="number">3.20</span>)</span><br><span class="line"><span class="keyword">project</span>(test1)</span><br><span class="line"><span class="keyword">include_directories</span>(src)</span><br><span class="line"><span class="keyword">add_executable</span>(test1 src/hellow_world.cpp src/main.cpp)</span><br></pre></td></tr></table></figure>
-<p>因为我的<code>.h</code>文件都在源码下的<code>src/</code>目录里，所以就有代码<code>include_directories(src)</code></p>
-<p>因为有两个源文件<code>hellow_world.cpp</code>和<code>main.cpp</code>，而且想要生成的exe文件名称是test1，所以就有代码<code>add_executable(test1 src/hellow_world.cpp src/main.cpp)</code></p>
-<p>最后很多关于build和debug的文件都在<code>cmake-build-debug</code>文件夹里面。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/11/17/Clion%E4%B8%AD%E5%86%99CMakeLists-txt/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-lex和yacc总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="LEX-amp-YACC"><a href="#LEX-amp-YACC" class="headerlink" title="LEX&amp;YACC"></a>LEX&amp;YACC</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p><a target="_blank" rel="noopener" href="http://dinosaur.compilertools.net/">Lex &amp; Yacc </a>是用来生成词法分析器和语法分析器的工具。</p>
-<p><a href="https://link.zhihu.com/?target=http%3A//dinosaur.compilertools.net/lex/index.html">Lex</a> （A Lexical Analyzer Generator）用于生成词法分析器，用于把输入分割成一个个有意义的词块（称为token）。</p>
-<p><a href="https://link.zhihu.com/?target=http%3A//dinosaur.compilertools.net/yacc/index.html">Yacc</a>（Yet Another Compiler-Compiler）用于生成语法解析器，用于确定上述分隔好的token之间的关联</p>
-<h2 id="Lex"><a href="#Lex" class="headerlink" title="Lex"></a>Lex</h2><h3 id="Lex结构"><a href="#Lex结构" class="headerlink" title="Lex结构"></a>Lex结构</h3><p>lex文件内容分为三个段分别为：定义段、规则段、用户子程序段</p>
-<p>三个段用 <strong>%%</strong> 进行分隔:</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 定义段 */</span></span><br><span class="line">%&#123;</span><br><span class="line">...</span><br><span class="line">%&#125;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">%%</span><br><span class="line">    <span class="comment">/* 规则段 */</span></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">%%</span><br><span class="line">    <span class="comment">/* 用户子程序段 */</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>第1段是声明段，包括：<br>    1-C代码部分：include头文件、函数、类型等声明，这些声明会原样拷到生成的.c文件中。</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">%&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;yacc_sql.tab.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">atoi</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">double</span> <span class="title">atof</span><span class="params">()</span></span>;</span><br><span class="line"><span class="keyword">char</span> * position = <span class="string">&quot;&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> YYDEBUG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug_printf  printf</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> debug_printf(...)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span> <span class="comment">// YYDEBUG</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> RETURN_TOKEN(token) debug_printf(<span class="meta-string">&quot;%s\n&quot;</span>,#token);return token</span></span><br><span class="line">%&#125;</span><br></pre></td></tr></table></figure>
-<p>​    2-状态声明，如%x COMMENT。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">状态声明将会在第二段用到，例如：</span><br><span class="line">若当读到<span class="regexp">//</span>注释符时忽略该行输入则可以使用%x标记一个状态，当读到<span class="regexp">//</span>符时切换到该状态，后续只能匹配到该状态相应的规则，读到换行符后再返回原状态。以达到忽略注释行的目的。</span><br><span class="line">切换状态通过<span class="keyword">BEGIN</span>实现,初始态为INITIAL</span><br><span class="line"><span class="string">&quot;//&quot;</span>    				&#123;    <span class="regexp">//</span>遇到串<span class="string">&quot;//&quot;</span>，表明要开始一段注释，直到行尾</span><br><span class="line">            			<span class="keyword">BEGIN</span> COMMENT;<span class="regexp">//</span>用<span class="keyword">BEGIN</span>宏切换到注释状态，去过滤这段注释，下一次lex将只匹配前面带有&lt;COMMENT&gt;的正则式</span><br><span class="line">        				&#125;</span><br><span class="line">        				</span><br><span class="line"> &lt;COMMENT&gt;\n    &#123;    <span class="regexp">//</span>注释状态下的规则，只有当前切换到COMMENT状态才会去匹配</span><br><span class="line">            			<span class="keyword">BEGIN</span> INITIAL;<span class="regexp">//</span>在注释状态下，当遇到换行符时，表明注释结束了，返回初始态</span><br><span class="line">      				  &#125;</span><br></pre></td></tr></table></figure>
-<p>​    3-正则式定义，如ID      [A-Za-z_]+[A-Za-z0-9_]*。</p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">WS      [<span class="symbol">\ </span><span class="symbol">\t</span><span class="symbol">\b</span><span class="symbol">\f</span>]</span><br><span class="line">DIGIT   [0-9]+</span><br><span class="line">ID      [A-Za-z_]+[A-Za-z0-9_]*</span><br><span class="line">DOT     <span class="symbol">\.</span></span><br><span class="line">QUOTE   [<span class="symbol">\&#x27;</span><span class="symbol">\&quot;</span>]</span><br></pre></td></tr></table></figure>
-<p><img src="https://pic4.zhimg.com/80/v2-14e3c63e03db9eba547536139f023bf3_720w.jpg" alt="img" style="zoom:67%;" /></p>
-<p>第2段是规则段，是lex文件的主体，包括每个规则是如何匹配的，以及匹配后要执行的C代码动作。</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;WS&#125;                    /* ignore whitespace */;</span><br><span class="line">[Ss][Ee][Ll][Ee][Cc][Tt]                 position=strdup(yytext);RETURN<span class="built_in">_</span>TOKEN(SELECT);</span><br><span class="line">[Ff][Rr][Oo][Mm]                      	 position=strdup(yytext);RETURN<span class="built_in">_</span>TOKEN(FROM);</span><br><span class="line">[Ww][Hh][Ee][Rr][Ee]                  	 position=strdup(yytext);RETURN<span class="built_in">_</span>TOKEN(WHERE);</span><br><span class="line">[Aa][Nn][Dd]                             position=strdup(yytext);RETURN<span class="built_in">_</span>TOKEN(AND);</span><br><span class="line">[Oo][Rr][Dd][Ee][Rr]										 position=strdup(yytext);RETURN<span class="built_in">_</span>TOKEN(ORDER);</span><br><span class="line">[Bb][Yy]                                 position=strdup(yytext);RETURN<span class="built_in">_</span>TOKEN(BY);</span><br><span class="line">&#123;ID&#125;                                             </span><br><span class="line">&#123; yylval.string=strdup(yytext);position=strdup(yytext);RETURN<span class="built_in">_</span>TOKEN(ID);&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">lex匹配优先规则：</span><br><span class="line">数据流进入后进行逐字符匹配，若加入下一个字符可以匹配到规则则压入字符，当达到最大匹配长度后若能匹配多个规则，则执行位置较前的规则。</span><br><span class="line">如select * from t;</span><br><span class="line">读第一个字符&#x27;s&#x27;能匹配到id，但是加上后续字符&#x27;e&#x27;仍满足条件则继续压栈，直到栈里为select此时已是能匹配的最大长度（加入空格后不能匹配到规则），这时能匹配到两个规则</span><br><span class="line">[Ss][Ee][Ll][Ee][Cc][Tt]                 position=strdup(yytext);RETURN<span class="built_in">_</span>TOKEN(SELECT);</span><br><span class="line">&#123;ID&#125;                                             </span><br><span class="line">&#123; yylval.string=strdup(yytext);position=strdup(yytext);RETURN<span class="built_in">_</span>TOKEN(ID);&#125;</span><br><span class="line">因为select字段的规则在前，因此不会匹配成id，而是匹配select规则返回SELECT TOKEN。</span><br></pre></td></tr></table></figure>
-<p>第3段是C函数定义段，如yywrap()的定义，这些C代码会原样拷到生成的.c文件中，该段内容可以为空。</p>
-<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">yywrap</span>()</span><br><span class="line">当词法分析程序遇到文件结尾时，它调用例程<span class="selector-tag">yywrap</span>()来找出下一步要做什么，如果返回<span class="selector-tag">0</span>，扫描程序继续扫描，如果返回<span class="selector-tag">1</span>，扫描程序就返回报告文件结尾需标记。</span><br><span class="line"><span class="selector-tag">lex</span>库中<span class="selector-tag">yywrap</span>()的标准版本总是返回<span class="selector-tag">1</span>，如果<span class="selector-tag">yywrap</span>()返回指示有更多的输入<span class="selector-tag">0</span>，那么它首先需要调整指向新的文件<span class="selector-tag">yyin</span>,可能使用<span class="selector-tag">fopen</span>()。</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">int</span> <span class="selector-tag">yywrap</span>(void)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="selector-tag">return</span> <span class="selector-tag">1</span>;<span class="comment">//返回1表示读取全部结束。如果要接着读其它文件，可以这里fopen该文件，文件指针赋给yyin，并返回0</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="lex文件中其他常见函数和变量"><a href="#lex文件中其他常见函数和变量" class="headerlink" title="lex文件中其他常见函数和变量"></a>lex文件中其他常见函数和变量</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">lex不仅返回相应的token，同时还会向yacc传递相应数据，如：</span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> stu(id <span class="type">int</span>,<span class="built_in">old</span> <span class="type">int</span>);</span><br><span class="line">不仅需要返回<span class="keyword">create</span> <span class="keyword">table</span> <span class="type">int</span>等关键字的token，同时还要把表名、列名等字符串传给yacc</span><br><span class="line"></span><br><span class="line">yytext</span><br><span class="line">每当词法分析程序匹配标记时，标记的文本就存储在以空字符结尾的字符串yytext中</span><br><span class="line">每次匹配一个新的标记时，就要替换yytext的内容，如果yytext的内容还要使用，通过strdup()或者自己申请内存来保存字符串拷贝，从而使字符串的拷贝拷贝位于刚刚分配的内存中。</span><br><span class="line">&#123;ID&#125;                                             </span><br><span class="line">&#123; yylval.string=strdup(yytext);position=strdup(yytext);RETURN_TOKEN(ID);&#125;</span><br><span class="line"></span><br><span class="line">yylval变量</span><br><span class="line">extern YYSTYPE yylval</span><br><span class="line">lex将数据流中的数据赋给yylval变量相应字段，从而传递给yacc</span><br><span class="line">YYSTYPE在yacc文件中定义结构，默认为<span class="type">int</span>，后续在yacc部分详解</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="Yacc"><a href="#Yacc" class="headerlink" title="Yacc"></a>Yacc</h2><h3 id="简介-1"><a href="#简介-1" class="headerlink" title="简介"></a>简介</h3><p>yacc(Yet Another Compiler Compiler)，是Unix/Linux上一个用来生成编译器的编译器（编译器代码生成器）。<br>使用巴克斯范式(BNF)定义语法，能处理上下文无关文法(context-free)。出现在每个产生式左边(left-hand side：lhs)的符号是非终端符号，出现在产生式右边(right-hand side：rhs)的符号有非终端符号和终端符号，但终端符号只出现在右端。</p>
-<figure class="highlight plaintext"><figcaption><span>x</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">举个例子：</span><br><span class="line">在中文语法里，一个句子一般由“主语”、“谓语”和“宾语”组成，主语可以是名词或者代词，谓语一般是动词，宾语可以使形容词，名词或者代词。那么“主语”、“谓语”和“宾语”就是非终止符，因为还可以继续由“名词”、“代词”、“动词”、“形容词”等替代。</span><br><span class="line"></span><br><span class="line">例1. &lt;句子&gt; ::= &lt;主语&gt;&lt;谓语&gt;&lt;宾语&gt;</span><br><span class="line"></span><br><span class="line">例2. &lt;主语&gt; ::= &lt;名词&gt;|&lt;代词&gt;</span><br><span class="line"></span><br><span class="line">例3. &lt;谓语&gt;::=&lt;动词&gt;</span><br><span class="line"></span><br><span class="line">例4. &lt;宾语&gt;::=&lt;形容词&gt;|&lt;名词&gt;|&lt;代词&gt;</span><br><span class="line"></span><br><span class="line">例5. &lt;代词&gt;::=&lt;我&gt;</span><br><span class="line"></span><br><span class="line">例6. &lt;动词&gt;::=&lt;吃&gt;</span><br><span class="line"></span><br><span class="line">例7. &lt;动词&gt;::=&lt;喜欢&gt;</span><br><span class="line"></span><br><span class="line">例8. &lt;名词&gt;::=&lt;车&gt;</span><br><span class="line"></span><br><span class="line">例9. &lt;名词&gt;::=&lt;肉&gt;</span><br><span class="line"></span><br><span class="line">如上，在::=左边的就是non-terminal非终止符，右边的就是replacement，可以是一系列的非终止符，如例1中的replacement便是后面例234左边的非终止符，也可以是终止符，如例56789的右边，找不到别的符号来进一步代替。</span><br><span class="line">因此，终止符永远不会出现在左边。一旦我们看到了终止符，这个描述过程就结束了。</span><br></pre></td></tr></table></figure>
-<h3 id="语法结构"><a href="#语法结构" class="headerlink" title="语法结构"></a>语法结构</h3><p>yacc语法包括三部分：定义段、规则段和用户子例程段</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...定义段...</span><br><span class="line"></span><br><span class="line"><span class="string">%%</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">...规则段...</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">%</span>%</span><br><span class="line"></span><br><span class="line">...用户子例程段...</span><br></pre></td></tr></table></figure>
-<p>各部分由以两个百分号开头的行分开，尽管某一个部分可以为空，但是前两部分是必须的，第三部分和前面的百分号可以省略。</p>
-<p> 定义段：</p>
-<p>1、C代码部分：include头文件、函数、类型等声明，这些声明会原样拷贝到生产的.c文件中</p>
-<p>2、记号声明，如%token</p>
-<p>3、类型声明，如%type</p>
-<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">%&#123;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;handler/handler_defs.h&quot;</span></span></span><br><span class="line"><span class="comment">// #include &quot;common/log/log.h&quot; // TODO 包含C++中的头文件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">extern</span> <span class="keyword">char</span> * position;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">extern</span> <span class="keyword">int</span> <span class="title">yylex</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line">....</span><br><span class="line">....</span><br><span class="line"><span class="keyword">int</span> compOpT;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">yyerror</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *str)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	ssql-&gt;flag=<span class="number">0</span>;</span><br><span class="line">	whereleng=<span class="number">0</span>; </span><br><span class="line">  fromleng=<span class="number">0</span>;</span><br><span class="line">  selectleng=<span class="number">0</span>;</span><br><span class="line">	valueleng=<span class="number">0</span>;</span><br><span class="line">  ssql-&gt;sstr.ins.nValues=<span class="number">0</span>;</span><br><span class="line">	ssql-&gt;sstr.errors=position;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;parse sql failed. error=%s&quot;</span>, str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">%&#125;</span><br></pre></td></tr></table></figure>
-<p>yyerror会对无法解析的语句进行处理</p>
-<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//标识tokens</span></span><br><span class="line">%<span class="built_in">token</span>  SEMICOLON</span><br><span class="line">        <span class="keyword">CREATE</span></span><br><span class="line">        <span class="built_in">DROP</span></span><br><span class="line">        TABLE</span><br><span class="line">        TABLES</span><br><span class="line">        INDEX</span><br><span class="line">        <span class="built_in">SELECT</span></span><br><span class="line">        DESC</span><br><span class="line">        <span class="keyword">SHOW</span></span><br><span class="line">        SYNC</span><br><span class="line">        INSERT</span><br><span class="line">.....</span><br><span class="line">%<span class="built_in">union</span> &#123;</span><br><span class="line">    <span class="keyword">struct</span> <span class="type">_Attr</span> *attr;</span><br><span class="line">	  <span class="keyword">struct</span> <span class="type">_Condition</span> *condition1;</span><br><span class="line">  	<span class="keyword">struct</span> <span class="type">_Value</span> *value1;</span><br><span class="line">    char *<span class="keyword">string</span>;</span><br><span class="line">  <span class="comment">//  char *ssss;</span></span><br><span class="line">    int number;</span><br><span class="line">    float floats;</span><br><span class="line">&#125;</span><br><span class="line">%<span class="built_in">union</span>字段定义了YYSTYPE的结构体类型，定义后lex文件中就可以使用yylval变量的相应部分进行传输数据</span><br><span class="line"></span><br><span class="line">%<span class="built_in">token</span> &lt;number&gt; NUMBER</span><br><span class="line">%<span class="built_in">token</span> &lt;floats&gt; FLOAT </span><br><span class="line">%<span class="built_in">token</span> &lt;<span class="keyword">string</span>&gt; ID</span><br><span class="line">%<span class="built_in">token</span> &lt;<span class="keyword">string</span>&gt; SSS</span><br><span class="line">%<span class="built_in">token</span> &lt;<span class="keyword">string</span>&gt;  STAR</span><br><span class="line">这种方式可以把标志（<span class="built_in">token</span>）绑定到YYSTYPE的某个域。这样在后面规则部分直接使用$x就可以得到<span class="built_in">token</span>的值，而不需要使用$x.number/<span class="keyword">string</span>这种方式</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>规则段：</p>
-<p>规则段由语法规则和包括C代码的动作组成。</p>
-<p>规则中目标或非终端符放在左边，后跟一个冒号（：），然后是产生式的右边，之后是对应的动作（用{}包含）。</p>
-<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%%</span></span><br><span class="line"></span><br><span class="line">commands:     //commands or sqls. parser starts here.</span><br><span class="line">    /* empty */</span><br><span class="line">    | commands command</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line">command:</span><br><span class="line">     select  </span><br><span class="line">   | insert</span><br><span class="line">   | update</span><br><span class="line">   | delete</span><br><span class="line">   | create<span class="built_in">_</span>table</span><br><span class="line">...</span><br><span class="line">   ;</span><br><span class="line">commands规则中的第一条为空非常重要，否则commands没有递归的出口</span><br><span class="line"></span><br><span class="line">以select语句的解析为例</span><br><span class="line">select:				/*  select 语句的语法解析树*/</span><br><span class="line">    SELECT select<span class="built_in">_</span>attr FROM ID rel<span class="built_in">_</span>list where SEMICOLON &#123;</span><br><span class="line">      </span><br><span class="line">            ssql-&gt;sstr.sel.relations[fromleng++]=<span class="built_in">$</span>4;</span><br><span class="line"></span><br><span class="line">            for(i=0;i&lt;whereleng;i++)&#123;</span><br><span class="line">              ssql-&gt;sstr.sel.conditions[i]=wherecondi[i];</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ssql-&gt;flag=SCF<span class="built_in">_</span>SELECT;//&quot;select&quot;;</span><br><span class="line">            ssql-&gt;sstr.sel.nSelAttrs=selectleng;</span><br><span class="line">            ssql-&gt;sstr.sel.nRelations=fromleng;</span><br><span class="line">            ssql-&gt;sstr.sel.nConditions=whereleng;</span><br><span class="line"></span><br><span class="line">            //临时变量清零</span><br><span class="line">            whereleng=0;</span><br><span class="line">            fromleng=0;</span><br><span class="line">            selectleng=0;</span><br><span class="line">        &#125;</span><br><span class="line">        ;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">select<span class="built_in">_</span>attr:</span><br><span class="line">    STAR &#123;  // TODO 处理这里的内存泄露问题</span><br><span class="line">         ssql-&gt;sstr.sel.selAttrs[selectleng].attrName=&quot;*&quot;;</span><br><span class="line">         ssql-&gt;sstr.sel.selAttrs[selectleng++].relName=NULL;</span><br><span class="line">       &#125;</span><br><span class="line">    | ID attr<span class="built_in">_</span>list &#123;</span><br><span class="line">        ssql-&gt;sstr.sel.selAttrs[selectleng].attrName=<span class="built_in">$</span>1;</span><br><span class="line">        ssql-&gt;sstr.sel.selAttrs[selectleng++].relName=NULL;</span><br><span class="line">      &#125;</span><br><span class="line">  	| ID DOT ID attr<span class="built_in">_</span>list &#123;</span><br><span class="line">        ssql-&gt;sstr.sel.selAttrs[selectleng].attrName=<span class="built_in">$</span>3;</span><br><span class="line">        ssql-&gt;sstr.sel.selAttrs[selectleng++].relName=<span class="built_in">$</span>1;</span><br><span class="line">      &#125;</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line">attr<span class="built_in">_</span>list:</span><br><span class="line">    /* empty 递归出口*/</span><br><span class="line">    | COMMA ID attr<span class="built_in">_</span>list &#123;</span><br><span class="line">     	  ssql-&gt;sstr.sel.selAttrs[selectleng].relName = NULL;</span><br><span class="line">        ssql-&gt;sstr.sel.selAttrs[selectleng++].attrName=<span class="built_in">$</span>2;</span><br><span class="line">      &#125;</span><br><span class="line">    | COMMA ID DOT ID attr<span class="built_in">_</span>list &#123;</span><br><span class="line">        ssql-&gt;sstr.sel.selAttrs[selectleng].attrName=<span class="built_in">$</span>4;</span><br><span class="line">        ssql-&gt;sstr.sel.selAttrs[selectleng++].relName=<span class="built_in">$</span>2;</span><br><span class="line">  	  &#125;</span><br><span class="line">  	;</span><br><span class="line">  	</span><br><span class="line">rel<span class="built_in">_</span>list:</span><br><span class="line">    /* empty */</span><br><span class="line">    | COMMA ID rel<span class="built_in">_</span>list &#123;	</span><br><span class="line">				ssql-&gt;sstr.sel.relations[fromleng++]=<span class="built_in">$</span>2;</span><br><span class="line">		  &#125;</span><br><span class="line">    ;</span><br><span class="line">    </span><br><span class="line">where:</span><br><span class="line">    /* empty */ </span><br><span class="line">    | WHERE condition condition<span class="built_in">_</span>list &#123;	</span><br><span class="line">				wherecondi[whereleng++]=*<span class="built_in">$</span>2;</span><br><span class="line">			&#125;</span><br><span class="line">    ;</span><br><span class="line">    </span><br><span class="line">condition<span class="built_in">_</span>list:</span><br><span class="line">    /* empty */</span><br><span class="line">    | AND condition condition<span class="built_in">_</span>list &#123;</span><br><span class="line">				wherecondi[whereleng++]=*<span class="built_in">$</span>2;</span><br><span class="line">			&#125;</span><br><span class="line">    ;</span><br><span class="line">condition:</span><br><span class="line">    ID comOp value &#123;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span> = ( Condition *)malloc(sizeof( Condition));</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bLhsIsAttr = 1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.relName = NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.attrName = <span class="built_in">$</span>1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;op = compOpT;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bRhsIsAttr = 0;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.relName = NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.attrName = NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsValue = *<span class="built_in">$</span>3;</span><br><span class="line"></span><br><span class="line">								    &#125;</span><br><span class="line">		|value comOp value &#123;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span> = ( Condition *)malloc(sizeof( Condition));</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bLhsIsAttr = 0;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.relName=NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.attrName=NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsValue = *<span class="built_in">$</span>1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;op = compOpT;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bRhsIsAttr = 0;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.relName = NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.attrName = NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsValue = *<span class="built_in">$</span>3;</span><br><span class="line"></span><br><span class="line">								    &#125;</span><br><span class="line">		|ID comOp ID &#123;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>=( Condition *)malloc(sizeof( Condition));</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bLhsIsAttr = 1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.relName=NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.attrName=<span class="built_in">$</span>1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;op=compOpT;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bRhsIsAttr = 1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.relName=NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.attrName=<span class="built_in">$</span>3;</span><br><span class="line"></span><br><span class="line">								    &#125;</span><br><span class="line">    |value comOp ID&#123;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>=( Condition *)malloc(sizeof( Condition));</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bLhsIsAttr = 0;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.relName=NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.attrName=NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsValue = *<span class="built_in">$</span>1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;op=compOpT;</span><br><span class="line">									</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bRhsIsAttr = 1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.relName=NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.attrName=<span class="built_in">$</span>3;</span><br><span class="line">								</span><br><span class="line">								    &#125;</span><br><span class="line">    |ID DOT ID comOp value&#123;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>=( Condition *)malloc(sizeof( Condition));</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bLhsIsAttr = 1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.relName=<span class="built_in">$</span>1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.attrName=<span class="built_in">$</span>3;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;op=compOpT;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bRhsIsAttr = 0;   //属性值</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.relName=NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.attrName=NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsValue=*<span class="built_in">$</span>5;			</span><br><span class="line">							</span><br><span class="line">    											&#125;</span><br><span class="line">    |value comOp ID DOT ID&#123;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>=( Condition *)malloc(sizeof( Condition));</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bLhsIsAttr = 0;//属性值</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.relName=NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.attrName=NULL;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsValue = *<span class="built_in">$</span>1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;op=compOpT;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bRhsIsAttr = 1;//属性</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.relName = <span class="built_in">$</span>3;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.attrName = <span class="built_in">$</span>5;</span><br><span class="line">									</span><br><span class="line">    						&#125;</span><br><span class="line">    |ID DOT ID comOp ID DOT ID&#123;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>=( Condition *)malloc(sizeof( Condition));</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bLhsIsAttr = 1;		//属性</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.relName=<span class="built_in">$</span>1;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;lhsAttr.attrName=<span class="built_in">$</span>3;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;op=compOpT;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;bRhsIsAttr = 1;		//属性</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.relName=<span class="built_in">$</span>5;</span><br><span class="line">									<span class="built_in">$</span><span class="built_in">$</span>-&gt;rhsAttr.attrName=<span class="built_in">$</span>7;								</span><br><span class="line">    											&#125;</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line">comOp:</span><br><span class="line">  	  EQ &#123; compOpT = EQual; &#125;</span><br><span class="line">    | LT &#123; compOpT = LEqual; &#125;</span><br><span class="line">    | GT &#123; compOpT = GreatT; &#125;</span><br><span class="line">    | LE &#123; compOpT = LessT; &#125;</span><br><span class="line">    | GE &#123; compOpT = GEqual; &#125;</span><br><span class="line">    | NE &#123; compOpT = NEqual; &#125;</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">							 </span><br></pre></td></tr></table></figure>
-<p>以下面这个select语句解析为例</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="type">name</span>,<span class="built_in">old</span> <span class="keyword">from</span> stu <span class="keyword">where</span> <span class="built_in">old</span>&gt;<span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">lex会将该句分解为以下token序列</span><br><span class="line"><span class="keyword">SELECT</span> ID COMMA ID <span class="keyword">FROM</span> ID <span class="keyword">WHERE</span> ID </span><br><span class="line"></span><br><span class="line">token序列进入yacc后会进行规则解析，然后触发相应动作，最终形成在后续使用的ssql结构体</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/16/lex%E5%92%8Cyacc%E6%80%BB%E7%BB%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-20211010周报" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/10/20211010%E5%91%A8%E6%8A%A5/">20211010周报</a>
-    </h1>
-  
-
-        
-        <a href="/2021/10/10/20211010%E5%91%A8%E6%8A%A5/" class="archive-article-date">
-  	<time datetime="2021-10-10T15:22:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>e</p>
-<h1 id="科研"><a href="#科研" class="headerlink" title="科研"></a>科研</h1><h2 id="miniob"><a href="#miniob" class="headerlink" title="miniob"></a>miniob</h2><p>最近一星期我就看了mini-ob的源代码，看明白了：</p>
-<ol>
-<li>底层的存储系统</li>
-<li>insert和select的流程</li>
-</ol>
-<p>但是不懂的是：</p>
-<ol>
-<li>如何实现多表的hash join</li>
-</ol>
-<h2 id="nvm"><a href="#nvm" class="headerlink" title="nvm"></a>nvm</h2><p>没有看</p>
-<h2 id="PG数据库"><a href="#PG数据库" class="headerlink" title="PG数据库"></a>PG数据库</h2><p>想了解wal的代码相关，但是心态浮躁，看不下去代码。</p>
-<h1 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h1><p>只是练练leetcode，还需要做：</p>
-<ol>
-<li>后端开发相关书籍</li>
-<li>开源项目源码</li>
-<li>面试题</li>
-</ol>
-<h1 id="体育"><a href="#体育" class="headerlink" title="体育"></a>体育</h1><p>很久没有跑步，打球了。</p>
-<h1 id="生活"><a href="#生活" class="headerlink" title="生活"></a>生活</h1><p>最近花钱过于频繁，以后一个月要考虑如何省钱，多和敏在一起，但是不要kaif。</p>
-<p>每天坚持记日记，基本没有间断过，坚持早起，三餐都和敏吃饭。</p>
-<h1 id="社交"><a href="#社交" class="headerlink" title="社交"></a>社交</h1><p>很久没有社交了，渐渐地不想关心华东师大和实验室的兄弟。</p>
-<h1 id="修养"><a href="#修养" class="headerlink" title="修养"></a>修养</h1><p>很久没有看情商类和心理健康类课程了。</p>
-<h1 id="爱好"><a href="#爱好" class="headerlink" title="爱好"></a>爱好</h1><p>很久没有看书了。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
-<li>保持每天早睡，每天和敏吃饭，每天练leetcode，每天看miniob的代码。在这个基础上，还需要：</li>
-<li>和组内人员讨论miniob的问题，比如多在群内说话，更新文章。</li>
-<li>继续读redis书，学习技能。</li>
-<li>可以在周四去打乒乓球或者羽毛球；每天在9点中开始跑半个小时。</li>
-<li>如果敏没说特别想吃什么，那么自己就点半分的菜，吃面之类，因为比较省钱。</li>
-<li>可以和瑜明，魏寒，魏星聊聊。</li>
-<li>偶尔看一点情商类课程，看看论语，鲁迅。</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/10/20211010%E5%91%A8%E6%8A%A5/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-latex" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/07/latex/">latex</a>
-    </h1>
-  
-
-        
-        <a href="/2021/10/07/latex/" class="archive-article-date">
-  	<time datetime="2021-10-07T00:32:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这篇文章参考了<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19954023/answer/676316395">有哪些好的 LaTeX 编辑器？</a></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="安装texlive"><a href="#安装texlive" class="headerlink" title="安装texlive"></a>安装texlive</h2><p>在<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/">清华大学开源镜像站</a>搜索<code>CTAN</code>(latex软件包)，然后找到<code>systems/texlive/Images</code>目录，然后下载一个镜像。或者直接点击<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/CTAN/systems/texlive/Images/">清华镜像texlive</a>。</p>
-<p>不得不说，这个镜像文件太大了，我以为latex就是一个轻量的东西。</p>
-<p>下载完成之后，使用解压工具将这个iso文件解压到<strong>不含有中文的目录下面</strong>，然后安装时，也安装到<strong>不含有中文的目录下面</strong>，最好安装到D盘，因为它太大了。剩下的就按照安装程序走就好了，默认配置。</p>
-<p>然后，将<code>&#123;安装目录&#125;/bin/win32</code>添加到系统PATH变量里面。</p>
-<h2 id="配置VS-Code"><a href="#配置VS-Code" class="headerlink" title="配置VS Code"></a>配置VS Code</h2><p>假设已经安装好了VS Code。</p>
-<h3 id="LaTex-Workshop"><a href="#LaTex-Workshop" class="headerlink" title="LaTex Workshop"></a>LaTex Workshop</h3><p>在VS Code侧边栏的extensions中搜索<code>LaTex Workshop</code>，然后安装这个插件。</p>
-<p>在VS Code中按住快捷键<code>CTRL+SHIFT+P</code>，输入<code>set</code>，然后选择<code>Preferences: Open Settings (JSON)</code>，然后将下面的代码粘贴到<code>settings.json</code>文件的最外面一对花括号里。</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line">作者：黄盼</span><br><span class="line">链接：https:<span class="comment">//www.zhihu.com/question/19954023/answer/676316395</span></span><br><span class="line">来源：知乎</span><br><span class="line">著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;latex-workshop.latex.recipes&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex -&gt;bibtex -&gt; xelatex*2&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">            <span class="string">&quot;xelatex&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;tools&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;pdflatex&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">],</span><br><span class="line"><span class="string">&quot;latex-workshop.latex.tools&quot;</span>: [&#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;xelatex&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">            <span class="string">&quot;%DOC%&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;pdflatex&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;-synctex=1&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-interaction=nonstopmode&quot;</span>,</span><br><span class="line">            <span class="string">&quot;-file-line-error&quot;</span>,</span><br><span class="line">            <span class="string">&quot;%DOC%&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;command&quot;</span>: <span class="string">&quot;bibtex&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;args&quot;</span>: [</span><br><span class="line">            <span class="string">&quot;%DOCFILE%&quot;</span></span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">],</span><br><span class="line"><span class="comment">// 指定在PDF文件生成后自动清除辅助文件</span></span><br><span class="line"><span class="string">&quot;latex-workshop.latex.autoClean.run&quot;</span>: <span class="string">&quot;onBuilt&quot;</span>,</span><br><span class="line"><span class="comment">// 解除每次自动保存都会编译 LaTex 文件的功能</span></span><br><span class="line"><span class="string">&quot;latex-workshop.latex.autoBuild.run&quot;</span>: <span class="string">&quot;never&quot;</span>,</span><br></pre></td></tr></table></figure>
-<p>配置好了之后，就可以按<code>CTRL+ALT+B</code>编译latex文件了，按<code>CTRL+ALT+V</code>打开PDF文件。</p>
-<h3 id="latex-formatter"><a href="#latex-formatter" class="headerlink" title="latex-formatter"></a>latex-formatter</h3><p>这是一款 VSCode 的 LaTex 代码格式化插件。</p>
-<h1 id="latex语法"><a href="#latex语法" class="headerlink" title="latex语法"></a>latex语法</h1><h2 id="数学符号"><a href="#数学符号" class="headerlink" title="数学符号"></a>数学符号</h2><p>由于我使用latex主要是为了写数学作业，所以要了解很多数学语法，参考<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_35896136/article/details/104975932">typora: 一些常用数学符号</a>。然后在VS Code中使用快捷键<code>SHIFT+ALT+F</code>就可以自动排版了。</p>
-<h2 id="一份-不太-简短的-LaTeX2ε-介绍"><a href="#一份-不太-简短的-LaTeX2ε-介绍" class="headerlink" title="一份(不太)简短的 LaTeX2ε 介绍"></a>一份(不太)简短的 LaTeX2ε 介绍</h2><p>在<a target="_blank" rel="noopener" href="https://ctan.org/tex-archive/info/lshort/chinese">这里</a>可以阅读这本latex入门书。但是这本书还是太长了，不适合快速入手。</p>
-<h2 id="插入python代码"><a href="#插入python代码" class="headerlink" title="插入python代码"></a>插入python代码</h2><p>参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/instant7/p/4190980.html">在Latex中插入Python代码</a>，需要下面的宏：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">\usepackage&#123;graphicx&#125;</span><br><span class="line">\usepackage&#123;pythonhighlight&#125;</span><br></pre></td></tr></table></figure>
-<p>代码块</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\begin&#123;python&#125;</span><br><span class="line">    % your python code</span><br><span class="line">\end&#123;python&#125;</span><br></pre></td></tr></table></figure>
-<p>这个宏有个好处就是直接代码高亮，解决了over-full的问题，非常好用。</p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/07/latex/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
   
 
 
@@ -1160,8 +532,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: true,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
