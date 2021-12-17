@@ -11,12 +11,12 @@
   <meta name="description" content="每天都要阅读一些技术类的文章，但是如果把所有这些文章都做笔记是不太现实的，但是如果把这些文章都只想过眼云烟一样读一下，又很快忘了，所以在这个文章里记录每个月读的文章链接，标题，以及自己的一点想法。 2021.9数据库读写分离https:&#x2F;&#x2F;www.cnblogs.com&#x2F;findbetterme&#x2F;p&#x2F;10820590.html 提到了最终一致性。在分布式系统中，对于某些对实时性要求不高的场合里，可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日技术阅读">
-<meta property="og:url" content="https://zhouhuahui.github.io/2021/09/10/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/index.html">
+<meta property="og:url" content="https://zhouhuahui.github.io/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="每天都要阅读一些技术类的文章，但是如果把所有这些文章都做笔记是不太现实的，但是如果把这些文章都只想过眼云烟一样读一下，又很快忘了，所以在这个文章里记录每个月读的文章链接，标题，以及自己的一点想法。 2021.9数据库读写分离https:&#x2F;&#x2F;www.cnblogs.com&#x2F;findbetterme&#x2F;p&#x2F;10820590.html 提到了最终一致性。在分布式系统中，对于某些对实时性要求不高的场合里，可">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-09-10T00:33:17.000Z">
-<meta property="article:modified_time" content="2021-09-29T10:41:26.157Z">
+<meta property="article:published_time" content="2021-09-09T08:33:17.000Z">
+<meta property="article:modified_time" content="2021-12-14T13:51:23.948Z">
 <meta property="article:author" content="fantasy">
 <meta property="article:tag" content="计算机技术">
 <meta name="twitter:card" content="summary">
@@ -167,8 +167,8 @@
   
 
         
-        <a href="/2021/09/10/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/" class="archive-article-date">
-  	<time datetime="2021-09-10T00:33:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
+        <a href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/" class="archive-article-date">
+  	<time datetime="2021-09-09T08:33:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
 </a>
         
       </header>
@@ -191,6 +191,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">update order_table set status = ‘取消’ where order_id = 001 and status = ‘待支付’ and ....;</span><br><span class="line"></span><br><span class="line">update order_table set status = ‘已发货’ where order_id = 001 and status = ‘已支付’ and ....;   </span><br><span class="line"></span><br><span class="line"># 在实际应用中我们在更新数据的时候，更严谨的做法是带上更新前的“状态”</span><br></pre></td></tr></table></figure>
 <h2 id="perf"><a href="#perf" class="headerlink" title="perf"></a>perf</h2><p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2017/09/flame-graph.html">如何读懂火焰图</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.brendangregg.com/flamegraphs.html">火焰图官方</a></p>
+<h1 id="2021-12"><a href="#2021-12" class="headerlink" title="2021.12"></a>2021.12</h1><h2 id="“十四五”数据库发展趋势与挑战"><a href="#“十四五”数据库发展趋势与挑战" class="headerlink" title="“十四五”数据库发展趋势与挑战"></a>“十四五”数据库发展趋势与挑战</h2><p>这个文章介绍了数据库前沿的概览，但是我根本不理解这里面的很多东西，只是能记住一些名词，比如云原生数据库，分布式数据据，新型硬件，openGauss等自治数据库。值得注意的是，里面说<strong>NVM 数据库的事务管理机制、页面设计机制也都与传统数据库大相径庭</strong>，因为我是做NVM的，所以想知道传统的事务管理机制和NVM数据库的事务管理机制的区别，传统事务的页面设计和NVM数据库的页面设计有什么区别。</p>
 <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
       
 
@@ -281,7 +282,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://zhouhuahui.github.io/2021/09/10/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://zhouhuahui.github.io/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -295,18 +296,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2021/09/10/%E9%94%81/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          锁
+          论文阅读：spitfire
         
       </div>
     </a>
   
   
-    <a href="/2021/09/10/%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%86%B2%E7%AA%81/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">处理数据库读写冲突</div>
+    <a href="/2021/09/08/%E8%AF%BB%E8%AE%BA%E6%96%87%EF%BC%9ADUDETM/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">读论文：DUDETM</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -333,7 +334,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-9"><span class="toc-number">1.</span> <span class="toc-text">2021.9</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB"><span class="toc-number">1.1.</span> <span class="toc-text">数据库读写分离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Rust"><span class="toc-number">1.2.</span> <span class="toc-text">为什么选择Rust</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optimistic-Lock-Coupling"><span class="toc-number">1.3.</span> <span class="toc-text">Optimistic Lock Coupling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%90%E8%A7%82%E9%94%81%E4%B8%8E%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-number">1.4.</span> <span class="toc-text">乐观锁与悲观锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#perf"><span class="toc-number">1.5.</span> <span class="toc-text">perf</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">引用</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-9"><span class="toc-number">1.</span> <span class="toc-text">2021.9</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB"><span class="toc-number">1.1.</span> <span class="toc-text">数据库读写分离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%80%89%E6%8B%A9Rust"><span class="toc-number">1.2.</span> <span class="toc-text">为什么选择Rust</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Optimistic-Lock-Coupling"><span class="toc-number">1.3.</span> <span class="toc-text">Optimistic Lock Coupling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%90%E8%A7%82%E9%94%81%E4%B8%8E%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-number">1.4.</span> <span class="toc-text">乐观锁与悲观锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#perf"><span class="toc-number">1.5.</span> <span class="toc-text">perf</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2021-12"><span class="toc-number">2.</span> <span class="toc-text">2021.12</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%80%9C%E5%8D%81%E5%9B%9B%E4%BA%94%E2%80%9D%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%91%E5%B1%95%E8%B6%8B%E5%8A%BF%E4%B8%8E%E6%8C%91%E6%88%98"><span class="toc-number">2.1.</span> <span class="toc-text">“十四五”数据库发展趋势与挑战</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%BC%95%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">引用</span></a></li></ol>
                     </div>
                 </span>
             </div>

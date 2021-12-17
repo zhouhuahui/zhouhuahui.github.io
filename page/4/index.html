@@ -152,6 +152,335 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-finalshell-cisoAnyConnection连接到ecnu服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/23/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">finalshell-cisoAnyConnection连接到ecnu服务器</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/23/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="archive-article-date">
+  	<time datetime="2021-08-23T02:12:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="连接到ecnu-VPN"><a href="#连接到ecnu-VPN" class="headerlink" title="连接到ecnu VPN"></a>连接到ecnu VPN</h1><p>1.首先下载ciscoAnyConnection软件，这个软件可以连接到ecnu VPN。下载网址是：</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1khUL60elE1l_WLr8yel81g">https://pan.baidu.com/s/1khUL60elE1l_WLr8yel81g</a><br>提取码：df7l</p>
+<p>2.cisco软件中输入ecnu VPN网址：<code>vpn-ct.ecnu.edu.cn</code></p>
+<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102031046.png" class="">
+<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102031046.png" alt="image-20210823102031046"></p>
+<p>3.点击<code>Connect</code>，然后输入自己的ecnu学号和密码。点击’OK’，然后就连接到VPN了。</p>
+<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102308562.png" class="">
+<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102308562.png" alt="image-20210823102308562"></p>
+<h1 id="finalshell进行ssh连接"><a href="#finalshell进行ssh连接" class="headerlink" title="finalshell进行ssh连接"></a>finalshell进行ssh连接</h1><p>1.下载finalshell：<a target="_blank" rel="noopener" href="http://www.hostbuf.com/downloads/finalshell_install.exe">http://www.hostbuf.com/downloads/finalshell_install.exe</a></p>
+<p>2.安装后，进行如下操作：</p>
+<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102645672.png" class="">
+<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102645672.png" alt="image-20210823102645672"></p>
+<p>按照步骤执行；其中第4步的<code>proxy代理ip</code>是<code>58.198.176.182</code>。即使连接到ecnu VPN，也不能直接ssh到特定主机，必须要先和跳板机连接，这个<code>proxy代理ip</code>就是跳板机。</p>
+<p>这个跳板机的用户名和密码都是<code>proxy</code>。</p>
+<p>连接成功后会出现下免得界面：</p>
+<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823103203312.png" class="">
+<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823103203312.png" alt="image-20210823103203312"></p>
+<p>3.在这个界面的命令行内使用ssh命令连接到私网的特定主机，比如<code>10.11.6.29</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh 10.11.6.29 -l zhouhuahui <span class="comment"># -l选项指定登录主机的用户</span></span><br></pre></td></tr></table></figure>
+<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823103427327.png" class="">
+<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823103427327.png" alt="image-20210823103427327"></p>
+<p>要以特定主机登录，必须要让这个主机的管理员创建一个用户名和密码。</p>
+<p>4.如果要从主机或跳板机退出登录，只需执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">logout</span></span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/23/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-开源项目推荐" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/23/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/">开源项目推荐</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/23/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="archive-article-date">
+  	<time datetime="2021-08-23T01:38:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h1><p>hellogithub开源月刊（55期）：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a419240016/article/details/109364091">https://blog.csdn.net/a419240016/article/details/109364091</a></p>
+<p>hellogithub的博客（开源）：<a target="_blank" rel="noopener" href="https://hellogithub.blog.csdn.net/">https://hellogithub.blog.csdn.net/</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/23/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-计算机网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="archive-article-date">
+  	<time datetime="2021-08-23T01:35:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h1><p>（csdn：网络技术）<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45704528/article/details/118635841?utm_medium=distribute.wap_feed.none-task-blog-whitelist_blog-3.nonecase&amp;depth_1-utm_source=distribute.wap_feed.none-task-blog-whitelist_blog-3.nonecase">https://blog.csdn.net/qq_45704528/article/details/118635841?utm_medium=distribute.wap_feed.none-task-blog-whitelist_blog-3.nonecase&amp;depth_1-utm_source=distribute.wap_feed.none-task-blog-whitelist_blog-3.nonecase</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">计算机专业课</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-多进程服务器示例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/22/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A4%BA%E4%BE%8B/">多进程服务器示例</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/22/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A4%BA%E4%BE%8B/" class="archive-article-date">
+  	<time datetime="2021-08-22T08:39:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="小写转大写"><a href="#小写转大写" class="headerlink" title="小写转大写"></a>小写转大写</h1><p>README</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">under linux<span class="punctuation">,</span> the server creates a child process by copying the called process by fork() </span><br><span class="line"><span class="keyword">to</span> implement a multi-process concurrent server.</span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">function:</span> the client sends any string <span class="keyword">and</span> the server transfers the string from lowercase </span><br><span class="line"><span class="keyword">to</span> UPPERCASE <span class="keyword">and</span> returns it <span class="keyword">to</span> the client which prints it on the screen. </span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">reference:</span> https://blog.csdn.net/Ai_King/article/details/<span class="number">104623632</span>/?utm_term<span class="operator">=</span><span class="keyword">c</span><span class="variable">%E8</span><span class="variable">%AF</span><span class="variable">%AD</span><span class="variable">%E8</span><span class="variable">%A8</span><span class="variable">%80</span><span class="variable">%E5</span><span class="variable">%A4</span><span class="variable">%9</span>A<span class="variable">%E8</span><span class="variable">%BF</span><span class="variable">%9</span>B<span class="variable">%E7</span><span class="variable">%A8</span><span class="variable">%8</span>B<span class="variable">%E5</span><span class="variable">%AE</span><span class="variable">%9</span>E<span class="variable">%E7</span><span class="variable">%8</span>E<span class="variable">%B0</span><span class="variable">%E5</span><span class="variable">%B9</span><span class="variable">%B6</span><span class="variable">%E5</span><span class="variable">%8</span>F<span class="variable">%91</span>&amp;utm_medium<span class="operator">=</span>distribute.pc_aggpage_search_result.none-task-blog<span class="number">-2</span>~all~sobaiduweb~<span class="keyword">default</span><span class="number">-0</span><span class="number">-104623632</span>&amp;spm<span class="operator">=</span><span class="number">3001.4430</span></span><br></pre></td></tr></table></figure>
+<p>client.c</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;wrap.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SERV_IP <span class="meta-string">&quot;127.0.0.1&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SERV_PORT 8000</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sfd, len;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serv_addr</span>;</span></span><br><span class="line">    <span class="keyword">char</span> buf[BUFSIZ]; </span><br><span class="line"></span><br><span class="line">    sfd = <span class="built_in">Socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">bzero</span>(&amp;serv_addr, <span class="built_in"><span class="keyword">sizeof</span></span>(serv_addr));  <span class="comment">// set every byte of serv_addr 0                     </span></span><br><span class="line">    serv_addr.sin_family = AF_INET;                             </span><br><span class="line">    <span class="built_in">inet_pton</span>(AF_INET, SERV_IP, &amp;serv_addr.sin_addr.s_addr);    </span><br><span class="line">    serv_addr.sin_port = <span class="built_in">htons</span>(SERV_PORT);                      </span><br><span class="line"></span><br><span class="line">    <span class="built_in">Connect</span>(sfd, (struct sockaddr *)&amp;serv_addr, <span class="built_in"><span class="keyword">sizeof</span></span>(serv_addr));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">fgets</span>(buf, <span class="built_in"><span class="keyword">sizeof</span></span>(buf), stdin);</span><br><span class="line">        <span class="keyword">int</span> r = <span class="built_in">Write</span>(sfd, buf, <span class="built_in">strlen</span>(buf));       </span><br><span class="line">        <span class="comment">//printf(&quot;Write r === %d\n&quot;, r);</span></span><br><span class="line">        len = <span class="built_in">Read</span>(sfd, buf, <span class="built_in"><span class="keyword">sizeof</span></span>(buf));</span><br><span class="line">        <span class="comment">//printf(&quot;Read len == %d\n&quot;, len);</span></span><br><span class="line">        <span class="built_in">Write</span>(STDOUT_FILENO, buf, len);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Close</span>(sfd);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>server.c</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;wrap.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXLINE 8192</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SERV_PORT 8000</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_sigchild</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">waitpid</span>(<span class="number">0</span>, <span class="literal">NULL</span>, WNOHANG) &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">servaddr</span>, <span class="title">cliaddr</span>;</span></span><br><span class="line">    <span class="keyword">socklen_t</span> cliaddr_len;</span><br><span class="line">    <span class="keyword">int</span> listenfd, connfd;</span><br><span class="line">    <span class="keyword">char</span> buf[MAXLINE];</span><br><span class="line">    <span class="keyword">char</span> str[INET_ADDRSTRLEN];</span><br><span class="line">    <span class="keyword">int</span> i, n;</span><br><span class="line">    <span class="keyword">pid_t</span> pid;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> <span class="title">newact</span>;</span></span><br><span class="line"></span><br><span class="line">    newact.sa_handler = do_sigchild;</span><br><span class="line">    <span class="built_in">sigemptyset</span>(&amp;newact.sa_mask);</span><br><span class="line">    newact.sa_flags = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">sigaction</span>(SIGCHLD, &amp;newact, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    listenfd = <span class="built_in">Socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> opt = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEADDR, &amp;opt, <span class="built_in"><span class="keyword">sizeof</span></span>(opt));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">bzero</span>(&amp;servaddr, <span class="built_in"><span class="keyword">sizeof</span></span>(servaddr));</span><br><span class="line">    servaddr.sin_family = AF_INET;</span><br><span class="line">    servaddr.sin_addr.s_addr = <span class="built_in">htonl</span>(INADDR_ANY); <span class="comment">// INADDR_ANY indicates all ip in this host</span></span><br><span class="line">    servaddr.sin_port = <span class="built_in">htons</span>(SERV_PORT);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Bind</span>(listenfd, (struct sockaddr *)&amp;servaddr, <span class="built_in"><span class="keyword">sizeof</span></span>(servaddr));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Listen</span>(listenfd, <span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Accepting connections ...\n&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        cliaddr_len = <span class="built_in"><span class="keyword">sizeof</span></span>(cliaddr);</span><br><span class="line">        connfd = <span class="built_in">Accept</span>(listenfd, (struct sockaddr *)&amp;cliaddr, &amp;cliaddr_len);</span><br><span class="line">        pid = fork();</span><br><span class="line">        <span class="keyword">if</span> (pid == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">Close</span>(listenfd);</span><br><span class="line">            <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">                n = <span class="built_in">Read</span>(connfd, buf, MAXLINE);</span><br><span class="line">                <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;the other side has been closed.\n&quot;</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;received from %s at PORT %d\n&quot;</span>,</span><br><span class="line">                        <span class="built_in">inet_ntop</span>(AF_INET, &amp;cliaddr.sin_addr, str, <span class="built_in"><span class="keyword">sizeof</span></span>(str)),</span><br><span class="line">                        <span class="built_in">ntohs</span>(cliaddr.sin_port));</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">                    buf[i] = <span class="built_in">toupper</span>(buf[i]);</span><br><span class="line"></span><br><span class="line">                <span class="built_in">Write</span>(STDOUT_FILENO, buf, n);</span><br><span class="line">                <span class="built_in">Write</span>(connfd, buf, n);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">Close</span>(connfd);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pid &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">Close</span>(connfd);</span><br><span class="line">        &#125;  <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">perr_exit</span>(<span class="string">&quot;fork&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>wrap.h</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __WRAP_H_</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __WRAP_H_</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">perr_exit</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *s)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Accept</span><span class="params">(<span class="keyword">int</span> fd, struct sockaddr *sa, <span class="keyword">socklen_t</span> *salenptr)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Bind</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> struct sockaddr *sa, <span class="keyword">socklen_t</span> salen)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Connect</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> struct sockaddr *sa, <span class="keyword">socklen_t</span> salen)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Listen</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">int</span> backlog)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Socket</span><span class="params">(<span class="keyword">int</span> family, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Read</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> nbytes)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Write</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> nbytes)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Close</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Readn</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> n)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Writen</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> n)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">my_read</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">char</span> *ptr)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Readline</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> maxlen)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p>wrap.c</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">perr_exit</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">perror</span>(s);</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Accept</span><span class="params">(<span class="keyword">int</span> fd, struct sockaddr *sa, <span class="keyword">socklen_t</span> *salenptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*again:</span></span><br><span class="line"><span class="comment">	if ((n = accept(fd, sa, salenptr)) &lt; 0) &#123;</span></span><br><span class="line"><span class="comment">		if ((errno == ECONNABORTED) || (errno == EINTR))</span></span><br><span class="line"><span class="comment">			goto again;</span></span><br><span class="line"><span class="comment">		else</span></span><br><span class="line"><span class="comment">			perr_exit(&quot;accept error&quot;);</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	return n;*/</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>((n = <span class="built_in">accept</span>(fd, sa, salenptr)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span> ((errno == ECONNABORTED) || (errno == EINTR))</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">perr_exit</span>(<span class="string">&quot;accept error&quot;</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Bind</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> struct sockaddr *sa, <span class="keyword">socklen_t</span> salen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((n = <span class="built_in">bind</span>(fd, sa, salen)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">perr_exit</span>(<span class="string">&quot;bind error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Connect</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> struct sockaddr *sa, <span class="keyword">socklen_t</span> salen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((n = <span class="built_in">connect</span>(fd, sa, salen)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">perr_exit</span>(<span class="string">&quot;connect error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Listen</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">int</span> backlog)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((n = <span class="built_in">listen</span>(fd, backlog)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">perr_exit</span>(<span class="string">&quot;listen error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Socket</span><span class="params">(<span class="keyword">int</span> family, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((n = <span class="built_in">socket</span>(family, type, protocol)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">perr_exit</span>(<span class="string">&quot;socket error&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Read</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> nbytes)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">ssize_t</span> n;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*again:</span></span><br><span class="line"><span class="comment">	if ( (n = read(fd, ptr, nbytes)) == -1) &#123;</span></span><br><span class="line"><span class="comment">		if (errno == EINTR)</span></span><br><span class="line"><span class="comment">			goto again;</span></span><br><span class="line"><span class="comment">		else</span></span><br><span class="line"><span class="comment">			return -1;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	return n;*/</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>((n = <span class="built_in">read</span>(fd, ptr, nbytes)) == <span class="number">-1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Write</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> nbytes)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">ssize_t</span> n;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*again:</span></span><br><span class="line"><span class="comment">	if ( (n = write(fd, ptr, nbytes)) == -1) &#123;</span></span><br><span class="line"><span class="comment">		if (errno == EINTR)</span></span><br><span class="line"><span class="comment">			goto again;</span></span><br><span class="line"><span class="comment">		else</span></span><br><span class="line"><span class="comment">			return -1;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	return n;*/</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>((n = <span class="built_in">write</span>(fd, ptr, nbytes)) == <span class="number">-1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Close</span><span class="params">(<span class="keyword">int</span> fd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">if</span> ((n = <span class="built_in">close</span>(fd)) == <span class="number">-1</span>)</span><br><span class="line">		<span class="built_in">perr_exit</span>(<span class="string">&quot;close error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Readn</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">size_t</span>  nleft;              </span><br><span class="line">	<span class="keyword">ssize_t</span> nread;              </span><br><span class="line">	<span class="keyword">char</span>   *ptr;</span><br><span class="line"></span><br><span class="line">	ptr = vptr;</span><br><span class="line">	nleft = n;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (nleft &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> ((nread = <span class="built_in">read</span>(fd, ptr, nleft)) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">				nread = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nread == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		nleft -= nread;</span><br><span class="line">		ptr += nread;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n - nleft;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Writen</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">size_t</span> nleft;</span><br><span class="line">	<span class="keyword">ssize_t</span> nwritten;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *ptr;</span><br><span class="line"></span><br><span class="line">	ptr = vptr;</span><br><span class="line">	nleft = n;</span><br><span class="line">	<span class="keyword">while</span> (nleft &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> ( (nwritten = <span class="built_in">write</span>(fd, ptr, nleft)) &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (nwritten &lt; <span class="number">0</span> &amp;&amp; errno == EINTR)</span><br><span class="line">				nwritten = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		nleft -= nwritten;</span><br><span class="line">		ptr += nwritten;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">ssize_t</span> <span class="title">my_read</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">char</span> *ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> read_cnt;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">char</span> *read_ptr;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">char</span> read_buf[<span class="number">100</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (read_cnt &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">again:</span><br><span class="line">		<span class="keyword">if</span> ( (read_cnt = <span class="built_in">read</span>(fd, read_buf, <span class="built_in"><span class="keyword">sizeof</span></span>(read_buf))) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">				<span class="keyword">goto</span> again;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (read_cnt == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		read_ptr = read_buf;</span><br><span class="line">	&#125;</span><br><span class="line">	read_cnt--;</span><br><span class="line">	*ptr = *read_ptr++;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Readline</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> maxlen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">ssize_t</span> n, rc;</span><br><span class="line">	<span class="keyword">char</span>    c, *ptr;</span><br><span class="line"></span><br><span class="line">	ptr = vptr;</span><br><span class="line">	<span class="keyword">for</span> (n = <span class="number">1</span>; n &lt; maxlen; n++) &#123;</span><br><span class="line">		<span class="keyword">if</span> ( (rc = <span class="built_in">my_read</span>(fd, &amp;c)) == <span class="number">1</span>) &#123;</span><br><span class="line">			*ptr++ = c;</span><br><span class="line">			<span class="keyword">if</span> (c  == <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (rc == <span class="number">0</span>) &#123;</span><br><span class="line">			*ptr = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">return</span> n - <span class="number">1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	*ptr  = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">后端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/22/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A4%BA%E4%BE%8B/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-跳表" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1542,637 +1871,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/08/10/%E5%B7%A5%E4%BD%9C%E6%8F%8F%E8%BF%B0/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-学习MIT6-824" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/05/%E5%AD%A6%E4%B9%A0MIT6-824/">学习MIT6.824</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/05/%E5%AD%A6%E4%B9%A0MIT6-824/" class="archive-article-date">
-  	<time datetime="2021-08-05T15:20:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>RAFT可视化介绍，简单了解RAFT：<a target="_blank" rel="noopener" href="http://thesecretlivesofdata.com/raft/">http://thesecretlivesofdata.com/raft/</a></p>
-<p>RAFT官网，这里面有RAFT Visualization部分：<a target="_blank" rel="noopener" href="https://raft.github.io/">https://raft.github.io/</a></p>
-<p>Raft作者的博士论文下载：<a href="https://link.zhihu.com/?target=https%3A//github.com/ongardie/dissertation/blob/master/book.pdf%3Fraw%3Dtrue">https://link.zhihu.com/?target=https%3A//github.com/ongardie/dissertation/blob/master/book.pdf%3Fraw%3Dtrue</a></p>
-<p>MIT助教写的资料：<a target="_blank" rel="noopener" href="https://thesquareplanet.com/blog/students-guide-to-raft/">https://thesquareplanet.com/blog/students-guide-to-raft/</a></p>
-<p>MIT6.824课程schedule：<a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.824/schedule.html">https://pdos.csail.mit.edu/6.824/schedule.html</a></p>
-<p>raft论文：<a target="_blank" rel="noopener" href="https://raft.github.io/raft.pdf">https://raft.github.io/raft.pdf</a></p>
-<p>PingCAP博客（有TiDB）：<a target="_blank" rel="noopener" href="https://pingcap.com/blog-cn/#Raft">https://pingcap.com/blog-cn/#Raft</a></p>
-<p>github上的一个对MIT6.824-2021的参考答案MrGuin/6.824-labs-2021：<a target="_blank" rel="noopener" href="https://github.com/MrGuin/6.824-labs-2021">https://github.com/MrGuin/6.824-labs-2021</a></p>
-<p>Anarion-zuo/AnBlogs上有6.824和6.828，cs143的文章：<a target="_blank" rel="noopener" href="https://github.com/Anarion-zuo/AnBlogs">https://github.com/Anarion-zuo/AnBlogs</a></p>
-<p>6.824课程的翻译：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/166409783">https://zhuanlan.zhihu.com/p/166409783</a></p>
-<p>其他整理的参考资料：<a target="_blank" rel="noopener" href="https://github.com/tianbingJ/Trepang">https://github.com/tianbingJ/Trepang</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/05/%E5%AD%A6%E4%B9%A0MIT6-824/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-基于NVM的postgres" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/04/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/">基于NVM的postgres</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/04/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/" class="archive-article-date">
-  	<time datetime="2021-08-04T04:28:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="NVM-WAL-BUFFER"><a href="#NVM-WAL-BUFFER" class="headerlink" title="NVM WAL BUFFER"></a>NVM WAL BUFFER</h1><p>【1】使用WAL段文件映射到内存作为WAL BUFFER</p>
-<p>Non-volatile Memory Logging(PGCon 2016) <a target="_blank" rel="noopener" href="https://www.pgcon.org/2016/schedule/track/Performance/945.en.html">https://www.pgcon.org/2016/schedule/track/Performance/945.en.html</a></p>
-<p>Persistent Memory(SNIA) <a target="_blank" rel="noopener" href="https://www.snia.org/PM">https://www.snia.org/PM</a></p>
-<h1 id="读文章1"><a href="#读文章1" class="headerlink" title="读文章1"></a>读文章1</h1><p>读了一篇文章：《The impact of NVM as the main memory on the database management system》，网址是：<a target="_blank" rel="noopener" href="https://www.programmersought.com/article/75573496597/">https://www.programmersought.com/article/75573496597/</a>  其实，这篇文章是论文的《Implications of Non-Volatile Memory as Primary Storage for Database Management Systems》的简版。</p>
-<p>“In addition, there are built-in substances related to leakage and voltage that limit the further expansion of DRAM. Therefore, as the main memory medium, DRAM cannot possibly keep up with the growth of current and future data sets.” 这句话表明DRAM不能做的很大。</p>
-<p>“The simplest design method is to replace NVM with the disk, and use its low latency to obtain performance improvement. However, adapting the DBMS to the characteristics of NVM goes far beyond its low latency.” 因为NVM可以字节寻址，但是传统的磁盘是块寻址。</p>
-<p>这篇文章也在研究如何在PG中部署NVM：</p>
-<ol>
-<li>“how to include NVM in the current system’s memory structure;”</li>
-<li>“modifying the PostgreSQL storage engine to maximize the dividend of NVM”</li>
-<li>“bypass the slow disk interface while ensuring the robustness of the DBMS”（这句话不是很懂）</li>
-</ol>
-<p>“the delay of STT-RAM is 1-20ns. Nevertheless, his delay is already very close to DRAM.”；“PC_RAM and R-RAM have higher write latency than DRAM. But write latency is not very important, because it can be alleviated by buffer.”（这句话的意思是，把DRAM作为NVM的buffer？还有可能是CPU内部的cache作为NVM的buffer）</p>
-<p>“<strong>When using NVM as the main memory</strong>, not only the application software but also the system software needs to be modified, so that the advantages of NVM can be fully utilized. “</p>
-<ol>
-<li>为什么要改system software呢？“The traditional file system accesses the storage medium through the block layer. If only the disk is replaced with NVM without any modification, then the NVM storage also needs to pass the block layer to read and write data. ”，这样的话，NVM的字节寻址能力就没有用到。</li>
-</ol>
-<p>“PMFS is a POSIX file system developed by Intel and open source”，PMFS作为传统文件系统的替代品，有两个特征：</p>
-<ol>
-<li>“NVM and memory are addressed uniformly”. 这就意味着 “there is no need to copy data from NVM to DRAM for application access”</li>
-<li>“ traditional databases access blocks in two ways: file IO; memory mapped IO. PMFS implements file IO in a manner similar to traditional FS. However, the implementation of memory mapped IO is different.”，因为：“In the traditional file system, memory mapped IO first copies pages to DRAM. PMFS does not need this step, it directly maps pages directly to the address space of the process” （PMFS是一个基于操作系统的软件，还是对操作系统的改变呢？）</li>
-</ol>
-<img src="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/81822a71cc3103d974ac229f043e7988.png" class="">
-<p><img src="基于NVM的postgres/81822a71cc3103d974ac229f043e7988.png" alt="img"></p>
-<h2 id="memory-layered-design"><a href="#memory-layered-design" class="headerlink" title="memory layered design"></a>memory layered design</h2><p>这篇文章提供了三种“DBMS memory layered design based on NVM”：</p>
-<img src="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/6ca7e80c6a28cd51b6e577e30cdb1529.png" class="">
-<p><img src="基于NVM的postgres/6ca7e80c6a28cd51b6e577e30cdb1529.png" alt="img"></p>
-<p>文章中不建议把DRAM替换为NVM，原因是：”such changes require a redesign of the current operating system and application software. In addition, as a substitute for DRAM, NVM technology is not mature in terms of durability. Therefore, we advocate that the platform still contains DRAM memory, and the disk is completely or partially replaced with NVM”</p>
-<p>DRAM+NVM的组合是：DRAM快速处理暂存的数据；“it allows applications to access the data of the database system through the PMFS file system, and uses the NVM byte addressing feature to avoid the API overhead of the current traditional file system.”（我不懂，字节寻址避免了什么开销呢）</p>
-<p>当使用NVM替换磁盘时，我们如何更改DBMS的重要部分：</p>
-<ol>
-<li>Avoid block-level access。使用NVM作为main memory medium时，字节寻址比块寻址要更加高效，但是“this reduces the data granularity to the byte level, without data warm-up. A better method needs to balance the advantages of these two aspects.” 所以，<strong>什么是data warm-up</strong>。</li>
-<li>Remove the internal buffer cache of the DBMS：“If the address space of NVM can be seen by other processes, there is no need to do block copying for a long time. <strong>Direct access to records in NVM will be more efficient</strong>. However, this <strong>requires an operating system that supports NVM</strong>, such as PMFS, which can directly expose the NVM address space to the process.” （我觉得，还是要buffer cache的吧）</li>
-<li>Remove redo logs：“if the internal buffer cache is not deployed, when all writes are directly written to NVM, redo log is not needed, but undo log is still needed.”（对于最简单的恢复系统，也就是先写日志到持久化存储，再写对应的更新到持久化存储，那么确实不需要redo log了，但是对于PG来说，这个不适用，因为PG是直接把更新写到buffer中的。）</li>
-</ol>
-<h2 id="PG-read-and-write-architecture"><a href="#PG-read-and-write-architecture" class="headerlink" title="PG read and write architecture"></a>PG read and write architecture</h2>
-<p><img src="基于NVM的postgres/image-20210804180735523.png" alt="image-20210804180735523"></p>
-<p>Fig3 图a是传统的PG数据库的IO方式，“when the buffer cache is missed, the storage engine of the native PG will cause <strong>two copy operations</strong>. When the data set is very large, this will be a big overhead”</p>
-<h1 id="PMEM"><a href="#PMEM" class="headerlink" title="PMEM"></a>PMEM</h1><p>参考：【3】关于mmap，ndctl，clwb等等很多相关知识都可以看到。</p>
-<h2 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h2><p>”For <a target="_blank" rel="noopener" href="https://pmem.io/glossary/#persistent-memory">persistent memory</a>, a PMem-aware file system allows a memory mapped file to access the PMem directly, a feature known as <a target="_blank" rel="noopener" href="https://pmem.io/glossary/#dax">DAX</a>. “ 因为对于普通的mmap来说，都是直接操作文件映射的内存的，但是对于PM来说，mmap就是通过虚拟地址直接操作PM。</p>
-<p>“Unlike memory mapped files on storage, where the OS performs <a target="_blank" rel="noopener" href="https://pmem.io/glossary/#paging">paging</a> to DRAM as necessary, the application is able to access persistent memory data structures in-place, right where they are located in PMem.”</p>
-<p>但是由于CPU内部本身有缓存，所以不能保证数据一定会持久化到PM，所以就有了clwb, clflush, ntstore之类的指令。</p>
-<img src="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/dax.jpg" class="">
-<p><img src="基于NVM的postgres/dax.jpg" alt="DAX"></p>
-<p>pmem-Aware File System指的是可以支持DAX方式的文件系统，比如ext4。在pmem-Aware File System下，可以使用Standard File API的mmap()和msync()命令；同时，如果mmap()在“MAP_SYNC”模式下返回成功，则用户程序可以直接使用clwb等持久化命令。</p>
-<h2 id="Device-DAX"><a href="#Device-DAX" class="headerlink" title="Device DAX"></a>Device DAX</h2><p>如果通过”pmem-Aware File System”来访问PM，这是访问PM的<code>fsdax</code>模式，如果不使用“pmem-Aware File System”来访问PM，这是访问PM的<code>dev dax</code>模式。两者的区别是什么呢？</p>
-<ol>
-<li>【2】fsdax模式由于提供的是标准的POSIX文件系统接口，所以他的兼容性更好，应用可以在完全不修改的情况下，把PMEM当作一个非常快速的磁盘来使用，同时因为是要模拟磁盘行为，IO的粒度也是512个字节，对于PMEM这样在cache line大小的IO中，能提供的超低延迟特性的硬件来说，IO的粒度仍旧太大了，无法真正发挥出PMEM的全部实力；只有devdax模式，才是真正的可以完全发挥PMEM所有高性能、可持久化、字节寻址能力的最强模式！但是唯一遗憾的就是要想使用devdax模式，必须重写现有的应用程序，和PMEM设备对接，同时，在非易失性内存上编程，也是和传统编程有较大的区别，需要考虑很多以前不需要处理的问题，所以对于很多现有的应用来说，虽然devdax模式“看上去很美”，但是却没办法采用。</li>
-<li></li>
-</ol>
-<h1 id="DAX-FS"><a href="#DAX-FS" class="headerlink" title="DAX FS"></a>DAX FS</h1><p>参考【2】，【4】</p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】postgresql email列表对NVM WAL BUFFER的讨论 <a target="_blank" rel="noopener" href="https://blog.csdn.net/yanzongshuai/article/details/111940166">https://blog.csdn.net/yanzongshuai/article/details/111940166</a></p>
-<p><a target="_blank" rel="noopener" href="https://mp.ofweek.com/Internet/a956714781157">https://mp.ofweek.com/Internet/a956714781157</a></p>
-<p>postgresql官网关于Yoshimi Ichiyanagi发送的NVM WAL BUFFER邮件：<a target="_blank" rel="noopener" href="https://www.postgresql.org/message-id/C20D38E97BCB33DAD59E3A1%40lab.ntt.co.jp">https://www.postgresql.org/message-id/C20D38E97BCB33DAD59E3A1%40lab.ntt.co.jp</a></p>
-<p>这个作者<code>zys87</code>有很多相关的“PostgreSQL源码分析”的文章，比如：</p>
-<p>非易失性WAL buffer <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/article/details/104116169">https://yanzongshuaidba.blog.csdn.net/article/details/104116169</a></p>
-<p>非易失性WAL buffer实现解析（一） <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/article/details/104205001?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base">https://yanzongshuaidba.blog.csdn.net/article/details/104205001?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base</a></p>
-<p>对应的专栏：PostgreSQL源码分析 <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/category_9278392.html">https://yanzongshuaidba.blog.csdn.net/category_9278392.html</a></p>
-<p>【2】dax fs：<a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf">https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf</a></p>
-<p>MemVerge（PMEM）: <a target="_blank" rel="noopener" href="https://card.weibo.com/article/m/show/id/2309404633085408051536">https://card.weibo.com/article/m/show/id/2309404633085408051536</a></p>
-<p>【3】pmem官网（关于mmap，ndctl，clwb等等很多相关知识都可以看到）：<a target="_blank" rel="noopener" href="https://pmem.io/">https://pmem.io/</a></p>
-<p>【4】linux doc on DAX：<a target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/filesystems/dax.txt">https://www.kernel.org/doc/Documentation/filesystems/dax.txt</a></p>
-<h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h1><p>应用PMDK修改WAL操作使之适配持久化内存 <a target="_blank" rel="noopener" href="https://blog.51cto.com/yanzongshuai/2428535">https://blog.51cto.com/yanzongshuai/2428535</a></p>
-<p>yzs大神似乎很会研究PostgreSQL <a target="_blank" rel="noopener" href="https://blog.51cto.com/yanzongshuai">https://blog.51cto.com/yanzongshuai</a></p>
-<p>dax fs：<a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf">https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf</a></p>
-<p>MemVerge（PMEM）: <a target="_blank" rel="noopener" href="https://card.weibo.com/article/m/show/id/2309404633085408051536">https://card.weibo.com/article/m/show/id/2309404633085408051536</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/04/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux程序设计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/03/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">linux程序设计</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/03/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" class="archive-article-date">
-  	<time datetime="2021-08-03T06:04:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="操作系统原理"><a href="#操作系统原理" class="headerlink" title="操作系统原理"></a>操作系统原理</h1><h2 id="linux下用户态和内核态的切换"><a href="#linux下用户态和内核态的切换" class="headerlink" title="linux下用户态和内核态的切换"></a>linux下用户态和内核态的切换</h2><p>参考“Linux下如何从用户态切换到内核态？”：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shanghx_123/article/details/83151064">https://blog.csdn.net/shanghx_123/article/details/83151064</a></p>
-<h1 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h1><h2 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h2><p>如果你是root用户，可以通过<code>su root</code>命令，然后输入root的密码切换到root用户。</p>
-<p>如果你被划进了root用户组：更改<code>/etc/sudors</code>，此时你仍然只有普通用户的权限；但是你可以用命令<code>sudo -i</code>，然后输入你的密码，就可以执行root权限了；如果不用<code>sudo -i</code>，可以使用例如<code>sudo mkdir dir</code>类似的命令，在命令前面加上sudo，让这个命令有root权限。下面是root组用户关于sudo命令的详细介绍。</p>
-<p>[sudo su]表示前用户暂时申请root权限，所以输入的不是root用户密码，而是当前用户的密码。sudo是用户申请管理员权限执行一个操作，而此处的操作就是变成管理员。运行结果 PWD=/home/用户名（当前用户主目录） 。</p>
-<p>[sudo -i]表示为了频繁的执行某些只有超级用户才能执行的权限，而不用每次输入密码，可以使用该命令。提示输入密码时该密码为当前账户的密码。没有时间限制。执行该命令后提示符变为“#”而不是“$”。想退回普通账户时可以执行“exit”或“logout” 。运行结果 PWD=/root</p>
-<p>[sudo !!]以root权限执行上一条命令。</p>
-<p>[sudo -u userb ls -l]指定用户执行命令。</p>
-<p>[sudo -l]列出目前的权限。</p>
-<p>[sudo -u uggc vi ~www/index.html]以 uggc 用户身份编辑 home 目录下www目录中的 index.html 文件</p>
-<p>[sudo su] 切换root身份，不携带当前用户环境变量。<br>[sudo su -]切换root身份，携带当前用户环境变量。</p>
-<p>[sudo -i root]与[sudo - root]、[sudo -i] ,[sudo -] ，[sudo root]效果相同 提示输入密码时该密码为当前账户的密码 要求执行该命令的用户必须在sudoers中才可以 su需要的是切换后账户的密码。</p>
-<h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p>将nvmDir文件夹的组权限加上w。（意味着和nvmDir所有者同组的人可以有写权限了）</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod g+w <span class="regexp">/data/yumi</span>ng/nvmDir</span><br></pre></td></tr></table></figure>
-<p>若加上<code>-R</code>选项，则意味着给目录及其所有子目录和子文件添加同样的权限</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod g+w -R <span class="regexp">/data/yumi</span>ng/nvmDir</span><br></pre></td></tr></table></figure>
-<h2 id="usermod"><a href="#usermod" class="headerlink" title="usermod"></a>usermod</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">usermod -G hxlong zhouhuahui <span class="comment"># zhouhuahui加入到hxlong组，但是也不在原来的组了</span></span><br><span class="line">usermod -a -G zhouhuahui zhouhuahui <span class="comment"># zhouhuahui加入到zhouhuahui组，不影响原来的组</span></span><br></pre></td></tr></table></figure>
-<h2 id="id"><a href="#id" class="headerlink" title="id"></a>id</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id zhouhuahui <span class="comment">#查看zhouhuahui的用户名，组名等</span></span><br></pre></td></tr></table></figure>
-<h2 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h2><p>假如<code>/sublime_text/sublime_text</code>是sublime的可执行程序，我如何在命令行中输入<code>subl</code>就可以自动打开这个软件呢？</p>
-<p>通过软链接：<code>ln -s /sublime_text/sublime_text /usr/bin/subl</code>就可以实现了。</p>
-<h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>读取文件内容</p>
-<p>比如，读取linux系统的cpu信息：<code>cat /proc/cpuinfo</code><br>读取linux系统的发行版信息：<code>cat /etc/os-release</code></p>
-<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><p><strong>tar -xvf \</strong>.tar //解压tar包**</p>
-<p><strong>tar -xzvf \</strong>.tar.gz // 解压tar.gz**</p>
-<p><strong>tar -xjvf \</strong>.tar.bz2 //解压 tar.bz2**</p>
-<p><strong>tar -xZvf \</strong>.tar.Z // 解压tar.Z**</p>
-<p>-z参数：表示解压的是dutar.gz文件（如果是tar.bz2就是-j）<br>-x参数：表示是执行解压缩操作而不是打包操作<br>-v参数：表示列出解压时的详细消息<br>-f参数：指定要解压的文件名</p>
-<h2 id="ndctl"><a href="#ndctl" class="headerlink" title="ndctl"></a>ndctl</h2><p>参考：<a target="_blank" rel="noopener" href="https://pmem.io/ndctl/">https://pmem.io/ndctl/</a></p>
-<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p>下载文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -P &#123;保存文件的目录&#125; &#123;文件下载地址&#125; <span class="comment">#如果不指定保存目录，会下载在当前目录下</span></span><br></pre></td></tr></table></figure>
-<p>比如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://ftp.postgresql.org/pub/<span class="built_in">source</span>/v13.3/postgresql-13.3.tar.gz</span><br><span class="line"><span class="comment"># 下载postgresql-13.3.tar.gz</span></span><br></pre></td></tr></table></figure>
-<h2 id="patch：补丁工具"><a href="#patch：补丁工具" class="headerlink" title="patch：补丁工具"></a>patch：补丁工具</h2><p>使用diff命令产生补丁，使用patch命令给旧版本代码打补丁。参考【4】。</p>
-<p>假设我们在<code>~</code>目录下有两个版本的proj1，分别是proj1_v1.0和proj1_v1.1。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> ~<span class="regexp">/proj1_v1.0/</span>a/<span class="number">1</span>.c</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> ~<span class="regexp">/proj1_v1.0/</span>b/<span class="number">1</span>.c</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> ~<span class="regexp">/proj1_v1.1/</span>a/<span class="number">1</span>.c</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">500</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> ~<span class="regexp">/proj1_v1.1/</span>b/<span class="number">1</span>.c</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">55</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>我们可以使用diff命令产生从proj1_v1.0到proj1_v1.1的补丁。在<code>~</code>下执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diff -Nrua proj1_v1.0 proj1_v1.1 &gt; c.patch <span class="comment"># 产生的补丁在c.patch中</span></span><br></pre></td></tr></table></figure>
-<p>c.patch中的内容为：</p>
-<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">diff -Nrua proj1_v1.0/a/1.c proj1_v1.1/a/1.c</span><br><span class="line"><span class="comment">--- proj1_v1.0/a/1.c    2021-08-29 23:58:03.127127776 +0800</span></span><br><span class="line"><span class="comment">+++ proj1_v1.1/a/1.c    2021-08-29 23:59:36.457121766 +0800</span></span><br><span class="line"><span class="meta">@@ -1,6 +1,5 @@</span></span><br><span class="line"> #include&lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line"> int main()&#123;</span><br><span class="line"><span class="deletion">-    int a = 1;</span></span><br><span class="line"><span class="deletion">-    return 0;</span></span><br><span class="line"><span class="addition">+    int a = 500;</span></span><br><span class="line"> &#125;</span><br><span class="line">diff -Nrua proj1_v1.0/b/1.c proj1_v1.1/b/1.c</span><br><span class="line"><span class="comment">--- proj1_v1.0/b/1.c    2021-08-29 23:58:39.998125402 +0800</span></span><br><span class="line"><span class="comment">+++ proj1_v1.1/b/1.c    2021-08-30 00:00:36.187117919 +0800</span></span><br><span class="line"><span class="meta">@@ -1,5 +1,6 @@</span></span><br><span class="line"> #include&lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line"> int main()&#123;</span><br><span class="line"><span class="deletion">-    int b = 1;</span></span><br><span class="line"><span class="addition">+    int b = 55;</span></span><br><span class="line"><span class="addition">+    return 0;</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-<p>为了将proj1_v1.0代码更新成proj1_v1.1的代码，需要使用patch命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> proj1_v1.0</span><br><span class="line">patch -p 1 &lt; ../c.patch</span><br><span class="line"><span class="comment"># -p指定了目录级别，从路径全称中除去几层目录</span></span><br><span class="line"><span class="comment"># 比如：如果指定-p 1， 那么proj1_v1.0/a/1.c就变成a/1.c</span></span><br><span class="line"><span class="comment"># 由于刚才cd到proj1_v1.0中，但是产生补丁时在~目录中，因此要除去一层目录：-p 1</span></span><br></pre></td></tr></table></figure>
-<p><strong>使用patch命令必须保证被打补丁的项目没有改变，否则，会产生.rej文件</strong></p>
-<h2 id="perf-linux原生性能分析工具"><a href="#perf-linux原生性能分析工具" class="headerlink" title="perf: linux原生性能分析工具"></a>perf: linux原生性能分析工具</h2><h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><p>用户在shell中可以同时执行多个命令。对于耗时很久的命令（如编译大型工程），用户不必傻傻等待命令运行完毕才执行下一个命令。用户在执行命令时，可以在命令的结尾添加“&amp;”符号，表示将命令放入后台执行。这样该命令对应的进程组即为后台进程组。在任意时刻，可能同时存在多个后台进程组，但是不管什么时候都只能有一个前台进程组。只有在前台进程组中进程才能在控制终端读取输入。当用户在终端输入信号生成终端字符（如ctrl+c、ctrl+z、ctr+\等）时，对应的信号只会发送给前台进程组。shell中可以存在多个进程组，无论是前台进程组还是后台进程组，它们或多或少存在一定的联系，为了更好地控制这些进程组（或者称为作业），系统引入了会话的概念。<strong>会话的意义在于将很多的工作囊括在一个终端，选取其中一个作为前台来直接接收终端的输入及信号，其他的工作则放在后台执</strong>行。</p>
-<h2 id="waitpid"><a href="#waitpid" class="headerlink" title="waitpid()"></a>waitpid()</h2><p>系统调用waitpid，等待子进程退出: </p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">waitpid</span><span class="params">(<span class="keyword">pid_t</span> pid,<span class="keyword">int</span> *status,<span class="keyword">int</span> options)</span></span></span><br></pre></td></tr></table></figure>
-<p>pid参数的意义：</p>
-<ul>
-<li>pid&gt;0时，只<strong>等待进程ID等于pid的子进程</strong>，不管其它已经有多少子进程运行结束退出了，只要指定的子进程还没有结束，waitpid就会一直等下去。</li>
-<li>pid=-1时，等待任何一个子进程退出，没有任何限制.</li>
-<li>pid=0时，等待同一个进程组中的任何子进程，如果子进程已经加入了别的进程组，waitpid不会对它做任何理睬。</li>
-<li>pid&lt;-1时，等待一个指定进程组中的任何子进程，这个进程组的ID等于pid的绝对值。</li>
-</ul>
-<p>options = WNOHANG表示非阻塞模式。</p>
-<p>waitpid()的返回值：</p>
-<ol>
-<li>当正常返回的时候，waitpid返回收集到的子进程的进程ID；</li>
-<li><strong>如果设置了选项WNOHANG，而调用中waitpid发现没有已退出的子进程可收集，则返回0；</strong></li>
-<li>如果调用中出错，则返回-1，这时errno会被设置成相应的值以指示错误所在；</li>
-</ol>
-<h1 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h1><h2 id="环境变量-1"><a href="#环境变量-1" class="headerlink" title="环境变量"></a>环境变量</h2><p>环境变量是定义在整个计算机全局的变量，保存在文件中。</p>
-<p>按照生效范围分类：</p>
-<ol>
-<li>系统环境变量：对全部用户有效</li>
-<li>用户环境变量：用户私有的</li>
-</ol>
-<p>按照生存周期分类：</p>
-<ol>
-<li>永久环境变量</li>
-<li>临时环境变量（比如，我在bash中写的命令<code>export PATH=$HOME/Desktop/postgres/13.3/bin:$PATH</code>只会在当前的会话中有效）</li>
-</ol>
-<h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><h3 id="bash中设置"><a href="#bash中设置" class="headerlink" title="bash中设置"></a>bash中设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> 变量名=<span class="string">&#x27;值&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>此时设置的是临时环境变量</p>
-<h3 id="系统环境变量"><a href="#系统环境变量" class="headerlink" title="系统环境变量"></a>系统环境变量</h3><p>系统环境变量对全部的用户生效，设置系统环境变量有三种方法。</p>
-<ol>
-<li>在<code>/etc/profile</code>文件中设置。用户登录时执行<code>/etc/profile</code>文件中设置系统的环境变量。但是，linux不建议在<code>/etc/profile</code>文件中设置系统环境变量。</li>
-<li>在<code>/etc/profile.d</code>目录中增加环境变量脚本文件，这是Linux推荐的方法。</li>
-<li>在<code>/etc/bashrc</code>文件中设置环境变量。该文件配置的环境变量将会影响全部用户使用的bash shell。但是，Linux也不建议在/etc/bashrc文件中设置系统环境变量。</li>
-</ol>
-<h3 id="用户环境变量"><a href="#用户环境变量" class="headerlink" title="用户环境变量"></a>用户环境变量</h3><p>在用户的主目录，有几个特别的文件，用<code>ls</code>是看不见的，用 <code>ls .bash_*</code> 可以看见，它们设置了用户环境变量。</p>
-<ol>
-<li>在<code>.bash_profile</code>中设置（推荐首选）</li>
-<li>在<code>.bash_logout</code>中设置。当每次退出系统（退出bash shell）时执行该文件。</li>
-<li>在<code>.bash_history</code>中保存了用户使用过的历史命令</li>
-</ol>
-<h2 id="环境变量生效"><a href="#环境变量生效" class="headerlink" title="环境变量生效"></a>环境变量生效</h2><p>1）在Shell下，用export设置的环境变量对当前Shell立即生效，Shell退出后失效。</p>
-<p>2）在脚本文件中设置的环境变量不会立即生效，退出Shell后重新登录时才生效，或者用source命令让它立即生效，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
-<h1 id="linux-I-O"><a href="#linux-I-O" class="headerlink" title="linux I/O"></a>linux I/O</h1><h2 id="普通IO（read-write-）"><a href="#普通IO（read-write-）" class="headerlink" title="普通IO（read()/write()）"></a>普通IO（read()/write()）</h2><p>【3】假设我们使用普通的I/O读取文件，底层是如何工作的呢？</p>
-<ol>
-<li>进程通过系统调用读取数据</li>
-<li>进程切换到内核态，通知设备进行读取</li>
-<li>设备准备好的数据传送到内核空间</li>
-<li>接收到数据后，内核态进程将数据从内核空间拷贝到用户空间</li>
-<li>进程切换回用户态，继续执行用户空间的代码：处理数据</li>
-<li>进程通过系统调用输出数据到设备</li>
-<li>进程切换到内核态，把数据从用户空间拷贝到内核空间，通知设备进行输出操作</li>
-<li>设备完成任务后，进程再次从内核态切换回用户态</li>
-</ol>
-<p>在上面的过程中，涉及到4次进程模式切换，两次内存拷贝。这些操作对性能会造成一定影响。</p>
-<h2 id="sync-fsync-fdatasync"><a href="#sync-fsync-fdatasync" class="headerlink" title="sync() fsync() fdatasync()"></a>sync() fsync() fdatasync()</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hmxz2nn/article/details/82868980">https://blog.csdn.net/hmxz2nn/article/details/82868980</a> 参考了这篇文章，写的很不错</p>
-<p>这几个函数都是针对文件的写操作的。由于<code>write()</code>函数对于数据持久化和一致性不是很友好，因为这个函数返回了，并不代表数据真的就立马写到磁盘中了，因此需要<code>fsync()</code>和<code>fdatasync()</code>函数。这两个函数都是等待数据完全写入磁盘后才返回，否则程序会阻塞。</p>
-<h3 id="mmap的msync"><a href="#mmap的msync" class="headerlink" title="mmap的msync()"></a>mmap的msync()</h3><p>如果采用内存映射文件的方式进行文件IO（使用mmap，将文件的page cache直接映射到进程的地址空间，通过写内存的方式修改文件），也有类似的系统调用来确保修改的内容完全同步到硬盘之上：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">msync</span><span class="params">(<span class="keyword">void</span> *addr, <span class="keyword">size_t</span> length, <span class="keyword">int</span> flags)</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="使用fdatasync优化日志同步"><a href="#使用fdatasync优化日志同步" class="headerlink" title="使用fdatasync优化日志同步"></a>使用fdatasync优化日志同步</h3><p>文章开头时已提到，为了满足事务要求，数据库的日志文件是常常需要同步IO的。由于需要同步等待硬盘IO完成，所以事务的提交操作常常十分耗时，成为性能的瓶颈。</p>
-<p>在Berkeley DB下，如果开启了AUTO_COMMIT（所有独立的写操作自动具有事务语义）并使用默认的同步级别（日志完全同步到硬盘才返回），写一条记录的耗时大约为5~10ms级别，基本和一次IO操作（10ms）的耗时相同。</p>
-<p>我们已经知道，在同步上fsync是低效的。但是如果需要使用fdatasync减少对metadata的更新，则需要确保文件的尺寸在write前后没有发生变化。日志文件天生是追加型（append-only）的，总是在不断增大，似乎很难利用好fdatasync。</p>
-<p>且看Berkeley DB是怎样处理日志文件的：</p>
-<ol>
-<li>每个log文件固定为10MB大小，从1开始编号，名称格式为“log.%010d”</li>
-<li>每次log文件创建时，先写文件的最后1个page，将log文件扩展为10MB大小</li>
-<li>向log文件中追加记录时，由于文件的尺寸不发生变化，使用fdatasync可以大大优化写log的效率</li>
-<li>如果一个log文件写满了，则新建一个log文件，也只有一次同步metadata的开销</li>
-</ol>
-<h2 id="IO端口映射与I-O内存映射"><a href="#IO端口映射与I-O内存映射" class="headerlink" title="IO端口映射与I/O内存映射"></a>IO端口映射与I/O内存映射</h2><p>参考【1】：首先讲了CPU地址概念和两种编址方式：统一编址和独立编址。</p>
-<ol>
-<li>统一编址也称为<strong>“I/O内存”</strong>方式，外设寄存器位于“内存空间”（很多外设有自己的内存、缓冲区，外设的寄存器和内存统称“I/O空间”）；</li>
-<li>独立编址也称为<strong>“I/O端口”</strong>方式，外设寄存器位于“I/O（地址）空间”，在系统中就存在了另一种与存储地址无关的IO地 址，CPU也必须具有专用与输入输出操作的IO指令（IN、OUT等）和控制逻辑。这为讲I/O内存映射的来由做了铺垫。</li>
-</ol>
-<p>虽然intel x86平台使用独立编址方式，但是x86平台普通使用了名为<strong>内存映射（MMIO）</strong>的技术，该技术是PCI规范的一部分，IO设备端口被映射到内存空间，映射后，CPU访问IO端口就如同访问内存一样。</p>
-<p>对于Linux内核而言，它可能用于不同的CPU，所以它必须都要考虑上述两种编址方式，于是它采用一种新的方法，将基于I/O映射方式的或内存映射方式的I/O端口通称为<strong>“I/O区域”（I/O region）</strong>，不论你采用哪种方式，都要先申请IO区域：request_resource()，结束时释放 它：release_resource()。</p>
-<p>如果CPU采用统一编址技术，对外设的访问就是<strong>I/O内存</strong>方式：访问I/O内存的流程是：request_mem_region() -&gt; ioremap() -&gt; ioread8()/iowrite8() -&gt; iounmap() -&gt; release_mem_region() 。</p>
-<p>ioremap()用来将IO资源的物理地址映射到内核虚地址空间（3GB - 4GB）中。</p>
-<p>如果CPU采用独立编址技术，那么访问I/O端口有两种方式：</p>
-<ol>
-<li>I/O映射方式（I/O－mapped）。不映射到内存空间，直接使用 intb()/outb()之类的函数来读写IO端口</li>
-<li>内存映射方式（Memory－mapped）。MMIO是先把IO端口映射到IO内存（“内存空间”），再使用访问IO内存的函数来访问 IO端口。</li>
-</ol>
-<h3 id="使用I-O内存映射读取文件"><a href="#使用I-O内存映射读取文件" class="headerlink" title="使用I/O内存映射读取文件"></a>使用I/O内存映射读取文件</h3><p>【2】普通地使用C语言的<code>fread()</code>或者<code>fwrite()</code>函数都需要将内容拷贝到IO缓冲区以及页高速缓冲区，这就增加了数据拷贝的次数，无形之中增加了CPU和内存的开销。使用内存映射技术可以减少系统调用的次数同时又可以降低数据的拷贝次数。</p>
-<p>将文件映射到内存：</p>
-<ul>
-<li>内存数据与文件数据一一对应</li>
-<li>通过内存代替read/write系统调用接口来访问文件</li>
-<li>减少数据拷贝，减少系统调用次数，提高了系统性能</li>
-</ul>
-<img src="/2021/08/02/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/20191007142039951.png" class="">
-<p><img src="linux程序设计/20191007142039951.png" alt="在这里插入图片描述"></p>
-<p><strong>但是我有一个问题没有搞懂：使用用户缓冲的目的就是为了效率，如果不用缓冲了，改用内存映射，那么每次都直接把数据发送到存储器，这样的开销会不会比系统调用和多次拷贝的开销要大。</strong></p>
-<p>编程接口：</p>
-<ul>
-<li>头文件 <sys/mman.h></li>
-<li>函数使用 void <em>mmap(void </em>addr, size_t length, int prot, int flags, int fd, off_t offset);</li>
-<li>函数功能：在用户虚地址空间创建一个和实际物理内存相映射的关系。<br>函数参数:</li>
-<li>addr:进程要映射的虚拟内存的起始地址，一般为NULL。操作系统会自动分配一个合适的内存地址。</li>
-<li>length:要映射实际的内存区域大小</li>
-<li>prot:内存保护标志,<br>PROT_EXEC(页内容可以被执行)，<br>PROT_READ（页内容可以被读），<br>PROT_WRITE（页内容可以被写），<br>PROT_NONE（页不可访问） </li>
-<li>flags: 映射的对象类型，<br>MAP_FIXED（如果由addr个length参数指定的内存区重叠与现存的内存区；如果指定的地址不可用，操作将会失败；并且起始地址必须落在页的边界上），<br>MAP_SHARED（与其它所有映射这个对象的进程共享映射空间。对共享区的写入，相当于输出到文件。直到msync()或者munmap()被调用，文件实际上不会被更新。），<br>MAP_PRIVATE（建立一个写入时拷贝的私有映射。内存区域的写入不会影响到原文件。这个标志和以上标志是互斥的，）</li>
-<li>fd:要映射的文件描述符</li>
-<li>offset:文件偏移地址</li>
-<li>mmap:以页单位操作，参数addr和offset必须按页对齐(4K对齐)</li>
-<li>返回值：<br>成功：指向映射后的实际内存的地址<br>失败：MAP_FAILED</li>
-</ul>
-<p>后面讲到了一些编程用例，具体查看【2】。</p>
-<h3 id="mmap工作机制"><a href="#mmap工作机制" class="headerlink" title="mmap工作机制"></a>mmap工作机制</h3><p><strong>mmap为什么是零拷贝呢？不是很懂</strong></p>
-<p>通过调用memory map，我们让操作系统把文件的内容映射到内存，对内存的读写将关联到对应的文件。而应用通过访问用户空间操作这部分内存，避免了内存拷贝操作。</p>
-<p>内存映射是文件到内存空间的映射。对于应用来说，和文件建立映射关系的是虚拟地址空间，而不是物理内存或者Heap。当我们建立一个2g大小的映射时，并不是在heap，更不是在物理内存中分配了这么大的空间，仅仅是在虚拟地址空间中划出了这么大一个区域而已，<strong>然后为虚拟空间分配一部分物理内存空间</strong>，就像页表一样。</p>
-<p>应用访问内存映射区域时，操作系统会把虚拟的地址映射成真正的物理内存地址和底层文件的偏移量。如果应用访问的虚拟地址对应的文件内容尚未被装入内存，操作系统通过缺页中断，将内存中的部分内容交换出去，腾出空间将文件的内容读取到内存。</p>
-<p><strong>内存映射对性能的提升是有条件的</strong>：通过内存映射访问文件，虽然减少了内存拷贝，减少了系统调用引起的进程模式切换，但是过程中需要承担<strong>缺页中断的负担</strong>；对于小文件的读取，或者对于append模式的文件读写，内存映射的性能未看，未必优于普通io操作。只有对大文件的随机访问，内存映射才可能有明显优势，不过这仍然需要更具体的分析和进一步的的benchmark测试。</p>
-<p><strong>但是，对于NVM来说就不同了</strong>，mmap可以很好地利用NVM的字节寻址的特点；而且，mmap可以不用为映射的文件分配物理内存空间，直接把数据读写到NVM上的文件。</p>
-<h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h2 id="sockaddr-in"><a href="#sockaddr-in" class="headerlink" title="sockaddr_in"></a>sockaddr_in</h2><p>sockaddr_in就是为了保存TCP/IP相关的信息：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* netinet/in.h</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span>&#123;</span></span><br><span class="line">    <span class="comment">/* 协议族：AF_UNIX, AF_NET, AF_INET6</span></span><br><span class="line"><span class="comment">     * AF_NET就是IPV4</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">short</span> <span class="keyword">int</span> sin_family;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* 端口号（使用网络字节顺序）：例如80</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> sin_port;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* IP地址：例如202.96.134.133</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* sockaddr和sockaddr大小一样了</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> sin_zero[<span class="number">8</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span>&#123;</span></span><br><span class="line">    <span class="comment">/* IP地址（网络字节顺序）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> s_addr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>为了将字符串形式的IP地址：SERV_IP和int类型的端口号SERV_PORT存储在sockaddr_in结构体serv_addr中：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="built_in">inet_pton</span>(AF_INET, SERV_IP, &amp;serv_addr.sin_addr.s_addr);    </span><br><span class="line">serv_addr.sin_port = <span class="built_in">htons</span>(SERV_PORT);</span><br></pre></td></tr></table></figure>
-<h2 id="sigaction和sigaction"><a href="#sigaction和sigaction" class="headerlink" title="sigaction和sigaction()"></a>sigaction和sigaction()</h2><p>struct sigaction主要在sigaction信号安装和sigqueue信号发送时会用到，这是linux进程间信号传递的内容；</p>
-<p>struct sigaction的源码：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// usr/include/bits/sigaction.h</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Structure describing the action to be taken when a signal arrives.     */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">       <span class="comment">/* Signal handler.     */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __USE_POSIX199309</span></span><br><span class="line">	<span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">		<span class="comment">/* Used if SA_SIGINFO is not set.     */</span></span><br><span class="line">		<span class="keyword">__sighandler_t</span> sa_handler;</span><br><span class="line">       	<span class="comment">/* Used if SA_SIGINFO is set.     */</span></span><br><span class="line">       	<span class="built_in"><span class="keyword">void</span></span> (*sa_sigaction) (<span class="keyword">int</span>, <span class="keyword">siginfo_t</span> *, <span class="keyword">void</span> *);</span><br><span class="line">     &#125;</span><br><span class="line">     __sigaction_handler;</span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> sa_handler __sigaction_handler.sa_handler</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> sa_sigaction      __sigaction_handler.sa_sigaction</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">     <span class="keyword">__sighandler_t</span> sa_handler;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">     <span class="comment">/* Additional set of signals to be blocked.     */</span></span><br><span class="line">     <span class="keyword">__sigset_t</span> sa_mask;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/* Special flags.     */</span></span><br><span class="line">     <span class="keyword">int</span> sa_flags;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由<code>sa_handler</code>指定的处理函数只有一个参数，即<code>信号值</code>，所以信号不能传递除信号值之外的任何信息；由<code>sa_sigaction</code>是指定的信号处理函数带有三个参数，是为实时信号而设的（当然同样支持非实时信号），它指定一个3参数信号处理函数。第一个参数为信号值，第三个参数没有使用（posix没有规范使用该参数的标准），第二个参数是指向<code>siginfo_t</code>结构的指针，结构中包含信号携带的数据值。</p>
-<p>属性<code>sa_mask</code>指定在信号处理程序执行过程中，哪些信号应当被阻塞。缺省情况下当前信号本身被阻塞，防止信号的嵌套发送，除非指定<code>SA_NODEFER</code>或者<code>SA_NOMASK</code>标志位。</p>
-<p>属性<code>sa_flags</code>中包含了许多标志位，包括刚刚提到的<code>SA_NODEFER</code>及<code>SA_NOMASK</code>标志位。另一个比较重要的标志位是<code>SA_SIGINFO</code>，当设定了该标志位时，表示信号附带的参数可以被传递到信号处理函数中，因此，应该为sigaction结构中的<code>sa_sigaction</code>指定处理函数，而不应该为<code>sa_handler</code>指定信号处理函数。</p>
-<p>sigaction()有3个参数：第一个参数是信号的值，第二个是sigaction结构的指针。第二个参数说明了第一个参数指定的信号发生时调用的函数和其它的一些信息。</p>
-<p>下面是使用sigaction的例子：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_sigchild</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">waitpid</span>(<span class="number">0</span>, <span class="literal">NULL</span>, WNOHANG) &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> <span class="title">newact</span>;</span></span><br><span class="line">	newact.sa_handler = do_sigchild; <span class="comment">// do_sigchild是一个函数</span></span><br><span class="line">	<span class="built_in">sigemptyset</span>(&amp;newact.sa_mask);</span><br><span class="line">	newact.sa_flags = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">sigaction</span>(SIGCHLD, &amp;newact, <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="gdb调试"><a href="#gdb调试" class="headerlink" title="gdb调试"></a>gdb调试</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// debug1.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG1 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG2 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> DEBUG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">if</span> (DEBUG &amp; DEBUG1)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;debug1: &quot;</span> __DATE__ <span class="string">&quot; at &quot;</span> __TIME__ <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">if</span> (DEBUG &amp; DEBUG2)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;This is a line %d of file %s&quot;</span>, __LINE__, __FILE__ <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello &quot;</span> <span class="string">&quot;world&quot;</span> <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>在linux bash下执行：<code>cc -o debug1 -DDEBUG=3 debug1.c</code></p>
-<p>结果是：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">debug1</span>: Aug <span class="number">17</span> <span class="number">2021</span> at <span class="number">08</span>:<span class="number">17</span>:<span class="number">47</span></span><br><span class="line"><span class="attribute">This</span> is a line <span class="number">14</span> of file debug<span class="number">1</span>.c</span><br><span class="line"><span class="attribute">hello</span> world</span><br></pre></td></tr></table></figure>
-<p>通过指定<code>-DDEBUG</code>选项的值为0, 1, 2或者3，可以有不同的调试输出。</p>
-<p><strong>启动gdb</strong></p>
-<p>假设已经编译好了<code>a.c</code>文件，然后可执行文件是<code>a</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cc -g -o a a.c</span><br></pre></td></tr></table></figure>
-<p>然后：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gdb a</span><br></pre></td></tr></table></figure>
-<p>此时只是启动gdb，但是并没有运行程序</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
-<p><strong>运行程序</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) run</span><br></pre></td></tr></table></figure>
-<p><strong>栈跟踪</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) backtrace</span><br></pre></td></tr></table></figure>
-<p>通过这个命令可以看到程序是如何到达这个断点的。</p>
-<p><strong>检查变量</strong></p>
-<p>print语句可以输出程序中的表达式的值。加入程序中有<code>int a[]</code>数组，则可以通过下面的命令输出<code>a[3]</code>的值。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">print</span> a[3]</span><br></pre></td></tr></table></figure>
-<p>输出<code>a[0]</code>到<code>a[4]</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">print</span> a[0]@5</span><br></pre></td></tr></table></figure>
-<p><strong>列出程序源代码</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) list</span><br></pre></td></tr></table></figure>
-<p><strong>设置断点</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">break</span> 3 <span class="comment"># 在第3行设置断点</span></span><br><span class="line">(gdb) run</span><br></pre></td></tr></table></figure>
-<p>继续执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) cont</span><br></pre></td></tr></table></figure>
-<p><strong>单步执行</strong>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) next</span><br></pre></td></tr></table></figure>
-<p>info命令：告诉gdb列出所有的断点</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) info <span class="built_in">break</span></span><br></pre></td></tr></table></figure>
-<p>disable: disable某个编号的断点，如果想要用这个断点，只需enable</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">disable</span> <span class="built_in">break</span> 1 <span class="comment"># disable第一个断点</span></span><br></pre></td></tr></table></figure>
-<p>在某个函数设置断点：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">break</span> func</span><br></pre></td></tr></table></figure>
-<p><strong>attach</strong></p>
-<p>如何用gdb调试已经运行的程序。加入一个程序的pid是1234</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) attach 1234</span><br></pre></td></tr></table></figure>
-<p><strong>进入代码模式</strong></p>
-<p>快捷键<code>ctrl+X+A</code>。</p>
-<p><strong>跳出函数</strong></p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">finish</span></span><br><span class="line"><span class="keyword">fin</span></span><br></pre></td></tr></table></figure>
-<p><strong>跳出循环</strong></p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">until</span></span><br></pre></td></tr></table></figure>
-<h1 id="linux工具"><a href="#linux工具" class="headerlink" title="linux工具"></a>linux工具</h1><h2 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h2><p>多个源文件的编译：（假如有a.h, a.c, b.c文件）</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc a.c b.c -o b</span><br></pre></td></tr></table></figure>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】linux中的 IO端口映射和IO内存映射 <a target="_blank" rel="noopener" href="https://blog.csdn.net/geekster/article/details/11393995">https://blog.csdn.net/geekster/article/details/11393995</a></p>
-<p>【2】linux 文件IO与内存映射：内存映射 <a target="_blank" rel="noopener" href="https://blog.csdn.net/Z_Stand/article/details/102305129">https://blog.csdn.net/Z_Stand/article/details/102305129</a></p>
-<p>包含专栏“linux操作系统：io系统” <a target="_blank" rel="noopener" href="https://blog.csdn.net/z_stand/category_9403370.html">https://blog.csdn.net/z_stand/category_9403370.html</a></p>
-<p>【3】虚拟内存/用户空间与内核空间/MMap与MUnmap</p>
-<p>【4】打补丁patch 命令使用：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xfxf996/article/details/103851041">https://blog.csdn.net/xfxf996/article/details/103851041</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/03/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-情商与智慧人生" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/31/%E6%83%85%E5%95%86%E4%B8%8E%E6%99%BA%E6%85%A7%E4%BA%BA%E7%94%9F/">情商与智慧人生</a>
-    </h1>
-  
-
-        
-        <a href="/2021/07/31/%E6%83%85%E5%95%86%E4%B8%8E%E6%99%BA%E6%85%A7%E4%BA%BA%E7%94%9F/" class="archive-article-date">
-  	<time datetime="2021-07-31T14:27:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="12-情商修炼在于细节"><a href="#12-情商修炼在于细节" class="headerlink" title="12 情商修炼在于细节"></a>12 情商修炼在于细节</h1><h2 id="12-1-情商修炼在于细节"><a href="#12-1-情商修炼在于细节" class="headerlink" title="12.1 情商修炼在于细节"></a>12.1 情商修炼在于细节</h2><p>情商修炼并不教你如何成功，而是教你如何快乐，它教你关注自己的心灵，改变我们对教育的看法，让我们像天才一样成长。</p>
-<p>在大学，要更好地认识自己和社会，扬长避短，不断探寻、肯定、发展和超越自我；</p>
-<p>高情商人有如下特点：</p>
-<ol>
-<li>外向，生活愉快；</li>
-<li>不易陷入恐惧和伤感，调整不良情绪速度快；</li>
-<li>目标明晰，对事业较投入，充满目标和激情；</li>
-<li>为人正直，富于同情心，情感生活较丰富但不逾矩；</li>
-<li>不管独处还是与人交往，都能怡然自得，具有正气场；</li>
-<li>善于正向情绪主导意识，反省自己，激励自己，提升自己；</li>
-</ol>
-<p>低情商的人的特点：</p>
-<ol>
-<li>性格孤僻，怪异，不易与人合作；</li>
-<li>自卑，脆弱，不能面对挫折；</li>
-<li>急躁，固执，自负；</li>
-<li>没有责任心，推三阻四，情绪不稳定；</li>
-<li>不喜欢换位思考，不考虑别人的感受；</li>
-<li>问明知故问的问题，说话戳人痛处；</li>
-<li>即使是陌生，无关的人，仍然在意其怎么看自己；</li>
-<li>把最好的脾气给了陌生人，把最差的耐心给了亲人；</li>
-<li>说话难听，在众人面前喜欢贬低别人来抬高自己；</li>
-<li>具有负气场，负能量，爱抱怨和指责，只见树木，不见森林，智商再高，也难有所成就；</li>
-</ol>
-<p>情商高的人在人生的各个方面都占尽优势，不管是谈恋爱，还是与人交往，主宰人生的方向；在生活中更有效率，更能满足，比较容易利用自己的智能获取丰硕的成果；</p>
-<hr>
-<p>想提高情商，要从细节做起。注重细节能给人带来良好的印象，良好的人际关系，而良好的人际关系又能带来良好的信誉，信任，甚至带有意外的经济效益；</p>
-<p>子绝四：毋意、毋必、毋固、毋我。我们要怀圣人之心做平常之事，不能只顾自己的利益需求，忽视他人的存在。</p>
-<h2 id="12-2-情商：一项综合软技能"><a href="#12-2-情商：一项综合软技能" class="headerlink" title="12.2 情商：一项综合软技能"></a>12.2 情商：一项综合软技能</h2><p>白岩松：“生命中有一种很奇妙的逻辑，如果你真的过好了每一天，明天还会不错。”</p>
-<p>高情商创造大气场，能够无形中感染他人。</p>
-<p>“我不是为老板打工，也不是为自己赚钱，我在为自己的梦想打工，我要让自己工作产生的价值远远超过自己的薪水。”；“要想取得成功，必须要做核心人物，这样才能吸引，感染别人，自己也能最终受益。”</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">上善若水。水善利万物而不争，处众人之所恶，</span><br><span class="line">故几于道。</span><br><span class="line">居善地，心善渊</span><br><span class="line">与善任，言善信</span><br><span class="line">政善治，事善能</span><br><span class="line">动善时</span><br><span class="line">夫唯不争，故无忧。</span><br></pre></td></tr></table></figure>
-<p>在道家学说里，水为至善至柔，水性绵绵密密，微则无声，巨则汹涌，与人无争，却又容纳万物，人生之道，莫过于此。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/31/%E6%83%85%E5%95%86%E4%B8%8E%E6%99%BA%E6%85%A7%E4%BA%BA%E7%94%9F/">展开全文 >></a>
         </p>
       
 

@@ -152,6 +152,406 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="posts-WSL更新数据源" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/">WSL更新数据源</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/" class="archive-article-date">
+  	<time datetime="2021-06-01T13:09:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>e</p>
+<p>首先进入WSL，执行<code>cd /etc/apt</code>。</p>
+<p>然后再windows的<code>C:\Users\%USERNAME%\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs</code>目录下找到sources.list文件。用下列内容覆盖。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-security main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-updates main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-backports main restricted universe multiverse  </span><br><span class="line"><span class="comment">##测试版源  </span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-proposed main restricted universe multiverse  </span><br><span class="line"><span class="comment"># 源码  </span></span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-security main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-updates main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-backports main restricted universe multiverse  </span><br><span class="line"><span class="comment">##测试版源  </span></span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-proposed main restricted universe multiverse  </span><br><span class="line"><span class="comment"># Canonical 合作伙伴和附加  </span></span><br><span class="line">deb http:<span class="regexp">//</span>archive.canonical.com<span class="regexp">/ubuntu/</span> xenial partner  </span><br><span class="line">deb http:<span class="regexp">//</span>extras.ubuntu.com<span class="regexp">/ubuntu/</span> xenial main  </span><br></pre></td></tr></table></figure>
+<p>接着，回到WSL，执行：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> update # 更新源</span><br><span class="line">sudo apt-<span class="builtin-name">get</span><span class="built_in"> upgrade </span># 更新软件</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-解决github的ssh相关问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">解决github的ssh相关问题</a>
+    </h1>
+  
+
+        
+        <a href="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2021-05-31T22:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>e</p>
+<p>在使用git进行push或者hexo进行deploy时会出现下面问题：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git@</span>github.com: Permission denied (publickey). Could <span class="keyword">not</span> read <span class="keyword">from</span> remote repository</span><br></pre></td></tr></table></figure>
+<p>Permission denied (publickey) 没有权限的publickey ，出现这错误一般是以下两种原因</p>
+<ul>
+<li>客户端与服务端未生成 ssh key</li>
+<li>客户端与服务端的ssh key不匹配</li>
+</ul>
+<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><p>使用ssh公钥认证的方式可以免去ssh客户端(如ssh命令、xshell等)连接远端主机sshd时需要输入对方用户密码的问题。</p>
+<p>但如果执行ssh命令所在的主机上保存了多套秘钥且将各公钥分发给了不同的远端主机，这时即使使用了公钥认证，也依然需要输入密码，因为ssh客户端不知道要读取哪个私钥去和该远端主机上的公钥配对。因此在把不同的公钥<code>~/.ssh/id_rsa.pub</code>分发给了不同的主机后，在连接到主机时仍然需要输入密码，这是因为ssh客户端连接主机的时候，除了默认会读取的规范私钥文件<code>id_rsa</code>(或其它秘钥类型)外，不会自动读取任何一个文件。</p>
+<h2 id="ssh-agent"><a href="#ssh-agent" class="headerlink" title="ssh-agent"></a>ssh-agent</h2><p>程序员很不满意这样的连接方式，于是创造了一个中间的私钥管理者ssh-agent：你不是不知道怎么配对吗，我帮你配。而且这个功能对于程序员来说，so easy。</p>
+<p>ssh认证的过程其实是客户端(ssh命令端)读取自己的私钥并推导出指纹发送给服务端(sshd端)，服务端也使用自己保存的公钥推导出指纹进行对比，如果指纹相同说明服务端的公钥和客户端的私钥是配对的。</p>
+<p>使用ssh-agent后，可以通过ssh-add命令向ssh-agent注册本机的私钥，ssh-agent会自动推导出这个私钥的指纹(实际上是ssh-add计算的)保存在自己的小本本里(内存)，以后只要ssh连接某主机(某用户)，将自动转发给ssh-agent，ssh-agent将自动从它的小本本里查找私钥的指纹并将其发送给服务端(sshd端)。如此一来，ssh客户端就无需再指定使用哪个私钥文件去连接。</p>
+<h1 id="客户端生成ssh-key"><a href="#客户端生成ssh-key" class="headerlink" title="客户端生成ssh key"></a>客户端生成ssh key</h1><p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;2957286012@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
+<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601221150222.png" class="">
+<p><img src="解决github的ssh相关问题/image-20210601221150222.png" alt="image-20210601221150222"></p>
+<p>在<code>~/.ssh/</code>下会生成：</p>
+<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601223558359.png" class="">
+<p><img src="解决github的ssh相关问题/image-20210601223558359.png" alt="image-20210601223558359"></p>
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@github.com</span><br></pre></td></tr></table></figure>
+<p>这句代码是显示登录github的细节，输出：</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">OpenSSH_8.<span class="number">5</span>p1, OpenSSL <span class="number">1.1</span>.<span class="number">1</span>k  <span class="number">25</span> Mar <span class="number">2021</span></span><br><span class="line">debug1: Reading configuration data <span class="regexp">/etc/</span>ssh/ssh_config</span><br><span class="line">debug1: Connecting to github.com [<span class="number">52.74</span>.<span class="number">223.119</span>] port <span class="number">22</span>.</span><br><span class="line">debug1: Connection established.</span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_rsa type <span class="number">0</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_rsa-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_dsa type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_dsa-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa_sk type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa_sk-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519 type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519_sk type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519_sk-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_xmss type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_xmss-cert type -<span class="number">1</span></span><br><span class="line">debug1: Local version string SSH-<span class="number">2.0</span>-OpenSSH_8.<span class="number">5</span></span><br><span class="line">debug1: Remote protocol version <span class="number">2.0</span>, remote software version babeld-<span class="number">728</span>b22c0</span><br><span class="line">debug1: compat_banner: no match: babeld-<span class="number">728</span>b22c0</span><br><span class="line">debug1: Authenticating to github.com:<span class="number">22</span> as <span class="string">&#x27;git&#x27;</span></span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/known_hosts2: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/etc/</span>ssh/ssh_known_hosts: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/etc/</span>ssh/ssh_known_hosts2: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: SSH2_MSG_KEXINIT sent</span><br><span class="line">debug1: SSH2_MSG_KEXINIT received</span><br><span class="line">debug1: kex: algorithm: curve25519-sha256</span><br><span class="line">debug1: kex: host key algorithm: rsa-sha2-<span class="number">512</span></span><br><span class="line">debug1: kex: server-&gt;client cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none</span><br><span class="line">debug1: kex: client-&gt;server cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none</span><br><span class="line">debug1: expecting SSH2_MSG_KEX_ECDH_REPLY</span><br><span class="line">debug1: SSH2_MSG_KEX_ECDH_REPLY received</span><br><span class="line">debug1: Server host key: ssh-rsa SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8</span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/known_hosts2: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/etc/</span>ssh/ssh_known_hosts: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/etc/</span>ssh/ssh_known_hosts2: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: Host <span class="string">&#x27;github.com&#x27;</span> is known and matches the RSA host key.</span><br><span class="line">debug1: Found key in <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/known_hosts:<span class="number">1</span></span><br><span class="line">debug1: rekey out after <span class="number">134217728</span> blocks</span><br><span class="line">debug1: SSH2_MSG_NEWKEYS sent</span><br><span class="line">debug1: expecting SSH2_MSG_NEWKEYS</span><br><span class="line">debug1: SSH2_MSG_NEWKEYS received</span><br><span class="line">debug1: rekey in after <span class="number">134217728</span> blocks</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh<span class="regexp">/id_rsa RSA SHA256:dDGgT2zZ0y/</span>qEcpF<span class="regexp">/NmVY/m</span>l/eH+FPkH9w2ZtkuBuJc</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_dsa</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa_sk</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519_sk</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_xmss</span><br><span class="line">debug1: SSH2_MSG_EXT_INFO received</span><br><span class="line">debug1: kex_input_ext_info: server-sig-algs=&lt;ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-<span class="number">512</span>-cert-v01@openssh.com,rsa-sha2-<span class="number">256</span>-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-dss-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,ssh-ed25519,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256,rsa-sha2-<span class="number">512</span>,rsa-sha2-<span class="number">256</span>,ssh-rsa,ssh-dss&gt;</span><br><span class="line">debug1: SSH2_MSG_SERVICE_ACCEPT received</span><br><span class="line">debug1: Authentications that can <span class="keyword">continue</span>: publickey</span><br><span class="line">debug1: <span class="keyword">Next</span> authentication method: publickey</span><br><span class="line">debug1: Offering <span class="keyword">public</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh<span class="regexp">/id_rsa RSA SHA256:dDGgT2zZ0y/</span>qEcpF<span class="regexp">/NmVY/m</span>l/eH+FPkH9w2ZtkuBuJc</span><br><span class="line">debug1: Authentications that can <span class="keyword">continue</span>: publickey</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_dsa</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa_sk</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519_sk</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_xmss</span><br><span class="line">debug1: No more authentication methods to <span class="keyword">try</span>.</span><br><span class="line">git@github.com: Permission denied (publickey).</span><br></pre></td></tr></table></figure>
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent -s</span><br></pre></td></tr></table></figure>
+<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601221943215.png" class="">
+<p><img src="解决github的ssh相关问题/image-20210601221943215.png" alt="image-20210601221943215"></p>
+<p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent bash</span><br><span class="line">ssh-add ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601222704748.png" class="">
+<p><img src="解决github的ssh相关问题/image-20210601222704748.png" alt="image-20210601222704748"></p>
+<h1 id="github服务器配置ssh"><a href="#github服务器配置ssh" class="headerlink" title="github服务器配置ssh"></a>github服务器配置ssh</h1><p>打开你刚刚生成的id_rsa.pub，将里面的内容复制，进入你的github账号，在settings下，SSH and GPG keys下new SSH key，然后将id_rsa.pub里的内容复制到Key中，完成后Add SSH Key。</p>
+<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601222853431.png" class="">
+<p><img src="解决github的ssh相关问题/image-20210601222853431.png" alt="image-20210601222853431"></p>
+<h1 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h1><p>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>结果是：</p>
+<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601222953884.png" class="">
+<p><img src="解决github的ssh相关问题/image-20210601222953884.png" alt="image-20210601222953884"></p>
+<h1 id="同一个电脑上添加多个ssh-key"><a href="#同一个电脑上添加多个ssh-key" class="headerlink" title="同一个电脑上添加多个ssh key"></a>同一个电脑上添加多个ssh key</h1><p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/149ee5b8916f">在同一台电脑上添加多个ssh key - 简书 (jianshu.com)</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-eclipse与maven" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/29/eclipse%E4%B8%8Emaven/">eclipse与maven</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/29/eclipse%E4%B8%8Emaven/" class="archive-article-date">
+  	<time datetime="2021-05-29T07:30:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>假如你正在Eclipse下开发两个Java项目，姑且把它们称为A、B，其中A项目中的一些功能依赖于B项目中的某些类，那么如何维系这种依赖关系的呢？</p>
+<p>很简单，这不就是跟我们之前写程序时一样吗，需要用哪个项目中的哪些类，也就是用别人写好了的功能代码，导入jar包即可。所以这里也如此，可以将B项目打成jar包，然后在A项目的Library下导入B的jar文件，这样，A项目就可以调用B项目中的某些类了。</p>
+<p>这样做几种缺陷如果在开发过程中，发现B中的bug，则必须将B项目修改好，并重新将B打包并对A项目进行重编译操作在完成A项目的开发后，为了保证A的正常运行，就需要依赖B(就像在使用某个jar包时必须依赖另外一个jar一样)，两种解决方案，第一种，选择将B打包入A中，第二种，将B也发布出去，等别人需要用A时，告诉开发者，想要用A就必须在导入B jar包。两个都很麻烦，前者可能造成资源的浪费(比如，开发者可能正在开发依赖B的其它项目，B已经存储到本地了，在导入A的jar包的话，就有了两个B的jar)，后者是我们常遇到的，找各种jar包，非常麻烦(有了maven就不一样了)</p>
+<h1 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h1><p>Maven是基于项目对象模型(POM project object model)，可以通过一小段描述信息（配置）来管理项目的构建，报告和文档的软件项目管理工具。Maven的核心功能便是合理叙述项目间的依赖关系，通俗点讲，就是通过pom.xml文件的配置获取jar包，而不用手动去添加jar包，而这里pom.xml文件对于学了一点maven的人来说，就有些熟悉了，怎么通过pom.xml的配置就可以获取到jar包呢？pom.xml配置文件从何而来？等等类似问题我们需要搞清楚，如果需要使用pom.xml来获取jar包，那么首先该项目就必须为maven项目，maven项目可以这样去想，就是在java项目和web项目的上面包裹了一层maven，本质上java项目还是java项目，web项目还是web项目，但是包裹了maven之后，就可以使用maven提供的一些功能了</p>
+<p>所以，根据上一段的描述，我们最终的目的就是学会如何在pom.xml中配置获取到我们想要的jar包，在此之前我们就必须了解如何创建maven项目，maven项目的结构是怎样，与普通java,web项目的区别在哪里，还有如何配置pom.xml获取到对应的jar包等等</p>
+<p>例子：pom.xml中写明需要junit的jar包的例子</p>
+<img src="/2021/05/28/eclipse%E4%B8%8Emaven/1.png" class="">
+<p><img src="eclipse与maven/1.png" alt="0"></p>
+<p>其中groupId是给自己的一个唯一标识；artifactId是自己的项目名称；version是这个jar包的版本号。</p>
+<h1 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h1><p>通过pom.xml中的配置，就能够获取到想要的jar包(还没讲解如何配置先需要了解一下仓库的概念)，但是这些jar是在哪里呢？就是我们从哪里获取到的这些jar包？答案就是仓库。</p>
+<p>仓库分为：本地仓库、第三方仓库(私服)、中央仓库</p>
+<h2 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h2><p>Maven会将工程中依赖的构件(Jar包)从远程下载到本机一个目录下管理，每个电脑默认的仓库是在 <code>$user.home/.m2/repository</code>下。</p>
+<p>一般我们会修改本地仓库位置，自己创建一个文件夹，在从网上下载一个拥有相对完整的所有jar包的结合，都丢到本地仓库中，然后每次写项目，直接从本地仓库里拿就行了。</p>
+<p>修改本地库位置：在<code>$MAVEN_HOME/conf/setting.xml</code>文件中修改（$MAVEN_HOME代表你的maven安装根目录）。</p>
+<img src="/2021/05/28/eclipse%E4%B8%8Emaven/2.png" class="">
+<p><img src="eclipse与maven/2.png" alt="0"></p>
+<p>我们自己创建的本地仓库是<code>D:\java\maven\repository</code>，将网上下载的所有jar包，都丢到该目录下，我们就可以直接通过maven的pom.xml文件直接拿。</p>
+<h2 id="第三方仓库-私服"><a href="#第三方仓库-私服" class="headerlink" title="第三方仓库(私服)"></a>第三方仓库(私服)</h2><p>略</p>
+<h2 id="中央仓库"><a href="#中央仓库" class="headerlink" title="中央仓库"></a>中央仓库</h2><p>Maven内置了远程公用仓库：<code>http://repo1.maven.org/maven2</code>。这个公共仓库是由Maven自己维护，里面有大量的常用类库，并包含了世界上大部分流行的开源项目构件。目前是以java为主。工程依赖的jar包如果本地仓库没有，默认从中央仓库下载</p>
+<h1 id="eclipse创建maven项目"><a href="#eclipse创建maven项目" class="headerlink" title="eclipse创建maven项目"></a>eclipse创建maven项目</h1><p>使用eclpse创建项目前，需要在eclipse中配置maven的一些信息，如：配置本地仓库、安装自定义maven(myeclipse中高版本自带了maven)等</p>
+<h2 id="java项目"><a href="#java项目" class="headerlink" title="java项目"></a>java项目</h2><p>选择<code>File-&gt;new-&gt;Project</code>，然后选择<code>Maven-&gt;Maven Project</code>，然后选择<code>create a simple project</code>，之后就自己选择。结果是</p>
+<img src="/2021/05/28/eclipse%E4%B8%8Emaven/3.png" class="">
+<p><img src="eclipse与maven/3.png" alt="0"></p>
+<h1 id="maven-安装"><a href="#maven-安装" class="headerlink" title="maven 安装"></a>maven 安装</h1><p>前往<a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a> 下载最新的bin文件压缩件。</p>
+<p>将文件解压到<code>D:\APP\</code>目录下，<code>D:\APP\apache-maven-3.8.1</code>是根目录。</p>
+<p>新建环境变量<code>MAVEN_HOME</code>，赋值为<code>D:\APP\apache-maven-3.8.1</code>。</p>
+<p>编辑PATH环境变量，新建：<code>%MAVEN_HOME%\bin</code>。</p>
+<h1 id="eclipse使用"><a href="#eclipse使用" class="headerlink" title="eclipse使用"></a>eclipse使用</h1><p><strong>如何自动引包</strong></p>
+<p>在代码区域，右键，选择“source”，然后选择”organize imports”。</p>
+<p><strong>如何添加包</strong></p>
+<p>包的层次关系等价于目录层次关系，比如”com.springboot.bean”包的目录就在”com.springboot”的目录下面。</p>
+<p><strong>package explorer中显示包的层次关系</strong></p>
+<p><img src="eclipse与maven/image-20210810171143404.png" alt="image-20210810171143404"></p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/whgk/p/7112560.html">https://www.cnblogs.com/whgk/p/7112560.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/29/eclipse%E4%B8%8Emaven/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="posts-node-media-server视频直播" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/04/03/node-media-server%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD/">node media server视频直播</a>
+    </h1>
+  
+
+        
+        <a href="/2021/04/03/node-media-server%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD/" class="archive-article-date">
+  	<time datetime="2021-04-03T03:17:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-03</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>node media server和ffmpeg组合起来可以实现视频</p>
+<p>先参考网址：<a target="_blank" rel="noopener" href="https://github.com/illuspas/Node-Media-Server">https://github.com/illuspas/Node-Media-Server</a></p>
+<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="node-media-server"><a href="#node-media-server" class="headerlink" title="node media server"></a>node media server</h2><p>最简单的方式就是用npm全局安装</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g <span class="keyword">node</span><span class="title">-media-server</span></span><br></pre></td></tr></table></figure>
+<h2 id="ffmpeg"><a href="#ffmpeg" class="headerlink" title="ffmpeg"></a>ffmpeg</h2><p>进入网址：<a target="_blank" rel="noopener" href="http://ffmpeg.org/">http://ffmpeg.org/</a> </p>
+<p>下载后添加环境变量：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">D</span>:\APP\ffmpeg-N-<span class="number">101799</span>-g<span class="number">0</span>c<span class="number">7</span>d<span class="number">02844</span>c-win<span class="number">64</span>-gpl-shared-vulkan\bin</span><br></pre></td></tr></table></figure>
+<h1 id="推流"><a href="#推流" class="headerlink" title="推流"></a>推流</h1><p>在推流前，先把node media server 运行起来，这一点看拉流那一节</p>
+<h2 id="本地视频推流"><a href="#本地视频推流" class="headerlink" title="本地视频推流"></a>本地视频推流</h2><p>假如在我们的D盘有一个视频叫做my_room.mp4</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -re -i D:\\my_room.mp4 -c:v libx264 -preset veryfast -tune zerolatency -c:a aac -ar <span class="number">44100</span> -f flv rtmp:<span class="regexp">//</span>localhost<span class="regexp">/live/my</span>_room</span><br></pre></td></tr></table></figure>
+<h2 id="本地摄像头推流"><a href="#本地摄像头推流" class="headerlink" title="本地摄像头推流"></a>本地摄像头推流</h2><h3 id="摄像头和麦克风信息"><a href="#摄像头和麦克风信息" class="headerlink" title="摄像头和麦克风信息"></a>摄像头和麦克风信息</h3><p>首先使用ffmpeg查看本地摄像头的相关信息：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ffmpeg</span> -list_devices <span class="literal">true</span> -f dshow -i dummy</span><br></pre></td></tr></table></figure>
+<p><img src="image/image-20210403153847368.png" alt="image-20210403153847368"></p>
+<h3 id="音视频推送"><a href="#音视频推送" class="headerlink" title="音视频推送"></a>音视频推送</h3><p>我目前找到两份代码，但是只有第二份代码可以正常</p>
+<p>第一个：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f dshow -i video=<span class="string">&quot;HP Wide Vision HD Camera&quot;</span>:audio=<span class="string">&quot;麦克风阵列 (Realtek High Definition Audio)&quot;</span> -vcodec libx264 -acodec copy -preset:v ultrafast -tune:v zerolatency -f flv rtmp:<span class="regexp">//</span>localhost<span class="regexp">/live/my</span>_room</span><br></pre></td></tr></table></figure>
+<p>第二个：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f dshow -i video=<span class="string">&quot;HP Wide Vision HD Camera&quot;</span>:audio=<span class="string">&quot;麦克风阵列 (Realtek High Definition Audio)&quot;</span> -vcodec libx264 -preset:v ultrafast -tune:v zerolatency -f flv rtmp:<span class="regexp">//</span>localhost<span class="regexp">/live/my</span>_room</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">D</span>:\APP\ffmpeg-N-<span class="number">101799</span>-g<span class="number">0</span>c<span class="number">7</span>d<span class="number">02844</span>c-win<span class="number">64</span>-gpl-shared-vulkan\bin\ffmpeg.exe -f dshow -i video=<span class="string">&quot;HP Wide Vision HD Camera&quot;</span>:audio=<span class="string">&quot;麦克风阵列 (Realtek High Definition Audio)&quot;</span> -vcodec libx<span class="number">264</span> -preset:v ultrafast -tune:v zerolatency -f flv rtmp://localhost/live/my_room</span><br></pre></td></tr></table></figure>
+<p>我们可以看到，推送音视频信息时需要给ffmpeg命令行传入摄像头和麦克风信息。</p>
+<h1 id="拉流"><a href="#拉流" class="headerlink" title="拉流"></a>拉流</h1><h2 id="video标签"><a href="#video标签" class="headerlink" title="video标签"></a>video标签</h2><p>所谓拉流，就是使用<code>video</code>标签来链接到node media server的http-flv端口。因此我们要在index.js(运行后台服务器的js文件)里面，打开express服务器和node media server服务器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">&#x27;./resource/html/test.html&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            res.setHeader(<span class="string">&#x27;Content-Type&#x27;</span>,<span class="string">&#x27;text/plain; charset=utf-8&#x27;</span>)</span><br><span class="line">            res.end(<span class="string">&#x27;文件读取失败&#x27;</span>)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            res.setHeader(<span class="string">&#x27;Content-Type&#x27;</span>,<span class="string">&#x27;text/html; charset=utf-8&#x27;</span>)</span><br><span class="line">            <span class="keyword">var</span> htmlStr = data.toString()</span><br><span class="line">            res.end(htmlStr)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcss.com/flv.js/1.5.0/flv.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">&quot;videoElement&quot;</span> <span class="attr">controls</span>=<span class="string">&quot;controls&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;update_live_btn&quot;</span>&gt;</span>更新<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> videoElement</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> flvPlayer</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (flvjs.isSupported()) &#123;</span></span><br><span class="line"><span class="javascript">        videoElement = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;videoElement&#x27;</span>);</span></span><br><span class="line"><span class="javascript">        flvPlayer = flvjs.createPlayer(&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">type</span>: <span class="string">&#x27;flv&#x27;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">isLive</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">hasAudio</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">hasVideo</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">url</span>: <span class="string">&#x27;http://localhost:8000/live/my_room.flv&#x27;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">cors</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">        &#125;,&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">enableStashBuffer</span>: <span class="literal">false</span></span></span><br><span class="line"><span class="javascript">        &#125;);</span></span><br><span class="line"><span class="javascript">        flvPlayer.attachMediaElement(videoElement);</span></span><br><span class="line"><span class="javascript">        flvPlayer.load();</span></span><br><span class="line"><span class="javascript">        flvPlayer.play();</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">setInterval</span>(<span class="function">()=&gt;</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(!videoElement.buffered.length)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span></span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> end = videoElement.buffered.end(<span class="number">0</span>)</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> diff = end - videoElement.currentTime</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(diff &gt;= <span class="number">0.5</span>)&#123;</span></span><br><span class="line"><span class="javascript">            videoElement.currentTime = end</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;, <span class="number">1000</span>)</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>先执行 <code>node index.js</code>，运行起服务器，接着再执行推流。</p>
+<p>打开浏览器，输入：<code>http://localhost:3000/</code></p>
+<h2 id="如何更新video标签"><a href="#如何更新video标签" class="headerlink" title="如何更新video标签"></a>如何更新video标签</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(flvPlayer != undefined)&#123;</span><br><span class="line">        flvPlayer.<span class="built_in">unload</span>()</span><br><span class="line">        flvPlayer.<span class="built_in">detachMediaElement</span>()</span><br><span class="line">        flvPlayer.<span class="built_in">destroy</span>()</span><br><span class="line">        flvPlayer = null</span><br><span class="line">    &#125;</span><br><span class="line">    videoElement = $(<span class="string">&quot;.meeting_div .live video&quot;</span>).<span class="built_in">get</span>(<span class="number">0</span>) <span class="comment">// jquery对象转为dom对象</span></span><br><span class="line">    flvPlayer = flvjs.<span class="built_in">createPlayer</span>(&#123;</span><br><span class="line">        type: <span class="string">&#x27;flv&#x27;</span>,</span><br><span class="line">        isLive: <span class="literal">true</span>,</span><br><span class="line">        hasAudio: <span class="literal">true</span>,</span><br><span class="line">        hasVideo: <span class="literal">true</span>,</span><br><span class="line">        url: <span class="string">&quot;http://localhost:8000/live/pushstream:&quot;</span> + id + <span class="string">&quot;.flv&quot;</span>,</span><br><span class="line">        cors: <span class="literal">true</span>,</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        enableStashBuffer: <span class="literal">false</span></span><br><span class="line">    &#125;);</span><br><span class="line">    flvPlayer.<span class="built_in">attachMediaElement</span>(videoElement);</span><br><span class="line">    flvPlayer.<span class="built_in">load</span>();</span><br><span class="line">    flvPlayer.<span class="built_in">play</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(intervalFunc)&#123;</span><br><span class="line">        <span class="built_in">clearInterval</span>(intervalFunc)</span><br><span class="line">    &#125;</span><br><span class="line">    intervalFunc = <span class="built_in">setInterval</span>(()=&gt;&#123;</span><br><span class="line">        <span class="keyword">if</span>(!videoElement.buffered.length)&#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        let end = videoElement.buffered.<span class="built_in">end</span>(<span class="number">0</span>)</span><br><span class="line">        let diff = end - videoElement.currentTime</span><br><span class="line">        <span class="keyword">if</span>(diff &gt;= <span class="number">0.5</span>)&#123;</span><br><span class="line">            videoElement.currentTime = end</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">D</span>:\APP\ffmpeg-N-<span class="number">101799</span>-g<span class="number">0</span>c<span class="number">7</span>d<span class="number">02844</span>c-win<span class="number">64</span>-gpl-shared-vulkan\bin\ffmpeg -f dshow -i audio=<span class="string">&quot;麦克风阵列 (Realtek High Definition Audio)&quot;</span> D:\APP\ffmpeg-N-<span class="number">101799</span>-g<span class="number">0</span>c<span class="number">7</span>d<span class="number">02844</span>c-win<span class="number">64</span>-gpl-shared-vulkan\out.m<span class="number">4</span>a</span><br></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/04/03/node-media-server%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="posts-art-template的前端渲染用法" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1088,395 +1488,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/11/04/go%E8%AF%AD%E8%A8%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-js中基本数据类型及其用法" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/12/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/">js中基本数据类型及其用法</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/12/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2020-10-11T21:06:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h1><p>在js中，有6种不同的数据类型：</p>
-<ul>
-<li>string</li>
-<li>number</li>
-<li>boolean</li>
-<li>object</li>
-<li>function</li>
-<li>symbol</li>
-</ul>
-<p>3种对象类型：</p>
-<ul>
-<li>Object</li>
-<li>Date</li>
-<li>Array</li>
-</ul>
-<p>2种不包含任何值的数据类型</p>
-<ul>
-<li>null</li>
-<li>undefined</li>
-</ul>
-<h1 id="typeof"><a href="#typeof" class="headerlink" title="typeof"></a>typeof</h1><p>typeof操作符可以返回string, number, boolean, object, function, undefined</p>
-<p>特殊地，null的数据类型是object</p>
-<h1 id="Object-prototype"><a href="#Object-prototype" class="headerlink" title="Object.prototype"></a>Object.prototype</h1><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="keyword">var</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>()</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.name = <span class="string">&#x27;zhou&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p1 = <span class="keyword">new</span> Person()</span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(arr) <span class="comment">//[object Array]</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(date) <span class="comment">//[object Date]</span></span><br><span class="line"><span class="built_in">Object</span>.prototype.toString.call(p1) <span class="comment">//[object Object]</span></span><br></pre></td></tr></table></figure>
-<p>由于js中只有3种对象类型，Object.prototype.toString.call只会返回上述三种结果之一。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/12/js%E4%B8%AD%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%85%B6%E7%94%A8%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-css-vertical-align属性" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/11/css-vertical-align%E5%B1%9E%E6%80%A7/">css-vertical-align属性</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/11/css-vertical-align%E5%B1%9E%E6%80%A7/" class="archive-article-date">
-  	<time datetime="2020-10-10T22:08:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>vertical-align应该是我目前遇到的最复杂的属性了。先了解基线的概念。</p>
-<h1 id="基线"><a href="#基线" class="headerlink" title="基线"></a>基线</h1><p>下面是一行文本（不包括padding和margin区域），其中制定了一些线的概念。</p>
-<img src="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/1.webp" class="">
-<p><img src="css-vertical-align属性/1.webp" alt="1"></p>
-<p>baseline基线是一行文本中x字符的低端所在的直线。</p>
-<p>还有，基线的位置不是固定的：</p>
-<ol>
-<li>在文本内联元素中，如上图，基线是字符x的下边缘位置</li>
-<li>在img元素中，基线就是图片的下边缘</li>
-<li>在inline-block元素中。如果该元素中有内联元素，基线就是最后一行内联元素的基线；如果该元素没有内联元素或者内联元素的overflow不是visible，基线就是margin的底边缘。</li>
-</ol>
-<h1 id="vertical-align"><a href="#vertical-align" class="headerlink" title="vertical-align"></a>vertical-align</h1><p>vertical-align属性应用于行内元素，如display属性值为<code>inline</code>, <code>inline-block</code>, <code>table-cell</code>的。</p>
-<p>第一种用法，若应用于表单元格中，如display属性为table-cell的，这个属性会设置单元格框中单元格内容的对齐方式。如果给一个表格的td加一个vertical-align: middle 的样式，表格里面的内容会垂直居中。</p>
-<p>第二种用法，该属性定义行内元素相对于该元素所在行的垂直对齐。意思是，如果有几个行内元素a, b, c在同一行，那么这3个行内元素在垂直方向该如何对齐，它们是全部bottom对齐，全部baseline对齐还是a的middle和b,c的baseline对齐，这是由它们自己分别设置的vertical-align属性决定的。</p>
-<p>下面以一个例子来解释。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;width:500px; height:1000px; background:aquamarine&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span></span><br><span class="line">                abcxyz周华辉</span><br><span class="line">            <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;display:inline-block; width:100px; height:100px; margin:10px; background:blue&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">span</span>&gt;</span></span><br><span class="line">                西瓜</span><br><span class="line">            <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><strong>默认所有内联元素的vertical-align值为baseline</strong></p>
-<img src="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/1.jpg" class="">
-<p><img src="css-vertical-align属性/1.jpg" alt="1"></p>
-<p>如上图所示，所有元素的baseline对齐了。</p>
-<p><strong>设置第一个span的vertical-align为middle</strong></p>
-<img src="/2020/10/10/css-vertical-align%E5%B1%9E%E6%80%A7/2.jpg" class="">
-<p><img src="css-vertical-align属性/2.jpg" alt="1"></p>
-<p>很明显，第一个span的middle line和另外两个元素的baseline对齐了。</p>
-<h1 id="垂直居中的方法"><a href="#垂直居中的方法" class="headerlink" title="垂直居中的方法"></a>垂直居中的方法</h1><p>若设置内层元素inner在外层元素outter中垂直居中。可以</p>
-<ol>
-<li><p>设置outter的display为table-cell，vertical-align:middle</p>
-</li>
-<li><p>在outter中另外增加一个div</p>
- <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">vertical-align</span>: middle</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> 然后设置inner的vertical-align为middle。然后inner就在outter中垂直居中了。</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/11/css-vertical-align%E5%B1%9E%E6%80%A7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-css-水平垂直居中" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/11/css-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">css-水平垂直居中</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/11/css-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/" class="archive-article-date">
-  	<time datetime="2020-10-10T20:43:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-11</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="css2"><a href="#css2" class="headerlink" title="css2"></a>css2</h1><h2 id="水平居中"><a href="#水平居中" class="headerlink" title="水平居中"></a>水平居中</h2><h3 id="margin-0-auto"><a href="#margin-0-auto" class="headerlink" title="margin 0 auto"></a>margin 0 auto</h3><p>有一个html文本（1.html）：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;utf-8&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">title</span>&gt;</span>div居中<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text/css&quot;</span> <span class="attr">href</span>=<span class="string">&quot;test.css&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;outerDiv&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width:250px;height:350px;border: 2px solid red;&quot;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;innerDiv&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 150px;height: 150px;background-color: green;&quot;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>设置下面的css样式，可以达到水平居中</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.innerDiv</span>&#123;</span><br><span class="line">	<span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>为什么不把上下左右的margin全部设置成auto呢</strong>？这样不就上下左右都居中了？</p>
-<p>首先，<strong>div是一个块级元素</strong>，宽度默认都是相对于父元素的100%，即：一个块元素，如果我们不人为的去设置它的宽度，他就单独占一行！换句话说，<strong>这一行就只有他一个元素</strong>！想让他水平居中，左右margin设置成auto后底层很容易就可以计算出margin具体的数值应该是多少，从而达成左右居中。说到这里，我们再去考虑垂直居中：页面在垂直方向上块级元素不一定只有一个，即<strong>块级元素没有“默认占一列”这样的规定</strong>，因此即使把margin设置成auto，也不能自动计算出margin到底该是多少</p>
-<h2 id="垂直居中"><a href="#垂直居中" class="headerlink" title="垂直居中"></a>垂直居中</h2><h3 id="line-height"><a href="#line-height" class="headerlink" title="line-height"></a>line-height</h3><p>对于单行文字在父元素中垂直居中，可以设置，这行文字的line-height为父元素的height。</p>
-<h3 id="table-cell"><a href="#table-cell" class="headerlink" title="table-cell"></a>table-cell</h3><p>对于1.html，设置下面的css样式：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.outerDiv</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>: table-cell;</span><br><span class="line">	<span class="attribute">vertical-align</span>: middle;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.innerDiv</span>&#123;</span><br><span class="line">	<span class="attribute">margin</span>: <span class="number">0</span> auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="定位-负边距"><a href="#定位-负边距" class="headerlink" title="定位+负边距"></a>定位+负边距</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">500px</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>:absolute; </span><br><span class="line">    <span class="attribute">left</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">top</span>:<span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">margin-left</span>:-<span class="number">150px</span>;</span><br><span class="line">    <span class="attribute">margin-top</span>:-<span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">padding</span>:<span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">300px</span>;</span><br><span class="line">    <span class="attribute">height</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">background</span>:<span class="number">#41D7FB</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>注意：想要在其中垂直居中的父元素必须要么是body元素，要么设置position: relative。</p>
-<p>特点：</p>
-<ol>
-<li>兼容性好</li>
-<li>元素的宽高需要固定</li>
-</ol>
-<h3 id="定位-自适应边距"><a href="#定位-自适应边距" class="headerlink" title="定位+自适应边距"></a>定位+自适应边距</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">        西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">background</span>: black</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.box</span>&#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">width</span>:<span class="number">200px</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">200px</span></span><br><span class="line">    margin: auto;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#41D7FB</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需要固定宽高。</p>
-<h1 id="css3"><a href="#css3" class="headerlink" title="css3"></a>css3</h1><p>直接利用flex布局。</p>
-<p>或者，利用<code>transform</code>属性</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.wrapper</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">500px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">500px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">background</span>: black</span></span><br><span class="line"><span class="css">        &#125;</span></span><br><span class="line"><span class="css"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span> &#123;</span></span><br><span class="line"><span class="css">            <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">            <span class="attribute">left</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">top</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">200px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">transform</span>: <span class="built_in">translate</span>(-<span class="number">50%</span>, -<span class="number">50%</span>);</span></span><br><span class="line"><span class="css">            <span class="attribute">background</span>: <span class="number">#41D7FB</span></span></span><br><span class="line"><span class="css">        &#125;</span></span><br><span class="line"><span class="css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;wrapper&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">            西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书西瓜书</span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/11/css-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-js-遍历对象" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/10/js-%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1/">js-遍历对象</a>
-    </h1>
-  
-
-        
-        <a href="/2020/10/10/js-%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-  	<time datetime="2020-10-09T22:51:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>js对象的属性中可直接用，可访问到的属性分为数据属性和访问器属性。</p>
-<h1 id="数据属性"><a href="#数据属性" class="headerlink" title="数据属性"></a>数据属性</h1><p>实际存储属性值</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">value</span>: 属性值,</span><br><span class="line">    <span class="attr">writable</span>: <span class="literal">true</span>/<span class="literal">false</span>, <span class="comment">//控制是否可以修改</span></span><br><span class="line">    <span class="attr">enumerable</span>: <span class="literal">true</span>/<span class="literal">false</span>, <span class="comment">//控制是否可枚举</span></span><br><span class="line">    <span class="attr">configurable</span>: <span class="literal">true</span>/<span class="literal">false</span>, <span class="comment">//控制是否可删除，控制是否可修改前两个特性，一旦改为false，则不可逆</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="访问器属性"><a href="#访问器属性" class="headerlink" title="访问器属性"></a>访问器属性</h1><p>不实际存储数据，专门提供对其他数据的保护。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">get</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,</span><br><span class="line">    <span class="attr">set</span>: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>)</span>&#123;&#125;,</span><br><span class="line">    <span class="attr">enumerable</span>: <span class="literal">true</span>/<span class="literal">false</span>,</span><br><span class="line">    <span class="attr">configurable</span>: <span class="literal">true</span>/<span class="literal">false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="for…in"><a href="#for…in" class="headerlink" title="for…in"></a>for…in</h1><ol>
-<li>访问可枚举的属性</li>
-<li>访问存在于实例的，也可以访问存在于原型中的</li>
-<li>按照键的字典序输出</li>
-</ol>
-<h1 id="Object-keys"><a href="#Object-keys" class="headerlink" title="Object.keys"></a>Object.keys</h1><ol>
-<li>访问可枚举的属性</li>
-<li>访问存在于实例的</li>
-<li>按照键的字典序输出</li>
-</ol>
-<h1 id="for…of"><a href="#for…of" class="headerlink" title="for…of"></a>for…of</h1><p>主要用来遍历可迭代的对象(Array, Map, Set, arguments等)，它主要获取对象的value值。</p>
-<p>参考 <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000014497376">https://segmentfault.com/a/1190000014497376</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/10/10/js-%E9%81%8D%E5%8E%86%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
         </p>
       
 

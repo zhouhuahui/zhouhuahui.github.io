@@ -152,43 +152,39 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-每日技术阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-论文阅读：viper-vldb2021" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/09/10/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">每日技术阅读</a>
+      <a class="article-title" href="/2021/09/11/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/">论文阅读：viper(vldb2021)</a>
     </h1>
   
 
         
-        <a href="/2021/09/10/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/" class="archive-article-date">
-  	<time datetime="2021-09-10T00:33:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
+        <a href="/2021/09/11/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/" class="archive-article-date">
+  	<time datetime="2021-09-10T23:01:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-11</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>每天都要阅读一些技术类的文章，但是如果把所有这些文章都做笔记是不太现实的，但是如果把这些文章都只想过眼云烟一样读一下，又很快忘了，所以在这个文章里记录每个月读的文章链接，标题，以及自己的一点想法。</p>
-<h1 id="2021-9"><a href="#2021-9" class="headerlink" title="2021.9"></a>2021.9</h1><h2 id="数据库读写分离"><a href="#数据库读写分离" class="headerlink" title="数据库读写分离"></a>数据库读写分离</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/findbetterme/p/10820590.html">https://www.cnblogs.com/findbetterme/p/10820590.html</a></p>
-<p>提到了最终一致性。在分布式系统中，对于某些对实时性要求不高的场合里，可以放弃一些一致性，比如采用读写分离的方式，将一些读操作放在从服务器上执行，虽然慢了点，但是等个几分钟也不是不可以。比如，我刚在github.io上发布了新的博客，总是要刷新好几遍才会出来我更新的东西，这就是读写分离。</p>
-<h2 id="为什么选择Rust"><a href="#为什么选择Rust" class="headerlink" title="为什么选择Rust"></a>为什么选择Rust</h2><p><a target="_blank" rel="noopener" href="https://www.techug.com/post/why-we-choose-rust-to-dev.html">https://www.techug.com/post/why-we-choose-rust-to-dev.html</a></p>
-<p>这篇文章对Rust和C++，go语言进行了比较，解释了为什么在大型项目中选择Rust语言。</p>
-<h2 id="Optimistic-Lock-Coupling"><a href="#Optimistic-Lock-Coupling" class="headerlink" title="Optimistic Lock Coupling"></a>Optimistic Lock Coupling</h2><h2 id="乐观锁与悲观锁"><a href="#乐观锁与悲观锁" class="headerlink" title="乐观锁与悲观锁"></a>乐观锁与悲观锁</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.hollischuang.com/archives/934">https://www.hollischuang.com/archives/934</a><br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1604426171880146821&amp;wfr=spider&amp;for=pc">https://baijiahao.baidu.com/s?id=1604426171880146821&amp;wfr=spider&amp;for=pc</a></p>
-<p>悲观锁就是大学时学的那种常见的锁，在做任何更新之前都要获取锁，因为它总是悲观地认为在修改过程中会有别的进程也要修改同样的数据；在乐观锁中，不会获取锁，以提高并发度。</p>
-<ul>
-<li>数据版本,为数据增加的一个版本标识。当读取数据时，将版本标识的值一同读出，数据每更新一次，同时对版本标识进行更新。当我们提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的版本标识进行比对，如果数据库表当前版本号与第一次取出来的版本标识值相等，则予以更新，否则认为是过期数据。</li>
-<li>乐观锁适用于多读应用类型</li>
-<li>但是有个问题是：在高并发地对同一行数据进行修改时，乐观锁会导致大量进程的更新失败。</li>
-</ul>
-<p>在MySQL中，悲观锁的使用是<code>select for update</code>；乐观锁的应用是：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">update order_table set status = ‘取消’ where order_id = 001 and status = ‘待支付’ and ....;</span><br><span class="line"></span><br><span class="line">update order_table set status = ‘已发货’ where order_id = 001 and status = ‘已支付’ and ....;   </span><br><span class="line"></span><br><span class="line"># 在实际应用中我们在更新数据的时候，更严谨的做法是带上更新前的“状态”</span><br></pre></td></tr></table></figure>
-<h2 id="perf"><a href="#perf" class="headerlink" title="perf"></a>perf</h2><p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2017/09/flame-graph.html">如何读懂火焰图</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.brendangregg.com/flamegraphs.html">火焰图官方</a></p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
+        <h1 id="论文网址"><a href="#论文网址" class="headerlink" title="论文网址"></a>论文网址</h1><p><a target="_blank" rel="noopener" href="https://hpides.github.io/viper/">https://hpides.github.io/viper/</a></p>
+<h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>However, simply drop-in replacing existing storage with PMem does not yield good results, as block-based access behaves differently in PMem than on disk and ignores PMem’s byte addressability, layout, and unique performance characteristics.</p>
+<p>要解决如何正确地将KV持久化到PM中；要利用好字节存取能力和它特殊的性能特征。</p>
+<p>In this paper, we propose three PMem-specific access patterns and implement them in a hybrid PMem-DRAM KVS called Viper.</p>
+<p>三种访问模式；hybrid PMem-DRAM KVS</p>
+<p>We employ a DRAM-based hash index and a PMem-aware storage layout to utilize the random-write speed of DRAM and efficient sequential-write performance PMem.</p>
+<p>将Hash索引存储到DRAM中，因为DRAM的随机写性能很好；再利用PM的很好的顺序写性能。</p>
+<p>“我感觉这篇文章比较有意思的点在与它通过存储布局设计把不同threads的读写操作都尽量均衡的分配到了不同的DIMM上，并且把粒度（VPage）设为4kb（实测中这样的offset在顺序写时候Latency最低），Viper没有做缓存设计（因为实际测试中DRAM和PMem的顺序写入的Latency差不多）”</p>
+<img src="/2021/09/10/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/image-20210911071525723.png" class="">
+<p><img src="论文阅读：viper-vldb2021/image-20210911071525723.png" alt="image-20210911071525723"></p>
+<h1 id="讨论"><a href="#讨论" class="headerlink" title="讨论"></a>讨论</h1><p>由于这篇论文应用了PM的顺序写性能，而且openGauss的日志也是顺序写的，因此可以参考这篇论文来探讨如何将PM应用于openGauss的日志系统。</p>
+<p>在spitfire论文中，探讨了dram-pm-ssd的三层存储结构，其实在openGauss中应该也可以用这种结构来实现日志系统。如果单纯地使用PM持久化日志，由于日志过于庞大，全部存储在PM中不太合适，我想最终还是要dump到磁盘当中的。</p>
+
       
 
       
@@ -201,7 +197,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">论文</a>
         		</li>
       		
 		</ul>
@@ -211,7 +207,251 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/09/10/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">展开全文 >></a>
+          <a class="article-more-a" href="/2021/09/11/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aviper-vldb2021/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Tidb" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/11/Tidb/">Tidb</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/11/Tidb/" class="archive-article-date">
+  	<time datetime="2021-09-10T22:55:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>Tidb中文简介：<a href="https://link.zhihu.com/?target=https%3A//pingcap.com/docs-cn">https://link.zhihu.com/?target=https%3A//pingcap.com/docs-cn</a></p>
+<p>Tidb最佳实践等ppt: <a target="_blank" rel="noopener" href="https://eyun.baidu.com/s/3huniXE0?errmsg=Auth+Login+Sucess&amp;errno=0&amp;ssnerror=0&amp;#sharelink/path=/">https://eyun.baidu.com/s/3huniXE0?errmsg=Auth+Login+Sucess&amp;errno=0&amp;ssnerror=0&amp;#sharelink/path=/</a></p>
+<p>开源项目地址：<a target="_blank" rel="noopener" href="https://github.com/pingcap/tidb">https://github.com/pingcap/tidb</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/11/Tidb/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2021ecnu校园地助学贷款" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/10/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/">2021ecnu校园地助学贷款</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/10/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/" class="archive-article-date">
+  	<time datetime="2021-09-10T07:28:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="校园地助学贷款简介"><a href="#校园地助学贷款简介" class="headerlink" title="校园地助学贷款简介"></a>校园地助学贷款简介</h1><p>本专科贷款金额不超过12000元，研究生不超过16000元。</p>
+<h2 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h2><p><a target="_blank" rel="noopener" href="https://zizhu.ecnu.edu.cn/Notice/Details/2080">https://zizhu.ecnu.edu.cn/Notice/Details/2080</a></p>
+<h1 id="申贷流程概述"><a href="#申贷流程概述" class="headerlink" title="申贷流程概述"></a>申贷流程概述</h1><p>9月9日-9月18日，领取《借款凭证》与办理银行卡（如果没有上海市中国银行一类卡，才去办理银行卡），到大学生活动中心504整。</p>
+<p>9月27日-10月9日，贷款办网站（华东师范大学资助网站）填写相关材料，自行打印。为什么这么晚，因为要等到困难认定结果出来。</p>
+<p>10月18日-10月21日，到贷款办递交相关材料，签订合同。</p>
+<p>12月上旬，贷款到校。</p>
+<h1 id="贷款办网站填写指南"><a href="#贷款办网站填写指南" class="headerlink" title="贷款办网站填写指南"></a>贷款办网站填写指南</h1><img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910184539319.png" class="">
+<p><img src="2021ecnu校园地助学贷款/image-20210910184539319.png" alt="image-20210910184539319"></p>
+<p>这里联系人不能写父母，只能写朋友亲戚。</p>
+<img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910184800870.png" class="">
+<p><img src="2021ecnu校园地助学贷款/image-20210910184800870.png" alt="image-20210910184800870"></p>
+<p>关于有邮箱，最好不要填学校邮箱，填QQ邮箱</p>
+<img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910185120930.png" class="">
+<p><img src="2021ecnu校园地助学贷款/image-20210910185120930.png" alt="image-20210910185120930"></p>
+<img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910185230366.png" class="">
+<p><img src="2021ecnu校园地助学贷款/image-20210910185230366.png" alt="image-20210910185230366"></p>
+<img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910185350782.png" class="">
+<p><img src="2021ecnu校园地助学贷款/image-20210910185350782.png" alt="image-20210910185350782"></p>
+<img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910185511516.png" class="">
+<p><img src="2021ecnu校园地助学贷款/image-20210910185511516.png" alt="image-20210910185511516"></p>
+<h1 id="贷款的还款"><a href="#贷款的还款" class="headerlink" title="贷款的还款"></a>贷款的还款</h1><img src="/2021/09/09/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/image-20210910185937261.png" class="">
+<p><img src="2021ecnu校园地助学贷款/image-20210910185937261.png" alt="image-20210910185937261"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/10/2021ecnu%E6%A0%A1%E5%9B%AD%E5%9C%B0%E5%8A%A9%E5%AD%A6%E8%B4%B7%E6%AC%BE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-锁" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/10/%E9%94%81/">锁</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/10/%E9%94%81/" class="archive-article-date">
+  	<time datetime="2021-09-10T01:04:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/10/%E9%94%81/">展开全文 >></a>
         </p>
       
 
@@ -487,6 +727,96 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/09/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%EF%BC%9Aspitfire/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-每日技术阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">每日技术阅读</a>
+    </h1>
+  
+
+        
+        <a href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/" class="archive-article-date">
+  	<time datetime="2021-09-09T08:33:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>每天都要阅读一些技术类的文章，但是如果把所有这些文章都做笔记是不太现实的，但是如果把这些文章都只想过眼云烟一样读一下，又很快忘了，所以在这个文章里记录每个月读的文章链接，标题，以及自己的一点想法。</p>
+<h1 id="2021-9"><a href="#2021-9" class="headerlink" title="2021.9"></a>2021.9</h1><h2 id="数据库读写分离"><a href="#数据库读写分离" class="headerlink" title="数据库读写分离"></a>数据库读写分离</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/findbetterme/p/10820590.html">https://www.cnblogs.com/findbetterme/p/10820590.html</a></p>
+<p>提到了最终一致性。在分布式系统中，对于某些对实时性要求不高的场合里，可以放弃一些一致性，比如采用读写分离的方式，将一些读操作放在从服务器上执行，虽然慢了点，但是等个几分钟也不是不可以。比如，我刚在github.io上发布了新的博客，总是要刷新好几遍才会出来我更新的东西，这就是读写分离。</p>
+<h2 id="为什么选择Rust"><a href="#为什么选择Rust" class="headerlink" title="为什么选择Rust"></a>为什么选择Rust</h2><p><a target="_blank" rel="noopener" href="https://www.techug.com/post/why-we-choose-rust-to-dev.html">https://www.techug.com/post/why-we-choose-rust-to-dev.html</a></p>
+<p>这篇文章对Rust和C++，go语言进行了比较，解释了为什么在大型项目中选择Rust语言。</p>
+<h2 id="Optimistic-Lock-Coupling"><a href="#Optimistic-Lock-Coupling" class="headerlink" title="Optimistic Lock Coupling"></a>Optimistic Lock Coupling</h2><h2 id="乐观锁与悲观锁"><a href="#乐观锁与悲观锁" class="headerlink" title="乐观锁与悲观锁"></a>乐观锁与悲观锁</h2><p>参考：<a target="_blank" rel="noopener" href="https://www.hollischuang.com/archives/934">https://www.hollischuang.com/archives/934</a><br><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1604426171880146821&amp;wfr=spider&amp;for=pc">https://baijiahao.baidu.com/s?id=1604426171880146821&amp;wfr=spider&amp;for=pc</a></p>
+<p>悲观锁就是大学时学的那种常见的锁，在做任何更新之前都要获取锁，因为它总是悲观地认为在修改过程中会有别的进程也要修改同样的数据；在乐观锁中，不会获取锁，以提高并发度。</p>
+<ul>
+<li>数据版本,为数据增加的一个版本标识。当读取数据时，将版本标识的值一同读出，数据每更新一次，同时对版本标识进行更新。当我们提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的版本标识进行比对，如果数据库表当前版本号与第一次取出来的版本标识值相等，则予以更新，否则认为是过期数据。</li>
+<li>乐观锁适用于多读应用类型</li>
+<li>但是有个问题是：在高并发地对同一行数据进行修改时，乐观锁会导致大量进程的更新失败。</li>
+</ul>
+<p>在MySQL中，悲观锁的使用是<code>select for update</code>；乐观锁的应用是：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">update order_table set status = ‘取消’ where order_id = 001 and status = ‘待支付’ and ....;</span><br><span class="line"></span><br><span class="line">update order_table set status = ‘已发货’ where order_id = 001 and status = ‘已支付’ and ....;   </span><br><span class="line"></span><br><span class="line"># 在实际应用中我们在更新数据的时候，更严谨的做法是带上更新前的“状态”</span><br></pre></td></tr></table></figure>
+<h2 id="perf"><a href="#perf" class="headerlink" title="perf"></a>perf</h2><p><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2017/09/flame-graph.html">如何读懂火焰图</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.brendangregg.com/flamegraphs.html">火焰图官方</a></p>
+<h1 id="2021-12"><a href="#2021-12" class="headerlink" title="2021.12"></a>2021.12</h1><h2 id="“十四五”数据库发展趋势与挑战"><a href="#“十四五”数据库发展趋势与挑战" class="headerlink" title="“十四五”数据库发展趋势与挑战"></a>“十四五”数据库发展趋势与挑战</h2><p>这个文章介绍了数据库前沿的概览，但是我根本不理解这里面的很多东西，只是能记住一些名词，比如云原生数据库，分布式数据据，新型硬件，openGauss等自治数据库。值得注意的是，里面说<strong>NVM 数据库的事务管理机制、页面设计机制也都与传统数据库大相径庭</strong>，因为我是做NVM的，所以想知道传统的事务管理机制和NVM数据库的事务管理机制的区别，传统事务的页面设计和NVM数据库的页面设计有什么区别。</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/09/09/%E6%AF%8F%E6%97%A5%E6%8A%80%E6%9C%AF%E9%98%85%E8%AF%BB/">展开全文 >></a>
         </p>
       
 
@@ -840,335 +1170,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/08/31/leetcode/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-finalshell-cisoAnyConnection连接到ecnu服务器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/23/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">finalshell-cisoAnyConnection连接到ecnu服务器</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/23/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="archive-article-date">
-  	<time datetime="2021-08-23T02:12:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="连接到ecnu-VPN"><a href="#连接到ecnu-VPN" class="headerlink" title="连接到ecnu VPN"></a>连接到ecnu VPN</h1><p>1.首先下载ciscoAnyConnection软件，这个软件可以连接到ecnu VPN。下载网址是：</p>
-<p>链接：<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1khUL60elE1l_WLr8yel81g">https://pan.baidu.com/s/1khUL60elE1l_WLr8yel81g</a><br>提取码：df7l</p>
-<p>2.cisco软件中输入ecnu VPN网址：<code>vpn-ct.ecnu.edu.cn</code></p>
-<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102031046.png" class="">
-<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102031046.png" alt="image-20210823102031046"></p>
-<p>3.点击<code>Connect</code>，然后输入自己的ecnu学号和密码。点击’OK’，然后就连接到VPN了。</p>
-<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102308562.png" class="">
-<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102308562.png" alt="image-20210823102308562"></p>
-<h1 id="finalshell进行ssh连接"><a href="#finalshell进行ssh连接" class="headerlink" title="finalshell进行ssh连接"></a>finalshell进行ssh连接</h1><p>1.下载finalshell：<a target="_blank" rel="noopener" href="http://www.hostbuf.com/downloads/finalshell_install.exe">http://www.hostbuf.com/downloads/finalshell_install.exe</a></p>
-<p>2.安装后，进行如下操作：</p>
-<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823102645672.png" class="">
-<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823102645672.png" alt="image-20210823102645672"></p>
-<p>按照步骤执行；其中第4步的<code>proxy代理ip</code>是<code>58.198.176.182</code>。即使连接到ecnu VPN，也不能直接ssh到特定主机，必须要先和跳板机连接，这个<code>proxy代理ip</code>就是跳板机。</p>
-<p>这个跳板机的用户名和密码都是<code>proxy</code>。</p>
-<p>连接成功后会出现下免得界面：</p>
-<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823103203312.png" class="">
-<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823103203312.png" alt="image-20210823103203312"></p>
-<p>3.在这个界面的命令行内使用ssh命令连接到私网的特定主机，比如<code>10.11.6.29</code>。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh 10.11.6.29 -l zhouhuahui <span class="comment"># -l选项指定登录主机的用户</span></span><br></pre></td></tr></table></figure>
-<img src="/2021/08/22/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/image-20210823103427327.png" class="">
-<p><img src="finalshell-cisoAnyConnection连接到ecnu服务器/image-20210823103427327.png" alt="image-20210823103427327"></p>
-<p>要以特定主机登录，必须要让这个主机的管理员创建一个用户名和密码。</p>
-<p>4.如果要从主机或跳板机退出登录，只需执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">logout</span></span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/23/finalshell-cisoAnyConnection%E8%BF%9E%E6%8E%A5%E5%88%B0ecnu%E6%9C%8D%E5%8A%A1%E5%99%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-开源项目推荐" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/23/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/">开源项目推荐</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/23/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/" class="archive-article-date">
-  	<time datetime="2021-08-23T01:38:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h1><p>hellogithub开源月刊（55期）：<a target="_blank" rel="noopener" href="https://blog.csdn.net/a419240016/article/details/109364091">https://blog.csdn.net/a419240016/article/details/109364091</a></p>
-<p>hellogithub的博客（开源）：<a target="_blank" rel="noopener" href="https://hellogithub.blog.csdn.net/">https://hellogithub.blog.csdn.net/</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/23/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE%E6%8E%A8%E8%8D%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-计算机网络" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="archive-article-date">
-  	<time datetime="2021-08-23T01:35:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h1><p>（csdn：网络技术）<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_45704528/article/details/118635841?utm_medium=distribute.wap_feed.none-task-blog-whitelist_blog-3.nonecase&amp;depth_1-utm_source=distribute.wap_feed.none-task-blog-whitelist_blog-3.nonecase">https://blog.csdn.net/qq_45704528/article/details/118635841?utm_medium=distribute.wap_feed.none-task-blog-whitelist_blog-3.nonecase&amp;depth_1-utm_source=distribute.wap_feed.none-task-blog-whitelist_blog-3.nonecase</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">计算机专业课</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/23/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-多进程服务器示例" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/08/22/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A4%BA%E4%BE%8B/">多进程服务器示例</a>
-    </h1>
-  
-
-        
-        <a href="/2021/08/22/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A4%BA%E4%BE%8B/" class="archive-article-date">
-  	<time datetime="2021-08-22T08:39:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="小写转大写"><a href="#小写转大写" class="headerlink" title="小写转大写"></a>小写转大写</h1><p>README</p>
-<figure class="highlight llvm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">under linux<span class="punctuation">,</span> the server creates a child process by copying the called process by fork() </span><br><span class="line"><span class="keyword">to</span> implement a multi-process concurrent server.</span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">function:</span> the client sends any string <span class="keyword">and</span> the server transfers the string from lowercase </span><br><span class="line"><span class="keyword">to</span> UPPERCASE <span class="keyword">and</span> returns it <span class="keyword">to</span> the client which prints it on the screen. </span><br><span class="line"><span class="symbol"></span></span><br><span class="line"><span class="symbol">reference:</span> https://blog.csdn.net/Ai_King/article/details/<span class="number">104623632</span>/?utm_term<span class="operator">=</span><span class="keyword">c</span><span class="variable">%E8</span><span class="variable">%AF</span><span class="variable">%AD</span><span class="variable">%E8</span><span class="variable">%A8</span><span class="variable">%80</span><span class="variable">%E5</span><span class="variable">%A4</span><span class="variable">%9</span>A<span class="variable">%E8</span><span class="variable">%BF</span><span class="variable">%9</span>B<span class="variable">%E7</span><span class="variable">%A8</span><span class="variable">%8</span>B<span class="variable">%E5</span><span class="variable">%AE</span><span class="variable">%9</span>E<span class="variable">%E7</span><span class="variable">%8</span>E<span class="variable">%B0</span><span class="variable">%E5</span><span class="variable">%B9</span><span class="variable">%B6</span><span class="variable">%E5</span><span class="variable">%8</span>F<span class="variable">%91</span>&amp;utm_medium<span class="operator">=</span>distribute.pc_aggpage_search_result.none-task-blog<span class="number">-2</span>~all~sobaiduweb~<span class="keyword">default</span><span class="number">-0</span><span class="number">-104623632</span>&amp;spm<span class="operator">=</span><span class="number">3001.4430</span></span><br></pre></td></tr></table></figure>
-<p>client.c</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;wrap.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SERV_IP <span class="meta-string">&quot;127.0.0.1&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SERV_PORT 8000</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> sfd, len;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serv_addr</span>;</span></span><br><span class="line">    <span class="keyword">char</span> buf[BUFSIZ]; </span><br><span class="line"></span><br><span class="line">    sfd = <span class="built_in">Socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">bzero</span>(&amp;serv_addr, <span class="built_in"><span class="keyword">sizeof</span></span>(serv_addr));  <span class="comment">// set every byte of serv_addr 0                     </span></span><br><span class="line">    serv_addr.sin_family = AF_INET;                             </span><br><span class="line">    <span class="built_in">inet_pton</span>(AF_INET, SERV_IP, &amp;serv_addr.sin_addr.s_addr);    </span><br><span class="line">    serv_addr.sin_port = <span class="built_in">htons</span>(SERV_PORT);                      </span><br><span class="line"></span><br><span class="line">    <span class="built_in">Connect</span>(sfd, (struct sockaddr *)&amp;serv_addr, <span class="built_in"><span class="keyword">sizeof</span></span>(serv_addr));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">fgets</span>(buf, <span class="built_in"><span class="keyword">sizeof</span></span>(buf), stdin);</span><br><span class="line">        <span class="keyword">int</span> r = <span class="built_in">Write</span>(sfd, buf, <span class="built_in">strlen</span>(buf));       </span><br><span class="line">        <span class="comment">//printf(&quot;Write r === %d\n&quot;, r);</span></span><br><span class="line">        len = <span class="built_in">Read</span>(sfd, buf, <span class="built_in"><span class="keyword">sizeof</span></span>(buf));</span><br><span class="line">        <span class="comment">//printf(&quot;Read len == %d\n&quot;, len);</span></span><br><span class="line">        <span class="built_in">Write</span>(STDOUT_FILENO, buf, len);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Close</span>(sfd);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>server.c</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;signal.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/wait.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctype.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&quot;wrap.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> MAXLINE 8192</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SERV_PORT 8000</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_sigchild</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">waitpid</span>(<span class="number">0</span>, <span class="literal">NULL</span>, WNOHANG) &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">servaddr</span>, <span class="title">cliaddr</span>;</span></span><br><span class="line">    <span class="keyword">socklen_t</span> cliaddr_len;</span><br><span class="line">    <span class="keyword">int</span> listenfd, connfd;</span><br><span class="line">    <span class="keyword">char</span> buf[MAXLINE];</span><br><span class="line">    <span class="keyword">char</span> str[INET_ADDRSTRLEN];</span><br><span class="line">    <span class="keyword">int</span> i, n;</span><br><span class="line">    <span class="keyword">pid_t</span> pid;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> <span class="title">newact</span>;</span></span><br><span class="line"></span><br><span class="line">    newact.sa_handler = do_sigchild;</span><br><span class="line">    <span class="built_in">sigemptyset</span>(&amp;newact.sa_mask);</span><br><span class="line">    newact.sa_flags = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">sigaction</span>(SIGCHLD, &amp;newact, <span class="literal">NULL</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    listenfd = <span class="built_in">Socket</span>(AF_INET, SOCK_STREAM, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> opt = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">setsockopt</span>(listenfd, SOL_SOCKET, SO_REUSEADDR, &amp;opt, <span class="built_in"><span class="keyword">sizeof</span></span>(opt));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">bzero</span>(&amp;servaddr, <span class="built_in"><span class="keyword">sizeof</span></span>(servaddr));</span><br><span class="line">    servaddr.sin_family = AF_INET;</span><br><span class="line">    servaddr.sin_addr.s_addr = <span class="built_in">htonl</span>(INADDR_ANY); <span class="comment">// INADDR_ANY indicates all ip in this host</span></span><br><span class="line">    servaddr.sin_port = <span class="built_in">htons</span>(SERV_PORT);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Bind</span>(listenfd, (struct sockaddr *)&amp;servaddr, <span class="built_in"><span class="keyword">sizeof</span></span>(servaddr));</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Listen</span>(listenfd, <span class="number">20</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Accepting connections ...\n&quot;</span>);</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        cliaddr_len = <span class="built_in"><span class="keyword">sizeof</span></span>(cliaddr);</span><br><span class="line">        connfd = <span class="built_in">Accept</span>(listenfd, (struct sockaddr *)&amp;cliaddr, &amp;cliaddr_len);</span><br><span class="line">        pid = fork();</span><br><span class="line">        <span class="keyword">if</span> (pid == <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">Close</span>(listenfd);</span><br><span class="line">            <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">                n = <span class="built_in">Read</span>(connfd, buf, MAXLINE);</span><br><span class="line">                <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="built_in">printf</span>(<span class="string">&quot;the other side has been closed.\n&quot;</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">&quot;received from %s at PORT %d\n&quot;</span>,</span><br><span class="line">                        <span class="built_in">inet_ntop</span>(AF_INET, &amp;cliaddr.sin_addr, str, <span class="built_in"><span class="keyword">sizeof</span></span>(str)),</span><br><span class="line">                        <span class="built_in">ntohs</span>(cliaddr.sin_port));</span><br><span class="line"></span><br><span class="line">                <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">                    buf[i] = <span class="built_in">toupper</span>(buf[i]);</span><br><span class="line"></span><br><span class="line">                <span class="built_in">Write</span>(STDOUT_FILENO, buf, n);</span><br><span class="line">                <span class="built_in">Write</span>(connfd, buf, n);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">Close</span>(connfd);</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pid &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="built_in">Close</span>(connfd);</span><br><span class="line">        &#125;  <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">perr_exit</span>(<span class="string">&quot;fork&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>wrap.h</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> __WRAP_H_</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __WRAP_H_</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">perr_exit</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *s)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Accept</span><span class="params">(<span class="keyword">int</span> fd, struct sockaddr *sa, <span class="keyword">socklen_t</span> *salenptr)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Bind</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> struct sockaddr *sa, <span class="keyword">socklen_t</span> salen)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Connect</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> struct sockaddr *sa, <span class="keyword">socklen_t</span> salen)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Listen</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">int</span> backlog)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Socket</span><span class="params">(<span class="keyword">int</span> family, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Read</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> nbytes)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Write</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> nbytes)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Close</span><span class="params">(<span class="keyword">int</span> fd)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Readn</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> n)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Writen</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> n)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">my_read</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">char</span> *ptr)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Readline</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> maxlen)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>wrap.c</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">perr_exit</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span> *s)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="built_in">perror</span>(s);</span><br><span class="line">	<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Accept</span><span class="params">(<span class="keyword">int</span> fd, struct sockaddr *sa, <span class="keyword">socklen_t</span> *salenptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*again:</span></span><br><span class="line"><span class="comment">	if ((n = accept(fd, sa, salenptr)) &lt; 0) &#123;</span></span><br><span class="line"><span class="comment">		if ((errno == ECONNABORTED) || (errno == EINTR))</span></span><br><span class="line"><span class="comment">			goto again;</span></span><br><span class="line"><span class="comment">		else</span></span><br><span class="line"><span class="comment">			perr_exit(&quot;accept error&quot;);</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	return n;*/</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>((n = <span class="built_in">accept</span>(fd, sa, salenptr)) &lt; <span class="number">0</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span> ((errno == ECONNABORTED) || (errno == EINTR))</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="built_in">perr_exit</span>(<span class="string">&quot;accept error&quot;</span>);</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Bind</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> struct sockaddr *sa, <span class="keyword">socklen_t</span> salen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((n = <span class="built_in">bind</span>(fd, sa, salen)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">perr_exit</span>(<span class="string">&quot;bind error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Connect</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> struct sockaddr *sa, <span class="keyword">socklen_t</span> salen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((n = <span class="built_in">connect</span>(fd, sa, salen)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">perr_exit</span>(<span class="string">&quot;connect error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Listen</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">int</span> backlog)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((n = <span class="built_in">listen</span>(fd, backlog)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">perr_exit</span>(<span class="string">&quot;listen error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Socket</span><span class="params">(<span class="keyword">int</span> family, <span class="keyword">int</span> type, <span class="keyword">int</span> protocol)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> ((n = <span class="built_in">socket</span>(family, type, protocol)) &lt; <span class="number">0</span>)</span><br><span class="line">		<span class="built_in">perr_exit</span>(<span class="string">&quot;socket error&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Read</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> nbytes)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">ssize_t</span> n;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*again:</span></span><br><span class="line"><span class="comment">	if ( (n = read(fd, ptr, nbytes)) == -1) &#123;</span></span><br><span class="line"><span class="comment">		if (errno == EINTR)</span></span><br><span class="line"><span class="comment">			goto again;</span></span><br><span class="line"><span class="comment">		else</span></span><br><span class="line"><span class="comment">			return -1;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	return n;*/</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>((n = <span class="built_in">read</span>(fd, ptr, nbytes)) == <span class="number">-1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Write</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">void</span> *ptr, <span class="keyword">size_t</span> nbytes)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">ssize_t</span> n;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*again:</span></span><br><span class="line"><span class="comment">	if ( (n = write(fd, ptr, nbytes)) == -1) &#123;</span></span><br><span class="line"><span class="comment">		if (errno == EINTR)</span></span><br><span class="line"><span class="comment">			goto again;</span></span><br><span class="line"><span class="comment">		else</span></span><br><span class="line"><span class="comment">			return -1;</span></span><br><span class="line"><span class="comment">	&#125;</span></span><br><span class="line"><span class="comment">	return n;*/</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span>((n = <span class="built_in">write</span>(fd, ptr, nbytes)) == <span class="number">-1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		<span class="keyword">else</span> </span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Close</span><span class="params">(<span class="keyword">int</span> fd)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">	<span class="keyword">if</span> ((n = <span class="built_in">close</span>(fd)) == <span class="number">-1</span>)</span><br><span class="line">		<span class="built_in">perr_exit</span>(<span class="string">&quot;close error&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Readn</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">size_t</span>  nleft;              </span><br><span class="line">	<span class="keyword">ssize_t</span> nread;              </span><br><span class="line">	<span class="keyword">char</span>   *ptr;</span><br><span class="line"></span><br><span class="line">	ptr = vptr;</span><br><span class="line">	nleft = n;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (nleft &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> ((nread = <span class="built_in">read</span>(fd, ptr, nleft)) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">				nread = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (nread == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">		nleft -= nread;</span><br><span class="line">		ptr += nread;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n - nleft;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Writen</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">const</span> <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">size_t</span> nleft;</span><br><span class="line">	<span class="keyword">ssize_t</span> nwritten;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> *ptr;</span><br><span class="line"></span><br><span class="line">	ptr = vptr;</span><br><span class="line">	nleft = n;</span><br><span class="line">	<span class="keyword">while</span> (nleft &gt; <span class="number">0</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> ( (nwritten = <span class="built_in">write</span>(fd, ptr, nleft)) &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (nwritten &lt; <span class="number">0</span> &amp;&amp; errno == EINTR)</span><br><span class="line">				nwritten = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		nleft -= nwritten;</span><br><span class="line">		ptr += nwritten;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">ssize_t</span> <span class="title">my_read</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">char</span> *ptr)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> read_cnt;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">char</span> *read_ptr;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">char</span> read_buf[<span class="number">100</span>];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (read_cnt &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">again:</span><br><span class="line">		<span class="keyword">if</span> ( (read_cnt = <span class="built_in">read</span>(fd, read_buf, <span class="built_in"><span class="keyword">sizeof</span></span>(read_buf))) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">			<span class="keyword">if</span> (errno == EINTR)</span><br><span class="line">				<span class="keyword">goto</span> again;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (read_cnt == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		read_ptr = read_buf;</span><br><span class="line">	&#125;</span><br><span class="line">	read_cnt--;</span><br><span class="line">	*ptr = *read_ptr++;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">ssize_t</span> <span class="title">Readline</span><span class="params">(<span class="keyword">int</span> fd, <span class="keyword">void</span> *vptr, <span class="keyword">size_t</span> maxlen)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">ssize_t</span> n, rc;</span><br><span class="line">	<span class="keyword">char</span>    c, *ptr;</span><br><span class="line"></span><br><span class="line">	ptr = vptr;</span><br><span class="line">	<span class="keyword">for</span> (n = <span class="number">1</span>; n &lt; maxlen; n++) &#123;</span><br><span class="line">		<span class="keyword">if</span> ( (rc = <span class="built_in">my_read</span>(fd, &amp;c)) == <span class="number">1</span>) &#123;</span><br><span class="line">			*ptr++ = c;</span><br><span class="line">			<span class="keyword">if</span> (c  == <span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span> <span class="keyword">if</span> (rc == <span class="number">0</span>) &#123;</span><br><span class="line">			*ptr = <span class="number">0</span>;</span><br><span class="line">			<span class="keyword">return</span> n - <span class="number">1</span>;</span><br><span class="line">		&#125; <span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	*ptr  = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">后端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/08/22/%E5%A4%9A%E8%BF%9B%E7%A8%8B%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%A4%BA%E4%BE%8B/">展开全文 >></a>
         </p>
       
 

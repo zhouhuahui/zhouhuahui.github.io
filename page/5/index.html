@@ -152,6 +152,660 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-学习MIT6-824" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/05/%E5%AD%A6%E4%B9%A0MIT6-824/">学习MIT6.824</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/05/%E5%AD%A6%E4%B9%A0MIT6-824/" class="archive-article-date">
+  	<time datetime="2021-08-05T15:20:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>RAFT可视化介绍，简单了解RAFT：<a target="_blank" rel="noopener" href="http://thesecretlivesofdata.com/raft/">http://thesecretlivesofdata.com/raft/</a></p>
+<p>RAFT官网，这里面有RAFT Visualization部分：<a target="_blank" rel="noopener" href="https://raft.github.io/">https://raft.github.io/</a></p>
+<p>Raft作者的博士论文下载：<a href="https://link.zhihu.com/?target=https%3A//github.com/ongardie/dissertation/blob/master/book.pdf%3Fraw%3Dtrue">https://link.zhihu.com/?target=https%3A//github.com/ongardie/dissertation/blob/master/book.pdf%3Fraw%3Dtrue</a></p>
+<p>MIT助教写的资料：<a target="_blank" rel="noopener" href="https://thesquareplanet.com/blog/students-guide-to-raft/">https://thesquareplanet.com/blog/students-guide-to-raft/</a></p>
+<p>MIT6.824课程schedule：<a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.824/schedule.html">https://pdos.csail.mit.edu/6.824/schedule.html</a></p>
+<p>raft论文：<a target="_blank" rel="noopener" href="https://raft.github.io/raft.pdf">https://raft.github.io/raft.pdf</a></p>
+<p>PingCAP博客（有TiDB）：<a target="_blank" rel="noopener" href="https://pingcap.com/blog-cn/#Raft">https://pingcap.com/blog-cn/#Raft</a></p>
+<p>github上的一个对MIT6.824-2021的参考答案MrGuin/6.824-labs-2021：<a target="_blank" rel="noopener" href="https://github.com/MrGuin/6.824-labs-2021">https://github.com/MrGuin/6.824-labs-2021</a></p>
+<p>Anarion-zuo/AnBlogs上有6.824和6.828，cs143的文章：<a target="_blank" rel="noopener" href="https://github.com/Anarion-zuo/AnBlogs">https://github.com/Anarion-zuo/AnBlogs</a></p>
+<p>6.824课程的翻译：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/166409783">https://zhuanlan.zhihu.com/p/166409783</a></p>
+<p>其他整理的参考资料：<a target="_blank" rel="noopener" href="https://github.com/tianbingJ/Trepang">https://github.com/tianbingJ/Trepang</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/05/%E5%AD%A6%E4%B9%A0MIT6-824/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-基于NVM的postgres" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/04/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/">基于NVM的postgres</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/04/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/" class="archive-article-date">
+  	<time datetime="2021-08-04T04:28:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NVM-WAL-BUFFER"><a href="#NVM-WAL-BUFFER" class="headerlink" title="NVM WAL BUFFER"></a>NVM WAL BUFFER</h1><p>【1】使用WAL段文件映射到内存作为WAL BUFFER</p>
+<p>Non-volatile Memory Logging(PGCon 2016) <a target="_blank" rel="noopener" href="https://www.pgcon.org/2016/schedule/track/Performance/945.en.html">https://www.pgcon.org/2016/schedule/track/Performance/945.en.html</a></p>
+<p>Persistent Memory(SNIA) <a target="_blank" rel="noopener" href="https://www.snia.org/PM">https://www.snia.org/PM</a></p>
+<h1 id="读文章1"><a href="#读文章1" class="headerlink" title="读文章1"></a>读文章1</h1><p>读了一篇文章：《The impact of NVM as the main memory on the database management system》，网址是：<a target="_blank" rel="noopener" href="https://www.programmersought.com/article/75573496597/">https://www.programmersought.com/article/75573496597/</a>  其实，这篇文章是论文的《Implications of Non-Volatile Memory as Primary Storage for Database Management Systems》的简版。</p>
+<p>“In addition, there are built-in substances related to leakage and voltage that limit the further expansion of DRAM. Therefore, as the main memory medium, DRAM cannot possibly keep up with the growth of current and future data sets.” 这句话表明DRAM不能做的很大。</p>
+<p>“The simplest design method is to replace NVM with the disk, and use its low latency to obtain performance improvement. However, adapting the DBMS to the characteristics of NVM goes far beyond its low latency.” 因为NVM可以字节寻址，但是传统的磁盘是块寻址。</p>
+<p>这篇文章也在研究如何在PG中部署NVM：</p>
+<ol>
+<li>“how to include NVM in the current system’s memory structure;”</li>
+<li>“modifying the PostgreSQL storage engine to maximize the dividend of NVM”</li>
+<li>“bypass the slow disk interface while ensuring the robustness of the DBMS”（这句话不是很懂）</li>
+</ol>
+<p>“the delay of STT-RAM is 1-20ns. Nevertheless, his delay is already very close to DRAM.”；“PC_RAM and R-RAM have higher write latency than DRAM. But write latency is not very important, because it can be alleviated by buffer.”（这句话的意思是，把DRAM作为NVM的buffer？还有可能是CPU内部的cache作为NVM的buffer）</p>
+<p>“<strong>When using NVM as the main memory</strong>, not only the application software but also the system software needs to be modified, so that the advantages of NVM can be fully utilized. “</p>
+<ol>
+<li>为什么要改system software呢？“The traditional file system accesses the storage medium through the block layer. If only the disk is replaced with NVM without any modification, then the NVM storage also needs to pass the block layer to read and write data. ”，这样的话，NVM的字节寻址能力就没有用到。</li>
+</ol>
+<p>“PMFS is a POSIX file system developed by Intel and open source”，PMFS作为传统文件系统的替代品，有两个特征：</p>
+<ol>
+<li>“NVM and memory are addressed uniformly”. 这就意味着 “there is no need to copy data from NVM to DRAM for application access”</li>
+<li>“ traditional databases access blocks in two ways: file IO; memory mapped IO. PMFS implements file IO in a manner similar to traditional FS. However, the implementation of memory mapped IO is different.”，因为：“In the traditional file system, memory mapped IO first copies pages to DRAM. PMFS does not need this step, it directly maps pages directly to the address space of the process” （PMFS是一个基于操作系统的软件，还是对操作系统的改变呢？）</li>
+</ol>
+<img src="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/81822a71cc3103d974ac229f043e7988.png" class="">
+<p><img src="基于NVM的postgres/81822a71cc3103d974ac229f043e7988.png" alt="img"></p>
+<h2 id="memory-layered-design"><a href="#memory-layered-design" class="headerlink" title="memory layered design"></a>memory layered design</h2><p>这篇文章提供了三种“DBMS memory layered design based on NVM”：</p>
+<img src="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/6ca7e80c6a28cd51b6e577e30cdb1529.png" class="">
+<p><img src="基于NVM的postgres/6ca7e80c6a28cd51b6e577e30cdb1529.png" alt="img"></p>
+<p>文章中不建议把DRAM替换为NVM，原因是：”such changes require a redesign of the current operating system and application software. In addition, as a substitute for DRAM, NVM technology is not mature in terms of durability. Therefore, we advocate that the platform still contains DRAM memory, and the disk is completely or partially replaced with NVM”</p>
+<p>DRAM+NVM的组合是：DRAM快速处理暂存的数据；“it allows applications to access the data of the database system through the PMFS file system, and uses the NVM byte addressing feature to avoid the API overhead of the current traditional file system.”（我不懂，字节寻址避免了什么开销呢）</p>
+<p>当使用NVM替换磁盘时，我们如何更改DBMS的重要部分：</p>
+<ol>
+<li>Avoid block-level access。使用NVM作为main memory medium时，字节寻址比块寻址要更加高效，但是“this reduces the data granularity to the byte level, without data warm-up. A better method needs to balance the advantages of these two aspects.” 所以，<strong>什么是data warm-up</strong>。</li>
+<li>Remove the internal buffer cache of the DBMS：“If the address space of NVM can be seen by other processes, there is no need to do block copying for a long time. <strong>Direct access to records in NVM will be more efficient</strong>. However, this <strong>requires an operating system that supports NVM</strong>, such as PMFS, which can directly expose the NVM address space to the process.” （我觉得，还是要buffer cache的吧）</li>
+<li>Remove redo logs：“if the internal buffer cache is not deployed, when all writes are directly written to NVM, redo log is not needed, but undo log is still needed.”（对于最简单的恢复系统，也就是先写日志到持久化存储，再写对应的更新到持久化存储，那么确实不需要redo log了，但是对于PG来说，这个不适用，因为PG是直接把更新写到buffer中的。）</li>
+</ol>
+<h2 id="PG-read-and-write-architecture"><a href="#PG-read-and-write-architecture" class="headerlink" title="PG read and write architecture"></a>PG read and write architecture</h2>
+<p><img src="基于NVM的postgres/image-20210804180735523.png" alt="image-20210804180735523"></p>
+<p>Fig3 图a是传统的PG数据库的IO方式，“when the buffer cache is missed, the storage engine of the native PG will cause <strong>two copy operations</strong>. When the data set is very large, this will be a big overhead”</p>
+<h1 id="PMEM"><a href="#PMEM" class="headerlink" title="PMEM"></a>PMEM</h1><p>参考：【3】关于mmap，ndctl，clwb等等很多相关知识都可以看到。</p>
+<h2 id="mmap"><a href="#mmap" class="headerlink" title="mmap"></a>mmap</h2><p>”For <a target="_blank" rel="noopener" href="https://pmem.io/glossary/#persistent-memory">persistent memory</a>, a PMem-aware file system allows a memory mapped file to access the PMem directly, a feature known as <a target="_blank" rel="noopener" href="https://pmem.io/glossary/#dax">DAX</a>. “ 因为对于普通的mmap来说，都是直接操作文件映射的内存的，但是对于PM来说，mmap就是通过虚拟地址直接操作PM。</p>
+<p>“Unlike memory mapped files on storage, where the OS performs <a target="_blank" rel="noopener" href="https://pmem.io/glossary/#paging">paging</a> to DRAM as necessary, the application is able to access persistent memory data structures in-place, right where they are located in PMem.”</p>
+<p>但是由于CPU内部本身有缓存，所以不能保证数据一定会持久化到PM，所以就有了clwb, clflush, ntstore之类的指令。</p>
+<img src="/2021/08/03/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/dax.jpg" class="">
+<p><img src="基于NVM的postgres/dax.jpg" alt="DAX"></p>
+<p>pmem-Aware File System指的是可以支持DAX方式的文件系统，比如ext4。在pmem-Aware File System下，可以使用Standard File API的mmap()和msync()命令；同时，如果mmap()在“MAP_SYNC”模式下返回成功，则用户程序可以直接使用clwb等持久化命令。</p>
+<h2 id="Device-DAX"><a href="#Device-DAX" class="headerlink" title="Device DAX"></a>Device DAX</h2><p>如果通过”pmem-Aware File System”来访问PM，这是访问PM的<code>fsdax</code>模式，如果不使用“pmem-Aware File System”来访问PM，这是访问PM的<code>dev dax</code>模式。两者的区别是什么呢？</p>
+<ol>
+<li>【2】fsdax模式由于提供的是标准的POSIX文件系统接口，所以他的兼容性更好，应用可以在完全不修改的情况下，把PMEM当作一个非常快速的磁盘来使用，同时因为是要模拟磁盘行为，IO的粒度也是512个字节，对于PMEM这样在cache line大小的IO中，能提供的超低延迟特性的硬件来说，IO的粒度仍旧太大了，无法真正发挥出PMEM的全部实力；只有devdax模式，才是真正的可以完全发挥PMEM所有高性能、可持久化、字节寻址能力的最强模式！但是唯一遗憾的就是要想使用devdax模式，必须重写现有的应用程序，和PMEM设备对接，同时，在非易失性内存上编程，也是和传统编程有较大的区别，需要考虑很多以前不需要处理的问题，所以对于很多现有的应用来说，虽然devdax模式“看上去很美”，但是却没办法采用。</li>
+<li></li>
+</ol>
+<h1 id="DAX-FS"><a href="#DAX-FS" class="headerlink" title="DAX FS"></a>DAX FS</h1><p>参考【2】，【4】</p>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】postgresql email列表对NVM WAL BUFFER的讨论 <a target="_blank" rel="noopener" href="https://blog.csdn.net/yanzongshuai/article/details/111940166">https://blog.csdn.net/yanzongshuai/article/details/111940166</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.ofweek.com/Internet/a956714781157">https://mp.ofweek.com/Internet/a956714781157</a></p>
+<p>postgresql官网关于Yoshimi Ichiyanagi发送的NVM WAL BUFFER邮件：<a target="_blank" rel="noopener" href="https://www.postgresql.org/message-id/C20D38E97BCB33DAD59E3A1%40lab.ntt.co.jp">https://www.postgresql.org/message-id/C20D38E97BCB33DAD59E3A1%40lab.ntt.co.jp</a></p>
+<p>这个作者<code>zys87</code>有很多相关的“PostgreSQL源码分析”的文章，比如：</p>
+<p>非易失性WAL buffer <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/article/details/104116169">https://yanzongshuaidba.blog.csdn.net/article/details/104116169</a></p>
+<p>非易失性WAL buffer实现解析（一） <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/article/details/104205001?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base">https://yanzongshuaidba.blog.csdn.net/article/details/104205001?utm_medium=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base&amp;depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-1.base</a></p>
+<p>对应的专栏：PostgreSQL源码分析 <a target="_blank" rel="noopener" href="https://yanzongshuaidba.blog.csdn.net/category_9278392.html">https://yanzongshuaidba.blog.csdn.net/category_9278392.html</a></p>
+<p>【2】dax fs：<a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf">https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf</a></p>
+<p>MemVerge（PMEM）: <a target="_blank" rel="noopener" href="https://card.weibo.com/article/m/show/id/2309404633085408051536">https://card.weibo.com/article/m/show/id/2309404633085408051536</a></p>
+<p>【3】pmem官网（关于mmap，ndctl，clwb等等很多相关知识都可以看到）：<a target="_blank" rel="noopener" href="https://pmem.io/">https://pmem.io/</a></p>
+<p>【4】linux doc on DAX：<a target="_blank" rel="noopener" href="https://www.kernel.org/doc/Documentation/filesystems/dax.txt">https://www.kernel.org/doc/Documentation/filesystems/dax.txt</a></p>
+<h1 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h1><p>应用PMDK修改WAL操作使之适配持久化内存 <a target="_blank" rel="noopener" href="https://blog.51cto.com/yanzongshuai/2428535">https://blog.51cto.com/yanzongshuai/2428535</a></p>
+<p>yzs大神似乎很会研究PostgreSQL <a target="_blank" rel="noopener" href="https://blog.51cto.com/yanzongshuai">https://blog.51cto.com/yanzongshuai</a></p>
+<p>dax fs：<a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf">https://www.usenix.org/system/files/login/articles/login_summer17_07_rudoff.pdf</a></p>
+<p>MemVerge（PMEM）: <a target="_blank" rel="noopener" href="https://card.weibo.com/article/m/show/id/2309404633085408051536">https://card.weibo.com/article/m/show/id/2309404633085408051536</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/04/%E5%9F%BA%E4%BA%8ENVM%E7%9A%84postgres/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-linux程序设计" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/08/02/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">linux程序设计</a>
+    </h1>
+  
+
+        
+        <a href="/2021/08/02/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/" class="archive-article-date">
+  	<time datetime="2021-08-02T14:04:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-02</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="操作系统原理"><a href="#操作系统原理" class="headerlink" title="操作系统原理"></a>操作系统原理</h1><h2 id="linux下用户态和内核态的切换"><a href="#linux下用户态和内核态的切换" class="headerlink" title="linux下用户态和内核态的切换"></a>linux下用户态和内核态的切换</h2><p>参考“Linux下如何从用户态切换到内核态？”：<a target="_blank" rel="noopener" href="https://blog.csdn.net/shanghx_123/article/details/83151064">https://blog.csdn.net/shanghx_123/article/details/83151064</a></p>
+<h1 id="linux命令"><a href="#linux命令" class="headerlink" title="linux命令"></a>linux命令</h1><h2 id="sudo"><a href="#sudo" class="headerlink" title="sudo"></a>sudo</h2><p>如果你是root用户，可以通过<code>su root</code>命令，然后输入root的密码切换到root用户。</p>
+<p>如果你被划进了root用户组：更改<code>/etc/sudors</code>，此时你仍然只有普通用户的权限；但是你可以用命令<code>sudo -i</code>，然后输入你的密码，就可以执行root权限了；如果不用<code>sudo -i</code>，可以使用例如<code>sudo mkdir dir</code>类似的命令，在命令前面加上sudo，让这个命令有root权限。下面是root组用户关于sudo命令的详细介绍。</p>
+<p>[sudo su]表示前用户暂时申请root权限，所以输入的不是root用户密码，而是当前用户的密码。sudo是用户申请管理员权限执行一个操作，而此处的操作就是变成管理员。运行结果 PWD=/home/用户名（当前用户主目录） 。</p>
+<p>[sudo -i]表示为了频繁的执行某些只有超级用户才能执行的权限，而不用每次输入密码，可以使用该命令。提示输入密码时该密码为当前账户的密码。没有时间限制。执行该命令后提示符变为“#”而不是“$”。想退回普通账户时可以执行“exit”或“logout” 。运行结果 PWD=/root</p>
+<p>[sudo !!]以root权限执行上一条命令。</p>
+<p>[sudo -u userb ls -l]指定用户执行命令。</p>
+<p>[sudo -l]列出目前的权限。</p>
+<p>[sudo -u uggc vi ~www/index.html]以 uggc 用户身份编辑 home 目录下www目录中的 index.html 文件</p>
+<p>[sudo su] 切换root身份，不携带当前用户环境变量。<br>[sudo su -]切换root身份，携带当前用户环境变量。</p>
+<p>[sudo -i root]与[sudo - root]、[sudo -i] ,[sudo -] ，[sudo root]效果相同 提示输入密码时该密码为当前账户的密码 要求执行该命令的用户必须在sudoers中才可以 su需要的是切换后账户的密码。</p>
+<h2 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a>chmod</h2><p>将nvmDir文件夹的组权限加上w。（意味着和nvmDir所有者同组的人可以有写权限了）</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod g+w <span class="regexp">/data/yumi</span>ng/nvmDir</span><br></pre></td></tr></table></figure>
+<p>若加上<code>-R</code>选项，则意味着给目录及其所有子目录和子文件添加同样的权限</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod g+w -R <span class="regexp">/data/yumi</span>ng/nvmDir</span><br></pre></td></tr></table></figure>
+<h2 id="usermod"><a href="#usermod" class="headerlink" title="usermod"></a>usermod</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">usermod -G hxlong zhouhuahui <span class="comment"># zhouhuahui加入到hxlong组，但是也不在原来的组了</span></span><br><span class="line">usermod -a -G zhouhuahui zhouhuahui <span class="comment"># zhouhuahui加入到zhouhuahui组，不影响原来的组</span></span><br></pre></td></tr></table></figure>
+<h2 id="id"><a href="#id" class="headerlink" title="id"></a>id</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id zhouhuahui <span class="comment">#查看zhouhuahui的用户名，组名等</span></span><br></pre></td></tr></table></figure>
+<h2 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h2><p>假如<code>/sublime_text/sublime_text</code>是sublime的可执行程序，我如何在命令行中输入<code>subl</code>就可以自动打开这个软件呢？</p>
+<p>通过软链接：<code>ln -s /sublime_text/sublime_text /usr/bin/subl</code>就可以实现了。</p>
+<h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><p>读取文件内容</p>
+<p>比如，读取linux系统的cpu信息：<code>cat /proc/cpuinfo</code><br>读取linux系统的发行版信息：<code>cat /etc/os-release</code></p>
+<h2 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h2><p><strong>tar -xvf \</strong>.tar //解压tar包**</p>
+<p><strong>tar -xzvf \</strong>.tar.gz // 解压tar.gz**</p>
+<p><strong>tar -xjvf \</strong>.tar.bz2 //解压 tar.bz2**</p>
+<p><strong>tar -xZvf \</strong>.tar.Z // 解压tar.Z**</p>
+<p>-z参数：表示解压的是dutar.gz文件（如果是tar.bz2就是-j）<br>-x参数：表示是执行解压缩操作而不是打包操作<br>-v参数：表示列出解压时的详细消息<br>-f参数：指定要解压的文件名</p>
+<h2 id="ndctl"><a href="#ndctl" class="headerlink" title="ndctl"></a>ndctl</h2><p>参考：<a target="_blank" rel="noopener" href="https://pmem.io/ndctl/">https://pmem.io/ndctl/</a></p>
+<h2 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h2><p>下载文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -P &#123;保存文件的目录&#125; &#123;文件下载地址&#125; <span class="comment">#如果不指定保存目录，会下载在当前目录下</span></span><br></pre></td></tr></table></figure>
+<p>比如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://ftp.postgresql.org/pub/<span class="built_in">source</span>/v13.3/postgresql-13.3.tar.gz</span><br><span class="line"><span class="comment"># 下载postgresql-13.3.tar.gz</span></span><br></pre></td></tr></table></figure>
+<h2 id="patch：补丁工具"><a href="#patch：补丁工具" class="headerlink" title="patch：补丁工具"></a>patch：补丁工具</h2><p>使用diff命令产生补丁，使用patch命令给旧版本代码打补丁。参考【4】。</p>
+<p>假设我们在<code>~</code>目录下有两个版本的proj1，分别是proj1_v1.0和proj1_v1.1。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> ~<span class="regexp">/proj1_v1.0/</span>a/<span class="number">1</span>.c</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> ~<span class="regexp">/proj1_v1.0/</span>b/<span class="number">1</span>.c</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> b = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> ~<span class="regexp">/proj1_v1.1/</span>a/<span class="number">1</span>.c</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">500</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">//</span> ~<span class="regexp">/proj1_v1.1/</span>b/<span class="number">1</span>.c</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">55</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以使用diff命令产生从proj1_v1.0到proj1_v1.1的补丁。在<code>~</code>下执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diff -Nrua proj1_v1.0 proj1_v1.1 &gt; c.patch <span class="comment"># 产生的补丁在c.patch中</span></span><br></pre></td></tr></table></figure>
+<p>c.patch中的内容为：</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">diff -Nrua proj1_v1.0/a/1.c proj1_v1.1/a/1.c</span><br><span class="line"><span class="comment">--- proj1_v1.0/a/1.c    2021-08-29 23:58:03.127127776 +0800</span></span><br><span class="line"><span class="comment">+++ proj1_v1.1/a/1.c    2021-08-29 23:59:36.457121766 +0800</span></span><br><span class="line"><span class="meta">@@ -1,6 +1,5 @@</span></span><br><span class="line"> #include&lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line"> int main()&#123;</span><br><span class="line"><span class="deletion">-    int a = 1;</span></span><br><span class="line"><span class="deletion">-    return 0;</span></span><br><span class="line"><span class="addition">+    int a = 500;</span></span><br><span class="line"> &#125;</span><br><span class="line">diff -Nrua proj1_v1.0/b/1.c proj1_v1.1/b/1.c</span><br><span class="line"><span class="comment">--- proj1_v1.0/b/1.c    2021-08-29 23:58:39.998125402 +0800</span></span><br><span class="line"><span class="comment">+++ proj1_v1.1/b/1.c    2021-08-30 00:00:36.187117919 +0800</span></span><br><span class="line"><span class="meta">@@ -1,5 +1,6 @@</span></span><br><span class="line"> #include&lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line"> int main()&#123;</span><br><span class="line"><span class="deletion">-    int b = 1;</span></span><br><span class="line"><span class="addition">+    int b = 55;</span></span><br><span class="line"><span class="addition">+    return 0;</span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>为了将proj1_v1.0代码更新成proj1_v1.1的代码，需要使用patch命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> proj1_v1.0</span><br><span class="line">patch -p 1 &lt; ../c.patch</span><br><span class="line"><span class="comment"># -p指定了目录级别，从路径全称中除去几层目录</span></span><br><span class="line"><span class="comment"># 比如：如果指定-p 1， 那么proj1_v1.0/a/1.c就变成a/1.c</span></span><br><span class="line"><span class="comment"># 由于刚才cd到proj1_v1.0中，但是产生补丁时在~目录中，因此要除去一层目录：-p 1</span></span><br></pre></td></tr></table></figure>
+<p><strong>使用patch命令必须保证被打补丁的项目没有改变，否则，会产生.rej文件</strong></p>
+<h2 id="perf-linux原生性能分析工具"><a href="#perf-linux原生性能分析工具" class="headerlink" title="perf: linux原生性能分析工具"></a>perf: linux原生性能分析工具</h2><p><a target="_blank" rel="noopener" href="https://ruanyifeng.com/blog/2017/09/flame-graph.html">如何读懂火焰图？作者：阮一峰</a> &lt;/br&gt;<br>这篇博客讲了perf的简单使用以及如何读懂火焰图，火焰图示例.</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/147875569">程序员精进之路：性能调优利器—火焰图 腾讯技术工程</a> &lt;/br&gt;<br>这篇文章对火焰图讲的更加详细，讲解了各种火焰图，比如on-cpu火焰图, off-cpu火焰图, 内存火焰图, hot/cold火焰图；提到了perf和SystemTap两种性能监测工具，SystemTap更加强大，由于我主要使用perf，所以先看perf。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Xiaobai__Lee/article/details/109471969">利用perf及FlameGraph生成火焰图 Xiaobai__Lee</a> &lt;/br&gt;</p>
+<p><code>--proc-map-timeout 1000</code> cpu太高的时候，进入该进程要时间，设置跟入该进程的超时时间。</p>
+<p>这是一个生成火焰图的脚本示例，它生成正在运行的程序observer的火焰图</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">PID=`ps -ef | grep observer | grep -v grep | awk <span class="string">&#x27;&#123;print $2&#125;&#x27;</span>` </span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$&#123;#PID&#125;</span> -eq 0 ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">&quot;observer not running&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> -1</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;1: perf record -F 99 -g -p <span class="variable">$PID</span> --proc-map-timeout 100000 -- sleep 300&quot;</span></span><br><span class="line">perf record -F 99 -g -p <span class="variable">$PID</span> --proc-map-timeout 100000 -- sleep 10</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;2: perf script -i perf.data &amp;&gt; perf.unfold&quot;</span></span><br><span class="line">perf script -i perf.data &amp;&gt; perf.unfold</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;3: FlameGraph/stackcollapse-perf.pl perf.unfold &amp;&gt; perf.folded&quot;</span></span><br><span class="line">FlameGraph/stackcollapse-perf.pl perf.unfold &amp;&gt; perf.folded</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;4: FlameGraph/flamegraph.pl perf.folded &gt; perf.svg&quot;</span></span><br><span class="line">FlameGraph/flamegraph.pl perf.folded &gt; perf.svg</span><br><span class="line"><span class="built_in">echo</span> <span class="string">&quot;5: rm -rf perf.data* perf.folded perf.unfold&quot;</span></span><br><span class="line">rm -rf perf.data* perf.folded perf.unfold</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep observer | grep -v grep</span><br><span class="line"><span class="comment"># 意思是找到所有包含observer并且不包含grep的条目</span></span><br></pre></td></tr></table></figure>
+<h2 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h2><p>awk是linux下自带的强大的字符处理工具，参考：<a target="_blank" rel="noopener" href="https://linux.cn/article-13177-1.html">awk：一个强大的文本分析工具 作者： 阿铭</a></p>
+<h2 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h2><p>网络工具，一般这样用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo netstat -nap</span><br></pre></td></tr></table></figure>
+<h1 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h1><p>用户在shell中可以同时执行多个命令。对于耗时很久的命令（如编译大型工程），用户不必傻傻等待命令运行完毕才执行下一个命令。用户在执行命令时，可以在命令的结尾添加“&amp;”符号，表示将命令放入后台执行。这样该命令对应的进程组即为后台进程组。在任意时刻，可能同时存在多个后台进程组，但是不管什么时候都只能有一个前台进程组。只有在前台进程组中进程才能在控制终端读取输入。当用户在终端输入信号生成终端字符（如ctrl+c、ctrl+z、ctr+\等）时，对应的信号只会发送给前台进程组。shell中可以存在多个进程组，无论是前台进程组还是后台进程组，它们或多或少存在一定的联系，为了更好地控制这些进程组（或者称为作业），系统引入了会话的概念。<strong>会话的意义在于将很多的工作囊括在一个终端，选取其中一个作为前台来直接接收终端的输入及信号，其他的工作则放在后台执</strong>行。</p>
+<h2 id="waitpid"><a href="#waitpid" class="headerlink" title="waitpid()"></a>waitpid()</h2><p>系统调用waitpid，等待子进程退出: </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">pid_t</span> <span class="title">waitpid</span><span class="params">(<span class="keyword">pid_t</span> pid,<span class="keyword">int</span> *status,<span class="keyword">int</span> options)</span></span></span><br></pre></td></tr></table></figure>
+<p>pid参数的意义：</p>
+<ul>
+<li>pid&gt;0时，只<strong>等待进程ID等于pid的子进程</strong>，不管其它已经有多少子进程运行结束退出了，只要指定的子进程还没有结束，waitpid就会一直等下去。</li>
+<li>pid=-1时，等待任何一个子进程退出，没有任何限制.</li>
+<li>pid=0时，等待同一个进程组中的任何子进程，如果子进程已经加入了别的进程组，waitpid不会对它做任何理睬。</li>
+<li>pid&lt;-1时，等待一个指定进程组中的任何子进程，这个进程组的ID等于pid的绝对值。</li>
+</ul>
+<p>options = WNOHANG表示非阻塞模式。</p>
+<p>waitpid()的返回值：</p>
+<ol>
+<li>当正常返回的时候，waitpid返回收集到的子进程的进程ID；</li>
+<li><strong>如果设置了选项WNOHANG，而调用中waitpid发现没有已退出的子进程可收集，则返回0；</strong></li>
+<li>如果调用中出错，则返回-1，这时errno会被设置成相应的值以指示错误所在；</li>
+</ol>
+<h1 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h1><h2 id="环境变量-1"><a href="#环境变量-1" class="headerlink" title="环境变量"></a>环境变量</h2><p>环境变量是定义在整个计算机全局的变量，保存在文件中。</p>
+<p>按照生效范围分类：</p>
+<ol>
+<li>系统环境变量：对全部用户有效</li>
+<li>用户环境变量：用户私有的</li>
+</ol>
+<p>按照生存周期分类：</p>
+<ol>
+<li>永久环境变量</li>
+<li>临时环境变量（比如，我在bash中写的命令<code>export PATH=$HOME/Desktop/postgres/13.3/bin:$PATH</code>只会在当前的会话中有效）</li>
+</ol>
+<h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><h3 id="bash中设置"><a href="#bash中设置" class="headerlink" title="bash中设置"></a>bash中设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> 变量名=<span class="string">&#x27;值&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>此时设置的是临时环境变量</p>
+<h3 id="系统环境变量"><a href="#系统环境变量" class="headerlink" title="系统环境变量"></a>系统环境变量</h3><p>系统环境变量对全部的用户生效，设置系统环境变量有三种方法。</p>
+<ol>
+<li>在<code>/etc/profile</code>文件中设置。用户登录时执行<code>/etc/profile</code>文件中设置系统的环境变量。但是，linux不建议在<code>/etc/profile</code>文件中设置系统环境变量。</li>
+<li>在<code>/etc/profile.d</code>目录中增加环境变量脚本文件，这是Linux推荐的方法。</li>
+<li>在<code>/etc/bashrc</code>文件中设置环境变量。该文件配置的环境变量将会影响全部用户使用的bash shell。但是，Linux也不建议在/etc/bashrc文件中设置系统环境变量。</li>
+</ol>
+<h3 id="用户环境变量"><a href="#用户环境变量" class="headerlink" title="用户环境变量"></a>用户环境变量</h3><p>在用户的主目录，有几个特别的文件，用<code>ls</code>是看不见的，用 <code>ls .bash_*</code> 可以看见，它们设置了用户环境变量。</p>
+<ol>
+<li>在<code>.bash_profile</code>中设置（推荐首选）</li>
+<li>在<code>.bash_logout</code>中设置。当每次退出系统（退出bash shell）时执行该文件。</li>
+<li>在<code>.bash_history</code>中保存了用户使用过的历史命令</li>
+</ol>
+<h2 id="环境变量生效"><a href="#环境变量生效" class="headerlink" title="环境变量生效"></a>环境变量生效</h2><p>1）在Shell下，用export设置的环境变量对当前Shell立即生效，Shell退出后失效。</p>
+<p>2）在脚本文件中设置的环境变量不会立即生效，退出Shell后重新登录时才生效，或者用source命令让它立即生效，例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> /etc/profile</span><br></pre></td></tr></table></figure>
+<h1 id="linux-I-O"><a href="#linux-I-O" class="headerlink" title="linux I/O"></a>linux I/O</h1><h2 id="普通IO（read-write-）"><a href="#普通IO（read-write-）" class="headerlink" title="普通IO（read()/write()）"></a>普通IO（read()/write()）</h2><p>【3】假设我们使用普通的I/O读取文件，底层是如何工作的呢？</p>
+<ol>
+<li>进程通过系统调用读取数据</li>
+<li>进程切换到内核态，通知设备进行读取</li>
+<li>设备准备好的数据传送到内核空间</li>
+<li>接收到数据后，内核态进程将数据从内核空间拷贝到用户空间</li>
+<li>进程切换回用户态，继续执行用户空间的代码：处理数据</li>
+<li>进程通过系统调用输出数据到设备</li>
+<li>进程切换到内核态，把数据从用户空间拷贝到内核空间，通知设备进行输出操作</li>
+<li>设备完成任务后，进程再次从内核态切换回用户态</li>
+</ol>
+<p>在上面的过程中，涉及到4次进程模式切换，两次内存拷贝。这些操作对性能会造成一定影响。</p>
+<h2 id="sync-fsync-fdatasync"><a href="#sync-fsync-fdatasync" class="headerlink" title="sync() fsync() fdatasync()"></a>sync() fsync() fdatasync()</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hmxz2nn/article/details/82868980">https://blog.csdn.net/hmxz2nn/article/details/82868980</a> 参考了这篇文章，写的很不错</p>
+<p>这几个函数都是针对文件的写操作的。由于<code>write()</code>函数对于数据持久化和一致性不是很友好，因为这个函数返回了，并不代表数据真的就立马写到磁盘中了，因此需要<code>fsync()</code>和<code>fdatasync()</code>函数。这两个函数都是等待数据完全写入磁盘后才返回，否则程序会阻塞。</p>
+<h3 id="mmap的msync"><a href="#mmap的msync" class="headerlink" title="mmap的msync()"></a>mmap的msync()</h3><p>如果采用内存映射文件的方式进行文件IO（使用mmap，将文件的page cache直接映射到进程的地址空间，通过写内存的方式修改文件），也有类似的系统调用来确保修改的内容完全同步到硬盘之上：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">msync</span><span class="params">(<span class="keyword">void</span> *addr, <span class="keyword">size_t</span> length, <span class="keyword">int</span> flags)</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="使用fdatasync优化日志同步"><a href="#使用fdatasync优化日志同步" class="headerlink" title="使用fdatasync优化日志同步"></a>使用fdatasync优化日志同步</h3><p>文章开头时已提到，为了满足事务要求，数据库的日志文件是常常需要同步IO的。由于需要同步等待硬盘IO完成，所以事务的提交操作常常十分耗时，成为性能的瓶颈。</p>
+<p>在Berkeley DB下，如果开启了AUTO_COMMIT（所有独立的写操作自动具有事务语义）并使用默认的同步级别（日志完全同步到硬盘才返回），写一条记录的耗时大约为5~10ms级别，基本和一次IO操作（10ms）的耗时相同。</p>
+<p>我们已经知道，在同步上fsync是低效的。但是如果需要使用fdatasync减少对metadata的更新，则需要确保文件的尺寸在write前后没有发生变化。日志文件天生是追加型（append-only）的，总是在不断增大，似乎很难利用好fdatasync。</p>
+<p>且看Berkeley DB是怎样处理日志文件的：</p>
+<ol>
+<li>每个log文件固定为10MB大小，从1开始编号，名称格式为“log.%010d”</li>
+<li>每次log文件创建时，先写文件的最后1个page，将log文件扩展为10MB大小</li>
+<li>向log文件中追加记录时，由于文件的尺寸不发生变化，使用fdatasync可以大大优化写log的效率</li>
+<li>如果一个log文件写满了，则新建一个log文件，也只有一次同步metadata的开销</li>
+</ol>
+<h2 id="IO端口映射与I-O内存映射"><a href="#IO端口映射与I-O内存映射" class="headerlink" title="IO端口映射与I/O内存映射"></a>IO端口映射与I/O内存映射</h2><p>参考【1】：首先讲了CPU地址概念和两种编址方式：统一编址和独立编址。</p>
+<ol>
+<li>统一编址也称为<strong>“I/O内存”</strong>方式，外设寄存器位于“内存空间”（很多外设有自己的内存、缓冲区，外设的寄存器和内存统称“I/O空间”）；</li>
+<li>独立编址也称为<strong>“I/O端口”</strong>方式，外设寄存器位于“I/O（地址）空间”，在系统中就存在了另一种与存储地址无关的IO地 址，CPU也必须具有专用与输入输出操作的IO指令（IN、OUT等）和控制逻辑。这为讲I/O内存映射的来由做了铺垫。</li>
+</ol>
+<p>虽然intel x86平台使用独立编址方式，但是x86平台普通使用了名为<strong>内存映射（MMIO）</strong>的技术，该技术是PCI规范的一部分，IO设备端口被映射到内存空间，映射后，CPU访问IO端口就如同访问内存一样。</p>
+<p>对于Linux内核而言，它可能用于不同的CPU，所以它必须都要考虑上述两种编址方式，于是它采用一种新的方法，将基于I/O映射方式的或内存映射方式的I/O端口通称为<strong>“I/O区域”（I/O region）</strong>，不论你采用哪种方式，都要先申请IO区域：request_resource()，结束时释放 它：release_resource()。</p>
+<p>如果CPU采用统一编址技术，对外设的访问就是<strong>I/O内存</strong>方式：访问I/O内存的流程是：request_mem_region() -&gt; ioremap() -&gt; ioread8()/iowrite8() -&gt; iounmap() -&gt; release_mem_region() 。</p>
+<p>ioremap()用来将IO资源的物理地址映射到内核虚地址空间（3GB - 4GB）中。</p>
+<p>如果CPU采用独立编址技术，那么访问I/O端口有两种方式：</p>
+<ol>
+<li>I/O映射方式（I/O－mapped）。不映射到内存空间，直接使用 intb()/outb()之类的函数来读写IO端口</li>
+<li>内存映射方式（Memory－mapped）。MMIO是先把IO端口映射到IO内存（“内存空间”），再使用访问IO内存的函数来访问 IO端口。</li>
+</ol>
+<h3 id="使用I-O内存映射读取文件"><a href="#使用I-O内存映射读取文件" class="headerlink" title="使用I/O内存映射读取文件"></a>使用I/O内存映射读取文件</h3><p>【2】普通地使用C语言的<code>fread()</code>或者<code>fwrite()</code>函数都需要将内容拷贝到IO缓冲区以及页高速缓冲区，这就增加了数据拷贝的次数，无形之中增加了CPU和内存的开销。使用内存映射技术可以减少系统调用的次数同时又可以降低数据的拷贝次数。</p>
+<p>将文件映射到内存：</p>
+<ul>
+<li>内存数据与文件数据一一对应</li>
+<li>通过内存代替read/write系统调用接口来访问文件</li>
+<li>减少数据拷贝，减少系统调用次数，提高了系统性能</li>
+</ul>
+<img src="/2021/08/02/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/20191007142039951.png" class="">
+<p><img src="linux程序设计/20191007142039951.png" alt="在这里插入图片描述"></p>
+<p><strong>但是我有一个问题没有搞懂：使用用户缓冲的目的就是为了效率，如果不用缓冲了，改用内存映射，那么每次都直接把数据发送到存储器，这样的开销会不会比系统调用和多次拷贝的开销要大。</strong></p>
+<p>编程接口：</p>
+<ul>
+<li>头文件 <sys/mman.h></li>
+<li>函数使用 void <em>mmap(void </em>addr, size_t length, int prot, int flags, int fd, off_t offset);</li>
+<li>函数功能：在用户虚地址空间创建一个和实际物理内存相映射的关系。<br>函数参数:</li>
+<li>addr:进程要映射的虚拟内存的起始地址，一般为NULL。操作系统会自动分配一个合适的内存地址。</li>
+<li>length:要映射实际的内存区域大小</li>
+<li>prot:内存保护标志,<br>PROT_EXEC(页内容可以被执行)，<br>PROT_READ（页内容可以被读），<br>PROT_WRITE（页内容可以被写），<br>PROT_NONE（页不可访问） </li>
+<li>flags: 映射的对象类型，<br>MAP_FIXED（如果由addr个length参数指定的内存区重叠与现存的内存区；如果指定的地址不可用，操作将会失败；并且起始地址必须落在页的边界上），<br>MAP_SHARED（与其它所有映射这个对象的进程共享映射空间。对共享区的写入，相当于输出到文件。直到msync()或者munmap()被调用，文件实际上不会被更新。），<br>MAP_PRIVATE（建立一个写入时拷贝的私有映射。内存区域的写入不会影响到原文件。这个标志和以上标志是互斥的，）</li>
+<li>fd:要映射的文件描述符</li>
+<li>offset:文件偏移地址</li>
+<li>mmap:以页单位操作，参数addr和offset必须按页对齐(4K对齐)</li>
+<li>返回值：<br>成功：指向映射后的实际内存的地址<br>失败：MAP_FAILED</li>
+</ul>
+<p>后面讲到了一些编程用例，具体查看【2】。</p>
+<h3 id="mmap工作机制"><a href="#mmap工作机制" class="headerlink" title="mmap工作机制"></a>mmap工作机制</h3><p><strong>mmap为什么是零拷贝呢？不是很懂</strong></p>
+<p>通过调用memory map，我们让操作系统把文件的内容映射到内存，对内存的读写将关联到对应的文件。而应用通过访问用户空间操作这部分内存，避免了内存拷贝操作。</p>
+<p>内存映射是文件到内存空间的映射。对于应用来说，和文件建立映射关系的是虚拟地址空间，而不是物理内存或者Heap。当我们建立一个2g大小的映射时，并不是在heap，更不是在物理内存中分配了这么大的空间，仅仅是在虚拟地址空间中划出了这么大一个区域而已，<strong>然后为虚拟空间分配一部分物理内存空间</strong>，就像页表一样。</p>
+<p>应用访问内存映射区域时，操作系统会把虚拟的地址映射成真正的物理内存地址和底层文件的偏移量。如果应用访问的虚拟地址对应的文件内容尚未被装入内存，操作系统通过缺页中断，将内存中的部分内容交换出去，腾出空间将文件的内容读取到内存。</p>
+<p><strong>内存映射对性能的提升是有条件的</strong>：通过内存映射访问文件，虽然减少了内存拷贝，减少了系统调用引起的进程模式切换，但是过程中需要承担<strong>缺页中断的负担</strong>；对于小文件的读取，或者对于append模式的文件读写，内存映射的性能未看，未必优于普通io操作。只有对大文件的随机访问，内存映射才可能有明显优势，不过这仍然需要更具体的分析和进一步的的benchmark测试。</p>
+<p><strong>但是，对于NVM来说就不同了</strong>，mmap可以很好地利用NVM的字节寻址的特点；而且，mmap可以不用为映射的文件分配物理内存空间，直接把数据读写到NVM上的文件。</p>
+<h1 id="网络编程"><a href="#网络编程" class="headerlink" title="网络编程"></a>网络编程</h1><h2 id="sockaddr-in"><a href="#sockaddr-in" class="headerlink" title="sockaddr_in"></a>sockaddr_in</h2><p>sockaddr_in就是为了保存TCP/IP相关的信息：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* netinet/in.h</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span>&#123;</span></span><br><span class="line">    <span class="comment">/* 协议族：AF_UNIX, AF_NET, AF_INET6</span></span><br><span class="line"><span class="comment">     * AF_NET就是IPV4</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">short</span> <span class="keyword">int</span> sin_family;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* 端口号（使用网络字节顺序）：例如80</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> <span class="keyword">int</span> sin_port;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* IP地址：例如202.96.134.133</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">sin_addr</span>;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* sockaddr和sockaddr大小一样了</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> sin_zero[<span class="number">8</span>];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span>&#123;</span></span><br><span class="line">    <span class="comment">/* IP地址（网络字节顺序）</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">long</span> s_addr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>为了将字符串形式的IP地址：SERV_IP和int类型的端口号SERV_PORT存储在sockaddr_in结构体serv_addr中：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="built_in">inet_pton</span>(AF_INET, SERV_IP, &amp;serv_addr.sin_addr.s_addr);    </span><br><span class="line">serv_addr.sin_port = <span class="built_in">htons</span>(SERV_PORT);</span><br></pre></td></tr></table></figure>
+<h2 id="sigaction和sigaction"><a href="#sigaction和sigaction" class="headerlink" title="sigaction和sigaction()"></a>sigaction和sigaction()</h2><p>struct sigaction主要在sigaction信号安装和sigqueue信号发送时会用到，这是linux进程间信号传递的内容；</p>
+<p>struct sigaction的源码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// usr/include/bits/sigaction.h</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Structure describing the action to be taken when a signal arrives.     */</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">       <span class="comment">/* Signal handler.     */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __USE_POSIX199309</span></span><br><span class="line">	<span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">		<span class="comment">/* Used if SA_SIGINFO is not set.     */</span></span><br><span class="line">		<span class="keyword">__sighandler_t</span> sa_handler;</span><br><span class="line">       	<span class="comment">/* Used if SA_SIGINFO is set.     */</span></span><br><span class="line">       	<span class="built_in"><span class="keyword">void</span></span> (*sa_sigaction) (<span class="keyword">int</span>, <span class="keyword">siginfo_t</span> *, <span class="keyword">void</span> *);</span><br><span class="line">     &#125;</span><br><span class="line">     __sigaction_handler;</span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> sa_handler __sigaction_handler.sa_handler</span></span><br><span class="line"><span class="meta"># <span class="meta-keyword">define</span> sa_sigaction      __sigaction_handler.sa_sigaction</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">     <span class="keyword">__sighandler_t</span> sa_handler;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">     <span class="comment">/* Additional set of signals to be blocked.     */</span></span><br><span class="line">     <span class="keyword">__sigset_t</span> sa_mask;</span><br><span class="line"></span><br><span class="line">     <span class="comment">/* Special flags.     */</span></span><br><span class="line">     <span class="keyword">int</span> sa_flags;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由<code>sa_handler</code>指定的处理函数只有一个参数，即<code>信号值</code>，所以信号不能传递除信号值之外的任何信息；由<code>sa_sigaction</code>是指定的信号处理函数带有三个参数，是为实时信号而设的（当然同样支持非实时信号），它指定一个3参数信号处理函数。第一个参数为信号值，第三个参数没有使用（posix没有规范使用该参数的标准），第二个参数是指向<code>siginfo_t</code>结构的指针，结构中包含信号携带的数据值。</p>
+<p>属性<code>sa_mask</code>指定在信号处理程序执行过程中，哪些信号应当被阻塞。缺省情况下当前信号本身被阻塞，防止信号的嵌套发送，除非指定<code>SA_NODEFER</code>或者<code>SA_NOMASK</code>标志位。</p>
+<p>属性<code>sa_flags</code>中包含了许多标志位，包括刚刚提到的<code>SA_NODEFER</code>及<code>SA_NOMASK</code>标志位。另一个比较重要的标志位是<code>SA_SIGINFO</code>，当设定了该标志位时，表示信号附带的参数可以被传递到信号处理函数中，因此，应该为sigaction结构中的<code>sa_sigaction</code>指定处理函数，而不应该为<code>sa_handler</code>指定信号处理函数。</p>
+<p>sigaction()有3个参数：第一个参数是信号的值，第二个是sigaction结构的指针。第二个参数说明了第一个参数指定的信号发生时调用的函数和其它的一些信息。</p>
+<p>下面是使用sigaction的例子：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">do_sigchild</span><span class="params">(<span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">waitpid</span>(<span class="number">0</span>, <span class="literal">NULL</span>, WNOHANG) &gt; <span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sigaction</span> <span class="title">newact</span>;</span></span><br><span class="line">	newact.sa_handler = do_sigchild; <span class="comment">// do_sigchild是一个函数</span></span><br><span class="line">	<span class="built_in">sigemptyset</span>(&amp;newact.sa_mask);</span><br><span class="line">	newact.sa_flags = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">sigaction</span>(SIGCHLD, &amp;newact, <span class="literal">NULL</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="gdb调试"><a href="#gdb调试" class="headerlink" title="gdb调试"></a>gdb调试</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// debug1.c</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG1 1</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG2 2</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> DEBUG</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG 0</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">if</span> (DEBUG &amp; DEBUG1)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;debug1: &quot;</span> __DATE__ <span class="string">&quot; at &quot;</span> __TIME__ <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="meta">#<span class="meta-keyword">if</span> (DEBUG &amp; DEBUG2)</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;This is a line %d of file %s&quot;</span>, __LINE__, __FILE__ <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;hello &quot;</span> <span class="string">&quot;world&quot;</span> <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>在linux bash下执行：<code>cc -o debug1 -DDEBUG=3 debug1.c</code></p>
+<p>结果是：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">debug1</span>: Aug <span class="number">17</span> <span class="number">2021</span> at <span class="number">08</span>:<span class="number">17</span>:<span class="number">47</span></span><br><span class="line"><span class="attribute">This</span> is a line <span class="number">14</span> of file debug<span class="number">1</span>.c</span><br><span class="line"><span class="attribute">hello</span> world</span><br></pre></td></tr></table></figure>
+<p>通过指定<code>-DDEBUG</code>选项的值为0, 1, 2或者3，可以有不同的调试输出。</p>
+<p><strong>启动gdb</strong></p>
+<p>假设已经编译好了<code>a.c</code>文件，然后可执行文件是<code>a</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cc -g -o a a.c</span><br></pre></td></tr></table></figure>
+<p>然后：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gdb a</span><br></pre></td></tr></table></figure>
+<p>此时只是启动gdb，但是并没有运行程序</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb)</span><br></pre></td></tr></table></figure>
+<p><strong>运行程序</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) run</span><br></pre></td></tr></table></figure>
+<p><strong>栈跟踪</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) backtrace</span><br></pre></td></tr></table></figure>
+<p>通过这个命令可以看到程序是如何到达这个断点的。</p>
+<p><strong>检查变量</strong></p>
+<p>print语句可以输出程序中的表达式的值。加入程序中有<code>int a[]</code>数组，则可以通过下面的命令输出<code>a[3]</code>的值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">print</span> a[3]</span><br></pre></td></tr></table></figure>
+<p>输出<code>a[0]</code>到<code>a[4]</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">print</span> a[0]@5</span><br></pre></td></tr></table></figure>
+<p><strong>列出程序源代码</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) list</span><br></pre></td></tr></table></figure>
+<p><strong>设置断点</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">break</span> 3 <span class="comment"># 在第3行设置断点</span></span><br><span class="line">(gdb) run</span><br></pre></td></tr></table></figure>
+<p>继续执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) cont</span><br></pre></td></tr></table></figure>
+<p>加入在源码目录运行gdb，可以任意指定某个文件的某个函数，某行设置断点：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">break</span> ./src/sql/parser/ob_parser.cpp:ObParser::parse</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">break</span> ./src/sql/parser/ob_parser.cpp:210</span><br></pre></td></tr></table></figure>
+<p><strong>设置源文件读取路径</strong></p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dir <span class="regexp">/home/</span>test<span class="regexp">/zhouhuahui/</span>Github/oceanbase</span><br></pre></td></tr></table></figure>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show </span><span class="keyword">directories </span><span class="comment"># 所有的源文件路径</span></span><br></pre></td></tr></table></figure>
+<p><strong>单步执行</strong>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) next</span><br></pre></td></tr></table></figure>
+<p>info命令：告诉gdb列出所有的断点</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) info <span class="built_in">break</span></span><br></pre></td></tr></table></figure>
+<p>disable: disable某个编号的断点，如果想要用这个断点，只需enable</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">disable</span> <span class="built_in">break</span> 1 <span class="comment"># disable第一个断点</span></span><br></pre></td></tr></table></figure>
+<p>在某个函数设置断点：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) <span class="built_in">break</span> func</span><br></pre></td></tr></table></figure>
+<p><strong>attach</strong></p>
+<p>如何用gdb调试已经运行的程序。加入一个程序的pid是1234</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(gdb) attach 1234</span><br></pre></td></tr></table></figure>
+<p><strong>进入代码模式</strong></p>
+<p>快捷键<code>ctrl+X+A</code>。</p>
+<p><strong>跳出函数</strong></p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">finish</span></span><br><span class="line"><span class="keyword">fin</span></span><br></pre></td></tr></table></figure>
+<p><strong>跳出循环</strong></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">until</span></span><br></pre></td></tr></table></figure>
+<h2 id="条件断点"><a href="#条件断点" class="headerlink" title="条件断点"></a>条件断点</h2><p>例如程序：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">  cout&lt;&lt;i*i&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">    <span class="built_in">func</span>(i);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当我用gdb调试输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b func <span class="keyword">if</span> i==50</span><br></pre></td></tr></table></figure>
+<p>可以在第50个循环处停止：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Breakpoint</span> <span class="number">2</span>, func (i=<span class="number">50</span>) at demo<span class="number">1</span>.cpp:<span class="number">5</span></span><br><span class="line"><span class="attribute">5</span>         cout&lt;&lt;i*i&lt;&lt;endl;</span><br><span class="line"><span class="attribute">Missing</span> separate debuginfos, use: debuginfo-install glibc-<span class="number">2</span>.<span class="number">17</span>-<span class="number">325</span>.el<span class="number">7</span>_<span class="number">9</span>.x<span class="number">86</span>_<span class="number">64</span> libgcc-<span class="number">4</span>.<span class="number">8</span>.<span class="number">5</span>-<span class="number">44</span>.el<span class="number">7</span>.x<span class="number">86</span>_<span class="number">64</span> libstdc++-<span class="number">4</span>.<span class="number">8</span>.<span class="number">5</span>-<span class="number">44</span>.el<span class="number">7</span>.x<span class="number">86</span>_<span class="number">64</span></span><br></pre></td></tr></table></figure>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>当编译时，未加 - g 选项，则进入gdb环境中执行命令会出现No symbol table is loaded.  Use the “file” command.提示；</p>
+<h1 id="linux工具"><a href="#linux工具" class="headerlink" title="linux工具"></a>linux工具</h1><h2 id="gcc"><a href="#gcc" class="headerlink" title="gcc"></a>gcc</h2><p>多个源文件的编译：（假如有a.h, a.c, b.c文件）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc a.c b.c -o b</span><br></pre></td></tr></table></figure>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>【1】linux中的 IO端口映射和IO内存映射 <a target="_blank" rel="noopener" href="https://blog.csdn.net/geekster/article/details/11393995">https://blog.csdn.net/geekster/article/details/11393995</a></p>
+<p>【2】linux 文件IO与内存映射：内存映射 <a target="_blank" rel="noopener" href="https://blog.csdn.net/Z_Stand/article/details/102305129">https://blog.csdn.net/Z_Stand/article/details/102305129</a></p>
+<p>包含专栏“linux操作系统：io系统” <a target="_blank" rel="noopener" href="https://blog.csdn.net/z_stand/category_9403370.html">https://blog.csdn.net/z_stand/category_9403370.html</a></p>
+<p>【3】虚拟内存/用户空间与内核空间/MMap与MUnmap</p>
+<p>【4】打补丁patch 命令使用：<a target="_blank" rel="noopener" href="https://blog.csdn.net/xfxf996/article/details/103851041">https://blog.csdn.net/xfxf996/article/details/103851041</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/08/02/linux%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-情商与智慧人生" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/31/%E6%83%85%E5%95%86%E4%B8%8E%E6%99%BA%E6%85%A7%E4%BA%BA%E7%94%9F/">情商与智慧人生</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/31/%E6%83%85%E5%95%86%E4%B8%8E%E6%99%BA%E6%85%A7%E4%BA%BA%E7%94%9F/" class="archive-article-date">
+  	<time datetime="2021-07-31T14:27:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="12-情商修炼在于细节"><a href="#12-情商修炼在于细节" class="headerlink" title="12 情商修炼在于细节"></a>12 情商修炼在于细节</h1><h2 id="12-1-情商修炼在于细节"><a href="#12-1-情商修炼在于细节" class="headerlink" title="12.1 情商修炼在于细节"></a>12.1 情商修炼在于细节</h2><p>情商修炼并不教你如何成功，而是教你如何快乐，它教你关注自己的心灵，改变我们对教育的看法，让我们像天才一样成长。</p>
+<p>在大学，要更好地认识自己和社会，扬长避短，不断探寻、肯定、发展和超越自我；</p>
+<p>高情商人有如下特点：</p>
+<ol>
+<li>外向，生活愉快；</li>
+<li>不易陷入恐惧和伤感，调整不良情绪速度快；</li>
+<li>目标明晰，对事业较投入，充满目标和激情；</li>
+<li>为人正直，富于同情心，情感生活较丰富但不逾矩；</li>
+<li>不管独处还是与人交往，都能怡然自得，具有正气场；</li>
+<li>善于正向情绪主导意识，反省自己，激励自己，提升自己；</li>
+</ol>
+<p>低情商的人的特点：</p>
+<ol>
+<li>性格孤僻，怪异，不易与人合作；</li>
+<li>自卑，脆弱，不能面对挫折；</li>
+<li>急躁，固执，自负；</li>
+<li>没有责任心，推三阻四，情绪不稳定；</li>
+<li>不喜欢换位思考，不考虑别人的感受；</li>
+<li>问明知故问的问题，说话戳人痛处；</li>
+<li>即使是陌生，无关的人，仍然在意其怎么看自己；</li>
+<li>把最好的脾气给了陌生人，把最差的耐心给了亲人；</li>
+<li>说话难听，在众人面前喜欢贬低别人来抬高自己；</li>
+<li>具有负气场，负能量，爱抱怨和指责，只见树木，不见森林，智商再高，也难有所成就；</li>
+</ol>
+<p>情商高的人在人生的各个方面都占尽优势，不管是谈恋爱，还是与人交往，主宰人生的方向；在生活中更有效率，更能满足，比较容易利用自己的智能获取丰硕的成果；</p>
+<hr>
+<p>想提高情商，要从细节做起。注重细节能给人带来良好的印象，良好的人际关系，而良好的人际关系又能带来良好的信誉，信任，甚至带有意外的经济效益；</p>
+<p>子绝四：毋意、毋必、毋固、毋我。我们要怀圣人之心做平常之事，不能只顾自己的利益需求，忽视他人的存在。</p>
+<h2 id="12-2-情商：一项综合软技能"><a href="#12-2-情商：一项综合软技能" class="headerlink" title="12.2 情商：一项综合软技能"></a>12.2 情商：一项综合软技能</h2><p>白岩松：“生命中有一种很奇妙的逻辑，如果你真的过好了每一天，明天还会不错。”</p>
+<p>高情商创造大气场，能够无形中感染他人。</p>
+<p>“我不是为老板打工，也不是为自己赚钱，我在为自己的梦想打工，我要让自己工作产生的价值远远超过自己的薪水。”；“要想取得成功，必须要做核心人物，这样才能吸引，感染别人，自己也能最终受益。”</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">上善若水。水善利万物而不争，处众人之所恶，</span><br><span class="line">故几于道。</span><br><span class="line">居善地，心善渊</span><br><span class="line">与善任，言善信</span><br><span class="line">政善治，事善能</span><br><span class="line">动善时</span><br><span class="line">夫唯不争，故无忧。</span><br></pre></td></tr></table></figure>
+<p>在道家学说里，水为至善至柔，水性绵绵密密，微则无声，巨则汹涌，与人无争，却又容纳万物，人生之道，莫过于此。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/31/%E6%83%85%E5%95%86%E4%B8%8E%E6%99%BA%E6%85%A7%E4%BA%BA%E7%94%9F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -311,6 +965,99 @@
 
 
   
+    <article id="post-java语言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/07/30/java%E8%AF%AD%E8%A8%80/">java语言</a>
+    </h1>
+  
+
+        
+        <a href="/2021/07/30/java%E8%AF%AD%E8%A8%80/" class="archive-article-date">
+  	<time datetime="2021-07-30T08:04:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h2 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h2><img src="/2021/07/30/java%E8%AF%AD%E8%A8%80/image-20210730175717158.png" class="">
+<p><img src="java语言/image-20210730175717158.png" alt="image-20210730175717158"></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// UseCase.java</span></span><br><span class="line">package test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">Target</span>(ElementType.METHOD)</span><br><span class="line">@<span class="built_in">Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> @interface UseCase &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> &quot;no description&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PasswordUtils.java</span></span><br><span class="line">package test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PasswordUtils</span> &#123;</span></span><br><span class="line">	@<span class="built_in">UseCase</span>(id=<span class="number">47</span>, description=</span><br><span class="line">			<span class="string">&quot;Password must contain at least one numeric&quot;</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> boolean <span class="title">validatePassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (password.<span class="built_in">matches</span>(<span class="string">&quot;\\w*\\d\\w*&quot;</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	@<span class="built_in">UseCase</span>(id=<span class="number">48</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">encryptPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">StringBuilder</span>(password).<span class="built_in">reverse</span>().<span class="built_in">toString</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	@<span class="built_in">UseCase</span>(id=<span class="number">49</span>, description=</span><br><span class="line">			<span class="string">&quot;New password can not equal previously used ones&quot;</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> boolean <span class="title">checkForNewPassword</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">			List&lt;String&gt; prevPasswords, String password)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> !prevPasswords.<span class="built_in">contains</span>(password);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// UseCaseTracker.java</span></span><br><span class="line">package test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注解处理器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UseCaseTracker</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">trackUseCases</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">			List&lt;Integer&gt; useCases, Class&lt;?&gt; cl)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(Method m : cl.<span class="built_in">getDeclaredMethods</span>()) &#123;</span><br><span class="line">			UseCase uc = m.<span class="built_in">getAnnotation</span>(UseCase.class);</span><br><span class="line">			<span class="keyword">if</span>(uc != null) &#123;</span><br><span class="line">				System.out.<span class="built_in">println</span>(<span class="string">&quot;Found use case: &quot;</span> + uc.<span class="built_in">id</span>() +</span><br><span class="line">						<span class="string">&quot; &quot;</span> + uc.<span class="built_in">description</span>());</span><br><span class="line">				useCases.<span class="built_in">remove</span>(<span class="keyword">new</span> <span class="built_in">Integer</span>(uc.<span class="built_in">id</span>()));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i : useCases) &#123;</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">&quot;Warning: missing use case-&quot;</span> + i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Integer&gt; useCases = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">		Collections.<span class="built_in">addAll</span>(useCases, <span class="number">47</span>, <span class="number">48</span>, <span class="number">49</span>, <span class="number">50</span>);</span><br><span class="line">        <span class="comment">// PasswordUtils类中实现了很多用例，但是不知道有没有覆盖useCases中的全部</span></span><br><span class="line">        <span class="comment">// 由于每个函数都通过注解@UseCase标注使用了什么用例，</span></span><br><span class="line">        <span class="comment">// 因此通过trackUseCases函数来分析PasswordUtils类中哪些用例没有实现</span></span><br><span class="line">		<span class="built_in">trackUseCases</span>(useCases, PasswordUtils.class);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果不使用<strong>注解处理器</strong>，编写和使用注解不会比注释更有用。</p>
+<h2 id="编写注解处理器"><a href="#编写注解处理器" class="headerlink" title="编写注解处理器"></a>编写注解处理器</h2><p>为一个bean添加很多自定义注解，然后编写注解处理器，处理这些注解。（据我所知，一个bean是不是一个数据库表的定义啊）</p>
+<img src="/2021/07/30/java%E8%AF%AD%E8%A8%80/image-20210811150404345.png" class="">
+<p><img src="java语言/image-20210811150404345.png" alt="image-20210811150404345"></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DBTable.java</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(ElementType.TYPE)</span> <span class="comment">// applies to classes only</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> DBTable &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Constraints.java</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(ElementType.FIELD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Constraints &#123;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">primaryKey</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">allowNull</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">unique</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SQLString.java</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(ElementType.FIELD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SQLString &#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;</span><br><span class="line">	<span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">	<span class="function">Constraints <span class="title">constraints</span><span class="params">()</span> <span class="keyword">default</span> @Constraints</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SQLInteger.java</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(ElementType.FIELD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SQLInteger &#123;</span><br><span class="line">	<span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">	<span class="function">Constraints <span class="title">constraints</span><span class="params">()</span> <span class="keyword">default</span> @Constraints</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Member.java</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"></span><br><span class="line"><span class="meta">@DBTable(name = &quot;MEMBER&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Member</span> </span>&#123;</span><br><span class="line">	<span class="meta">@SQLString(30)</span> String firstName; <span class="comment">// 默认给value属性设置值，而且必须是value属性</span></span><br><span class="line">	<span class="meta">@SQLString(50)</span> String lastName;</span><br><span class="line">	<span class="meta">@SQLInteger</span> Integer age;</span><br><span class="line">	<span class="meta">@SQLString(value=30,</span></span><br><span class="line"><span class="meta">			constraints=@Constraints(primaryKey=true))</span></span><br><span class="line">	String handle;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> memberCount;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getHandle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.handle;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getFirstName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.firstName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getLastName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.lastName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.handle;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.age;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TableCreate.java</span></span><br><span class="line"><span class="comment">// 注解解释器</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TableCreator</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getConstraints</span><span class="params">(Constraints con)</span> </span>&#123;</span><br><span class="line">		String constraints = <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="keyword">if</span>(!con.allowNull()) &#123;</span><br><span class="line">			constraints += <span class="string">&quot;NOT NULL&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(con.primaryKey()) &#123;</span><br><span class="line">			constraints += <span class="string">&quot; PRIMARY KEY&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(con.unique()) &#123;</span><br><span class="line">			constraints += <span class="string">&quot; UNIQUE&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> constraints;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(args.length &lt; <span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;arguments: annotated classes&quot;</span>);</span><br><span class="line">			System.exit(<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(String className : args) &#123;</span><br><span class="line">			Class&lt;?&gt; cl = Class.forName(className);</span><br><span class="line">			DBTable dbTable = cl.getAnnotation(DBTable.class);</span><br><span class="line">			<span class="keyword">if</span>(dbTable == <span class="keyword">null</span>) &#123;</span><br><span class="line">				System.out.println(</span><br><span class="line">						<span class="string">&quot;No DBTable annotations in class &quot;</span> + className);</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			String tableName = dbTable.name();</span><br><span class="line">			<span class="keyword">if</span>(tableName.length() &lt; <span class="number">1</span>) &#123;</span><br><span class="line">				tableName = cl.getName().toUpperCase();</span><br><span class="line">			&#125;</span><br><span class="line">			List&lt;String&gt; columnDefs = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">			<span class="keyword">for</span>(Field field : cl.getDeclaredFields()) &#123;</span><br><span class="line">				String columnName = <span class="keyword">null</span>;</span><br><span class="line">				Annotation[] anns = field.getDeclaredAnnotations();</span><br><span class="line">				<span class="keyword">if</span>(anns.length &lt; <span class="number">1</span>)</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span>(anns[<span class="number">0</span>] <span class="keyword">instanceof</span> SQLInteger) &#123;</span><br><span class="line">					SQLInteger sInt = (SQLInteger)anns[<span class="number">0</span>];</span><br><span class="line">					<span class="keyword">if</span>(sInt.name().length() &lt; <span class="number">1</span>)</span><br><span class="line">						columnName = field.getName().toUpperCase();</span><br><span class="line">					<span class="keyword">else</span></span><br><span class="line">						columnName = sInt.name();</span><br><span class="line">					columnDefs.add(columnName + <span class="string">&quot; INT&quot;</span> + </span><br><span class="line">						getConstraints(sInt.constraints()));</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(anns[<span class="number">0</span>] <span class="keyword">instanceof</span> SQLString) &#123;</span><br><span class="line">					SQLString sString = (SQLString)anns[<span class="number">0</span>];</span><br><span class="line">					<span class="keyword">if</span>(sString.name().length() &lt; <span class="number">1</span>)</span><br><span class="line">						columnName = field.getName().toUpperCase();</span><br><span class="line">					<span class="keyword">else</span></span><br><span class="line">						columnName = sString.name();</span><br><span class="line">					columnDefs.add(columnName + <span class="string">&quot; VARCHAR(&quot;</span> + </span><br><span class="line">						sString.value() + <span class="string">&quot;)&quot;</span> +</span><br><span class="line">						getConstraints(sString.constraints()));</span><br><span class="line">				&#125;	</span><br><span class="line">			&#125;</span><br><span class="line">			StringBuilder createCommand = <span class="keyword">new</span> StringBuilder(</span><br><span class="line">					<span class="string">&quot;CREATE TABLE &quot;</span> + tableName + <span class="string">&quot;(&quot;</span>);</span><br><span class="line">			<span class="keyword">for</span>(String columnDef : columnDefs)</span><br><span class="line">				createCommand.append(<span class="string">&quot;\n    &quot;</span> + columnDef + <span class="string">&quot;,&quot;</span>);</span><br><span class="line">			String tableCreate = createCommand.substring(</span><br><span class="line">					<span class="number">0</span>, createCommand.length()-<span class="number">1</span>) + <span class="string">&quot;);&quot;</span>;</span><br><span class="line">			System.out.println(<span class="string">&quot;Table Creation SQL for &quot;</span> + </span><br><span class="line">					className + <span class="string">&quot; is: \n&quot;</span> + tableCreate);	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输入参数：<code>annotations.database.Member</code></p>
+<p>输出：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Table</span> Creation <span class="keyword">SQL</span> <span class="keyword">for</span> annotations.database.Member <span class="keyword">is</span>: </span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">MEMBER</span>(</span><br><span class="line">    FIRSTNAME <span class="type">VARCHAR</span>(<span class="number">30</span>),</span><br><span class="line">    LASTNAME <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    AGE <span class="type">INT</span>,</span><br><span class="line">    HANDLE <span class="type">VARCHAR</span>(<span class="number">30</span>) <span class="keyword">PRIMARY</span> KEY);</span><br></pre></td></tr></table></figure>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>官方文档：<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/16/">https://docs.oracle.com/en/java/javase/16/</a></p>
+<p>jdk源码：<a target="_blank" rel="noopener" href="https://github.com/openjdk/jdk">https://github.com/openjdk/jdk</a> 也可以在官方文档中找到</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/07/30/java%E8%AF%AD%E8%A8%80/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-postgreSQL的编译和测试" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -324,7 +1071,7 @@
 
         
         <a href="/2021/07/30/postgreSQL%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E6%B5%8B%E8%AF%95/" class="archive-article-date">
-  	<time datetime="2021-07-30T11:03:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-30</time>
+  	<time datetime="2021-07-29T19:03:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-30</time>
 </a>
         
       </header>
@@ -393,7 +1140,7 @@
 <h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><p>查看我们创建的数据库</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -l -p 5432 <span class="comment"># 如果不加-p选项，默认在5432端口启动服务器</span></span><br></pre></td></tr></table></figure>
 <p>创建数据库</p>
-<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">createdb mydb</span> </span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">createdb</span> mydb -p <span class="number">5432</span></span><br></pre></td></tr></table></figure>
 <p>登录到数据库</p>
 <figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">psql mydb</span></span><br></pre></td></tr></table></figure>
 <hr>
@@ -451,99 +1198,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/07/30/postgreSQL%E7%9A%84%E7%BC%96%E8%AF%91%E5%92%8C%E6%B5%8B%E8%AF%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-java语言" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/07/30/java%E8%AF%AD%E8%A8%80/">java语言</a>
-    </h1>
-  
-
-        
-        <a href="/2021/07/30/java%E8%AF%AD%E8%A8%80/" class="archive-article-date">
-  	<time datetime="2021-07-30T08:04:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><h2 id="一个例子"><a href="#一个例子" class="headerlink" title="一个例子"></a>一个例子</h2><img src="/2021/07/30/java%E8%AF%AD%E8%A8%80/image-20210730175717158.png" class="">
-<p><img src="java语言/image-20210730175717158.png" alt="image-20210730175717158"></p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// UseCase.java</span></span><br><span class="line">package test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line">@<span class="built_in">Target</span>(ElementType.METHOD)</span><br><span class="line">@<span class="built_in">Retention</span>(RetentionPolicy.RUNTIME)</span><br><span class="line"><span class="keyword">public</span> @interface UseCase &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">id</span><span class="params">()</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">description</span><span class="params">()</span> <span class="keyword">default</span> &quot;no description&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// PasswordUtils.java</span></span><br><span class="line">package test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PasswordUtils</span> &#123;</span></span><br><span class="line">	@<span class="built_in">UseCase</span>(id=<span class="number">47</span>, description=</span><br><span class="line">			<span class="string">&quot;Password must contain at least one numeric&quot;</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> boolean <span class="title">validatePassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> (password.<span class="built_in">matches</span>(<span class="string">&quot;\\w*\\d\\w*&quot;</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	@<span class="built_in">UseCase</span>(id=<span class="number">48</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">encryptPassword</span><span class="params">(String password)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">StringBuilder</span>(password).<span class="built_in">reverse</span>().<span class="built_in">toString</span>();</span><br><span class="line">	&#125;</span><br><span class="line">	@<span class="built_in">UseCase</span>(id=<span class="number">49</span>, description=</span><br><span class="line">			<span class="string">&quot;New password can not equal previously used ones&quot;</span>)</span><br><span class="line">	<span class="function"><span class="keyword">public</span> boolean <span class="title">checkForNewPassword</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">			List&lt;String&gt; prevPasswords, String password)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> !prevPasswords.<span class="built_in">contains</span>(password);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// UseCaseTracker.java</span></span><br><span class="line">package test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 注解处理器</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UseCaseTracker</span> &#123;</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">trackUseCases</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">			List&lt;Integer&gt; useCases, Class&lt;?&gt; cl)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(Method m : cl.<span class="built_in">getDeclaredMethods</span>()) &#123;</span><br><span class="line">			UseCase uc = m.<span class="built_in">getAnnotation</span>(UseCase.class);</span><br><span class="line">			<span class="keyword">if</span>(uc != null) &#123;</span><br><span class="line">				System.out.<span class="built_in">println</span>(<span class="string">&quot;Found use case: &quot;</span> + uc.<span class="built_in">id</span>() +</span><br><span class="line">						<span class="string">&quot; &quot;</span> + uc.<span class="built_in">description</span>());</span><br><span class="line">				useCases.<span class="built_in">remove</span>(<span class="keyword">new</span> <span class="built_in">Integer</span>(uc.<span class="built_in">id</span>()));</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i : useCases) &#123;</span><br><span class="line">			System.out.<span class="built_in">println</span>(<span class="string">&quot;Warning: missing use case-&quot;</span> + i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		List&lt;Integer&gt; useCases = <span class="keyword">new</span> ArrayList&lt;Integer&gt;();</span><br><span class="line">		Collections.<span class="built_in">addAll</span>(useCases, <span class="number">47</span>, <span class="number">48</span>, <span class="number">49</span>, <span class="number">50</span>);</span><br><span class="line">        <span class="comment">// PasswordUtils类中实现了很多用例，但是不知道有没有覆盖useCases中的全部</span></span><br><span class="line">        <span class="comment">// 由于每个函数都通过注解@UseCase标注使用了什么用例，</span></span><br><span class="line">        <span class="comment">// 因此通过trackUseCases函数来分析PasswordUtils类中哪些用例没有实现</span></span><br><span class="line">		<span class="built_in">trackUseCases</span>(useCases, PasswordUtils.class);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果不使用<strong>注解处理器</strong>，编写和使用注解不会比注释更有用。</p>
-<h2 id="编写注解处理器"><a href="#编写注解处理器" class="headerlink" title="编写注解处理器"></a>编写注解处理器</h2><p>为一个bean添加很多自定义注解，然后编写注解处理器，处理这些注解。（据我所知，一个bean是不是一个数据库表的定义啊）</p>
-<img src="/2021/07/30/java%E8%AF%AD%E8%A8%80/image-20210811150404345.png" class="">
-<p><img src="java语言/image-20210811150404345.png" alt="image-20210811150404345"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DBTable.java</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(ElementType.TYPE)</span> <span class="comment">// applies to classes only</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> DBTable &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Constraints.java</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(ElementType.FIELD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> Constraints &#123;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">primaryKey</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">allowNull</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">true</span></span>;</span><br><span class="line">	<span class="function"><span class="keyword">boolean</span> <span class="title">unique</span><span class="params">()</span> <span class="keyword">default</span> <span class="keyword">false</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SQLString.java</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(ElementType.FIELD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SQLString &#123;</span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">value</span><span class="params">()</span> <span class="keyword">default</span> 0</span>;</span><br><span class="line">	<span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">	<span class="function">Constraints <span class="title">constraints</span><span class="params">()</span> <span class="keyword">default</span> @Constraints</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// SQLInteger.java</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Target(ElementType.FIELD)</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.RUNTIME)</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> SQLInteger &#123;</span><br><span class="line">	<span class="function">String <span class="title">name</span><span class="params">()</span> <span class="keyword">default</span> &quot;&quot;</span>;</span><br><span class="line">	<span class="function">Constraints <span class="title">constraints</span><span class="params">()</span> <span class="keyword">default</span> @Constraints</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Member.java</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"></span><br><span class="line"><span class="meta">@DBTable(name = &quot;MEMBER&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Member</span> </span>&#123;</span><br><span class="line">	<span class="meta">@SQLString(30)</span> String firstName; <span class="comment">// 默认给value属性设置值，而且必须是value属性</span></span><br><span class="line">	<span class="meta">@SQLString(50)</span> String lastName;</span><br><span class="line">	<span class="meta">@SQLInteger</span> Integer age;</span><br><span class="line">	<span class="meta">@SQLString(value=30,</span></span><br><span class="line"><span class="meta">			constraints=@Constraints(primaryKey=true))</span></span><br><span class="line">	String handle;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> memberCount;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getHandle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.handle;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getFirstName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.firstName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getLastName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.lastName;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.handle;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">this</span>.age;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TableCreate.java</span></span><br><span class="line"><span class="comment">// 注解解释器</span></span><br><span class="line"><span class="keyword">package</span> annotations.database;</span><br><span class="line"><span class="keyword">import</span> java.lang.annotation.*;</span><br><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TableCreator</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">getConstraints</span><span class="params">(Constraints con)</span> </span>&#123;</span><br><span class="line">		String constraints = <span class="string">&quot;&quot;</span>;</span><br><span class="line">		<span class="keyword">if</span>(!con.allowNull()) &#123;</span><br><span class="line">			constraints += <span class="string">&quot;NOT NULL&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(con.primaryKey()) &#123;</span><br><span class="line">			constraints += <span class="string">&quot; PRIMARY KEY&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(con.unique()) &#123;</span><br><span class="line">			constraints += <span class="string">&quot; UNIQUE&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> constraints;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(args.length &lt; <span class="number">1</span>) &#123;</span><br><span class="line">			System.out.println(<span class="string">&quot;arguments: annotated classes&quot;</span>);</span><br><span class="line">			System.exit(<span class="number">0</span>);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(String className : args) &#123;</span><br><span class="line">			Class&lt;?&gt; cl = Class.forName(className);</span><br><span class="line">			DBTable dbTable = cl.getAnnotation(DBTable.class);</span><br><span class="line">			<span class="keyword">if</span>(dbTable == <span class="keyword">null</span>) &#123;</span><br><span class="line">				System.out.println(</span><br><span class="line">						<span class="string">&quot;No DBTable annotations in class &quot;</span> + className);</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			String tableName = dbTable.name();</span><br><span class="line">			<span class="keyword">if</span>(tableName.length() &lt; <span class="number">1</span>) &#123;</span><br><span class="line">				tableName = cl.getName().toUpperCase();</span><br><span class="line">			&#125;</span><br><span class="line">			List&lt;String&gt; columnDefs = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">			<span class="keyword">for</span>(Field field : cl.getDeclaredFields()) &#123;</span><br><span class="line">				String columnName = <span class="keyword">null</span>;</span><br><span class="line">				Annotation[] anns = field.getDeclaredAnnotations();</span><br><span class="line">				<span class="keyword">if</span>(anns.length &lt; <span class="number">1</span>)</span><br><span class="line">					<span class="keyword">continue</span>;</span><br><span class="line">				<span class="keyword">if</span>(anns[<span class="number">0</span>] <span class="keyword">instanceof</span> SQLInteger) &#123;</span><br><span class="line">					SQLInteger sInt = (SQLInteger)anns[<span class="number">0</span>];</span><br><span class="line">					<span class="keyword">if</span>(sInt.name().length() &lt; <span class="number">1</span>)</span><br><span class="line">						columnName = field.getName().toUpperCase();</span><br><span class="line">					<span class="keyword">else</span></span><br><span class="line">						columnName = sInt.name();</span><br><span class="line">					columnDefs.add(columnName + <span class="string">&quot; INT&quot;</span> + </span><br><span class="line">						getConstraints(sInt.constraints()));</span><br><span class="line">				&#125;</span><br><span class="line">				<span class="keyword">if</span>(anns[<span class="number">0</span>] <span class="keyword">instanceof</span> SQLString) &#123;</span><br><span class="line">					SQLString sString = (SQLString)anns[<span class="number">0</span>];</span><br><span class="line">					<span class="keyword">if</span>(sString.name().length() &lt; <span class="number">1</span>)</span><br><span class="line">						columnName = field.getName().toUpperCase();</span><br><span class="line">					<span class="keyword">else</span></span><br><span class="line">						columnName = sString.name();</span><br><span class="line">					columnDefs.add(columnName + <span class="string">&quot; VARCHAR(&quot;</span> + </span><br><span class="line">						sString.value() + <span class="string">&quot;)&quot;</span> +</span><br><span class="line">						getConstraints(sString.constraints()));</span><br><span class="line">				&#125;	</span><br><span class="line">			&#125;</span><br><span class="line">			StringBuilder createCommand = <span class="keyword">new</span> StringBuilder(</span><br><span class="line">					<span class="string">&quot;CREATE TABLE &quot;</span> + tableName + <span class="string">&quot;(&quot;</span>);</span><br><span class="line">			<span class="keyword">for</span>(String columnDef : columnDefs)</span><br><span class="line">				createCommand.append(<span class="string">&quot;\n    &quot;</span> + columnDef + <span class="string">&quot;,&quot;</span>);</span><br><span class="line">			String tableCreate = createCommand.substring(</span><br><span class="line">					<span class="number">0</span>, createCommand.length()-<span class="number">1</span>) + <span class="string">&quot;);&quot;</span>;</span><br><span class="line">			System.out.println(<span class="string">&quot;Table Creation SQL for &quot;</span> + </span><br><span class="line">					className + <span class="string">&quot; is: \n&quot;</span> + tableCreate);	</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输入参数：<code>annotations.database.Member</code></p>
-<p>输出：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">Table</span> Creation <span class="keyword">SQL</span> <span class="keyword">for</span> annotations.database.Member <span class="keyword">is</span>: </span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keyword">MEMBER</span>(</span><br><span class="line">    FIRSTNAME <span class="type">VARCHAR</span>(<span class="number">30</span>),</span><br><span class="line">    LASTNAME <span class="type">VARCHAR</span>(<span class="number">50</span>),</span><br><span class="line">    AGE <span class="type">INT</span>,</span><br><span class="line">    HANDLE <span class="type">VARCHAR</span>(<span class="number">30</span>) <span class="keyword">PRIMARY</span> KEY);</span><br></pre></td></tr></table></figure>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>官方文档：<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/16/">https://docs.oracle.com/en/java/javase/16/</a></p>
-<p>jdk源码：<a target="_blank" rel="noopener" href="https://github.com/openjdk/jdk">https://github.com/openjdk/jdk</a> 也可以在官方文档中找到</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">编程语言</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/07/30/java%E8%AF%AD%E8%A8%80/">展开全文 >></a>
         </p>
       
 
@@ -1471,405 +2125,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2021/06/15/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-解决github的ssh相关问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">解决github的ssh相关问题</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2021-06-01T14:09:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>e</p>
-<p>在使用git进行push或者hexo进行deploy时会出现下面问题：</p>
-<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git@</span>github.com: Permission denied (publickey). Could <span class="keyword">not</span> read <span class="keyword">from</span> remote repository</span><br></pre></td></tr></table></figure>
-<p>Permission denied (publickey) 没有权限的publickey ，出现这错误一般是以下两种原因</p>
-<ul>
-<li>客户端与服务端未生成 ssh key</li>
-<li>客户端与服务端的ssh key不匹配</li>
-</ul>
-<h1 id="ssh"><a href="#ssh" class="headerlink" title="ssh"></a>ssh</h1><p>使用ssh公钥认证的方式可以免去ssh客户端(如ssh命令、xshell等)连接远端主机sshd时需要输入对方用户密码的问题。</p>
-<p>但如果执行ssh命令所在的主机上保存了多套秘钥且将各公钥分发给了不同的远端主机，这时即使使用了公钥认证，也依然需要输入密码，因为ssh客户端不知道要读取哪个私钥去和该远端主机上的公钥配对。因此在把不同的公钥<code>~/.ssh/id_rsa.pub</code>分发给了不同的主机后，在连接到主机时仍然需要输入密码，这是因为ssh客户端连接主机的时候，除了默认会读取的规范私钥文件<code>id_rsa</code>(或其它秘钥类型)外，不会自动读取任何一个文件。</p>
-<h2 id="ssh-agent"><a href="#ssh-agent" class="headerlink" title="ssh-agent"></a>ssh-agent</h2><p>程序员很不满意这样的连接方式，于是创造了一个中间的私钥管理者ssh-agent：你不是不知道怎么配对吗，我帮你配。而且这个功能对于程序员来说，so easy。</p>
-<p>ssh认证的过程其实是客户端(ssh命令端)读取自己的私钥并推导出指纹发送给服务端(sshd端)，服务端也使用自己保存的公钥推导出指纹进行对比，如果指纹相同说明服务端的公钥和客户端的私钥是配对的。</p>
-<p>使用ssh-agent后，可以通过ssh-add命令向ssh-agent注册本机的私钥，ssh-agent会自动推导出这个私钥的指纹(实际上是ssh-add计算的)保存在自己的小本本里(内存)，以后只要ssh连接某主机(某用户)，将自动转发给ssh-agent，ssh-agent将自动从它的小本本里查找私钥的指纹并将其发送给服务端(sshd端)。如此一来，ssh客户端就无需再指定使用哪个私钥文件去连接。</p>
-<h1 id="客户端生成ssh-key"><a href="#客户端生成ssh-key" class="headerlink" title="客户端生成ssh key"></a>客户端生成ssh key</h1><p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -C <span class="string">&quot;2957286012@qq.com&quot;</span></span><br></pre></td></tr></table></figure>
-<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601221150222.png" class="">
-<p><img src="解决github的ssh相关问题/image-20210601221150222.png" alt="image-20210601221150222"></p>
-<p>在<code>~/.ssh/</code>下会生成：</p>
-<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601223558359.png" class="">
-<p><img src="解决github的ssh相关问题/image-20210601223558359.png" alt="image-20210601223558359"></p>
-<p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -v git@github.com</span><br></pre></td></tr></table></figure>
-<p>这句代码是显示登录github的细节，输出：</p>
-<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line">OpenSSH_8.<span class="number">5</span>p1, OpenSSL <span class="number">1.1</span>.<span class="number">1</span>k  <span class="number">25</span> Mar <span class="number">2021</span></span><br><span class="line">debug1: Reading configuration data <span class="regexp">/etc/</span>ssh/ssh_config</span><br><span class="line">debug1: Connecting to github.com [<span class="number">52.74</span>.<span class="number">223.119</span>] port <span class="number">22</span>.</span><br><span class="line">debug1: Connection established.</span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_rsa type <span class="number">0</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_rsa-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_dsa type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_dsa-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa_sk type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa_sk-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519 type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519_sk type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519_sk-cert type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_xmss type -<span class="number">1</span></span><br><span class="line">debug1: identity <span class="keyword">file</span> <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_xmss-cert type -<span class="number">1</span></span><br><span class="line">debug1: Local version string SSH-<span class="number">2.0</span>-OpenSSH_8.<span class="number">5</span></span><br><span class="line">debug1: Remote protocol version <span class="number">2.0</span>, remote software version babeld-<span class="number">728</span>b22c0</span><br><span class="line">debug1: compat_banner: no match: babeld-<span class="number">728</span>b22c0</span><br><span class="line">debug1: Authenticating to github.com:<span class="number">22</span> as <span class="string">&#x27;git&#x27;</span></span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/known_hosts2: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/etc/</span>ssh/ssh_known_hosts: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/etc/</span>ssh/ssh_known_hosts2: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: SSH2_MSG_KEXINIT sent</span><br><span class="line">debug1: SSH2_MSG_KEXINIT received</span><br><span class="line">debug1: kex: algorithm: curve25519-sha256</span><br><span class="line">debug1: kex: host key algorithm: rsa-sha2-<span class="number">512</span></span><br><span class="line">debug1: kex: server-&gt;client cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none</span><br><span class="line">debug1: kex: client-&gt;server cipher: chacha20-poly1305@openssh.com MAC: &lt;implicit&gt; compression: none</span><br><span class="line">debug1: expecting SSH2_MSG_KEX_ECDH_REPLY</span><br><span class="line">debug1: SSH2_MSG_KEX_ECDH_REPLY received</span><br><span class="line">debug1: Server host key: ssh-rsa SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8</span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/known_hosts2: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/etc/</span>ssh/ssh_known_hosts: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: load_hostkeys: fopen <span class="regexp">/etc/</span>ssh/ssh_known_hosts2: No such <span class="keyword">file</span> or directory</span><br><span class="line">debug1: Host <span class="string">&#x27;github.com&#x27;</span> is known and matches the RSA host key.</span><br><span class="line">debug1: Found key in <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/known_hosts:<span class="number">1</span></span><br><span class="line">debug1: rekey out after <span class="number">134217728</span> blocks</span><br><span class="line">debug1: SSH2_MSG_NEWKEYS sent</span><br><span class="line">debug1: expecting SSH2_MSG_NEWKEYS</span><br><span class="line">debug1: SSH2_MSG_NEWKEYS received</span><br><span class="line">debug1: rekey in after <span class="number">134217728</span> blocks</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh<span class="regexp">/id_rsa RSA SHA256:dDGgT2zZ0y/</span>qEcpF<span class="regexp">/NmVY/m</span>l/eH+FPkH9w2ZtkuBuJc</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_dsa</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa_sk</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519_sk</span><br><span class="line">debug1: Will attempt key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_xmss</span><br><span class="line">debug1: SSH2_MSG_EXT_INFO received</span><br><span class="line">debug1: kex_input_ext_info: server-sig-algs=&lt;ssh-ed25519-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp256-cert-v01@openssh.com,sk-ssh-ed25519-cert-v01@openssh.com,sk-ecdsa-sha2-nistp256-cert-v01@openssh.com,rsa-sha2-<span class="number">512</span>-cert-v01@openssh.com,rsa-sha2-<span class="number">256</span>-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-dss-cert-v01@openssh.com,sk-ssh-ed25519@openssh.com,sk-ecdsa-sha2-nistp256@openssh.com,ssh-ed25519,ecdsa-sha2-nistp521,ecdsa-sha2-nistp384,ecdsa-sha2-nistp256,rsa-sha2-<span class="number">512</span>,rsa-sha2-<span class="number">256</span>,ssh-rsa,ssh-dss&gt;</span><br><span class="line">debug1: SSH2_MSG_SERVICE_ACCEPT received</span><br><span class="line">debug1: Authentications that can <span class="keyword">continue</span>: publickey</span><br><span class="line">debug1: <span class="keyword">Next</span> authentication method: publickey</span><br><span class="line">debug1: Offering <span class="keyword">public</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh<span class="regexp">/id_rsa RSA SHA256:dDGgT2zZ0y/</span>qEcpF<span class="regexp">/NmVY/m</span>l/eH+FPkH9w2ZtkuBuJc</span><br><span class="line">debug1: Authentications that can <span class="keyword">continue</span>: publickey</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_dsa</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ecdsa_sk</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_ed25519_sk</span><br><span class="line">debug1: Trying <span class="keyword">private</span> key: <span class="regexp">/c/U</span>sers<span class="regexp">/zhou2/</span>.ssh/id_xmss</span><br><span class="line">debug1: No more authentication methods to <span class="keyword">try</span>.</span><br><span class="line">git@github.com: Permission denied (publickey).</span><br></pre></td></tr></table></figure>
-<p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent -s</span><br></pre></td></tr></table></figure>
-<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601221943215.png" class="">
-<p><img src="解决github的ssh相关问题/image-20210601221943215.png" alt="image-20210601221943215"></p>
-<p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-agent bash</span><br><span class="line">ssh-add ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
-<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601222704748.png" class="">
-<p><img src="解决github的ssh相关问题/image-20210601222704748.png" alt="image-20210601222704748"></p>
-<h1 id="github服务器配置ssh"><a href="#github服务器配置ssh" class="headerlink" title="github服务器配置ssh"></a>github服务器配置ssh</h1><p>打开你刚刚生成的id_rsa.pub，将里面的内容复制，进入你的github账号，在settings下，SSH and GPG keys下new SSH key，然后将id_rsa.pub里的内容复制到Key中，完成后Add SSH Key。</p>
-<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601222853431.png" class="">
-<p><img src="解决github的ssh相关问题/image-20210601222853431.png" alt="image-20210601222853431"></p>
-<h1 id="验证"><a href="#验证" class="headerlink" title="验证"></a>验证</h1><p>执行：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
-<p>结果是：</p>
-<img src="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/image-20210601222953884.png" class="">
-<p><img src="解决github的ssh相关问题/image-20210601222953884.png" alt="image-20210601222953884"></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/01/%E8%A7%A3%E5%86%B3github%E7%9A%84ssh%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-WSL更新数据源" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/">WSL更新数据源</a>
-    </h1>
-  
-
-        
-        <a href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/" class="archive-article-date">
-  	<time datetime="2021-06-01T13:09:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>e</p>
-<p>首先进入WSL，执行<code>cd /etc/apt</code>。</p>
-<p>然后再windows的<code>C:\Users\%USERNAME%\AppData\Local\Packages\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\LocalState\rootfs</code>目录下找到sources.list文件。用下列内容覆盖。</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-security main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-updates main restricted universe multiverse  </span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-backports main restricted universe multiverse  </span><br><span class="line"><span class="comment">##测试版源  </span></span><br><span class="line">deb http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-proposed main restricted universe multiverse  </span><br><span class="line"><span class="comment"># 源码  </span></span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-security main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-updates main restricted universe multiverse  </span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-backports main restricted universe multiverse  </span><br><span class="line"><span class="comment">##测试版源  </span></span><br><span class="line">deb-src http:<span class="regexp">//mi</span>rrors.aliyun.com<span class="regexp">/ubuntu/</span> xenial-proposed main restricted universe multiverse  </span><br><span class="line"><span class="comment"># Canonical 合作伙伴和附加  </span></span><br><span class="line">deb http:<span class="regexp">//</span>archive.canonical.com<span class="regexp">/ubuntu/</span> xenial partner  </span><br><span class="line">deb http:<span class="regexp">//</span>extras.ubuntu.com<span class="regexp">/ubuntu/</span> xenial main  </span><br></pre></td></tr></table></figure>
-<p>接着，回到WSL，执行：</p>
-<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-<span class="builtin-name">get</span> update # 更新源</span><br><span class="line">sudo apt-<span class="builtin-name">get</span><span class="built_in"> upgrade </span># 更新软件</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/06/01/WSL%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE%E6%BA%90/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-eclipse与maven" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/05/29/eclipse%E4%B8%8Emaven/">eclipse与maven</a>
-    </h1>
-  
-
-        
-        <a href="/2021/05/29/eclipse%E4%B8%8Emaven/" class="archive-article-date">
-  	<time datetime="2021-05-29T07:30:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h1><p>假如你正在Eclipse下开发两个Java项目，姑且把它们称为A、B，其中A项目中的一些功能依赖于B项目中的某些类，那么如何维系这种依赖关系的呢？</p>
-<p>很简单，这不就是跟我们之前写程序时一样吗，需要用哪个项目中的哪些类，也就是用别人写好了的功能代码，导入jar包即可。所以这里也如此，可以将B项目打成jar包，然后在A项目的Library下导入B的jar文件，这样，A项目就可以调用B项目中的某些类了。</p>
-<p>这样做几种缺陷如果在开发过程中，发现B中的bug，则必须将B项目修改好，并重新将B打包并对A项目进行重编译操作在完成A项目的开发后，为了保证A的正常运行，就需要依赖B(就像在使用某个jar包时必须依赖另外一个jar一样)，两种解决方案，第一种，选择将B打包入A中，第二种，将B也发布出去，等别人需要用A时，告诉开发者，想要用A就必须在导入B jar包。两个都很麻烦，前者可能造成资源的浪费(比如，开发者可能正在开发依赖B的其它项目，B已经存储到本地了，在导入A的jar包的话，就有了两个B的jar)，后者是我们常遇到的，找各种jar包，非常麻烦(有了maven就不一样了)</p>
-<h1 id="maven简介"><a href="#maven简介" class="headerlink" title="maven简介"></a>maven简介</h1><p>Maven是基于项目对象模型(POM project object model)，可以通过一小段描述信息（配置）来管理项目的构建，报告和文档的软件项目管理工具。Maven的核心功能便是合理叙述项目间的依赖关系，通俗点讲，就是通过pom.xml文件的配置获取jar包，而不用手动去添加jar包，而这里pom.xml文件对于学了一点maven的人来说，就有些熟悉了，怎么通过pom.xml的配置就可以获取到jar包呢？pom.xml配置文件从何而来？等等类似问题我们需要搞清楚，如果需要使用pom.xml来获取jar包，那么首先该项目就必须为maven项目，maven项目可以这样去想，就是在java项目和web项目的上面包裹了一层maven，本质上java项目还是java项目，web项目还是web项目，但是包裹了maven之后，就可以使用maven提供的一些功能了</p>
-<p>所以，根据上一段的描述，我们最终的目的就是学会如何在pom.xml中配置获取到我们想要的jar包，在此之前我们就必须了解如何创建maven项目，maven项目的结构是怎样，与普通java,web项目的区别在哪里，还有如何配置pom.xml获取到对应的jar包等等</p>
-<p>例子：pom.xml中写明需要junit的jar包的例子</p>
-<img src="/2021/05/28/eclipse%E4%B8%8Emaven/1.png" class="">
-<p><img src="eclipse与maven/1.png" alt="0"></p>
-<p>其中groupId是给自己的一个唯一标识；artifactId是自己的项目名称；version是这个jar包的版本号。</p>
-<h1 id="仓库"><a href="#仓库" class="headerlink" title="仓库"></a>仓库</h1><p>通过pom.xml中的配置，就能够获取到想要的jar包(还没讲解如何配置先需要了解一下仓库的概念)，但是这些jar是在哪里呢？就是我们从哪里获取到的这些jar包？答案就是仓库。</p>
-<p>仓库分为：本地仓库、第三方仓库(私服)、中央仓库</p>
-<h2 id="本地仓库"><a href="#本地仓库" class="headerlink" title="本地仓库"></a>本地仓库</h2><p>Maven会将工程中依赖的构件(Jar包)从远程下载到本机一个目录下管理，每个电脑默认的仓库是在 <code>$user.home/.m2/repository</code>下。</p>
-<p>一般我们会修改本地仓库位置，自己创建一个文件夹，在从网上下载一个拥有相对完整的所有jar包的结合，都丢到本地仓库中，然后每次写项目，直接从本地仓库里拿就行了。</p>
-<p>修改本地库位置：在<code>$MAVEN_HOME/conf/setting.xml</code>文件中修改（$MAVEN_HOME代表你的maven安装根目录）。</p>
-<img src="/2021/05/28/eclipse%E4%B8%8Emaven/2.png" class="">
-<p><img src="eclipse与maven/2.png" alt="0"></p>
-<p>我们自己创建的本地仓库是<code>D:\java\maven\repository</code>，将网上下载的所有jar包，都丢到该目录下，我们就可以直接通过maven的pom.xml文件直接拿。</p>
-<h2 id="第三方仓库-私服"><a href="#第三方仓库-私服" class="headerlink" title="第三方仓库(私服)"></a>第三方仓库(私服)</h2><p>略</p>
-<h2 id="中央仓库"><a href="#中央仓库" class="headerlink" title="中央仓库"></a>中央仓库</h2><p>Maven内置了远程公用仓库：<code>http://repo1.maven.org/maven2</code>。这个公共仓库是由Maven自己维护，里面有大量的常用类库，并包含了世界上大部分流行的开源项目构件。目前是以java为主。工程依赖的jar包如果本地仓库没有，默认从中央仓库下载</p>
-<h1 id="eclipse创建maven项目"><a href="#eclipse创建maven项目" class="headerlink" title="eclipse创建maven项目"></a>eclipse创建maven项目</h1><p>使用eclpse创建项目前，需要在eclipse中配置maven的一些信息，如：配置本地仓库、安装自定义maven(myeclipse中高版本自带了maven)等</p>
-<h2 id="java项目"><a href="#java项目" class="headerlink" title="java项目"></a>java项目</h2><p>选择<code>File-&gt;new-&gt;Project</code>，然后选择<code>Maven-&gt;Maven Project</code>，然后选择<code>create a simple project</code>，之后就自己选择。结果是</p>
-<img src="/2021/05/28/eclipse%E4%B8%8Emaven/3.png" class="">
-<p><img src="eclipse与maven/3.png" alt="0"></p>
-<h1 id="maven-安装"><a href="#maven-安装" class="headerlink" title="maven 安装"></a>maven 安装</h1><p>前往<a target="_blank" rel="noopener" href="https://maven.apache.org/download.cgi">https://maven.apache.org/download.cgi</a> 下载最新的bin文件压缩件。</p>
-<p>将文件解压到<code>D:\APP\</code>目录下，<code>D:\APP\apache-maven-3.8.1</code>是根目录。</p>
-<p>新建环境变量<code>MAVEN_HOME</code>，赋值为<code>D:\APP\apache-maven-3.8.1</code>。</p>
-<p>编辑PATH环境变量，新建：<code>%MAVEN_HOME%\bin</code>。</p>
-<h1 id="eclipse使用"><a href="#eclipse使用" class="headerlink" title="eclipse使用"></a>eclipse使用</h1><p><strong>如何自动引包</strong></p>
-<p>在代码区域，右键，选择“source”，然后选择”organize imports”。</p>
-<p><strong>如何添加包</strong></p>
-<p>包的层次关系等价于目录层次关系，比如”com.springboot.bean”包的目录就在”com.springboot”的目录下面。</p>
-<p><strong>package explorer中显示包的层次关系</strong></p>
-<p><img src="eclipse与maven/image-20210810171143404.png" alt="image-20210810171143404"></p>
-<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/whgk/p/7112560.html">https://www.cnblogs.com/whgk/p/7112560.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">工具和环境</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/05/29/eclipse%E4%B8%8Emaven/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="posts-node-media-server视频直播" class="article article-type-posts  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/04/03/node-media-server%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD/">node media server视频直播</a>
-    </h1>
-  
-
-        
-        <a href="/2021/04/03/node-media-server%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD/" class="archive-article-date">
-  	<time datetime="2021-04-03T03:17:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-04-03</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>node media server和ffmpeg组合起来可以实现视频</p>
-<p>先参考网址：<a target="_blank" rel="noopener" href="https://github.com/illuspas/Node-Media-Server">https://github.com/illuspas/Node-Media-Server</a></p>
-<h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="node-media-server"><a href="#node-media-server" class="headerlink" title="node media server"></a>node media server</h2><p>最简单的方式就是用npm全局安装</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g <span class="keyword">node</span><span class="title">-media-server</span></span><br></pre></td></tr></table></figure>
-<h2 id="ffmpeg"><a href="#ffmpeg" class="headerlink" title="ffmpeg"></a>ffmpeg</h2><p>进入网址：<a target="_blank" rel="noopener" href="http://ffmpeg.org/">http://ffmpeg.org/</a> </p>
-<p>下载后添加环境变量：</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">D</span>:\APP\ffmpeg-N-<span class="number">101799</span>-g<span class="number">0</span>c<span class="number">7</span>d<span class="number">02844</span>c-win<span class="number">64</span>-gpl-shared-vulkan\bin</span><br></pre></td></tr></table></figure>
-<h1 id="推流"><a href="#推流" class="headerlink" title="推流"></a>推流</h1><p>在推流前，先把node media server 运行起来，这一点看拉流那一节</p>
-<h2 id="本地视频推流"><a href="#本地视频推流" class="headerlink" title="本地视频推流"></a>本地视频推流</h2><p>假如在我们的D盘有一个视频叫做my_room.mp4</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -re -i D:\\my_room.mp4 -c:v libx264 -preset veryfast -tune zerolatency -c:a aac -ar <span class="number">44100</span> -f flv rtmp:<span class="regexp">//</span>localhost<span class="regexp">/live/my</span>_room</span><br></pre></td></tr></table></figure>
-<h2 id="本地摄像头推流"><a href="#本地摄像头推流" class="headerlink" title="本地摄像头推流"></a>本地摄像头推流</h2><h3 id="摄像头和麦克风信息"><a href="#摄像头和麦克风信息" class="headerlink" title="摄像头和麦克风信息"></a>摄像头和麦克风信息</h3><p>首先使用ffmpeg查看本地摄像头的相关信息：</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ffmpeg</span> -list_devices <span class="literal">true</span> -f dshow -i dummy</span><br></pre></td></tr></table></figure>
-<p><img src="image/image-20210403153847368.png" alt="image-20210403153847368"></p>
-<h3 id="音视频推送"><a href="#音视频推送" class="headerlink" title="音视频推送"></a>音视频推送</h3><p>我目前找到两份代码，但是只有第二份代码可以正常</p>
-<p>第一个：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f dshow -i video=<span class="string">&quot;HP Wide Vision HD Camera&quot;</span>:audio=<span class="string">&quot;麦克风阵列 (Realtek High Definition Audio)&quot;</span> -vcodec libx264 -acodec copy -preset:v ultrafast -tune:v zerolatency -f flv rtmp:<span class="regexp">//</span>localhost<span class="regexp">/live/my</span>_room</span><br></pre></td></tr></table></figure>
-<p>第二个：</p>
-<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -f dshow -i video=<span class="string">&quot;HP Wide Vision HD Camera&quot;</span>:audio=<span class="string">&quot;麦克风阵列 (Realtek High Definition Audio)&quot;</span> -vcodec libx264 -preset:v ultrafast -tune:v zerolatency -f flv rtmp:<span class="regexp">//</span>localhost<span class="regexp">/live/my</span>_room</span><br></pre></td></tr></table></figure>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">D</span>:\APP\ffmpeg-N-<span class="number">101799</span>-g<span class="number">0</span>c<span class="number">7</span>d<span class="number">02844</span>c-win<span class="number">64</span>-gpl-shared-vulkan\bin\ffmpeg.exe -f dshow -i video=<span class="string">&quot;HP Wide Vision HD Camera&quot;</span>:audio=<span class="string">&quot;麦克风阵列 (Realtek High Definition Audio)&quot;</span> -vcodec libx<span class="number">264</span> -preset:v ultrafast -tune:v zerolatency -f flv rtmp://localhost/live/my_room</span><br></pre></td></tr></table></figure>
-<p>我们可以看到，推送音视频信息时需要给ffmpeg命令行传入摄像头和麦克风信息。</p>
-<h1 id="拉流"><a href="#拉流" class="headerlink" title="拉流"></a>拉流</h1><h2 id="video标签"><a href="#video标签" class="headerlink" title="video标签"></a>video标签</h2><p>所谓拉流，就是使用<code>video</code>标签来链接到node media server的http-flv端口。因此我们要在index.js(运行后台服务器的js文件)里面，打开express服务器和node media server服务器</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">&#x27;express&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"></span><br><span class="line">app.get(<span class="string">&#x27;/&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">    fs.readFile(<span class="string">&#x27;./resource/html/test.html&#x27;</span>,<span class="function"><span class="keyword">function</span>(<span class="params">err,data</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            res.setHeader(<span class="string">&#x27;Content-Type&#x27;</span>,<span class="string">&#x27;text/plain; charset=utf-8&#x27;</span>)</span><br><span class="line">            res.end(<span class="string">&#x27;文件读取失败&#x27;</span>)</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            res.setHeader(<span class="string">&#x27;Content-Type&#x27;</span>,<span class="string">&#x27;text/html; charset=utf-8&#x27;</span>)</span><br><span class="line">            <span class="keyword">var</span> htmlStr = data.toString()</span><br><span class="line">            res.end(htmlStr)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcss.com/flv.js/1.5.0/flv.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">&quot;videoElement&quot;</span> <span class="attr">controls</span>=<span class="string">&quot;controls&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">id</span>=<span class="string">&quot;update_live_btn&quot;</span>&gt;</span>更新<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> videoElement</span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> flvPlayer</span></span><br><span class="line"><span class="javascript">    <span class="keyword">if</span> (flvjs.isSupported()) &#123;</span></span><br><span class="line"><span class="javascript">        videoElement = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;videoElement&#x27;</span>);</span></span><br><span class="line"><span class="javascript">        flvPlayer = flvjs.createPlayer(&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">type</span>: <span class="string">&#x27;flv&#x27;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">isLive</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">hasAudio</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">hasVideo</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">url</span>: <span class="string">&#x27;http://localhost:8000/live/my_room.flv&#x27;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">cors</span>: <span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">        &#125;,&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">enableStashBuffer</span>: <span class="literal">false</span></span></span><br><span class="line"><span class="javascript">        &#125;);</span></span><br><span class="line"><span class="javascript">        flvPlayer.attachMediaElement(videoElement);</span></span><br><span class="line"><span class="javascript">        flvPlayer.load();</span></span><br><span class="line"><span class="javascript">        flvPlayer.play();</span></span><br><span class="line"><span class="javascript">    &#125;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="built_in">setInterval</span>(<span class="function">()=&gt;</span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(!videoElement.buffered.length)&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span></span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> end = videoElement.buffered.end(<span class="number">0</span>)</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> diff = end - videoElement.currentTime</span></span><br><span class="line"><span class="javascript">        <span class="keyword">if</span>(diff &gt;= <span class="number">0.5</span>)&#123;</span></span><br><span class="line"><span class="javascript">            videoElement.currentTime = end</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;, <span class="number">1000</span>)</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>先执行 <code>node index.js</code>，运行起服务器，接着再执行推流。</p>
-<p>打开浏览器，输入：<code>http://localhost:3000/</code></p>
-<h2 id="如何更新video标签"><a href="#如何更新video标签" class="headerlink" title="如何更新video标签"></a>如何更新video标签</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(flvPlayer != undefined)&#123;</span><br><span class="line">        flvPlayer.<span class="built_in">unload</span>()</span><br><span class="line">        flvPlayer.<span class="built_in">detachMediaElement</span>()</span><br><span class="line">        flvPlayer.<span class="built_in">destroy</span>()</span><br><span class="line">        flvPlayer = null</span><br><span class="line">    &#125;</span><br><span class="line">    videoElement = $(<span class="string">&quot;.meeting_div .live video&quot;</span>).<span class="built_in">get</span>(<span class="number">0</span>) <span class="comment">// jquery对象转为dom对象</span></span><br><span class="line">    flvPlayer = flvjs.<span class="built_in">createPlayer</span>(&#123;</span><br><span class="line">        type: <span class="string">&#x27;flv&#x27;</span>,</span><br><span class="line">        isLive: <span class="literal">true</span>,</span><br><span class="line">        hasAudio: <span class="literal">true</span>,</span><br><span class="line">        hasVideo: <span class="literal">true</span>,</span><br><span class="line">        url: <span class="string">&quot;http://localhost:8000/live/pushstream:&quot;</span> + id + <span class="string">&quot;.flv&quot;</span>,</span><br><span class="line">        cors: <span class="literal">true</span>,</span><br><span class="line">    &#125;,&#123;</span><br><span class="line">        enableStashBuffer: <span class="literal">false</span></span><br><span class="line">    &#125;);</span><br><span class="line">    flvPlayer.<span class="built_in">attachMediaElement</span>(videoElement);</span><br><span class="line">    flvPlayer.<span class="built_in">load</span>();</span><br><span class="line">    flvPlayer.<span class="built_in">play</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(intervalFunc)&#123;</span><br><span class="line">        <span class="built_in">clearInterval</span>(intervalFunc)</span><br><span class="line">    &#125;</span><br><span class="line">    intervalFunc = <span class="built_in">setInterval</span>(()=&gt;&#123;</span><br><span class="line">        <span class="keyword">if</span>(!videoElement.buffered.length)&#123;</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        let end = videoElement.buffered.<span class="built_in">end</span>(<span class="number">0</span>)</span><br><span class="line">        let diff = end - videoElement.currentTime</span><br><span class="line">        <span class="keyword">if</span>(diff &gt;= <span class="number">0.5</span>)&#123;</span><br><span class="line">            videoElement.currentTime = end</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">D</span>:\APP\ffmpeg-N-<span class="number">101799</span>-g<span class="number">0</span>c<span class="number">7</span>d<span class="number">02844</span>c-win<span class="number">64</span>-gpl-shared-vulkan\bin\ffmpeg -f dshow -i audio=<span class="string">&quot;麦克风阵列 (Realtek High Definition Audio)&quot;</span> D:\APP\ffmpeg-N-<span class="number">101799</span>-g<span class="number">0</span>c<span class="number">7</span>d<span class="number">02844</span>c-win<span class="number">64</span>-gpl-shared-vulkan\out.m<span class="number">4</span>a</span><br></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">前端</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/04/03/node-media-server%E8%A7%86%E9%A2%91%E7%9B%B4%E6%92%AD/">展开全文 >></a>
         </p>
       
 
